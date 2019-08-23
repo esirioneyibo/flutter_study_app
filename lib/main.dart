@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/navigator/BottomNavigator.dart';
+import 'package:flutter_study_app/pages/SplashScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'xiaomo',
       theme: ThemeData.light(),
-      home: BottomNavigator(),
+      home: new SplashScreen(),
     );
   }
 }
