@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/MyAppBar.dart';
 
 
 class Temp1Screen extends StatelessWidget {
