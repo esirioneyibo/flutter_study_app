@@ -1,41 +1,51 @@
 import 'package:flutter/material.dart';
 
 class LeftNavigator extends StatelessWidget {
-  // 抽屉菜单
-  final  menuItems = ListView(
-    children: <Widget>[
+  @override
+  Widget build(BuildContext context) {
+    // 抽屉菜单
+    var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
-        leading: const Icon(Icons.add),
-        title: const Text('用户中心'),
+        leading: const Icon(Icons.person),
+        title: const Text('我的动态'),
+      ),
+      ListTile(
+        leading: const Icon(Icons.color_lens),
+        title: const Text('主题切换'),
+      ),
+      ListTile(
+        leading: const Icon(Icons.cached),
+        title: const Text('清除缓存'),
       ),
       ListTile(
         leading: const Icon(Icons.settings),
-        title: const Text('关于我'),
+        title: const Text('设置中心'),
+      ),
+      ListTile(
+        leading: const Icon(Icons.near_me),
+        title: const Text('关于软件'),
       )
-    ],
-  );
+    ]);
 
-  // 个人信息
-  final info = Row(
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ClipOval(
-          child: Image.network(
-            'https://image.xiaomo.info/logo/avatar.png',
-            width: 80,
+    // 个人信息
+    var info = Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ClipOval(
+            child: Image.network(
+              'https://image.xiaomo.info/logo/avatar.png',
+              width: 80,
+            ),
           ),
         ),
-      ),
-      Text(
-        '小莫',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    ],
-  );
+        Text(
+          '小莫',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
 
-  @override
-  Widget build(BuildContext context) {
     return new Drawer(
       child: MediaQuery.removePadding(
           context: context,
@@ -48,7 +58,9 @@ class LeftNavigator extends StatelessWidget {
                 child: info,
               ),
               Expanded(
-                child: menuItems,
+                child: ListView(
+                  children: items.toList(),
+                ),
               )
             ],
           )),
