@@ -7,7 +7,7 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar('设置', AppHeight),
+      appBar: MyAppBar(context,'设置', AppHeight),
       body: Center(
         child: Text('this is about screen'),
       ),

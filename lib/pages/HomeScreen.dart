@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar('首页', AppHeight),
+      appBar: MyAppBar(context,'首页', AppHeight),
       body: Center(
         child: Text('this is home screen'),
       ),

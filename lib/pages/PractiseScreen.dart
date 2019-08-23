@@ -7,7 +7,7 @@ class PractiseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar('每日一练', AppHeight),
+      appBar: MyAppBar(context,'每日一练', AppHeight),
       body: Center(
         child: Text('this is practise screen'),
       ),

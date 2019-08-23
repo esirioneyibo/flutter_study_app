@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LeftNavigator extends StatelessWidget {
   // 抽屉菜单
-  var menuItems = ListView(
+  final  menuItems = ListView(
     children: <Widget>[
       ListTile(
         leading: const Icon(Icons.add),
@@ -16,7 +16,7 @@ class LeftNavigator extends StatelessWidget {
   );
 
   // 个人信息
-  var info = Row(
+  final info = Row(
     children: <Widget>[
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

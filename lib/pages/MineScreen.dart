@@ -7,7 +7,7 @@ class MineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar('我的', AppHeight),
+      appBar: MyAppBar(context,'我的', AppHeight),
       body: Center(
         child: Text('this is mine screen'),
       ),
