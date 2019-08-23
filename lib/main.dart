@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/navigator/BottomNavigator.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,12 +8,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'xiaomo',
-      home: Scaffold(
-        appBar: AppBar(title: Text('bar')),
-        body: Center(
-          child: Text('content'),
-        ),
-      ),
+      theme: ThemeData.light(),
+      home: BottomNavigator(),
     );
   }
 }
