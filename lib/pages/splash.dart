@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/navigator/BottomNavigator.dart';
+import '../navigator.dart';
 
 ///
 /// 导航器是一个有状态的组件

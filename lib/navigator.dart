@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/navigator/LeftNavigator.dart';
-import 'package:flutter_study_app/pages/ChatScreen.dart';
-import 'package:flutter_study_app/pages/HomeScreen.dart';
-import 'package:flutter_study_app/pages/MineScreen.dart';
-import 'package:flutter_study_app/pages/PractiseScreen.dart';
+import 'package:flutter_study_app/pages/chat.dart';
+import 'package:flutter_study_app/pages/home.dart';
+import 'package:flutter_study_app/pages/mine.dart';
+import 'package:flutter_study_app/pages/practise.dart';
+import 'package:flutter_study_app/pages/study.dart';
 
-import '../theme.dart';
+import 'theme.dart';
 
 ///
 /// 导航器是一个有状态的组件
@@ -25,14 +25,14 @@ class _BottomNavigatorState extends State<BottomNavigator> {
         icon: Icon(Icons.home, color: bottomNavigatorBackgroundColor),
         title: new Text('首页')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.favorite, color: bottomNavigatorBackgroundColor),
+        icon: Icon(Icons.filter_vintage, color: bottomNavigatorBackgroundColor),
+        title: new Text('资源')),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.whatshot, color: bottomNavigatorBackgroundColor),
         title: new Text('每日一练')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.chat, color: bottomNavigatorBackgroundColor),
+        icon: Icon(Icons.camera, color: bottomNavigatorBackgroundColor),
         title: new Text('圈子')),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.settings, color: bottomNavigatorBackgroundColor),
-        title: new Text('我的')),
   ];
 
   @override
@@ -56,9 +56,9 @@ class _BottomNavigatorState extends State<BottomNavigator> {
   void initState() {
     tabs
       ..add(new HomeScreen())
+      ..add(new StudyScreen())
       ..add(new PractiseScreen())
-      ..add(new ChatScreen())
-      ..add(new MineScreen());
+      ..add(new ChatScreen());
     super.initState();
   }
 }

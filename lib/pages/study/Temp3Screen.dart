@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/ChoiceCard.dart';
-import 'package:flutter_study_app/components/MyAppBar.dart';
 import 'package:flutter_study_app/components/NewsCard.dart';
 import 'package:flutter_study_app/models/Choice.dart';
 import 'package:flutter_study_app/models/News.dart';
 
-import '../config.dart';
-
-class HomeScreen extends StatelessWidget {
+class Temp3Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
@@ -72,9 +69,12 @@ class HomeScreen extends StatelessWidget {
     var postsSection = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          '动态',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        Container(
+          margin: EdgeInsets.only(left: 15, top: 10),
+          child: Text(
+            '动态',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         Container(
             margin: EdgeInsets.all(10),
@@ -92,7 +92,6 @@ class HomeScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: MyAppBar(context, '首页', AppHeight),
       body: ListView(
         children: <Widget>[
           toolsSection,
