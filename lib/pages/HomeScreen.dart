@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/ChoiceCard.dart';
 import 'package:flutter_study_app/components/MyAppBar.dart';
+import 'package:flutter_study_app/components/NewsCard.dart';
 import 'package:flutter_study_app/models/Choice.dart';
+import 'package:flutter_study_app/models/News.dart';
 
 import '../config.dart';
 
@@ -18,9 +21,39 @@ class HomeScreen extends StatelessWidget {
       const Choice(title: '今日目标', icon: Icons.sentiment_very_satisfied),
     ];
 
-    var tools = GridView.count(
+    List<Widget> items = <Widget>[
+      Container(
+        alignment: Alignment.center,
+        child: new ListTile(
+          title: new Text('这是动态1'),
+        ),
+      ),
+      Container(
+        child: new ListTile(
+          title: new Text('这是动态2'),
+        ),
+      ),
+      Container(
+        child: new ListTile(
+          title: new Text('这是动态3'),
+        ),
+      ),
+      Container(
+        child: new ListTile(
+          title: new Text('这是动态4'),
+        ),
+      ),
+      Container(
+        child: new ListTile(
+          title: new Text('这是动态5'),
+        ),
+      )
+    ];
+
+    var toolsSection = GridView.count(
       crossAxisCount: 3,
       crossAxisSpacing: 5,
+      shrinkWrap: true,
       children: List.generate(choices.length, (index) {
         return Center(
           child: ChoiceCard(choice: choices[index]),
@@ -28,10 +61,45 @@ class HomeScreen extends StatelessWidget {
       }),
     );
 
+    var newsSection = new NewsCard(
+        news: News(
+            title1: '这里是新闻1',
+            date1: '2小时前',
+            title2: '这里是新闻2',
+            date2: '1小时前',
+            icon: Icons.date_range));
+
+    var postsSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          '动态',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        Container(
+            margin: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: Colors.grey, width: 1, style: BorderStyle.solid),
+                shape: BoxShape.rectangle),
+            child: new ListView(
+                shrinkWrap: true,
+                physics: new NeverScrollableScrollPhysics(),
+                children: ListTile.divideTiles(
+                        context: context, tiles: items, color: Colors.black)
+                    .toList()))
+      ],
+    );
+
     return Scaffold(
-        appBar: MyAppBar(context, '首页', AppHeight),
-        body: Center(
-          child: tools,
-        ));
+      appBar: MyAppBar(context, '首页', AppHeight),
+      body: ListView(
+        children: <Widget>[
+          toolsSection,
+          newsSection,
+          postsSection,
+        ],
+      ),
+    );
   }
 }
