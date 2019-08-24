@@ -10,50 +10,66 @@ class ChatScreen extends StatelessWidget {
       ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
+        title: Text('这是标题'),
+        subtitle: Text(
+          '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
-        title: Text('这是标题'),
-        subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
-      ),ListTile(
+      ),
+      ListTile(
         title: Text('这是标题'),
         subtitle: Text('假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容'),
       )
-
     ];
     return Scaffold(
-      appBar: MyAppBar(context, '圈子', AppHeight),
+      appBar: MyAppBar(context, '圈子', AppBarHeight),
       body: Center(
         child: ListView(
           children:

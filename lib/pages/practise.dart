@@ -54,7 +54,7 @@ class PractiseScreen extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: MyAppBar(context, '每日一练', AppHeight),
+        appBar: MyAppBar(context, '每日一练', AppBarHeight),
         body: Container(
           child: toolsSection,
         ));

@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: MyAppBar(context, '首页', AppHeight),
+      appBar: MyAppBar(context, '首页', AppBarHeight),
       body: ListView(
         children: <Widget>[
           toolsSection,
