@@ -1,3 +1,4 @@
 import 'package:flutter/material.dart';
 
-const bottomNavigatorBackgroundColor = Colors.lightBlue;
+const bottomNavigatorSelectedColor = Colors.pink;
+const bottomNavigatorUnSelectedColor = Colors.black;

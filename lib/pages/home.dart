@@ -5,6 +5,7 @@ import 'package:flutter_study_app/components/MyAppBar.dart';
 import 'package:flutter_study_app/components/NewsCard.dart';
 import 'package:flutter_study_app/models/Choice.dart';
 import 'package:flutter_study_app/models/News.dart';
+import 'package:flutter_study_app/models/Post.dart';
 
 import '../config.dart';
 
@@ -19,40 +20,25 @@ class HomeScreen extends StatelessWidget {
       const Choice(title: '小决定', icon: Icons.settings_input_svideo),
       const Choice(title: '翻译', icon: Icons.g_translate),
       const Choice(title: '今日目标', icon: Icons.sentiment_very_satisfied),
+      const Choice(title: '实时汇率', icon: Icons.monetization_on),
+      const Choice(title: '更多工具', icon: Icons.filter_9_plus),
     ];
 
-    List<Widget> items = <Widget>[
-      Container(
-        alignment: Alignment.center,
-        child: new ListTile(
-          title: new Text('这是动态1'),
-        ),
-      ),
-      Container(
-        child: new ListTile(
-          title: new Text('这是动态2'),
-        ),
-      ),
-      Container(
-        child: new ListTile(
-          title: new Text('这是动态3'),
-        ),
-      ),
-      Container(
-        child: new ListTile(
-          title: new Text('这是动态4'),
-        ),
-      ),
-      Container(
-        child: new ListTile(
-          title: new Text('这是动态5'),
-        ),
-      )
+    List<Post> posts = [
+      Post('动态1', '内容', Icons.save),
+      Post('动态2', '内容', Icons.data_usage),
+      Post('动态3', '内容', Icons.access_time),
+      Post('动态4', '内容', Icons.delete_forever),
+      Post('动态5', '内容', Icons.euro_symbol),
+      Post('动态6', '内容', Icons.eject),
+      Post('动态7', '内容', Icons.favorite),
+      Post('动态8', '内容', Icons.delete_outline),
+      Post('动态9', '内容', Icons.account_box),
     ];
 
     var toolsSection = GridView.count(
-      crossAxisCount: 3,
-      crossAxisSpacing: 5,
+      crossAxisCount: 4,
+      physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(choices.length, (index) {
         return Center(
@@ -73,7 +59,7 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(left: 15,top: 10),
+          margin: EdgeInsets.only(left: 15, top: 10),
           child: Text(
             '动态',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -85,12 +71,31 @@ class HomeScreen extends StatelessWidget {
                 border: Border.all(
                     color: Colors.grey, width: 1, style: BorderStyle.solid),
                 shape: BoxShape.rectangle),
-            child: new ListView(
+            child: ListView.builder(
+                itemCount: posts.length,
                 shrinkWrap: true,
-                physics: new NeverScrollableScrollPhysics(),
-                children: ListTile.divideTiles(
-                        context: context, tiles: items, color: Colors.black)
-                    .toList()))
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: new Text(posts[index].title),
+                        onTap: () {
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text(posts[index].title),
+                            duration: Duration(milliseconds: 200),
+                            action: SnackBarAction(
+                                label: '关闭',
+                                onPressed: () {
+                                  Scaffold.of(context).removeCurrentSnackBar();
+                                }),
+                          ));
+                        },
+                      ),
+                      Divider()
+                    ],
+                  );
+                }))
       ],
     );
 

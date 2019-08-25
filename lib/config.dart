@@ -1,2 +1,2 @@
 const double AppBarHeight = 50;
-const double ChoiceIconSize = 40;
+const double ChoiceIconSize = 30;

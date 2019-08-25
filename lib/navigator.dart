@@ -20,28 +20,39 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 
   int _currentIndex = 0;
 
-  var tabItems = [
-    BottomNavigationBarItem(
-        icon: Icon(Icons.home, color: bottomNavigatorBackgroundColor),
-        title: new Text('首页')),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.filter_vintage, color: bottomNavigatorBackgroundColor),
-        title: new Text('资源')),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.whatshot, color: bottomNavigatorBackgroundColor),
-        title: new Text('每日一练')),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.camera, color: bottomNavigatorBackgroundColor),
-        title: new Text('圈子')),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: new LeftNavigator(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: tabItems,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: bottomNavigatorUnSelectedColor),
+              title: new Text(
+                '首页',
+                style: TextStyle(color: bottomNavigatorUnSelectedColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.filter_vintage,
+                  color: bottomNavigatorUnSelectedColor),
+              title: new Text(
+                '资源',
+                style: TextStyle(color: bottomNavigatorUnSelectedColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.whatshot, color: bottomNavigatorUnSelectedColor),
+              title: new Text(
+                '每日一练',
+                style: TextStyle(color: bottomNavigatorUnSelectedColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.camera, color: bottomNavigatorUnSelectedColor),
+              title: new Text(
+                '圈子',
+                style: TextStyle(color: bottomNavigatorUnSelectedColor),
+              )),
+        ],
         onTap: (int index) {
           setState(() {
             _currentIndex = index;

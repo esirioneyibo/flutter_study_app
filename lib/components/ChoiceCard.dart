@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/models/Choice.dart';
+import 'package:flutter_study_app/utils/RandomUtil.dart';
 
 import '../config.dart';
 
@@ -12,10 +13,18 @@ class ChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = new TextStyle(fontSize: 20);
+    final TextStyle textStyle =
+        new TextStyle(fontSize: 15, color: RandomUtil.randomColor());
     return Card(
         color: Colors.white,
         child: Center(
+            child: InkWell(
+          onTap: () {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(choice.title),
+              duration: Duration(milliseconds: 200),
+            ));
+          },
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,6 +32,6 @@ class ChoiceCard extends StatelessWidget {
                 Icon(choice.icon, size: ChoiceIconSize, color: textStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
-        ));
+        )));
   }
 }

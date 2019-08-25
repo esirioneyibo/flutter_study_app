@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/MyAppBar.dart';
+import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/models/TopNavigatorItem.dart';
 
 class StudyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(context, '资源', kBottomNavigationBarHeight),
-        body: Container(height: 50, child: HeadNavigator()));
+        appBar: MyAppBar(context, '资源', AppBarHeight),
+        body: Container(
+            height: 50,
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+            child: HeadNavigator()));
   }
 }
 
@@ -44,7 +50,12 @@ class HeadNavigatorState extends State<HeadNavigator> {
         return Container(
             child: Center(
               child: FlatButton(
-                child: Text(topItems[index].itemName),
+                child: Text(
+                  topItems[index].itemName,
+                  style: TextStyle(
+                      color:
+                          index == selectedIndex ? Colors.pink : Colors.black),
+                ),
                 onPressed: () {
                   print(topItems[index].itemName);
                   setState(() {
@@ -55,8 +66,8 @@ class HeadNavigatorState extends State<HeadNavigator> {
             ),
             decoration: index == selectedIndex
                 ? BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: Colors.pink, width: 2)))
+                    border: Border(
+                        bottom: BorderSide(color: Colors.pink, width: 2)))
                 : BoxDecoration());
       },
     );
