@@ -42,10 +42,10 @@ class ChatScreen extends StatelessWidget {
               return Column(
                 children: <Widget>[
                   ListTile(
-                    title: Text('这是标题'),
+                    title: Text(posts[index].title),
                     leading: Icon(posts[index].icon),
                     subtitle: Text(
-                      '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容',
+                      posts[index].subTitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
