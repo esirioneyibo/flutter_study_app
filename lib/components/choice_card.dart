@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/models/Choice.dart';
-import 'package:flutter_study_app/utils/RandomUtil.dart';
+import 'package:flutter_study_app/models/choice.dart';
+import 'package:flutter_study_app/utils/random_util.dart';
 
 import '../config.dart';
 

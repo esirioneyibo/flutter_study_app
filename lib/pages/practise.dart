@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/ChoiceCard.dart';
-import 'package:flutter_study_app/components/MyAppBar.dart';
-import 'package:flutter_study_app/models/Choice.dart';
+import 'package:flutter_study_app/components/choice_card.dart';
+import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/models/choice.dart';
 
 import '../config.dart';
 

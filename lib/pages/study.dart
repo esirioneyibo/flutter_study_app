@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/MyAppBar.dart';
+import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:flutter_study_app/models/TopNavigatorItem.dart';
+import 'package:flutter_study_app/models/top_navigator_item.dart';
 
 class StudyScreen extends StatelessWidget {
   @override

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/ChoiceCard.dart';
-import 'package:flutter_study_app/components/MyAppBar.dart';
-import 'package:flutter_study_app/components/NewsCard.dart';
-import 'package:flutter_study_app/models/Choice.dart';
-import 'package:flutter_study_app/models/News.dart';
-import 'package:flutter_study_app/models/Post.dart';
+import 'package:flutter_study_app/components/choice_card.dart';
+import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/components/news_card.dart';
+import 'package:flutter_study_app/models/choice.dart';
+import 'package:flutter_study_app/models/news.dart';
+import 'package:flutter_study_app/models/post.dart';
 
 import '../config.dart';
 
