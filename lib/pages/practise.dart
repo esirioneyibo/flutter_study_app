@@ -43,7 +43,7 @@ class PractiseScreen extends StatelessWidget {
     ];
 
     var toolsSection = GridView.count(
-      crossAxisCount: 5,
+      crossAxisCount: 4,
       shrinkWrap: true,
       children: List.generate(choices.length, (index) {
         return Center(
