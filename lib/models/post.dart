@@ -29,19 +29,17 @@ class Post {
     Post('这是标题7', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.backspace),
     Post('这是标题8', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.filter),
     Post('这是标题9', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.adjust),
-    Post(
-        '这是标题10', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.image_aspect_ratio),
+    Post('这是标题10', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.image_aspect_ratio),
     Post('这是标题11', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.hdr_off),
-    Post('这是标题12', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容',
-        Icons.keyboard_arrow_down),
+    Post('这是标题12', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.keyboard_arrow_down),
     Post('这是标题13', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.monetization_on),
     Post('这是标题14', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.label_outline),
     Post('这是标题15', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.nature_people),
     Post('这是标题16', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.offline_pin),
     Post('这是标题17', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.palette),
     Post('这是标题18', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.question_answer),
-    Post('这是标题19', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容',
-        Icons.radio_button_checked),
+    Post(
+        '这是标题19', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.radio_button_checked),
     Post('这是标题20', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', Icons.save),
   ];
 }

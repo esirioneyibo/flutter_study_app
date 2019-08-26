@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
 class TopNavigatorItem {
-
   // 项目名
   String itemName;
 
@@ -10,8 +9,7 @@ class TopNavigatorItem {
 
   TopNavigatorItem(this.itemName, this.content);
 
-
-   static var topItems = [
+  static var topItems = [
     TopNavigatorItem('库', Text('库')),
     TopNavigatorItem('Dart', Text('Dart')),
     TopNavigatorItem('博客', Text('博客')),
@@ -23,5 +21,4 @@ class TopNavigatorItem {
     TopNavigatorItem('游戏引擎', Text('游戏引擎')),
     TopNavigatorItem('其他', Text('其他')),
   ];
-
 }
