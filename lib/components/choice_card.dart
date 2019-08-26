@@ -20,10 +20,8 @@ class ChoiceCard extends StatelessWidget {
         child: Center(
             child: InkWell(
           onTap: () {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text(choice.title),
-              duration: Duration(milliseconds: 200),
-            ));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => choice.screen));
           },
           child: Column(
               mainAxisSize: MainAxisSize.min,

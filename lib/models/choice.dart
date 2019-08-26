@@ -1,53 +1,84 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/pages/practise/day1.dart';
+import 'package:flutter_study_app/pages/practise/day10.dart';
+import 'package:flutter_study_app/pages/practise/day11.dart';
+import 'package:flutter_study_app/pages/practise/day12.dart';
+import 'package:flutter_study_app/pages/practise/day13.dart';
+import 'package:flutter_study_app/pages/practise/day14.dart';
+import 'package:flutter_study_app/pages/practise/day15.dart';
+import 'package:flutter_study_app/pages/practise/day16.dart';
+import 'package:flutter_study_app/pages/practise/day17.dart';
+import 'package:flutter_study_app/pages/practise/day18.dart';
+import 'package:flutter_study_app/pages/practise/day19.dart';
+import 'package:flutter_study_app/pages/practise/day2.dart';
+import 'package:flutter_study_app/pages/practise/day20.dart';
+import 'package:flutter_study_app/pages/practise/day21.dart';
+import 'package:flutter_study_app/pages/practise/day22.dart';
+import 'package:flutter_study_app/pages/practise/day23.dart';
+import 'package:flutter_study_app/pages/practise/day24.dart';
+import 'package:flutter_study_app/pages/practise/day25.dart';
+import 'package:flutter_study_app/pages/practise/day26.dart';
+import 'package:flutter_study_app/pages/practise/day27.dart';
+import 'package:flutter_study_app/pages/practise/day28.dart';
+import 'package:flutter_study_app/pages/practise/day29.dart';
+import 'package:flutter_study_app/pages/practise/day3.dart';
+import 'package:flutter_study_app/pages/practise/day30.dart';
+import 'package:flutter_study_app/pages/practise/day4.dart';
+import 'package:flutter_study_app/pages/practise/day5.dart';
+import 'package:flutter_study_app/pages/practise/day6.dart';
+import 'package:flutter_study_app/pages/practise/day7.dart';
+import 'package:flutter_study_app/pages/practise/day8.dart';
+import 'package:flutter_study_app/pages/practise/day9.dart';
 
 class Choice {
-  const Choice({this.title, this.icon});
-
   final String title;
   final IconData icon;
+  final Widget screen;
+
+  Choice(this.title, this.icon, this.screen);
 
   static List<Choice> choices = [
-    const Choice(title: '第1天', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '第2天', icon: Icons.access_time),
-    const Choice(title: '第3天', icon: Icons.wb_sunny),
-    const Choice(title: '第4天', icon: Icons.settings_input_svideo),
-    const Choice(title: '第5天', icon: Icons.g_translate),
-    const Choice(title: '第6天', icon: Icons.sentiment_very_satisfied),
-    const Choice(title: '第7天', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '第8天', icon: Icons.access_time),
-    const Choice(title: '第9天', icon: Icons.wb_sunny),
-    const Choice(title: '第10天', icon: Icons.settings_input_svideo),
-    const Choice(title: '第11天', icon: Icons.g_translate),
-    const Choice(title: '第12天', icon: Icons.sentiment_very_satisfied),
-    const Choice(title: '第13天', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '第14天', icon: Icons.access_time),
-    const Choice(title: '第15天', icon: Icons.wb_sunny),
-    const Choice(title: '第16天', icon: Icons.settings_input_svideo),
-    const Choice(title: '第17天', icon: Icons.g_translate),
-    const Choice(title: '第18天', icon: Icons.sentiment_very_satisfied),
-    const Choice(title: '第19天', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '第20天', icon: Icons.access_time),
-    const Choice(title: '第21天', icon: Icons.wb_sunny),
-    const Choice(title: '第22天', icon: Icons.settings_input_svideo),
-    const Choice(title: '第23天', icon: Icons.g_translate),
-    const Choice(title: '第24天', icon: Icons.sentiment_very_satisfied),
-    const Choice(title: '第25天', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '第26天', icon: Icons.access_time),
-    const Choice(title: '第27天', icon: Icons.wb_sunny),
-    const Choice(title: '第28天', icon: Icons.settings_input_svideo),
-    const Choice(title: '第29天', icon: Icons.g_translate),
-    const Choice(title: '第30天', icon: Icons.sentiment_very_satisfied),
+    Choice('第1天', Icons.format_list_numbered_rtl, Day1Screen()),
+    Choice('第2天', Icons.access_time, Day2Screen()),
+    Choice('第3天', Icons.wb_sunny, Day3Screen()),
+    Choice('第4天', Icons.settings_input_svideo, Day4Screen()),
+    Choice('第5天', Icons.g_translate, Day5Screen()),
+    Choice('第6天', Icons.sentiment_very_satisfied, Day6Screen()),
+    Choice('第7天', Icons.format_list_numbered_rtl, Day7Screen()),
+    Choice('第8天', Icons.access_time, Day8Screen()),
+    Choice('第9天', Icons.wb_sunny, Day9Screen()),
+    Choice('第10天', Icons.settings_input_svideo, Day10Screen()),
+    Choice('第11天', Icons.g_translate, Day11Screen()),
+    Choice('第12天', Icons.sentiment_very_satisfied, Day12Screen()),
+    Choice('第13天', Icons.format_list_numbered_rtl, Day13Screen()),
+    Choice('第14天', Icons.access_time, Day14Screen()),
+    Choice('第15天', Icons.wb_sunny, Day15Screen()),
+    Choice('第16天', Icons.settings_input_svideo, Day16Screen()),
+    Choice('第17天', Icons.g_translate, Day17Screen()),
+    Choice('第18天', Icons.sentiment_very_satisfied, Day18Screen()),
+    Choice('第19天', Icons.format_list_numbered_rtl, Day19Screen()),
+    Choice('第20天', Icons.access_time, Day20Screen()),
+    Choice('第21天', Icons.wb_sunny, Day21Screen()),
+    Choice('第22天', Icons.settings_input_svideo, Day22Screen()),
+    Choice('第23天', Icons.g_translate, Day23Screen()),
+    Choice('第24天', Icons.sentiment_very_satisfied, Day24Screen()),
+    Choice('第25天', Icons.format_list_numbered_rtl, Day25Screen()),
+    Choice('第26天', Icons.access_time, Day26Screen()),
+    Choice('第27天', Icons.wb_sunny, Day27Screen()),
+    Choice('第28天', Icons.settings_input_svideo, Day28Screen()),
+    Choice('第29天', Icons.g_translate, Day29Screen()),
+    Choice('第30天', Icons.sentiment_very_satisfied, Day30Screen()),
   ];
 
-  static List<Choice> tools = const <Choice>[
-    const Choice(title: '代办事项', icon: Icons.format_list_numbered_rtl),
-    const Choice(title: '番茄时间', icon: Icons.access_time),
-    const Choice(title: '天气预报', icon: Icons.wb_sunny),
-    const Choice(title: '小决定', icon: Icons.settings_input_svideo),
-    const Choice(title: '翻译', icon: Icons.g_translate),
-    const Choice(title: '今日目标', icon: Icons.sentiment_very_satisfied),
-    const Choice(title: '实时汇率', icon: Icons.monetization_on),
-    const Choice(title: '更多工具', icon: Icons.filter_9_plus),
+  static List<Choice> tools = <Choice>[
+    Choice('代办事项', Icons.format_list_numbered_rtl, Day1Screen()),
+    Choice('番茄时间', Icons.access_time, Day1Screen()),
+    Choice('天气预报', Icons.wb_sunny, Day1Screen()),
+    Choice('小决定', Icons.settings_input_svideo, Day1Screen()),
+    Choice('翻译', Icons.g_translate, Day1Screen()),
+    Choice('今日目标', Icons.sentiment_very_satisfied, Day1Screen()),
+    Choice('实时汇率', Icons.monetization_on, Day1Screen()),
+    Choice('更多工具', Icons.filter_9_plus, Day1Screen()),
   ];
 }
