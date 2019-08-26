@@ -9,50 +9,35 @@ class LeftNavigator extends StatelessWidget {
         leading: const Icon(Icons.person),
         title: const Text('我的动态'),
         onTap: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('我的动态'),
-            duration: Duration(milliseconds: 200),
-          ));
+          Navigator.of(context).pop();
         },
       ),
       ListTile(
         leading: const Icon(Icons.color_lens),
         title: const Text('主题切换'),
         onTap: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('主题切换'),
-            duration: Duration(milliseconds: 200),
-          ));
+          Navigator.of(context).pop();
         },
       ),
       ListTile(
         leading: const Icon(Icons.cached),
         title: const Text('清除缓存'),
         onTap: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('清除缓存'),
-            duration: Duration(milliseconds: 200),
-          ));
+          Navigator.of(context).pop();
         },
       ),
       ListTile(
         leading: const Icon(Icons.settings),
         title: const Text('设置中心'),
         onTap: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('设置中心'),
-            duration: Duration(milliseconds: 200),
-          ));
+          Navigator.of(context).pop();
         },
       ),
       ListTile(
         leading: const Icon(Icons.near_me),
         title: const Text('关于软件'),
         onTap: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('关于软件'),
-            duration: Duration(milliseconds: 200),
-          ));
+          Navigator.of(context).pop();
         },
       )
     ]);
