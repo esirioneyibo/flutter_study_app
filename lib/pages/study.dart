@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/models/top_navigator_item.dart';
 
@@ -20,9 +21,14 @@ class StudyScreenState extends State<StudyScreen>
   @override
   Widget build(BuildContext context) {
     var topBar = TabBar(
-      labelPadding: EdgeInsets.only(right: 20),
       isScrollable: true,
-      labelColor: Colors.white,
+      unselectedLabelColor: Colors.white,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelColor: Colors.pinkAccent,
+      indicator: ShapeDecoration(
+          shadows: [],
+          shape:
+              Border(bottom: BorderSide(width: 3, color: Colors.pinkAccent))),
       tabs: tabs,
       controller: _tabController,
     );
