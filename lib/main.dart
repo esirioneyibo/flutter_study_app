@@ -8,7 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'xiaomo',
-      theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(),
+      ),
       home: new SplashScreen(),
     );
   }
