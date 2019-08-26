@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   video_player:
   fluwx: 1.0.4
+  flutter_qq:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
