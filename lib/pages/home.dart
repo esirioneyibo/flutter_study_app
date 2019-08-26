@@ -13,36 +13,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
-    List<Choice> choices = const <Choice>[
-      const Choice(title: '代办事项', icon: Icons.format_list_numbered_rtl),
-      const Choice(title: '番茄时间', icon: Icons.access_time),
-      const Choice(title: '天气预报', icon: Icons.wb_sunny),
-      const Choice(title: '小决定', icon: Icons.settings_input_svideo),
-      const Choice(title: '翻译', icon: Icons.g_translate),
-      const Choice(title: '今日目标', icon: Icons.sentiment_very_satisfied),
-      const Choice(title: '实时汇率', icon: Icons.monetization_on),
-      const Choice(title: '更多工具', icon: Icons.filter_9_plus),
-    ];
-
-    List<Post> posts = [
-      Post('动态1', '内容', Icons.save),
-      Post('动态2', '内容', Icons.data_usage),
-      Post('动态3', '内容', Icons.access_time),
-      Post('动态4', '内容', Icons.delete_forever),
-      Post('动态5', '内容', Icons.euro_symbol),
-      Post('动态6', '内容', Icons.eject),
-      Post('动态7', '内容', Icons.favorite),
-      Post('动态8', '内容', Icons.delete_outline),
-      Post('动态9', '内容', Icons.account_box),
-    ];
+    List<Choice> tools = Choice.tools;
+    // 新闻动态
+    List<Post> posts = Post.news;
 
     var toolsSection = GridView.count(
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(choices.length, (index) {
+      children: List.generate(tools.length, (index) {
         return Center(
-          child: ChoiceCard(choice: choices[index]),
+          child: ChoiceCard(choice: tools[index]),
         );
       }),
     );
