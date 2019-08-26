@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_study_app/pages/study/blog.dart';
 import 'package:flutter_study_app/pages/study/community.dart';
+import 'package:flutter_study_app/pages/study/dart.dart';
 import 'package:flutter_study_app/pages/study/game.dart';
 import 'package:flutter_study_app/pages/study/game_engine.dart';
 import 'package:flutter_study_app/pages/study/other.dart';
@@ -20,11 +21,7 @@ class TopNavigatorItem {
 
   static var topItems = [
     TopNavigatorItem('插件', PluginsScreen()),
-    TopNavigatorItem(
-        'Dart',
-        Center(
-          child: Text('Dart'),
-        )),
+    TopNavigatorItem('Dart', DartScreen()),
     TopNavigatorItem('博客', BlogScreen()),
     TopNavigatorItem('视频', VideosScreen()),
     TopNavigatorItem('工具', ToolsScreen()),
