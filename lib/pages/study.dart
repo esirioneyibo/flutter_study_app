@@ -1,64 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
-import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/models/top_navigator_item.dart';
 
-class StudyScreen extends StatelessWidget {
+import '../config.dart';
+
+class StudyScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: MyAppBar(context, '资源', AppBarHeight),
-        body: Container(
-            height: 50,
-            decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-            child: HeadNavigator()));
+  State<StatefulWidget> createState() {
+    return StudyScreenState();
   }
 }
 
-//--------------------------------------------------------------------------
-
-/// 顶部导航
-class HeadNavigator extends StatefulWidget {
-  @override
-  HeadNavigatorState createState() => HeadNavigatorState();
-}
-
-class HeadNavigatorState extends State<HeadNavigator> {
-  int selectedIndex = 0;
+class StudyScreenState extends State<StudyScreen>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  var tabs = List<Tab>();
+  var tabContents = List<Widget>();
 
   @override
   Widget build(BuildContext context) {
-    var topItems = TopNavigatorItem.topItems;
-
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: topItems.length,
-      itemBuilder: (context, index) {
-        return Container(
-            child: Center(
-              child: FlatButton(
-                child: Text(
-                  topItems[index].itemName,
-                  style: TextStyle(
-                      color:
-                          index == selectedIndex ? Colors.pink : Colors.black),
-                ),
-                onPressed: () {
-                  print(topItems[index].itemName);
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-              ),
-            ),
-            decoration: index == selectedIndex
-                ? BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(color: Colors.pink, width: 2)))
-                : BoxDecoration());
-      },
+    var topBar = TabBar(
+      labelPadding: EdgeInsets.only(right: 20),
+      isScrollable: true,
+      labelColor: Colors.white,
+      tabs: tabs,
+      controller: _tabController,
     );
+    return Scaffold(
+        appBar: MyAppBar(context, '资源', AppBarHeight, topBar),
+        body: TabBarView(
+          controller: _tabController,
+          children: tabContents,
+        ));
+  }
+
+  @override
+  void initState() {
+    TopNavigatorItem.topItems.forEach((item) =>
+        {tabs.add(Tab(text: item.itemName)), tabContents.add(item.content)});
+    _tabController = TabController(vsync: this, length: tabs.length);
+    super.initState();
   }
 }

@@ -1,4 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_study_app/pages/study/blog.dart';
+import 'package:flutter_study_app/pages/study/community.dart';
+import 'package:flutter_study_app/pages/study/game.dart';
+import 'package:flutter_study_app/pages/study/game_engine.dart';
+import 'package:flutter_study_app/pages/study/other.dart';
+import 'package:flutter_study_app/pages/study/plugins.dart';
+import 'package:flutter_study_app/pages/study/project.dart';
+import 'package:flutter_study_app/pages/study/tools.dart';
+import 'package:flutter_study_app/pages/study/video.dart';
 
 class TopNavigatorItem {
   // 项目名
@@ -10,15 +19,19 @@ class TopNavigatorItem {
   TopNavigatorItem(this.itemName, this.content);
 
   static var topItems = [
-    TopNavigatorItem('库', Text('库')),
-    TopNavigatorItem('Dart', Text('Dart')),
-    TopNavigatorItem('博客', Text('博客')),
-    TopNavigatorItem('视频', Text('视频')),
-    TopNavigatorItem('工具', Text('工具')),
-    TopNavigatorItem('社区', Text('社区')),
-    TopNavigatorItem('开源项目', Text('开源项目')),
-    TopNavigatorItem('游戏', Text('游戏')),
-    TopNavigatorItem('游戏引擎', Text('游戏引擎')),
-    TopNavigatorItem('其他', Text('其他')),
+    TopNavigatorItem('插件', PluginsScreen()),
+    TopNavigatorItem(
+        'Dart',
+        Center(
+          child: Text('Dart'),
+        )),
+    TopNavigatorItem('博客', BlogScreen()),
+    TopNavigatorItem('视频', VideosScreen()),
+    TopNavigatorItem('工具', ToolsScreen()),
+    TopNavigatorItem('社区', CommunitiesScreen()),
+    TopNavigatorItem('开源项目', ProjectsScreen()),
+    TopNavigatorItem('游戏', GamesScreen()),
+    TopNavigatorItem('游戏引擎', GameEnginesScreen()),
+    TopNavigatorItem('其他', OthersScreen()),
   ];
 }

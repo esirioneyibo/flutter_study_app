@@ -4,8 +4,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double height;
   final BuildContext navigatorContext;
+  final bottom;
 
-  MyAppBar(this.navigatorContext, this.title, this.height);
+  MyAppBar(this.navigatorContext, this.title, this.height, [this.bottom]);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             Scaffold.of(this.navigatorContext).openDrawer();
           },
         ),
+        bottom: bottom,
         title: Text(title));
   }
 
