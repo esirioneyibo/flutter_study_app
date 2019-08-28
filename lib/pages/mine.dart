@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/app_state.dart';
 
 class LeftNavigator extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class LeftNavigator extends StatelessWidget {
         leading: const Icon(Icons.person),
         title: const Text('我的动态'),
         onTap: () {
-          Navigator.of(context).pop();
+          Navigator.pushNamed(context, '/login');
         },
       ),
       ListTile(
@@ -61,6 +62,29 @@ class LeftNavigator extends StatelessWidget {
       ],
     );
 
+    var noLogin = Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ClipOval(
+            child: Image.asset(
+              'images/default_avatar.png',
+              width: 80,
+            ),
+          ),
+        ),
+        InkWell(
+          child: Text(
+            '点击登录',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, '/login');
+          },
+        ),
+      ],
+    );
+
     return new Drawer(
       child: MediaQuery.removePadding(
           context: context,
@@ -70,7 +94,7 @@ class LeftNavigator extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 40),
-                child: info,
+                child: isLogin ? info : noLogin,
               ),
               Expanded(
                 child: ListView(

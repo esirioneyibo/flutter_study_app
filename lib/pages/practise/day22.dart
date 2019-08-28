@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
 
-import '../../config.dart';
-import '../../config.dart';
-import '../../config.dart';
 import '../../config.dart';
 
 class Day22Screen extends StatelessWidget {
