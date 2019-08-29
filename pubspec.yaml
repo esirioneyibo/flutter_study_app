@@ -24,7 +24,6 @@ dependencies:
   cupertino_icons:
   video_player:
   fluwx:
-  firebase_auth:
   google_sign_in:
   device_info:
   sqflite:
