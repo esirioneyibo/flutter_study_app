@@ -38,8 +38,8 @@ dependencies:
   uuid:
   image_picker:
   path_provider:
-  url_launcher:
   google_maps_flutter:
+#  url_launcher:
 #  webview_flutter: ^0.3.13
 
 dev_dependencies:

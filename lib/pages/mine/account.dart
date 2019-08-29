@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 enum FormType {
   LOGIN,
@@ -10,13 +11,13 @@ enum FormType {
 
 class EmailFieldValidator {
   static String validate(String value) {
-    return value.isEmpty ? 'Email can\'t be empty' : null;
+    return value.isEmpty ? '邮箱不能为空' : null;
   }
 }
 
 class PasswordFieldValidator {
   static String validate(String value) {
-    return value.isEmpty ? 'Password can\'t be empty' : null;
+    return value.isEmpty ? '密码不能为空' : null;
   }
 }
 
@@ -34,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password;
   FormType _formType;
 
+  /// 验证和保存
   bool validateAndSave() {
     final FormState state = formKey.currentState;
     if (state.validate()) {
@@ -43,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return false;
   }
 
+  /// 跳到注册页
   void moveToRegister() {
     formKey.currentState.reset();
     setState(() {
@@ -50,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  /// 跳到登录页
   void moveToLogin() {
     formKey.currentState.reset();
     setState(() {
@@ -77,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return <Widget>[
       TextFormField(
         key: Key('email'),
-        decoration: InputDecoration(labelText: 'Email'),
+        decoration: InputDecoration(labelText: '邮箱'),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
           _email = value;
@@ -85,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       TextFormField(
         key: Key('password'),
-        decoration: InputDecoration(labelText: 'Password'),
+        decoration: InputDecoration(labelText: '密码'),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
           _password = value;
@@ -94,18 +98,19 @@ class _LoginScreenState extends State<LoginScreen> {
     ];
   }
 
+  /// 验证和提交
   Future<void> validateAndSubmit() async {
     if (validateAndSave()) {
       try {
         final BaseAuth auth = AuthProvider.of(context).auth;
         if (_formType == FormType.LOGIN) {
           final String userId =
-          await auth.signInWithEmailAndPassword(_email, _password);
-          print('Signed in: $userId');
+              await auth.signInWithEmailAndPassword(_email, _password);
+          print('登录: $userId');
         } else {
           final String userId =
-          await auth.createUserWithEmailAndPassword(_email, _password);
-          print('Registered user: $userId');
+              await auth.createUserWithEmailAndPassword(_email, _password);
+          print('注册: $userId');
         }
       } catch (e) {
         print('Error: $e');
@@ -113,32 +118,35 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  /// 构建提交按钮
+  /// 登录注册
   List<Widget> buildSubmitButtons() {
     if (_formType == FormType.LOGIN) {
       return <Widget>[
         RaisedButton(
           key: Key('signIn'),
-          child: Text('Login', style: TextStyle(fontSize: 20.0)),
+          child: Text('登录', style: TextStyle(fontSize: 20.0)),
           onPressed: () {
             debugPrint('login');
+            isLogin = true;
+            Navigator.pushNamed(context, Router.home);
           },
         ),
         FlatButton(
-          child: Text('Create an account', style: TextStyle(fontSize: 20.0)),
+          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0)),
           onPressed: moveToRegister,
         ),
       ];
     } else {
       return <Widget>[
         RaisedButton(
-          child: Text('Create an account', style: TextStyle(fontSize: 20.0)),
+          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0)),
           onPressed: () {
             debugPrint('login');
           },
         ),
         FlatButton(
-          child:
-          Text('Have an account? Login', style: TextStyle(fontSize: 20.0)),
+          child: Text('己有账号?去登录', style: TextStyle(fontSize: 20.0)),
           onPressed: moveToLogin,
         ),
       ];
