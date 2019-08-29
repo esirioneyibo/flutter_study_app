@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
+import 'package:flutter_study_app/config.dart';
 
 class LeftNavigator extends StatelessWidget {
   @override
@@ -50,7 +51,7 @@ class LeftNavigator extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
             child: Image.asset(
-              'images/avatar.png',
+              avatar,
               width: 80,
             ),
           ),
@@ -68,7 +69,7 @@ class LeftNavigator extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
             child: Image.asset(
-              'images/default_avatar.png',
+              default_avatar,
               width: 80,
             ),
           ),

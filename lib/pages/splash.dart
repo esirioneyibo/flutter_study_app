@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config.dart';
 import '../navigator.dart';
 
 ///
@@ -21,7 +22,7 @@ class _SplashState extends State<SplashScreen>
     return new FadeTransition(
         opacity: _animation,
         child: Image.asset(
-          'images/splash.png',
+          splash,
           scale: 2.0,
           fit: BoxFit.cover,
         ));
