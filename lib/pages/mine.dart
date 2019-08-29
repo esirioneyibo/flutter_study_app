@@ -9,60 +9,69 @@ class LeftNavigator extends StatelessWidget {
       Navigator.pushNamed(context, Router.login);
     }
 
+    exitItem() {
+      if (isLogin) {
+        return ListTile(
+          leading: Icon(Icons.near_me),
+          title: Text('退出登录'),
+          onTap: () {
+            isLogin = false;
+            Navigator.of(context).pop();
+            Scaffold.of(context).showSnackBar(SnackBar(
+                duration: Duration(milliseconds: 300),
+                content: Text('您己退出登录')));
+          },
+        );
+      } else {
+        return null;
+      }
+    }
+
     // 抽屉菜单
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
-        leading: const Icon(Icons.person),
-        title: const Text('我的动态'),
+        leading: Icon(Icons.person),
+        title: Text('我的动态'),
         onTap: () {
           Navigator.pushNamed(context, '/login');
         },
       ),
       ListTile(
-        leading: const Icon(Icons.color_lens),
-        title: const Text('主题切换'),
+        leading: Icon(Icons.color_lens),
+        title: Text('主题切换'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.cached),
-        title: const Text('清除缓存'),
+        leading: Icon(Icons.cached),
+        title: Text('清除缓存'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.settings),
-        title: const Text('设置中心'),
+        leading: Icon(Icons.settings),
+        title: Text('设置中心'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.near_me),
-        title: const Text('关于软件'),
+        leading: Icon(Icons.near_me),
+        title: Text('关于软件'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
-      ListTile(
-        leading: const Icon(Icons.near_me),
-        title: const Text('退出登录'),
-        onTap: () {
-          isLogin = false;
-          Navigator.of(context).pop();
-          Scaffold.of(context).showSnackBar(SnackBar(
-              duration: Duration(milliseconds: 300), content: Text('您己退出登录')));
-        },
-      )
+      exitItem()
     ]);
 
     // 个人信息
     var infoWidget = Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
             child: InkWell(
               child: Image.asset(
@@ -85,7 +94,7 @@ class LeftNavigator extends StatelessWidget {
     var noLoginWidget = Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: InkWell(
             child: ClipOval(
               child: Image.asset(
@@ -114,7 +123,7 @@ class LeftNavigator extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 40),
                 child: isLogin ? infoWidget : noLoginWidget,
               ),
               Expanded(
