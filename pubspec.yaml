@@ -32,6 +32,17 @@ dev_dependencies:
   flutter_qq:
   device_info:
   webview_flutter:
+  image_picker: ^0.6.1+4
+  firebase_auth: ^0.14.0+4
+  url_launcher: ^5.1.2
+  sqflite: ^1.1.6+4
+  cached_network_image: ^1.1.1
+  http: ^0.12.0+2
+  shared_preferences: ^0.5.3+4
+  google_sign_in: ^4.0.7
+  qr_flutter: ^3.0.1
+  font_awesome_flutter: ^8.5.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

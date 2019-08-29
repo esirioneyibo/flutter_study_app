@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 enum FormType {
   LOGIN,
   REGISTER,
 }
-
 
 class EmailFieldValidator {
   static String validate(String value) {
@@ -19,7 +19,6 @@ class PasswordFieldValidator {
     return value.isEmpty ? 'Password can\'t be empty' : null;
   }
 }
-
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -58,8 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
         key: Key('email'),
         decoration: InputDecoration(labelText: 'Email'),
         validator: EmailFieldValidator.validate,
-        onSaved: (String value){
+        onSaved: (String value) {
           _email = value;
         },
       ),
@@ -90,21 +87,39 @@ class _LoginScreenState extends State<LoginScreen> {
         key: Key('password'),
         decoration: InputDecoration(labelText: 'Password'),
         validator: PasswordFieldValidator.validate,
-        onSaved: (String value){
+        onSaved: (String value) {
           _password = value;
         },
       )
     ];
   }
 
+  Future<void> validateAndSubmit() async {
+    if (validateAndSave()) {
+      try {
+        final BaseAuth auth = AuthProvider.of(context).auth;
+        if (_formType == FormType.LOGIN) {
+          final String userId =
+              await auth.signInWithEmailAndPassword(_email, _password);
+          print('Signed in: $userId');
+        } else {
+          final String userId =
+              await auth.createUserWithEmailAndPassword(_email, _password);
+          print('Registered user: $userId');
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
+  }
 
-   List<Widget> buildSubmitButtons() {
+  List<Widget> buildSubmitButtons() {
     if (_formType == FormType.LOGIN) {
       return <Widget>[
         RaisedButton(
           key: Key('signIn'),
           child: Text('Login', style: TextStyle(fontSize: 20.0)),
-          onPressed: (){
+          onPressed: () {
             debugPrint('login');
           },
         ),
@@ -117,15 +132,70 @@ class _LoginScreenState extends State<LoginScreen> {
       return <Widget>[
         RaisedButton(
           child: Text('Create an account', style: TextStyle(fontSize: 20.0)),
-           onPressed: (){
+          onPressed: () {
             debugPrint('login');
           },
         ),
         FlatButton(
-          child: Text('Have an account? Login', style: TextStyle(fontSize: 20.0)),
+          child:
+              Text('Have an account? Login', style: TextStyle(fontSize: 20.0)),
           onPressed: moveToLogin,
         ),
       ];
     }
+  }
+}
+
+class AuthProvider extends InheritedWidget {
+  const AuthProvider({Key key, Widget child, this.auth})
+      : super(key: key, child: child);
+  final BaseAuth auth;
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+
+  static AuthProvider of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(AuthProvider);
+  }
+}
+
+abstract class BaseAuth {
+  Future<String> signInWithEmailAndPassword(String email, String password);
+
+  Future<String> createUserWithEmailAndPassword(String email, String password);
+
+  Future<String> currentUser();
+
+  Future<void> signOut();
+}
+
+class Auth implements BaseAuth {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  Future<String> signInWithEmailAndPassword(
+      String email, String password) async {
+    final AuthResult authResult = await _firebaseAuth
+        .signInWithEmailAndPassword(email: email, password: password);
+    return authResult.user?.uid;
+  }
+
+  @override
+  Future<String> createUserWithEmailAndPassword(
+      String email, String password) async {
+    final AuthResult authResult = await _firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return authResult.user?.uid;
+  }
+
+  @override
+  Future<String> currentUser() async {
+    final FirebaseUser user = await _firebaseAuth.currentUser();
+    return user?.uid;
+  }
+
+  @override
+  Future<void> signOut() async {
+    return _firebaseAuth.signOut();
   }
 }
