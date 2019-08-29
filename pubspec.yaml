@@ -40,6 +40,8 @@ dependencies:
   font_awesome_flutter:
   scoped_model:
   path_provider:
+  intl:
+  uuid:
 
 dev_dependencies:
   flutter_test:
