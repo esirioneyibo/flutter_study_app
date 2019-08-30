@@ -40,7 +40,8 @@ dependencies:
   google_maps_flutter:
   firebase_auth:
   flutter_twitter_login:
-#  url_launcher:
+  uni_links:
+  url_launcher:
 #  webview_flutter: ^0.3.13
 
 dev_dependencies:

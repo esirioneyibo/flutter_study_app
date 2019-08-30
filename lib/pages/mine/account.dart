@@ -1,9 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
+import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/models/github_login.dart';
 import 'package:flutter_study_app/service/authentication.dart';
+import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum FormType {
   LOGIN,
@@ -37,10 +45,15 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  static final TwitterLogin twitterLogin = new TwitterLogin(
+      consumerKey: AppConfig.twitterApiKey,
+      consumerSecret: AppConfig.twitterApiSecret
+  );
 
   String _email;
   String _password;
   FormType _formType = FormType.LOGIN;
+  StreamSubscription _subs;
 
   String _errorMessage;
 
@@ -92,7 +105,7 @@ class _AccountScreenState extends State<AccountScreen> {
         return AlertDialog(
           title: new Text("Verify your account"),
           content:
-              new Text("Link to verify account has been sent to your email"),
+          new Text("Link to verify account has been sent to your email"),
           actions: <Widget>[
             new FlatButton(
               child: new Text("Dismiss"),
@@ -144,10 +157,73 @@ class _AccountScreenState extends State<AccountScreen> {
     ];
   }
 
-  Future<FirebaseUser> _handleSignIn() async {
+  void onClickGitHubLoginButton() async {
+    const String url = "https://github.com/login/oauth/authorize" +
+        "?client_id=" + AppConfig.GITHUB_CLIENT_ID +
+        "&scope=public_repo%20read:user%20user:email";
+
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    } else {
+      print("CANNOT LAUNCH THIS URL!");
+    }
+  }
+
+
+  void _loginTwitter() async {
+    final TwitterLoginResult result = await twitterLogin.authorize();
+    String newMessage;
+
+    switch (result.status) {
+      case TwitterLoginStatus.loggedIn:
+        newMessage = 'Logged in! username: ${result.session.username}';
+        break;
+      case TwitterLoginStatus.cancelledByUser:
+        newMessage = 'Login cancelled by user.';
+        break;
+      case TwitterLoginStatus.error:
+        newMessage = 'Login error: ${result.errorMessage}';
+        break;
+    }
+  }
+
+
+  Future<FirebaseUser> loginWithGitHub(String code) async {
+    //ACCESS TOKEN REQUEST
+    final response = await http.post(
+      "https://github.com/login/oauth/access_token",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: jsonEncode(GitHubLoginRequest(
+        clientId: AppConfig.GITHUB_CLIENT_ID,
+        clientSecret: AppConfig.GITHUB_CLIENT_SECRET,
+        code: code,
+      )),
+    );
+
+    GitHubLoginResponse loginResponse =
+    GitHubLoginResponse.fromJson(json.decode(response.body));
+
+    //FIREBASE STUFF
+    final AuthCredential credential = GithubAuthProvider.getCredential(
+      token: loginResponse.accessToken,
+    );
+
+    final AuthResult user =
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    return user.user;
+  }
+
+  Future<FirebaseUser> _googleHandleSignIn() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+    await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
@@ -199,6 +275,34 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     _errorMessage = '';
     _isLoading = false;
+    _initDeepLinkListener();
+  }
+
+  void _initDeepLinkListener() async {
+    _subs = getLinksStream().listen((String link) {
+      _checkDeepLink(link);
+    }, cancelOnError: true);
+  }
+
+  void _checkDeepLink(String link) {
+    if (link != null) {
+      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
+      loginWithGitHub(code)
+          .then((firebaseUser) {
+        print("LOGGED IN AS: " + firebaseUser.displayName);
+      }).catchError((e) {
+        print("LOGIN ERROR: " + e.toString());
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (_subs != null) {
+      _subs.cancel();
+      _subs = null;
+    }
   }
 
   /// 构建提交按钮
@@ -213,7 +317,7 @@ class _AccountScreenState extends State<AccountScreen> {
           color: Colors.blue,
           key: Key('signIn'),
           child:
-              Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+          Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: _validateAndSubmit,
         ),
         Padding(
@@ -222,13 +326,19 @@ class _AccountScreenState extends State<AccountScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(
-              FontAwesomeIcons.twitter,
-              size: 30,
+            InkWell(
+              onTap: _loginTwitter,
+              child: Icon(
+                FontAwesomeIcons.twitter,
+                size: 30,
+              ),
             ),
-            Icon(
-              FontAwesomeIcons.github,
-              size: 30,
+            InkWell(
+              onTap: onClickGitHubLoginButton,
+              child: Icon(
+                FontAwesomeIcons.github,
+                size: 30,
+              ),
             ),
             Icon(
               FontAwesomeIcons.weixin,
@@ -239,12 +349,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () => _handleSignIn()
-                  .then((FirebaseUser user) => setState(() {
+              onTap: () =>
+                  _googleHandleSignIn()
+                      .then((FirebaseUser user) =>
+                      setState(() {
                         username = user.displayName;
                         print(username);
                       }))
-                  .catchError((e) => print(e)),
+                      .catchError((e) => print(e)),
             ),
           ],
         ),
