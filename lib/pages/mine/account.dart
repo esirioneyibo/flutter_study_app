@@ -1,14 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/models/github_login.dart';
 import 'package:flutter_study_app/service/authentication.dart';
-import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'dart:async';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,23 +31,23 @@ class PasswordFieldValidator {
 
 /// login and register
 class AccountScreen extends StatefulWidget {
-  final BaseAuth auth;
-  final VoidCallback onSignedIn;
+//  final BaseAuth auth;
+//  final VoidCallback onSignedIn;
 
   @override
   State<StatefulWidget> createState() {
     return _AccountScreenState();
   }
 
-  AccountScreen(this.auth, this.onSignedIn);
+//  AccountScreen(this.auth, this.onSignedIn);
 }
 
 class _AccountScreenState extends State<AccountScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  static final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: AppConfig.twitterApiKey,
-      consumerSecret: AppConfig.twitterApiSecret
-  );
+//  static final TwitterLogin twitterLogin = new TwitterLogin(
+//      consumerKey: AppConfig.twitterApiKey,
+//      consumerSecret: AppConfig.twitterApiSecret
+//  );
 
   String _email;
   String _password;
@@ -67,7 +66,7 @@ class _AccountScreenState extends State<AccountScreen> {
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+//  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   /// 验证和保存
   bool _validateAndSave() {
@@ -174,101 +173,101 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
 
-  void _loginTwitter() async {
-    final TwitterLoginResult result = await twitterLogin.authorize();
-    String newMessage;
+//  void _loginTwitter() async {
+//    final TwitterLoginResult result = await twitterLogin.authorize();
+//    String newMessage;
+//
+//    switch (result.status) {
+//      case TwitterLoginStatus.loggedIn:
+//        newMessage = 'Logged in! username: ${result.session.username}';
+//        break;
+//      case TwitterLoginStatus.cancelledByUser:
+//        newMessage = 'Login cancelled by user.';
+//        break;
+//      case TwitterLoginStatus.error:
+//        newMessage = 'Login error: ${result.errorMessage}';
+//        break;
+//    }
+//  }
 
-    switch (result.status) {
-      case TwitterLoginStatus.loggedIn:
-        newMessage = 'Logged in! username: ${result.session.username}';
-        break;
-      case TwitterLoginStatus.cancelledByUser:
-        newMessage = 'Login cancelled by user.';
-        break;
-      case TwitterLoginStatus.error:
-        newMessage = 'Login error: ${result.errorMessage}';
-        break;
-    }
-  }
 
+//  Future<FirebaseUser> loginWithGitHub(String code) async {
+//    //ACCESS TOKEN REQUEST
+//    final response = await http.post(
+//      "https://github.com/login/oauth/access_token",
+//      headers: {
+//        "Content-Type": "application/json",
+//        "Accept": "application/json"
+//      },
+//      body: jsonEncode(GitHubLoginRequest(
+//        clientId: AppConfig.GITHUB_CLIENT_ID,
+//        clientSecret: AppConfig.GITHUB_CLIENT_SECRET,
+//        code: code,
+//      )),
+//    );
 
-  Future<FirebaseUser> loginWithGitHub(String code) async {
-    //ACCESS TOKEN REQUEST
-    final response = await http.post(
-      "https://github.com/login/oauth/access_token",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: jsonEncode(GitHubLoginRequest(
-        clientId: AppConfig.GITHUB_CLIENT_ID,
-        clientSecret: AppConfig.GITHUB_CLIENT_SECRET,
-        code: code,
-      )),
-    );
+//    GitHubLoginResponse loginResponse =
+//    GitHubLoginResponse.fromJson(json.decode(response.body));
+//
+//    //FIREBASE STUFF
+//    final AuthCredential credential = GithubAuthProvider.getCredential(
+//      token: loginResponse.accessToken,
+//    );
+//
+//    final AuthResult user =
+//    await FirebaseAuth.instance.signInWithCredential(credential);
+//    return user.user;
+//  }
 
-    GitHubLoginResponse loginResponse =
-    GitHubLoginResponse.fromJson(json.decode(response.body));
-
-    //FIREBASE STUFF
-    final AuthCredential credential = GithubAuthProvider.getCredential(
-      token: loginResponse.accessToken,
-    );
-
-    final AuthResult user =
-    await FirebaseAuth.instance.signInWithCredential(credential);
-    return user.user;
-  }
-
-  Future<FirebaseUser> _googleHandleSignIn() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    final AuthResult result = await _auth.signInWithCredential(credential);
-    setState(() {
-      username = result.user.displayName;
-    });
-    return result.user;
-  }
+//  Future<FirebaseUser> _googleHandleSignIn() async {
+//    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+//    final GoogleSignInAuthentication googleAuth =
+//    await googleUser.authentication;
+//
+//    final AuthCredential credential = GoogleAuthProvider.getCredential(
+//      accessToken: googleAuth.accessToken,
+//      idToken: googleAuth.idToken,
+//    );
+//
+//    final AuthResult result = await _auth.signInWithCredential(credential);
+//    setState(() {
+//      username = result.user.displayName;
+//    });
+//    return result.user;
+//  }
 
   /// 验证和提交
-  Future<void> _validateAndSubmit() async {
-    setState(() {
-      _errorMessage = "";
-      _isLoading = true;
-    });
-    if (_validateAndSave()) {
-      String userId = "";
-      try {
-        if (_formType == FormType.LOGIN) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
-        } else {
-          userId = await widget.auth.signUp(_email, _password);
-          widget.auth.sendEmailVerification();
-          _showVerifyEmailSentDialog();
-          print('注册');
-        }
-        setState(() {
-          _isLoading = false;
-        });
-
-        if (userId.length > 0 &&
-            userId != null &&
-            _formType == FormType.LOGIN) {
-          widget.onSignedIn();
-        }
-      } catch (e) {
-        print('Error: $e');
-      }
-    }
-  }
+//  Future<void> _validateAndSubmit() async {
+//    setState(() {
+//      _errorMessage = "";
+//      _isLoading = true;
+//    });
+//    if (_validateAndSave()) {
+//      String userId = "";
+//      try {
+//        if (_formType == FormType.LOGIN) {
+//          userId = await widget.auth.signIn(_email, _password);
+//          print('Signed in: $userId');
+//        } else {
+//          userId = await widget.auth.signUp(_email, _password);
+//          widget.auth.sendEmailVerification();
+//          _showVerifyEmailSentDialog();
+//          print('注册');
+//        }
+//        setState(() {
+//          _isLoading = false;
+//        });
+//
+//        if (userId.length > 0 &&
+//            userId != null &&
+//            _formType == FormType.LOGIN) {
+//          widget.onSignedIn();
+//        }
+//      } catch (e) {
+//        print('Error: $e');
+//      }
+//    }
+//  }
 
   @override
   void initState() {
@@ -280,21 +279,21 @@ class _AccountScreenState extends State<AccountScreen> {
 
   void _initDeepLinkListener() async {
     _subs = getLinksStream().listen((String link) {
-      _checkDeepLink(link);
+//      _checkDeepLink(link);
     }, cancelOnError: true);
   }
 
-  void _checkDeepLink(String link) {
-    if (link != null) {
-      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
-      loginWithGitHub(code)
-          .then((firebaseUser) {
-        print("LOGGED IN AS: " + firebaseUser.displayName);
-      }).catchError((e) {
-        print("LOGIN ERROR: " + e.toString());
-      });
-    }
-  }
+//  void _checkDeepLink(String link) {
+//    if (link != null) {
+//      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
+//      loginWithGitHub(code)
+//          .then((firebaseUser) {
+//        print("LOGGED IN AS: " + firebaseUser.displayName);
+//      }).catchError((e) {
+//        print("LOGIN ERROR: " + e.toString());
+//      });
+//    }
+//  }
 
   @override
   void dispose() {
@@ -318,7 +317,7 @@ class _AccountScreenState extends State<AccountScreen> {
           key: Key('signIn'),
           child:
           Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
-          onPressed: _validateAndSubmit,
+//          onPressed: _validateAndSubmit,
         ),
         Padding(
           padding: EdgeInsets.only(top: 30),
@@ -327,7 +326,7 @@ class _AccountScreenState extends State<AccountScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             InkWell(
-              onTap: _loginTwitter,
+//              onTap: _loginTwitter,
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: 30,
@@ -349,14 +348,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () =>
-                  _googleHandleSignIn()
-                      .then((FirebaseUser user) =>
-                      setState(() {
-                        username = user.displayName;
-                        print(username);
-                      }))
-                      .catchError((e) => print(e)),
+//              onTap: () =>
+//                  _googleHandleSignIn()
+//                      .then((FirebaseUser user) =>
+//                      setState(() {
+//                        username = user.displayName;
+//                        print(username);
+//                      }))
+//                      .catchError((e) => print(e)),
             ),
           ],
         ),
