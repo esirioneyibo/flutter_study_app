@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         RouterConfig.home: (context) => BottomNavigator(),
-        RouterConfig.login: (context) => LoginScreen(),
+        RouterConfig.account: (context) => AccountScreen(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

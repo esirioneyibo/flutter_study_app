@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum FormType {
   LOGIN,
@@ -20,19 +21,20 @@ class PasswordFieldValidator {
   }
 }
 
-class LoginScreen extends StatefulWidget {
+/// login and register
+class AccountScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _LoginScreenState();
+    return _AccountScreenState();
   }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _AccountScreenState extends State<AccountScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   String _email;
   String _password;
-  FormType _formType;
+  FormType _formType = FormType.LOGIN;
 
   /// 验证和保存
   bool validateAndSave() {
@@ -63,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar('戻す'),
+      appBar: ReturnBar(''),
       body: Container(
         child: Form(
           key: formKey,
@@ -117,27 +119,63 @@ class _LoginScreenState extends State<LoginScreen> {
   List<Widget> buildSubmitButtons() {
     if (_formType == FormType.LOGIN) {
       return <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+        ),
         RaisedButton(
+          color: Colors.blue,
           key: Key('signIn'),
-          child: Text('登录', style: TextStyle(fontSize: 20.0)),
+          child:
+              Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: () {
             debugPrint('login');
             isLogin = true;
             Navigator.pushNamed(context, RouterConfig.home);
           },
         ),
+        Padding(
+          padding: EdgeInsets.only(top: 30),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Icon(
+              FontAwesomeIcons.twitter,
+              size: 30,
+            ),
+            Icon(
+              FontAwesomeIcons.github,
+              size: 30,
+            ),
+            Icon(
+              FontAwesomeIcons.weixin,
+              size: 30,
+            ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 30),
+        ),
         FlatButton(
-          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0)),
+          child: Text('创建一个账号',
+              style: TextStyle(fontSize: 20.0)),
           onPressed: moveToRegister,
         ),
       ];
     } else {
       return <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+        ),
         RaisedButton(
-          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0)),
+          color: Colors.blue,
+          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0,color: Colors.white)),
           onPressed: () {
             debugPrint('login');
           },
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 0),
         ),
         FlatButton(
           child: Text('己有账号?去登录', style: TextStyle(fontSize: 20.0)),

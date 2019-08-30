@@ -8,8 +8,6 @@ class ChatDetailScreen extends StatefulWidget {
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child:Text('chat detail')
-    );
+    return Container(child: Text('chat detail'));
   }
 }

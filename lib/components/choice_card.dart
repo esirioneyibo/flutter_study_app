@@ -27,7 +27,8 @@ class ChoiceCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Icon(choice.icon, size: AppConfig.choiceIconSize, color: textStyle.color),
+                Icon(choice.icon,
+                    size: AppConfig.choiceIconSize, color: textStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
         )));

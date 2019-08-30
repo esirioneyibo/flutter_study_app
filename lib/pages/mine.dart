@@ -11,7 +11,7 @@ class LeftNavigator extends StatelessWidget {
         leading: Icon(Icons.person),
         title: Text('我的动态'),
         onTap: () {
-          Navigator.pushNamed(context, '/login');
+          Navigator.of(context).pop();
         },
       ),
       ListTile(
@@ -94,7 +94,7 @@ class LeftNavigator extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamed(context, RouterConfig.login);
+              Navigator.pushNamed(context, RouterConfig.account);
             },
           ),
         ),
@@ -104,7 +104,7 @@ class LeftNavigator extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           onTap: () {
-            Navigator.pushNamed(context, RouterConfig.login);
+            Navigator.pushNamed(context, RouterConfig.account);
           },
         ),
       ],

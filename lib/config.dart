@@ -1,6 +1,6 @@
 class RouterConfig {
 // route
-  static const login = '/login';
+  static const account = '/account';
   static const home = '/home';
 }
 
