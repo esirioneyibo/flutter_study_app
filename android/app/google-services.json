@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "842333060635-ob7khfbadrhoo651et6gstuad3ptcus3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.xiaomo.flutterstudy",
+            "certificate_hash": "5f1b3ee91c95fecc506b27fff73155c624efa7cf"
+          }
+        },
+        {
+          "client_id": "842333060635-adu69onn859foa6b0d6c467c2ic5o8e3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.xiaomo.flutterstudy",
+            "certificate_hash": "108edb23054349459431d076217af4d3c97d3778"
+          }
+        },
+        {
           "client_id": "842333060635-tt3bv6cfc9md66qk8676brrbd3m74bem.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -3,6 +3,7 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/navigator.dart';
 import 'package:flutter_study_app/pages/mine/account.dart';
 import 'package:flutter_study_app/pages/splash.dart';
+import 'package:flutter_study_app/service/authentication.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         RouterConfig.home: (context) => BottomNavigator(),
-        RouterConfig.account: (context) => AccountScreen(),
+        RouterConfig.account: (context) => AccountScreen(Auth(), null),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
