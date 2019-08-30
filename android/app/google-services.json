@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "842333060635",
+    "firebase_url": "https://flutter-study-app.firebaseio.com",
+    "project_id": "flutter-study-app",
+    "storage_bucket": "flutter-study-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842333060635:android:465f235292ab3a45",
+        "android_client_info": {
+          "package_name": "info.xiaomo.flutterstudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842333060635-tt3bv6cfc9md66qk8676brrbd3m74bem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6f78B5d_sfxdVPEoXeTN3TsMEif0rfoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842333060635-tt3bv6cfc9md66qk8676brrbd3m74bem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
