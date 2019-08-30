@@ -5,28 +5,6 @@ import 'package:flutter_study_app/config.dart';
 class LeftNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    moveToLogin(context) {
-      Navigator.pushNamed(context, Router.login);
-    }
-
-    exitItem() {
-      if (isLogin) {
-        return ListTile(
-          leading: Icon(Icons.near_me),
-          title: Text('退出登录'),
-          onTap: () {
-            isLogin = false;
-            Navigator.of(context).pop();
-            Scaffold.of(context).showSnackBar(SnackBar(
-                duration: Duration(milliseconds: 300),
-                content: Text('您己退出登录')));
-          },
-        );
-      } else {
-        return null;
-      }
-    }
-
     // 抽屉菜单
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
@@ -64,7 +42,20 @@ class LeftNavigator extends StatelessWidget {
           Navigator.of(context).pop();
         },
       ),
-      exitItem()
+      Visibility(
+        visible: isLogin,
+        child: ListTile(
+          leading: Icon(Icons.exit_to_app),
+          title: Text('退出登录'),
+          onTap: () {
+            isLogin = false;
+            Navigator.of(context).pop();
+            Scaffold.of(context).showSnackBar(SnackBar(
+                duration: Duration(milliseconds: 300),
+                content: Text('您己退出登录')));
+          },
+        ),
+      )
     ]);
 
     // 个人信息
@@ -75,7 +66,7 @@ class LeftNavigator extends StatelessWidget {
           child: ClipOval(
             child: InkWell(
               child: Image.asset(
-                avatar,
+                AppConfig.avatar,
                 width: 80,
               ),
               onTap: () {
@@ -98,11 +89,13 @@ class LeftNavigator extends StatelessWidget {
           child: InkWell(
             child: ClipOval(
               child: Image.asset(
-                default_avatar,
+                AppConfig.default_avatar,
                 width: 80,
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pushNamed(context, RouterConfig.login);
+            },
           ),
         ),
         InkWell(
@@ -110,7 +103,9 @@ class LeftNavigator extends StatelessWidget {
             '点击头像登录',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          onTap: null,
+          onTap: () {
+            Navigator.pushNamed(context, RouterConfig.login);
+          },
         ),
       ],
     );

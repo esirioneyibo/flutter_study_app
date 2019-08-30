@@ -1,12 +1,14 @@
-const double AppBarHeight = 50;
-const double ChoiceIconSize = 30;
-
-const avatar = 'assets/images/avatar.png';
-const default_avatar = 'assets/images/default_avatar.png';
-const splash = 'assets/images/splash.png';
-
-class Router {
+class RouterConfig {
 // route
   static const login = '/login';
   static const home = '/home';
+}
+
+class AppConfig {
+  static const double appBarHeight = 50;
+  static const double choiceIconSize = 30;
+
+  static const avatar = 'assets/images/avatar.png';
+  static const default_avatar = 'assets/images/default_avatar.png';
+  static const splash = 'assets/images/splash.png';
 }

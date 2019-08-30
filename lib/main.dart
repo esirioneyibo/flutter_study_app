@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        Router.home: (context) => BottomNavigator(),
-        Router.login: (context) => LoginScreen(),
+        RouterConfig.home: (context) => BottomNavigator(),
+        RouterConfig.login: (context) => LoginScreen(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

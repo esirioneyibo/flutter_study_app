@@ -33,7 +33,7 @@ class StudyScreenState extends State<StudyScreen>
       controller: _tabController,
     );
     return Scaffold(
-        appBar: MyAppBar(context, '资源', AppBarHeight, topBar),
+        appBar: MyAppBar(context, '资源', topBar),
         body: TabBarView(
           controller: _tabController,
           children: tabContents,

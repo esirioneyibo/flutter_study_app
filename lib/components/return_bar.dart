@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/config.dart';
 
 class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final double height;
   final bottom;
 
-  ReturnBar(this.title, this.height, [this.bottom]);
+  ReturnBar(this.title, [this.bottom]);
 
   @override
   Widget build(BuildContext context) {
@@ -23,5 +23,5 @@ class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => new Size.fromHeight(height);
+  Size get preferredSize => new Size.fromHeight(AppConfig.appBarHeight);
 }

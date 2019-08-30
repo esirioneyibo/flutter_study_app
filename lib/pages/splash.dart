@@ -22,7 +22,7 @@ class _SplashState extends State<SplashScreen>
     return new FadeTransition(
         opacity: _animation,
         child: Image.asset(
-          splash,
+          AppConfig.splash,
           scale: 2.0,
           fit: BoxFit.cover,
         ));

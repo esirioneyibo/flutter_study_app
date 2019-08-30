@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config.dart';
 
 enum FormType {
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, '登录', AppBarHeight),
+      appBar: ReturnBar('戻す'),
       body: Container(
         child: Form(
           key: formKey,
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () {
             debugPrint('login');
             isLogin = true;
-            Navigator.pushNamed(context, Router.home);
+            Navigator.pushNamed(context, RouterConfig.home);
           },
         ),
         FlatButton(
