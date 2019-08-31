@@ -3,7 +3,7 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/navigator.dart';
 import 'package:flutter_study_app/pages/mine/account.dart';
 import 'package:flutter_study_app/pages/splash.dart';
-import 'package:flutter_study_app/service/authentication.dart';
+import 'package:flutter_study_app/service/base_auth.dart';
 
 void main() => runApp(MyApp());
 
