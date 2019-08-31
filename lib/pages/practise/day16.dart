@@ -7,7 +7,7 @@ class Day16Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar('第22天', AppBarHeight),
+      appBar: ReturnBar('第22天'),
       body: Center(child: Text('这是博客')),
     );
   }

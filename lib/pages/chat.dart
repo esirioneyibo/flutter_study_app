@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/models/post.dart';
 
-import '../config.dart';
-
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var posts = Post.posts;
 
     return Scaffold(
-      appBar: MyAppBar(context, '圈子', AppBarHeight),
+      appBar: MyAppBar(context, '圈子'),
       body: Center(
         child: ListView.builder(
             itemCount: posts.length,

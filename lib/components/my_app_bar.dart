@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/config.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final double height;
   final BuildContext navigatorContext;
-  final bottom;
+  final topbar;
 
-  MyAppBar(this.navigatorContext, this.title, this.height, [this.bottom]);
+  MyAppBar(this.navigatorContext, this.title, [this.topbar]);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             Scaffold.of(this.navigatorContext).openDrawer();
           },
         ),
-        bottom: bottom,
+        bottom: topbar,
         title: Text(title));
   }
 
   @override
-  Size get preferredSize => new Size.fromHeight(height);
+  Size get preferredSize => new Size.fromHeight(AppConfig.appBarHeight);
 }

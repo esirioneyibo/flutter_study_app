@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/models/choice.dart';
+import 'package:flutter_study_app/utils/router_util.dart';
 import 'package:flutter_study_app/utils/random_util.dart';
 
 import '../config.dart';
@@ -20,14 +21,14 @@ class ChoiceCard extends StatelessWidget {
         child: Center(
             child: InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => choice.screen));
+            RouterUtil.push(context, choice.screen);
           },
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Icon(choice.icon, size: ChoiceIconSize, color: textStyle.color),
+                Icon(choice.icon,
+                    size: AppConfig.choiceIconSize, color: textStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
         )));

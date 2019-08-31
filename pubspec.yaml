@@ -20,28 +20,34 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  # The following adds the Cupertino Icons font to your application. Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons:
+  video_player:
+  fluwx:
+  google_sign_in:
+  device_info:
+  sqflite:
+  cached_network_image:
+  http:
+  shared_preferences:
+  qr_flutter:
+  font_awesome_flutter:
+  scoped_model:
+  intl:
+  uuid:
+  image_picker:
+  path_provider:
+  google_maps_flutter:
+  firebase_auth:
+  flutter_twitter_login:
+    git: git://github.com/eudangeld/flutter_twitter_login.git
+  uni_links:
+  url_launcher:
+#  webview_flutter: ^0.3.13
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  video_player:
-  fluwx: 1.0.4
-  flutter_qq:
-  device_info:
-  webview_flutter:
-  image_picker: ^0.6.1+4
-  firebase_auth: ^0.14.0+4
-  url_launcher: ^5.1.2
-  sqflite: ^1.1.6+4
-  cached_network_image: ^1.1.1
-  http: ^0.12.0+2
-  shared_preferences: ^0.5.3+4
-  google_sign_in: ^4.0.7
-  qr_flutter: ^3.0.1
-  font_awesome_flutter: ^8.5.0
 
 
 # For information on the generic Dart part of this file, see the
@@ -57,9 +63,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - images/avatar.png
-  - images/splash.png
-  - images/default_avatar.png
+    - assets/images/avatar.png
+    - assets/images/splash.png
+    - assets/images/default_avatar.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
+import 'package:flutter_study_app/config.dart';
 
 class LeftNavigator extends StatelessWidget {
   @override
@@ -7,51 +8,70 @@ class LeftNavigator extends StatelessWidget {
     // 抽屉菜单
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
-        leading: const Icon(Icons.person),
-        title: const Text('我的动态'),
-        onTap: () {
-          Navigator.pushNamed(context, '/login');
-        },
-      ),
-      ListTile(
-        leading: const Icon(Icons.color_lens),
-        title: const Text('主题切换'),
+        leading: Icon(Icons.person),
+        title: Text('我的动态'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.cached),
-        title: const Text('清除缓存'),
+        leading: Icon(Icons.color_lens),
+        title: Text('主题切换'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.settings),
-        title: const Text('设置中心'),
+        leading: Icon(Icons.cached),
+        title: Text('清除缓存'),
         onTap: () {
           Navigator.of(context).pop();
         },
       ),
       ListTile(
-        leading: const Icon(Icons.near_me),
-        title: const Text('关于软件'),
+        leading: Icon(Icons.settings),
+        title: Text('设置中心'),
         onTap: () {
           Navigator.of(context).pop();
         },
+      ),
+      ListTile(
+        leading: Icon(Icons.near_me),
+        title: Text('关于软件'),
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      Visibility(
+        visible: isLogin,
+        child: ListTile(
+          leading: Icon(Icons.exit_to_app),
+          title: Text('退出登录'),
+          onTap: () {
+            isLogin = false;
+            Navigator.of(context).pop();
+            Scaffold.of(context).showSnackBar(SnackBar(
+                duration: Duration(milliseconds: 300),
+                content: Text('您己退出登录')));
+          },
+        ),
       )
     ]);
 
     // 个人信息
-    var info = Row(
+    var infoWidget = Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
-            child: Image.asset(
-              'images/avatar.png',
-              width: 80,
+            child: InkWell(
+              child: Image.asset(
+                AppConfig.avatar,
+                width: 80,
+              ),
+              onTap: () {
+                debugPrint('点击头像');
+              },
             ),
           ),
         ),
@@ -62,24 +82,29 @@ class LeftNavigator extends StatelessWidget {
       ],
     );
 
-    var noLogin = Row(
+    var noLoginWidget = Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ClipOval(
-            child: Image.asset(
-              'images/default_avatar.png',
-              width: 80,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: InkWell(
+            child: ClipOval(
+              child: Image.asset(
+                AppConfig.default_avatar,
+                width: 80,
+              ),
             ),
+            onTap: () {
+              Navigator.pushNamed(context, RouterConfig.account);
+            },
           ),
         ),
         InkWell(
           child: Text(
-            '点击登录',
+            '点击头像登录',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           onTap: () {
-            Navigator.pushNamed(context, '/login');
+            Navigator.pushNamed(context, RouterConfig.account);
           },
         ),
       ],
@@ -93,8 +118,8 @@ class LeftNavigator extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: isLogin ? info : noLogin,
+                padding: EdgeInsets.only(top: 40),
+                child: isLogin ? infoWidget : noLoginWidget,
               ),
               Expanded(
                 child: ListView(
