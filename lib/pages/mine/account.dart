@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
-import 'package:flutter_study_app/service/auth/google.dart';
-import 'package:flutter_study_app/service/auth/twitter.dart';
-import 'package:flutter_study_app/service/auth/wechat.dart';
+import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -23,13 +20,14 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  FormType _formType = FormType.LOGIN;
-
-//  GithubAuth githubAuth = GithubAuth();
-  GoogleAuth googleAuth = GoogleAuth();
-  TwitterAuth twitterAuth = TwitterAuth();
   EmailAuth emailAuth = EmailAuth();
-  WechatAuth wechatAuth = WechatAuth();
+
+//  GoogleAuth googleAuth = GoogleAuth();
+//  TwitterAuth twitterAuth = TwitterAuth();
+//  WechatAuth wechatAuth = WechatAuth();
+//  GithubAuth githubAuth = GithubAuth();
+
+  FormType _formType = FormType.LOGIN;
 
   String _errorMessage;
   String _status = "status";
@@ -86,6 +84,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return <Widget>[
       TextFormField(
         key: Key('email'),
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(labelText: '邮箱'),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
@@ -94,6 +93,8 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
       TextFormField(
         key: Key('password'),
+        keyboardType: TextInputType.text,
+        obscureText: true,
         decoration: InputDecoration(labelText: '密码'),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
@@ -112,30 +113,54 @@ class _AccountScreenState extends State<AccountScreen> {
     if (_validateAndSave()) {
       String userId = "";
       try {
+        // 登陆账号
         if (_formType == FormType.LOGIN) {
-          userId = await emailAuth.signIn(emailAuth.email, emailAuth.password);
-          if (userId != null) {
-            isLogin = true;
-            Navigator.of(context).pop();
+          userId = await emailAuth.signIn(
+              emailAuth.email.trim(), emailAuth.password.trim());
+          if (userId == null) {
+            throw Exception({"code": "UNKOWN_ERROR"});
           }
-          print('Signed in: $userId');
-        } else {
-          userId = await emailAuth.signUp(emailAuth.email, emailAuth.password);
-          emailAuth.sendEmailVerification();
-          emailAuth.showVerifyEmailSentDialog(context, moveToLogin);
-          print('注册');
-        }
-        setState(() {
-          _isLoading = false;
-        });
 
-        if (userId.length > 0 &&
-            userId != null &&
-            _formType == FormType.LOGIN) {
-//          emailAuth.onSignedIn();
+          emailAuth.isEmailVerified().then((verified) {
+            if (!verified) {
+              DialogUtil.showAlertDialog(context, "登陆失败", "您的邮箱尚未验证");
+            } else {
+              Navigator.of(context).pop();
+              emailAuth.getCurrentUser().then((user) => currentUser = user);
+            }
+          });
+        } else {
+          // 注册账号
+          if (userId.length > 0 &&
+              userId != null &&
+              _formType == FormType.LOGIN) {
+            userId = await emailAuth.signUp(
+                emailAuth.email.trim(), emailAuth.password.trim());
+            emailAuth.sendEmailVerification();
+            emailAuth.setDefaultUserInfo();
+            DialogUtil.showAlertDialog(
+                context, "验证您的邮箱", "请到您的邮箱查看并激活账号", moveToLogin);
+          }
+          setState(() {
+            _isLoading = false;
+          });
         }
+        emailAuth.getCurrentUser().then((user) => currentUser = user);
       } catch (e) {
-        print('Error: $e');
+        switch (e.code) {
+          case EmailErrorCode.invalidEmail:
+            DialogUtil.showAlertDialog(context, "登陆失败", "邮箱地址格式错误");
+            break;
+          case EmailErrorCode.userNotFound:
+            DialogUtil.showAlertDialog(context, "登陆失败", "找不到账号，请先注册");
+            break;
+          case EmailErrorCode.wrongPassword:
+            DialogUtil.showAlertDialog(context, "登陆失败", "密码错误，请检查后再试");
+            break;
+          default:
+            DialogUtil.showAlertDialog(context, "登陆失败", "未知错误");
+            break;
+        }
       }
     }
   }
@@ -145,7 +170,13 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     _errorMessage = '';
     _isLoading = false;
-    _listWechat();
+//    _listWechat();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    fluwx.dispose();
   }
 
   _listWechat() {
@@ -190,21 +221,26 @@ class _AccountScreenState extends State<AccountScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             InkWell(
-              onTap: twitterAuth.loginTwitter,
+//              onTap: twitterAuth.loginTwitter,
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'twitter', '功能开发中'),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: null,
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'github', '功能开发中'),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: wechatAuth.login(),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'wechat', '功能开发中'),
+//              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
                 size: 30,
@@ -215,15 +251,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () => googleAuth
-                  .googleHandleSignIn()
-                  .then((FirebaseUser user) => setState(() {
-                        username = user.displayName;
-                        print(username);
-                      }))
-                  .catchError((e) {
-                print(e);
-              }),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'google', '功能开发中'),
+//              onTap: () => googleAuth
+//                  .googleHandleSignIn()
+//                  .then((FirebaseUser user) => setState(() {
+//                        username = user.displayName;
+//                        print(username);
+//                      }))
+//                  .catchError((e) {
+//                print(e);
+//              }),
             ),
           ],
         ),

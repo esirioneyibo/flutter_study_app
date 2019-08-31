@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_study_app/service/base_auth.dart';
 
 class EmailAuth implements BaseAuth {
@@ -31,6 +31,14 @@ class EmailAuth implements BaseAuth {
     return user;
   }
 
+  void setDefaultUserInfo() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    UserUpdateInfo updateInfo = new UserUpdateInfo();
+    updateInfo.displayName = user.email;
+    updateInfo.photoUrl = "https://image.xiaomo.info/logo/avatar.png";
+    user.updateProfile(updateInfo);
+  }
+
   Future<void> signOut() async {
     return _firebaseAuth.signOut();
   }
@@ -45,28 +53,6 @@ class EmailAuth implements BaseAuth {
     return user.isEmailVerified;
   }
 
-  void showVerifyEmailSentDialog(BuildContext context, VoidCallback callback) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("验证您的邮箱"),
-          content: new Text("请到您的邮箱查看并激活账号"),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("关闭"),
-              onPressed: () {
-                callback();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   AccountType getAccountType() {
     return AccountType.EMAIL;
@@ -75,17 +61,34 @@ class EmailAuth implements BaseAuth {
 
 class EmailFieldValidator {
   static String validate(String value) {
-    return value.isEmpty ? '邮箱不能为空' : null;
+    if (value.isEmpty) {
+      return "'邮箱不能为空'";
+    } else if (value.contains(" ") || value.contains("　")) {
+      return "邮箱中请不要包含半角或半角空格";
+    }
+    return null;
   }
 }
 
 class PasswordFieldValidator {
   static String validate(String value) {
-    return value.isEmpty ? '密码不能为空' : null;
+    if (value.isEmpty) {
+      return "'密码不能为空'";
+    } else if (value.contains(" ") || value.contains("　")) {
+      return "密码请不要包含半角或半角空格";
+    }
+
+    return null;
   }
 }
 
 enum FormType {
   LOGIN,
   REGISTER,
+}
+
+class EmailErrorCode {
+  static const String invalidEmail = "ERROR_INVALID_EMAIL";
+  static const String userNotFound = "ERROR_USER_NOT_FOUND";
+  static const String wrongPassword = "ERROR_WRONG_PASSWORD";
 }

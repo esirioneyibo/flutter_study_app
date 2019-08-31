@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/config.dart';
 
-class LeftNavigator extends StatelessWidget {
+class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 抽屉菜单
@@ -43,12 +43,12 @@ class LeftNavigator extends StatelessWidget {
         },
       ),
       Visibility(
-        visible: isLogin,
+        visible: currentUser != null,
         child: ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('退出登录'),
           onTap: () {
-            isLogin = false;
+            currentUser = null;
             Navigator.of(context).pop();
             Scaffold.of(context).showSnackBar(SnackBar(
                 duration: Duration(milliseconds: 300),
@@ -65,10 +65,15 @@ class LeftNavigator extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
             child: InkWell(
-              child: Image.asset(
-                AppConfig.avatar,
-                width: 80,
-              ),
+              child: currentUser == null
+                  ? Image.asset(
+                      AppConfig.avatar,
+                      width: 80,
+                    )
+                  : Image.network(
+                      currentUser.photoUrl,
+                      width: 80,
+                    ),
               onTap: () {
                 debugPrint('点击头像');
               },
@@ -76,7 +81,7 @@ class LeftNavigator extends StatelessWidget {
           ),
         ),
         Text(
-          '小莫',
+          currentUser == null ? "小莫" : currentUser.displayName,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
@@ -119,7 +124,7 @@ class LeftNavigator extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 40),
-                child: isLogin ? infoWidget : noLoginWidget,
+                child: currentUser != null ? infoWidget : noLoginWidget,
               ),
               Expanded(
                 child: ListView(

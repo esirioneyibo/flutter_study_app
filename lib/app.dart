@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/pages/chat.dart';
+import 'package:flutter_study_app/pages/drawer.dart';
 import 'package:flutter_study_app/pages/home.dart';
-import 'package:flutter_study_app/pages/mine.dart';
 import 'package:flutter_study_app/pages/practise.dart';
 import 'package:flutter_study_app/pages/study.dart';
+import 'package:fluwx/fluwx.dart' as fluwx;
 
 import 'theme.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 
 ///
 /// 导航器是一个有状态的组件
@@ -33,7 +33,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: new LeftNavigator(), // 侧边栏
+      drawer: LeftDrawer(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -94,7 +94,13 @@ class _AppState extends State<App> {
       ..add(new StudyScreen())
       ..add(new PractiseScreen())
       ..add(new ChatScreen());
-    _initFluwx();
+//    _initFluwx();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    fluwx.dispose();
   }
 }
