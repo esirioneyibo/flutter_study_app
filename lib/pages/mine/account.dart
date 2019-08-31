@@ -113,29 +113,39 @@ class _AccountScreenState extends State<AccountScreen> {
     if (_validateAndSave()) {
       String userId = "";
       try {
+        // 登陆账号
         if (_formType == FormType.LOGIN) {
-          userId = await emailAuth.signIn(emailAuth.email, emailAuth.password);
-          if (userId != null) {
-            isLogin = true;
-            Navigator.of(context).pop();
+          userId = await emailAuth.signIn(
+              emailAuth.email.trim(), emailAuth.password.trim());
+          if (userId == null) {
+            throw Exception({"code": "UNKOWN_ERROR"});
           }
-          print('Signed in: $userId');
-        } else {
-          userId = await emailAuth.signUp(emailAuth.email, emailAuth.password);
-          emailAuth.sendEmailVerification();
-          DialogUtil.showAlertDialog(
-              context, "验证您的邮箱", "请到您的邮箱查看并激活账号", moveToLogin);
-          print('注册');
-        }
-        setState(() {
-          _isLoading = false;
-        });
 
-        if (userId.length > 0 &&
-            userId != null &&
-            _formType == FormType.LOGIN) {
-//          emailAuth.onSignedIn();
+          emailAuth.isEmailVerified().then((verified) {
+            if (!verified) {
+              DialogUtil.showAlertDialog(context, "登陆失败", "您的邮箱尚未验证");
+            } else {
+              Navigator.of(context).pop();
+              emailAuth.getCurrentUser().then((user) => currentUser = user);
+            }
+          });
+        } else {
+          // 注册账号
+          if (userId.length > 0 &&
+              userId != null &&
+              _formType == FormType.LOGIN) {
+            userId = await emailAuth.signUp(
+                emailAuth.email.trim(), emailAuth.password.trim());
+            emailAuth.sendEmailVerification();
+            emailAuth.setDefaultUserInfo();
+            DialogUtil.showAlertDialog(
+                context, "验证您的邮箱", "请到您的邮箱查看并激活账号", moveToLogin);
+          }
+          setState(() {
+            _isLoading = false;
+          });
         }
+        emailAuth.getCurrentUser().then((user) => currentUser = user);
       } catch (e) {
         switch (e.code) {
           case EmailErrorCode.invalidEmail:
