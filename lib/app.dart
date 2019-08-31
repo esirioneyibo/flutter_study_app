@@ -94,7 +94,14 @@ class _AppState extends State<App> {
       ..add(new StudyScreen())
       ..add(new PractiseScreen())
       ..add(new ChatScreen());
-    _initFluwx();
+//    _initFluwx();
     super.initState();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    fluwx.dispose();
+  }
+
 }

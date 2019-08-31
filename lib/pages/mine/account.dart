@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
-import 'package:flutter_study_app/service/auth/google.dart';
-import 'package:flutter_study_app/service/auth/twitter.dart';
-import 'package:flutter_study_app/service/auth/wechat.dart';
+import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -23,13 +20,14 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  FormType _formType = FormType.LOGIN;
-
-//  GithubAuth githubAuth = GithubAuth();
-  GoogleAuth googleAuth = GoogleAuth();
-  TwitterAuth twitterAuth = TwitterAuth();
   EmailAuth emailAuth = EmailAuth();
-  WechatAuth wechatAuth = WechatAuth();
+
+//  GoogleAuth googleAuth = GoogleAuth();
+//  TwitterAuth twitterAuth = TwitterAuth();
+//  WechatAuth wechatAuth = WechatAuth();
+//  GithubAuth githubAuth = GithubAuth();
+
+  FormType _formType = FormType.LOGIN;
 
   String _errorMessage;
   String _status = "status";
@@ -145,7 +143,14 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     _errorMessage = '';
     _isLoading = false;
-    _listWechat();
+//    _listWechat();
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    fluwx.dispose();
   }
 
   _listWechat() {
@@ -190,21 +195,26 @@ class _AccountScreenState extends State<AccountScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             InkWell(
-              onTap: twitterAuth.loginTwitter,
+//              onTap: twitterAuth.loginTwitter,
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'twitter', '功能开发中'),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: null,
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'github', '功能开发中'),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: wechatAuth.login(),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'wechat', '功能开发中'),
+//              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
                 size: 30,
@@ -215,15 +225,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () => googleAuth
-                  .googleHandleSignIn()
-                  .then((FirebaseUser user) => setState(() {
-                        username = user.displayName;
-                        print(username);
-                      }))
-                  .catchError((e) {
-                print(e);
-              }),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(context, 'google', '功能开发中'),
+//              onTap: () => googleAuth
+//                  .googleHandleSignIn()
+//                  .then((FirebaseUser user) => setState(() {
+//                        username = user.displayName;
+//                        print(username);
+//                      }))
+//                  .catchError((e) {
+//                print(e);
+//              }),
             ),
           ],
         ),
