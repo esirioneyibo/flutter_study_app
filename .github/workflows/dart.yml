@@ -1,20 +1,19 @@
-name: Dart CI
 
-on: [push]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    
-    container:
-      image:  google/dart:latest
-    
-    steps:
-    - uses: actions/download flutter
-    - run: wget https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_v1.7.8+hotfix.4-stable.zip
-    - run: unzip flutter_windows_v1.7.8+hotfix.4-stable.zip
-    - run: cd flutter_windows_v1.7.8+hotfix.4-stable && export PATH=`pwd`/flutter/bin:$PATH
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: pub get
+#name: Dart CI
+#
+#on: [push]
+#
+#jobs:
+#  build:
+#
+#    runs-on: ubuntu-latest
+#
+#    container:
+#      image:  google/dart:latest
+#
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: Install dependencies
+#      run: pub get
+#    - name: Run tests
+#      run: pub run test
