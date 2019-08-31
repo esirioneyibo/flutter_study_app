@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
 import 'package:flutter_study_app/service/auth/google.dart';
 import 'package:flutter_study_app/service/auth/twitter.dart';
+import 'package:flutter_study_app/service/auth/wechat.dart';
+import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// login and register
@@ -26,9 +29,11 @@ class _AccountScreenState extends State<AccountScreen> {
   GoogleAuth googleAuth = GoogleAuth();
   TwitterAuth twitterAuth = TwitterAuth();
   EmailAuth emailAuth = EmailAuth();
+  WechatAuth wechatAuth = WechatAuth();
 
   String _errorMessage;
-
+  String _status = "status";
+  Uint8List _image;
   bool _isLoading;
 
   String username = 'Your Name';
@@ -140,6 +145,27 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
     _errorMessage = '';
     _isLoading = false;
+    _listWechat();
+  }
+
+  _listWechat() {
+    fluwx.onAuthByQRCodeFinished.listen((data) {
+      setState(() {
+        _status = "errorCode=>${data.errorCode}\nauthCode=>${data.authCode}";
+      });
+    });
+    fluwx.onAuthGotQRCode.listen((image) {
+      setState(() {
+        _image = image;
+        Navigator.pop(context);
+      });
+    });
+
+    fluwx.onQRCodeScanned.listen((scanned) {
+      setState(() {
+        _status = "scanned";
+      });
+    });
   }
 
   /// 构建提交按钮
@@ -177,9 +203,12 @@ class _AccountScreenState extends State<AccountScreen> {
                 size: 30,
               ),
             ),
-            Icon(
-              FontAwesomeIcons.weixin,
-              size: 30,
+            InkWell(
+              onTap: wechatAuth.login(),
+              child: Icon(
+                FontAwesomeIcons.weixin,
+                size: 30,
+              ),
             ),
             InkWell(
               child: Icon(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:flutter_study_app/navigator.dart';
+import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/pages/mine/account.dart';
 import 'package:flutter_study_app/pages/splash.dart';
 import 'package:flutter_study_app/service/base_auth.dart';
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        RouterConfig.home: (context) => BottomNavigator(),
+        RouterConfig.index: (context) => App(),
         RouterConfig.account: (context) => AccountScreen(),
       },
       debugShowCheckedModeBanner: false,

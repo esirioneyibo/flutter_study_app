@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config.dart';
-import '../navigator.dart';
+import '../app.dart';
 
 ///
 /// 导航器是一个有状态的组件
@@ -40,7 +40,7 @@ class _SplashState extends State<SplashScreen>
     var listener = (status) {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(builder: (context) => new BottomNavigator()),
+            new MaterialPageRoute(builder: (context) => new App()),
             (router) => router == null);
       }
     };

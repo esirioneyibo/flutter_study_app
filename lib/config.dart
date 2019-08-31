@@ -1,7 +1,7 @@
 class RouterConfig {
 // route
   static const account = '/account';
-  static const home = '/home';
+  static const index = '/index';
 }
 
 class AppConfig {
@@ -22,4 +22,6 @@ class AppConfig {
   static const GITHUB_CLIENT_ID = '4cd0c308ae1050806a2c';
   static const GITHUB_CLIENT_SECRET =
       '42b3c750a3585cb22e05768abc275e9e75ecfca8';
+
+  static get weChatAppId => "wxd930ea5d5a258f4f";
 }
