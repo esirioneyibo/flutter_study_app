@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/utils/dialog_util.dart';
 
 class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void exitLogin() {
+      currentUser = null;
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Scaffold.of(context).showSnackBar(SnackBar(
+          duration: Duration(milliseconds: 300), content: Text('您己退出登录')));
+    }
+
     // 抽屉菜单
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
-      ListTile(
-        leading: Icon(Icons.person),
-        title: Text('我的动态'),
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-      ),
       ListTile(
         leading: Icon(Icons.color_lens),
         title: Text('主题切换'),
@@ -22,24 +24,17 @@ class LeftDrawer extends StatelessWidget {
         },
       ),
       ListTile(
-        leading: Icon(Icons.cached),
-        title: Text('清除缓存'),
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-      ),
-      ListTile(
         leading: Icon(Icons.settings),
         title: Text('设置中心'),
         onTap: () {
-          Navigator.of(context).pop();
+          Navigator.pushNamed(context, RouterConfig.settings);
         },
       ),
       ListTile(
         leading: Icon(Icons.near_me),
         title: Text('关于软件'),
         onTap: () {
-          Navigator.of(context).pop();
+          Navigator.pushNamed(context, RouterConfig.about);
         },
       ),
       Visibility(
@@ -48,72 +43,36 @@ class LeftDrawer extends StatelessWidget {
           leading: Icon(Icons.exit_to_app),
           title: Text('退出登录'),
           onTap: () {
-            currentUser = null;
-            Navigator.of(context).pop();
-            Scaffold.of(context).showSnackBar(SnackBar(
-                duration: Duration(milliseconds: 300),
-                content: Text('您己退出登录')));
+            DialogUtil.showConfirmDialog(context, "确定退出登陆吗?", exitLogin);
           },
         ),
       )
     ]);
 
     // 个人信息
-    var infoWidget = Row(
+    var infoWidget = Container(
+        child: Row(
       children: <Widget>[
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: ClipOval(
-            child: InkWell(
-              child: currentUser == null
-                  ? Image.asset(
-                      AppConfig.avatar,
-                      width: 80,
-                    )
-                  : Image.network(
-                      currentUser.photoUrl,
-                      width: 80,
-                    ),
-              onTap: () {
-                debugPrint('点击头像');
-              },
-            ),
+            child: currentUser == null
+                ? Image.asset(
+                    AppConfig.default_avatar,
+                    width: 80,
+                  )
+                : Image.network(
+                    currentUser.photoUrl,
+                    width: 80,
+                  ),
           ),
         ),
         Text(
-          currentUser == null ? "小莫" : currentUser.displayName,
+          currentUser == null ? "点击登陆" : currentUser.displayName,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
-    );
-
-    var noLoginWidget = Row(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: InkWell(
-            child: ClipOval(
-              child: Image.asset(
-                AppConfig.default_avatar,
-                width: 80,
-              ),
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, RouterConfig.account);
-            },
-          ),
-        ),
-        InkWell(
-          child: Text(
-            '点击头像登录',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          onTap: () {
-            Navigator.pushNamed(context, RouterConfig.account);
-          },
-        ),
-      ],
-    );
+    ));
 
     return new Drawer(
       child: MediaQuery.removePadding(
@@ -122,9 +81,16 @@ class LeftDrawer extends StatelessWidget {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 40),
-                child: currentUser != null ? infoWidget : noLoginWidget,
+              InkWell(
+                onTap: () {
+                  if (currentUser == null) {
+                    Navigator.pushNamed(context, RouterConfig.account);
+                  }
+                },
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 40, 0, 20),
+                  child: infoWidget,
+                ),
               ),
               Expanded(
                 child: ListView(
