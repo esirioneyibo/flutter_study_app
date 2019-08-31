@@ -67,7 +67,7 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar(''),
+      appBar: ReturnBar(_formType == FormType.LOGIN ? "登陆" : "注册"),
       body: Container(
         child: Form(
           key: formKey,

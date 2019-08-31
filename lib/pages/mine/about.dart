@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/components/return_bar.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, '设置'),
+      appBar: ReturnBar('关于软件'),
       body: Center(
-        child: Text('this is about screen'),
+        child: Text('关于软件'),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/models/post.dart';
+import 'package:flutter_study_app/pages/chat/chat_detail.dart';
+import 'package:flutter_study_app/utils/router_util.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -24,15 +26,7 @@ class ChatScreen extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     onTap: () {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text(posts[index].title),
-                        duration: Duration(milliseconds: 200),
-                        action: SnackBarAction(
-                            label: '关闭',
-                            onPressed: () {
-                              Scaffold.of(context).removeCurrentSnackBar();
-                            }),
-                      ));
+                      RouterUtil.push(context, ChatDetailScreen());
                     },
                   ),
                   Divider()
