@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DialogUtil {
   static void showAlertDialog(
       BuildContext context, String title, String content,
-      {VoidCallback callback}) {
+      [VoidCallback callback]) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

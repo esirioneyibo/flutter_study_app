@@ -84,6 +84,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return <Widget>[
       TextFormField(
         key: Key('email'),
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(labelText: '邮箱'),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
@@ -92,6 +93,8 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
       TextFormField(
         key: Key('password'),
+        keyboardType: TextInputType.text,
+        obscureText: true,
         decoration: InputDecoration(labelText: '密码'),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
@@ -120,7 +123,8 @@ class _AccountScreenState extends State<AccountScreen> {
         } else {
           userId = await emailAuth.signUp(emailAuth.email, emailAuth.password);
           emailAuth.sendEmailVerification();
-          emailAuth.showVerifyEmailSentDialog(context, moveToLogin);
+          DialogUtil.showAlertDialog(
+              context, "验证您的邮箱", "请到您的邮箱查看并激活账号", moveToLogin);
           print('注册');
         }
         setState(() {
@@ -133,7 +137,20 @@ class _AccountScreenState extends State<AccountScreen> {
 //          emailAuth.onSignedIn();
         }
       } catch (e) {
-        print('Error: $e');
+        switch (e.code) {
+          case EmailErrorCode.invalidEmail:
+            DialogUtil.showAlertDialog(context, "登陆失败", "邮箱地址格式错误");
+            break;
+          case EmailErrorCode.userNotFound:
+            DialogUtil.showAlertDialog(context, "登陆失败", "找不到账号，请先注册");
+            break;
+          case EmailErrorCode.wrongPassword:
+            DialogUtil.showAlertDialog(context, "登陆失败", "密码错误，请检查后再试");
+            break;
+          default:
+            DialogUtil.showAlertDialog(context, "登陆失败", "未知错误");
+            break;
+        }
       }
     }
   }
@@ -145,7 +162,6 @@ class _AccountScreenState extends State<AccountScreen> {
     _isLoading = false;
 //    _listWechat();
   }
-
 
   @override
   void dispose() {

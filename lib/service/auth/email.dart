@@ -45,28 +45,6 @@ class EmailAuth implements BaseAuth {
     return user.isEmailVerified;
   }
 
-  void showVerifyEmailSentDialog(BuildContext context, VoidCallback callback) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("验证您的邮箱"),
-          content: new Text("请到您的邮箱查看并激活账号"),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("关闭"),
-              onPressed: () {
-                callback();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   AccountType getAccountType() {
     return AccountType.EMAIL;
@@ -88,4 +66,10 @@ class PasswordFieldValidator {
 enum FormType {
   LOGIN,
   REGISTER,
+}
+
+class EmailErrorCode {
+  static const String invalidEmail = "ERROR_INVALID_EMAIL";
+  static const String userNotFound = "ERROR_USER_NOT_FOUND";
+  static const String wrongPassword = "ERROR_WRONG_PASSWORD";
 }
