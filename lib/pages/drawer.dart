@@ -8,6 +8,7 @@ class LeftDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     void exitLogin() {
       currentUser = null;
+      // 连退2级，从dialog退到drawer再退到主页
       Navigator.of(context).pop();
       Navigator.of(context).pop();
       Scaffold.of(context).showSnackBar(SnackBar(
