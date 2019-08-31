@@ -38,9 +38,9 @@ dependencies:
   image_picker:
   path_provider:
   google_maps_flutter:
-#  firebase_auth:
-#  flutter_twitter_login:
-#    git: git://github.com/vudvhitech/flutter_twitter_login.git
+  firebase_auth:
+  flutter_twitter_login:
+    git: git://github.com/eudangeld/flutter_twitter_login.git
   uni_links:
   url_launcher:
 #  webview_flutter: ^0.3.13
