@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        RouterConfig.index: (context) => App(),
+        RouterConfig.index: (context) => MyApp(),
         RouterConfig.account: (context) => AccountScreen(),
         RouterConfig.about: (context) => AboutScreen(),
         RouterConfig.settings: (context) => SettingScreen(),
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: [
         const Locale('zh', 'CN'), // 中文简体
         const Locale('en', 'US'), // 美国英语
-        const Locale('jp', 'JA'), // 日本日语
+        const Locale('ja', 'JP'), // 日本日语
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

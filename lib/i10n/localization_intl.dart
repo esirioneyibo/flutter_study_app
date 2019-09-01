@@ -9,7 +9,7 @@ class MyLocalizations {
     final String localName = Intl.canonicalizedLocale(name);
     return initializeMessages(localName).then((value) {
       Intl.defaultLocale = localName;
-      return new MyLocalizations();
+      return MyLocalizations();
     });
   }
 
@@ -18,19 +18,23 @@ class MyLocalizations {
   }
 
   String get index {
-    return Intl.message('index');
+    return Intl.message('index',
+        name: 'index', desc: '底部导航首页', locale: Intl.defaultLocale);
   }
 
   String get study {
-    return Intl.message('study');
+    return Intl.message('study',
+        name: 'study', desc: '底部导航资源', locale: Intl.defaultLocale);
   }
 
   String get chat {
-    return Intl.message('chat');
+    return Intl.message('chat',
+        name: 'chat', desc: '底部导航圈子', locale: Intl.defaultLocale);
   }
 
   String get tool {
-    return Intl.message('tool');
+    return Intl.message('tool',
+        name: 'tool', desc: '底部导航工具', locale: Intl.defaultLocale);
   }
 }
 
@@ -38,7 +42,7 @@ class MyLocalizations {
 class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'zh', 'jp'].contains(locale.languageCode);
+    return ['en', 'zh', 'ja'].contains(locale.languageCode);
   }
 
   @override

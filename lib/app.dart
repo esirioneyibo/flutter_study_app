@@ -15,12 +15,12 @@ import 'theme.dart';
 
 ///
 /// 导航器是一个有状态的组件
-class App extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _AppState createState() => _AppState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _AppState extends State<App> {
+class _MyAppState extends State<MyApp> {
   /// tab页容器,如果list内容可变，不能指定list的大小
   List<Widget> tabs = new List();
 
