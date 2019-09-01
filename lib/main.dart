@@ -5,6 +5,7 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/mine/about.dart';
 import 'package:flutter_study_app/pages/mine/account.dart';
+import 'package:flutter_study_app/pages/mine/language.dart';
 import 'package:flutter_study_app/pages/mine/settings.dart';
 import 'package:flutter_study_app/pages/splash.dart';
 
@@ -19,6 +20,7 @@ class MainApp extends StatelessWidget {
         RouterConfig.account: (context) => AccountScreen(),
         RouterConfig.about: (context) => AboutScreen(),
         RouterConfig.settings: (context) => SettingScreen(),
+        RouterConfig.language: (context) => LanguageScreen(),
       },
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
