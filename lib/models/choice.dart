@@ -108,6 +108,6 @@ class Choice {
     Choice('github榜单', Icons.access_time, Day1Screen()),
     Choice('我的github', Icons.wb_sunny, Day1Screen()),
     Choice('好友互F', Icons.settings_input_svideo, Day1Screen()),
-    Choice('编程语言排行', Icons.g_translate, Day1Screen()),
+    Choice('语言排行', Icons.g_translate, Day1Screen()),
   ];
 }
