@@ -19,6 +19,7 @@ class LanguageScreen extends StatelessWidget {
               title: Center(child: Text('中文')),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
             Divider(),
@@ -26,12 +27,14 @@ class LanguageScreen extends StatelessWidget {
               title: Center(child: Text('English')),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
             Divider(),
             ListTile(
               title: Center(child: Text('日本語')),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
             ),
