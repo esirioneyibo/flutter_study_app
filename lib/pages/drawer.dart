@@ -19,9 +19,9 @@ class LeftDrawer extends StatelessWidget {
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
         leading: Icon(Icons.color_lens),
-        title: Text('主题切换'),
+        title: Text('语言切换'),
         onTap: () {
-          Navigator.of(context).pop();
+          Navigator.pushNamed(context, RouterConfig.language);
         },
       ),
       ListTile(

@@ -2,8 +2,10 @@ class RouterConfig {
 // route
   static const account = '/account';
   static const index = '/index';
-  static const about = "about";
-  static const settings = "settings";
+  static const about = "/about";
+  static const settings = "/settings";
+
+  static String language='/language';
 }
 
 class AppConfig {
