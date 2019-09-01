@@ -6,14 +6,7 @@ import 'package:flutter_study_app/utils/router_util.dart';
 
 import '../../config.dart';
 
-
-
 class LanguageScreen extends StatelessWidget {
-  var localizationStateKey;
-
-
-  LanguageScreen(this.localizationStateKey);
-
   @override
   Widget build(BuildContext context) {
     Locale myLocale = Localizations.localeOf(context);
@@ -25,8 +18,6 @@ class LanguageScreen extends StatelessWidget {
             ListTile(
               title: Center(child: Text('中文')),
               onTap: () {
-                localizationStateKey.currentState
-                    .changeLocale(Locale('zh', 'cn'));
                 Navigator.of(context).pop();
               },
             ),
@@ -34,8 +25,6 @@ class LanguageScreen extends StatelessWidget {
             ListTile(
               title: Center(child: Text('English')),
               onTap: () {
-                localizationStateKey.currentState
-                    .changeLocale(Locale('en', 'US'));
                 Navigator.of(context).pop();
               },
             ),
@@ -43,8 +32,6 @@ class LanguageScreen extends StatelessWidget {
             ListTile(
               title: Center(child: Text('日本語')),
               onTap: () {
-                localizationStateKey.currentState
-                    .changeLocale(Locale('ja', 'JP'));
                 Navigator.of(context).pop();
               },
             ),
