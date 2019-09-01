@@ -97,7 +97,7 @@ class Choice {
   static List<Choice> mediaTools = <Choice>[
     Choice('twitter视频', Icons.format_list_numbered_rtl, Day1Screen()),
     Choice('TikTok视频', Icons.access_time, Day1Screen()),
-    Choice('哔哩哔哩视频', Icons.wb_sunny, Day1Screen()),
+    Choice('bilibili视频', Icons.wb_sunny, Day1Screen()),
     Choice('图片加水印', Icons.settings_input_svideo, Day1Screen()),
     Choice('图片打码', Icons.g_translate, Day1Screen()),
   ];
