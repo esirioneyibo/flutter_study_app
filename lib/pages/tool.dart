@@ -4,7 +4,7 @@ import 'package:flutter_study_app/components/choice_card.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/models/choice.dart';
 
-class HomeScreen extends StatelessWidget {
+class ToolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表

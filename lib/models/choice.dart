@@ -107,7 +107,7 @@ class Choice {
     Choice('Star曲线', Icons.format_list_numbered_rtl, Day1Screen()),
     Choice('github榜单', Icons.access_time, Day1Screen()),
     Choice('我的github', Icons.wb_sunny, Day1Screen()),
-    Choice('好友互follow', Icons.settings_input_svideo, Day1Screen()),
+    Choice('好友互F', Icons.settings_input_svideo, Day1Screen()),
     Choice('编程语言排行', Icons.g_translate, Day1Screen()),
   ];
 }

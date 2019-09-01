@@ -1,0 +1,23 @@
+{
+  "@@last_modified": "2019-09-01T13:24:50.998794",
+  "index": "首页",
+  "@index": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "study": "每日一练",
+  "@study": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "圈子",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tool": "工具",
+  "@tool": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "@@last_modified": "2019-09-01T13:24:50.998794",
+  "index": "index",
+  "@index": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "study": "study",
+  "@study": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "chat",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tool": "tool",
+  "@tool": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
