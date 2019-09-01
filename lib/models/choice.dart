@@ -71,14 +71,43 @@ class Choice {
     Choice('第30天', Icons.sentiment_very_satisfied, Day30Screen()),
   ];
 
-  static List<Choice> tools = <Choice>[
+  // 学习类
+  static List<Choice> studyTools = <Choice>[
     Choice('代办事项', Icons.format_list_numbered_rtl, Day1Screen()),
     Choice('番茄时间', Icons.access_time, Day1Screen()),
-    Choice('天气预报', Icons.wb_sunny, Day1Screen()),
     Choice('小决定', Icons.settings_input_svideo, Day1Screen()),
     Choice('翻译', Icons.g_translate, Day1Screen()),
     Choice('今日目标', Icons.sentiment_very_satisfied, Day1Screen()),
+    Choice('维基百科', Icons.monetization_on, Day1Screen()),
+    Choice('日语转换', Icons.monetization_on, Day1Screen()),
+  ];
+
+  static List<Choice> lifeTools = <Choice>[
+    Choice('扫二维码', Icons.format_list_numbered_rtl, Day1Screen()),
+    Choice('短链接生成', Icons.access_time, Day1Screen()),
+    Choice('天气预报', Icons.wb_sunny, Day1Screen()),
+    Choice('收款码合并', Icons.settings_input_svideo, Day1Screen()),
+    Choice('号码归属地', Icons.g_translate, Day1Screen()),
+    Choice('帮你搜索', Icons.sentiment_very_satisfied, Day1Screen()),
+    Choice('快递查询', Icons.sentiment_very_satisfied, Day1Screen()),
     Choice('实时汇率', Icons.monetization_on, Day1Screen()),
-    Choice('更多工具', Icons.filter_9_plus, Day1Screen()),
+  ];
+
+  // 媒体类
+  static List<Choice> mediaTools = <Choice>[
+    Choice('twitter视频', Icons.format_list_numbered_rtl, Day1Screen()),
+    Choice('TikTok视频', Icons.access_time, Day1Screen()),
+    Choice('哔哩哔哩视频', Icons.wb_sunny, Day1Screen()),
+    Choice('图片加水印', Icons.settings_input_svideo, Day1Screen()),
+    Choice('图片打码', Icons.g_translate, Day1Screen()),
+  ];
+
+  // 编程类
+  static List<Choice> programTools = <Choice>[
+    Choice('Star曲线', Icons.format_list_numbered_rtl, Day1Screen()),
+    Choice('github榜单', Icons.access_time, Day1Screen()),
+    Choice('我的github', Icons.wb_sunny, Day1Screen()),
+    Choice('好友互follow', Icons.settings_input_svideo, Day1Screen()),
+    Choice('编程语言排行', Icons.g_translate, Day1Screen()),
   ];
 }
