@@ -39,31 +39,31 @@ class _AppState extends State<App> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: _itemColor(0)),
-              activeIcon: Icon(Icons.home, color: _itemColor(0)),
+              icon: Icon(Icons.filter_vintage, color: _itemColor(0)),
+              activeIcon: Icon(Icons.filter_vintage, color: _itemColor(0)),
               title: new Text(
-                '首页',
+                '资源',
                 style: TextStyle(color: _itemColor(0)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.filter_vintage, color: _itemColor(1)),
-              activeIcon: Icon(Icons.filter_vintage, color: _itemColor(1)),
+              icon: Icon(Icons.whatshot, color: _itemColor(1)),
+              activeIcon: Icon(Icons.whatshot, color: _itemColor(1)),
               title: new Text(
-                '资源',
+                '每日一练',
                 style: TextStyle(color: _itemColor(1)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.whatshot, color: _itemColor(2)),
-              activeIcon: Icon(Icons.whatshot, color: _itemColor(2)),
+              icon: Icon(Icons.camera, color: _itemColor(2)),
+              activeIcon: Icon(Icons.camera, color: _itemColor(2)),
               title: new Text(
-                '每日一练',
+                '圈子',
                 style: TextStyle(color: _itemColor(2)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera, color: _itemColor(3)),
-              activeIcon: Icon(Icons.camera, color: _itemColor(3)),
+              icon: Icon(Icons.home, color: _itemColor(3)),
+              activeIcon: Icon(Icons.home, color: _itemColor(3)),
               title: new Text(
-                '圈子',
+                '工具',
                 style: TextStyle(color: _itemColor(3)),
               )),
         ],
@@ -90,10 +90,10 @@ class _AppState extends State<App> {
   @override
   void initState() {
     tabs
-      ..add(new HomeScreen())
       ..add(new StudyScreen())
       ..add(new PractiseScreen())
-      ..add(new ChatScreen());
+      ..add(new ChatScreen())
+      ..add(new HomeScreen());
 //    _initFluwx();
     super.initState();
   }
