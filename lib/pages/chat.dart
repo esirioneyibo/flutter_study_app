@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/post.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail.dart';
 import 'package:flutter_study_app/utils/router_util.dart';
@@ -10,7 +11,7 @@ class ChatScreen extends StatelessWidget {
     var posts = Post.posts;
 
     return Scaffold(
-      appBar: MyAppBar(context, '圈子'),
+      appBar: MyAppBar(context, MyLocalizations.of(context).chat),
       body: Center(
         child: ListView.builder(
             itemCount: posts.length,

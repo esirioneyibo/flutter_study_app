@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/top_navigator_item.dart';
-
-import '../config.dart';
 
 class StudyScreen extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class StudyScreenState extends State<StudyScreen>
       controller: _tabController,
     );
     return Scaffold(
-        appBar: MyAppBar(context, '资源', topBar),
+        appBar: MyAppBar(context, MyLocalizations.of(context).index, topBar),
         body: TabBarView(
           controller: _tabController,
           children: tabContents,

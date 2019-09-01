@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/choice_card.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/choice.dart';
 
 class ToolScreen extends StatelessWidget {
@@ -63,7 +64,7 @@ class ToolScreen extends StatelessWidget {
     var titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
-      appBar: MyAppBar(context, '工具'),
+      appBar: MyAppBar(context, MyLocalizations.of(context).tool),
       body: ListView(
         children: <Widget>[
           Padding(

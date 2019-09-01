@@ -7,7 +7,7 @@ import 'package:flutter_study_app/pages/chat.dart';
 import 'package:flutter_study_app/pages/drawer.dart';
 import 'package:flutter_study_app/pages/tool.dart';
 import 'package:flutter_study_app/pages/practise.dart';
-import 'package:flutter_study_app/pages/study.dart';
+import 'package:flutter_study_app/pages/home.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

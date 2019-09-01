@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/choice_card.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/choice.dart';
-
-import '../config.dart';
 
 class PractiseScreen extends StatelessWidget {
   @override
@@ -22,7 +21,7 @@ class PractiseScreen extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: MyAppBar(context, '每日一练'),
+        appBar: MyAppBar(context, MyLocalizations.of(context).study),
         body: Container(
           child: toolsSection,
         ));

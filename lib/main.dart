@@ -22,6 +22,7 @@ class MainApp extends StatelessWidget {
         RouterConfig.settings: (context) => SettingScreen(),
         RouterConfig.language: (context) => LanguageScreen(),
       },
+//      locale: Locale("en","US"),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
