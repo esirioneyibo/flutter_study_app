@@ -1,0 +1,27 @@
+{
+  "@@last_modified": "2019-09-01T14:40:29.759987",
+  "index": "ホーム",
+  "@index": {
+    "description": "底部导航首页",
+    "type": "text",
+    "placeholders": {}
+  },
+  "study": "勉強",
+  "@study": {
+    "description": "底部导航资源",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "チャット",
+  "@chat": {
+    "description": "底部导航圈子",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tool": "ツール",
+  "@tool": {
+    "description": "底部导航工具",
+    "type": "text",
+    "placeholders": {}
+  }
+}

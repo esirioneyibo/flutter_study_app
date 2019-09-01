@@ -2,23 +2,25 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat.dart';
 import 'package:flutter_study_app/pages/drawer.dart';
-import 'package:flutter_study_app/pages/home.dart';
+import 'package:flutter_study_app/pages/tool.dart';
 import 'package:flutter_study_app/pages/practise.dart';
 import 'package:flutter_study_app/pages/study.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'theme.dart';
 
 ///
 /// 导航器是一个有状态的组件
-class App extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _AppState createState() => _AppState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _AppState extends State<App> {
+class _MyAppState extends State<MyApp> {
   /// tab页容器,如果list内容可变，不能指定list的大小
   List<Widget> tabs = new List();
 
@@ -42,28 +44,28 @@ class _AppState extends State<App> {
               icon: Icon(Icons.home, color: _itemColor(0)),
               activeIcon: Icon(Icons.home, color: _itemColor(0)),
               title: new Text(
-                '首页',
+                MyLocalizations.of(context).index,
                 style: TextStyle(color: _itemColor(0)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.filter_vintage, color: _itemColor(1)),
-              activeIcon: Icon(Icons.filter_vintage, color: _itemColor(1)),
+              icon: Icon(Icons.whatshot, color: _itemColor(1)),
+              activeIcon: Icon(Icons.whatshot, color: _itemColor(1)),
               title: new Text(
-                '资源',
+                MyLocalizations.of(context).study,
                 style: TextStyle(color: _itemColor(1)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.whatshot, color: _itemColor(2)),
-              activeIcon: Icon(Icons.whatshot, color: _itemColor(2)),
+              icon: Icon(FontAwesomeIcons.rocketchat, color: _itemColor(2)),
+              activeIcon: Icon(FontAwesomeIcons.rocketchat, color: _itemColor(2)),
               title: new Text(
-                '每日一练',
+                MyLocalizations.of(context).chat,
                 style: TextStyle(color: _itemColor(2)),
               )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera, color: _itemColor(3)),
-              activeIcon: Icon(Icons.camera, color: _itemColor(3)),
+              icon: Icon(FontAwesomeIcons.tools, color: _itemColor(3)),
+              activeIcon: Icon(FontAwesomeIcons.tools, color: _itemColor(3)),
               title: new Text(
-                '圈子',
+                MyLocalizations.of(context).tool,
                 style: TextStyle(color: _itemColor(3)),
               )),
         ],
@@ -90,10 +92,10 @@ class _AppState extends State<App> {
   @override
   void initState() {
     tabs
-      ..add(new HomeScreen())
       ..add(new StudyScreen())
       ..add(new PractiseScreen())
-      ..add(new ChatScreen());
+      ..add(new ChatScreen())
+      ..add(new ToolScreen());
 //    _initFluwx();
     super.initState();
   }
