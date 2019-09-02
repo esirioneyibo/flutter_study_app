@@ -119,7 +119,30 @@
     "description": "您己退出登录",
     "type": "text",
     "placeholders": {}
-  },
+    },
+    "studyTools": "学习类",
+    "@studyTools": {
+      "description": "学习类",
+      "type": "text",
+      "placeholders": {}
+    },
+    "lifeTools": "生活类",
+    "@lifeTools": {
+      "description": "生活类",
+      "type": "text",
+      "placeholders": {}
+    },
+    "developTools": "开发类",
+    "@developTools": {
+      "description": "开发类",
+      "type": "text",
+      "placeholders": {}
+    },
+    "mediaTools": "媒体类",
+    "@mediaTools": {
+      "description": "媒体类",
+      "type": "text",
+      "placeholders": {},
   "developing": "开发中",
   "@developing": {
     "description": "开发中",

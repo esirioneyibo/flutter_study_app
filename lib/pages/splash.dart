@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../config.dart';
+
 import '../app.dart';
+import '../config.dart';
 
 ///
 /// 导航器是一个有状态的组件
@@ -19,7 +20,7 @@ class _SplashState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return new FadeTransition(
+    return FadeTransition(
         opacity: _animation,
         child: Image.asset(
           AppConfig.splash,
@@ -33,14 +34,14 @@ class _SplashState extends State<SplashScreen>
     super.initState();
 
     // 初始化动画
-    _animationController = new AnimationController(
-        vsync: this, duration: new Duration(milliseconds: 3000));
-    _animation = new Tween(begin: 0.0, end: 1.0).animate(_animationController);
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 3000));
+    _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController);
 
     var listener = (status) {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(builder: (context) => new MyApp()),
+            MaterialPageRoute(builder: (context) => MyApp()),
             (router) => router == null);
       }
     };

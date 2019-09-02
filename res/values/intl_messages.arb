@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-02T12:30:38.070699",
+  "@@last_modified": "2019-09-02T12:54:43.684645",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -117,6 +117,30 @@
   "logout": "logout",
   "@logout": {
     "description": "您己退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "studyTools": "studyTools",
+  "@studyTools": {
+    "description": "学习类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lifeTools": "lifeTools",
+  "@lifeTools": {
+    "description": "生活类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "developTools": "developTools",
+  "@developTools": {
+    "description": "开发类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mediaTools": "mediaTools",
+  "@mediaTools": {
+    "description": "媒体类",
     "type": "text",
     "placeholders": {}
   },

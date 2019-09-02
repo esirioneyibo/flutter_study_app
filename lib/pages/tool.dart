@@ -69,7 +69,7 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "学习类",
+                MyLocalizations.of(context).studyTools,
                 style: toolStyle,
               ),
             ),
@@ -81,7 +81,7 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "生活类",
+                MyLocalizations.of(context).lifeTools,
                 style: toolStyle,
               ),
             ),
@@ -93,7 +93,7 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "媒体类",
+                MyLocalizations.of(context).mediaTools,
                 style: toolStyle,
               ),
             ),
@@ -105,7 +105,7 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "编程类",
+                MyLocalizations.of(context).developTools,
                 style: toolStyle,
               ),
             ),

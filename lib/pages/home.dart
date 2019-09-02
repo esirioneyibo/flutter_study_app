@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:flutter_study_app/models/top_navigator_item.dart';
+import 'package:flutter_study_app/models/navigator_item.dart';
 import 'package:flutter_study_app/theme.dart';
 
 class StudyScreen extends StatefulWidget {

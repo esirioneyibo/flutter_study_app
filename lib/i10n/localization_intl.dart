@@ -120,6 +120,27 @@ class MyLocalizations {
         name: 'logout', desc: '您己退出登录', locale: Intl.defaultLocale);
   }
 
+  // --------------------------------------工具分类-------------------------------------------------
+  String get studyTools {
+    return Intl.message('studyTools',
+        name: 'studyTools', desc: '学习类', locale: Intl.defaultLocale);
+  }
+
+  String get lifeTools {
+    return Intl.message('lifeTools',
+        name: 'lifeTools', desc: '生活类', locale: Intl.defaultLocale);
+  }
+
+  String get developTools {
+    return Intl.message('developTools',
+        name: 'developTools', desc: '开发类', locale: Intl.defaultLocale);
+  }
+
+  String get mediaTools {
+    return Intl.message('mediaTools',
+        name: 'mediaTools', desc: '媒体类', locale: Intl.defaultLocale);
+  }
+
 // --------------------------------------通有-------------------------------------------------
   String get developing {
     return Intl.message('developing',
