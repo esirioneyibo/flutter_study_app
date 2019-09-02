@@ -41,7 +41,7 @@ class StudyScreenState extends State<StudyScreen>
 
   @override
   void initState() {
-    TopNavigatorItem.topItems.forEach((item) =>
+    topItems.forEach((item) =>
         {tabs.add(Tab(text: item.itemName)), tabContents.add(item.content)});
     _tabController = TabController(vsync: this, length: tabs.length);
     super.initState();

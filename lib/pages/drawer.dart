@@ -75,7 +75,7 @@ class LeftDrawer extends StatelessWidget {
       ],
     ));
 
-    return new Drawer(
+    return Drawer(
       child: MediaQuery.removePadding(
           context: context,
           removeTop: true,

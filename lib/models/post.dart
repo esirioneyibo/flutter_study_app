@@ -28,21 +28,6 @@ class Post {
 
   Post(this.title, this.content, this.author, this.icon, this.tag,
       this.dateTime, this.comments);
-
-  static List<Post> posts = [
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.people,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.print,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.hourglass_empty,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.adb,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.home,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-    Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.email,
-        'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  ];
 }
 
 class Comment {
@@ -52,3 +37,18 @@ class Comment {
   String content;
   DateTime time;
 }
+
+final List<Post> posts = [
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.people, 'flutter',
+      '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.print, 'flutter',
+      '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.hourglass_empty,
+      'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.adb, 'flutter',
+      '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.home, 'flutter',
+      '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.email, 'flutter',
+      '${DateTime.now().hour}:${DateTime.now().minute}', List()),
+];

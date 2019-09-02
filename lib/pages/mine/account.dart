@@ -29,7 +29,6 @@ class _AccountScreenState extends State<AccountScreen> {
 
   FormType _formType = FormType.LOGIN;
 
-  String _errorMessage;
   String _status = "status";
   Uint8List _image;
   bool _isLoading;
@@ -49,7 +48,6 @@ class _AccountScreenState extends State<AccountScreen> {
   /// 跳到注册页
   void moveToRegister() {
     formKey.currentState.reset();
-    _errorMessage = '';
     setState(() {
       _formType = FormType.REGISTER;
     });
@@ -58,7 +56,6 @@ class _AccountScreenState extends State<AccountScreen> {
   /// 跳到登录页
   void moveToLogin() {
     formKey.currentState.reset();
-    _errorMessage = '';
     setState(() {
       _formType = FormType.LOGIN;
     });
@@ -107,7 +104,6 @@ class _AccountScreenState extends State<AccountScreen> {
 //   验证和提交
   Future<void> _validateAndSubmit() async {
     setState(() {
-      _errorMessage = "";
       _isLoading = true;
     });
     if (_validateAndSave()) {
@@ -168,7 +164,6 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     super.initState();
-    _errorMessage = '';
     _isLoading = false;
 //    _listWechat();
   }

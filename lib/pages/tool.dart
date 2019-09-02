@@ -9,10 +9,6 @@ class ToolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
-    List<Choice> studyTools = Choice.studyTools;
-    List<Choice> lifeTools = Choice.lifeTools;
-    List<Choice> mediaTools = Choice.mediaTools;
-    List<Choice> programTools = Choice.programTools;
 
     var studySection = GridView.count(
       crossAxisCount: 4,

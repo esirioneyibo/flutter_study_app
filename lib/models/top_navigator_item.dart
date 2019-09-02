@@ -18,17 +18,17 @@ class TopNavigatorItem {
   Widget content;
 
   TopNavigatorItem(this.itemName, this.content);
-
-  static var topItems = [
-    TopNavigatorItem('插件', PluginsScreen()),
-    TopNavigatorItem('Dart', DartScreen()),
-    TopNavigatorItem('博客', BlogScreen()),
-    TopNavigatorItem('视频', VideosScreen()),
-    TopNavigatorItem('工具', ToolsScreen()),
-    TopNavigatorItem('社区', CommunitiesScreen()),
-    TopNavigatorItem('开源项目', ProjectsScreen()),
-    TopNavigatorItem('游戏', GamesScreen()),
-    TopNavigatorItem('游戏引擎', GameEnginesScreen()),
-    TopNavigatorItem('其他', OthersScreen()),
-  ];
 }
+
+final List<TopNavigatorItem> topItems = [
+  TopNavigatorItem('插件', PluginsScreen()),
+  TopNavigatorItem('Dart', DartScreen()),
+  TopNavigatorItem('博客', BlogScreen()),
+  TopNavigatorItem('视频', VideosScreen()),
+  TopNavigatorItem('工具', ToolsScreen()),
+  TopNavigatorItem('社区', CommunitiesScreen()),
+  TopNavigatorItem('开源项目', ProjectsScreen()),
+  TopNavigatorItem('游戏', GamesScreen()),
+  TopNavigatorItem('游戏引擎', GameEnginesScreen()),
+  TopNavigatorItem('其他', OthersScreen()),
+];

@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:flutter_study_app/models/github_login.dart';
 import 'package:flutter_study_app/service/base_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:uni_links/uni_links.dart';
@@ -88,4 +87,34 @@ class GithubAuth extends BaseAuth {
   Future<void> signOut() {
     return null;
   }
+}
+
+//GITHUB REQUEST-RESPONSE MODELS
+class GitHubLoginRequest {
+  String clientId;
+  String clientSecret;
+  String code;
+
+  GitHubLoginRequest({this.clientId, this.clientSecret, this.code});
+
+  dynamic toJson() => {
+        "client_id": clientId,
+        "client_secret": clientSecret,
+        "code": code,
+      };
+}
+
+class GitHubLoginResponse {
+  String accessToken;
+  String tokenType;
+  String scope;
+
+  GitHubLoginResponse({this.accessToken, this.tokenType, this.scope});
+
+  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) =>
+      GitHubLoginResponse(
+        accessToken: json["access_token"],
+        tokenType: json["token_type"],
+        scope: json["scope"],
+      );
 }

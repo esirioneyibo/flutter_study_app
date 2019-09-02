@@ -8,7 +8,6 @@ class PractiseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
-    List<Choice> choices = Choice.choices;
 
     var toolsSection = GridView.count(
       crossAxisCount: 4,

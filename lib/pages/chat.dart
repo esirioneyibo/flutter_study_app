@@ -8,7 +8,6 @@ import 'package:flutter_study_app/utils/router_util.dart';
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var posts = Post.posts;
 
     return Scaffold(
       appBar: MyAppBar(context, MyLocalizations.of(context).chat),

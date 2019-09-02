@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/main.dart';
-import 'package:flutter_study_app/utils/router_util.dart';
-
-import '../../config.dart';
 
 class LanguageScreen extends StatelessWidget {
   @override

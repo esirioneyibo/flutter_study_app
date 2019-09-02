@@ -1,14 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_study_app/service/base_auth.dart';
 
 class EmailAuth implements BaseAuth {
   String email;
   String password;
-
-  String _errorMessage;
-
-  bool _isLoading;
 
   String username = 'Your Name';
 
