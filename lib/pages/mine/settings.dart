@@ -6,7 +6,8 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar(MyLocalizations.of(context).settings),
+      appBar: ReturnBar(
+          MyLocalizations.of(context).settings),
       body: Center(
         child: Text('设置中心'),
       ),

@@ -5,9 +5,12 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Locale myLocale = Localizations.localeOf(context);
+    Locale myLocale =
+        Localizations.localeOf(context);
     return Scaffold(
-      appBar: ReturnBar(MyLocalizations.of(context).changeLanguage),
+      appBar: ReturnBar(
+          MyLocalizations.of(context)
+              .changeLanguage),
       body: Center(
         child: Column(
           children: <Widget>[
@@ -20,7 +23,8 @@ class LanguageScreen extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Center(child: Text('English')),
+              title:
+                  Center(child: Text('English')),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();

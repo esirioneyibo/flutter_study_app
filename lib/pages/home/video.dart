@@ -10,7 +10,9 @@ class VideosScreen extends StatelessWidget {
         child: Text(
           '这是视频',
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 30),
         ),
       ),
     );

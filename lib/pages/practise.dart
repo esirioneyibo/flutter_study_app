@@ -12,15 +12,19 @@ class PractiseScreen extends StatelessWidget {
     var toolsSection = GridView.count(
       crossAxisCount: 4,
       shrinkWrap: true,
-      children: List.generate(choices.length, (index) {
+      children:
+          List.generate(choices.length, (index) {
         return Center(
-          child: ChoiceCard(choice: choices[index]),
+          child:
+              ChoiceCard(choice: choices[index]),
         );
       }),
     );
 
     return Scaffold(
-        appBar: MyAppBar(title: MyLocalizations.of(context).study),
+        appBar: MyAppBar(
+            title: MyLocalizations.of(context)
+                .study),
         body: Container(
           child: toolsSection,
         ));

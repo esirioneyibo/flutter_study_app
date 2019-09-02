@@ -18,8 +18,10 @@ class AccountScreen extends StatefulWidget {
   }
 }
 
-class _AccountScreenState extends State<AccountScreen> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class _AccountScreenState
+    extends State<AccountScreen> {
+  final GlobalKey<FormState> formKey =
+      GlobalKey<FormState>();
 
   EmailAuth emailAuth = EmailAuth();
 
@@ -65,15 +67,18 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar(_formType == FormType.LOGIN
+      appBar: ReturnBar(_formType ==
+              FormType.LOGIN
           ? MyLocalizations.of(context).login
           : MyLocalizations.of(context).register),
       body: Container(
         child: Form(
           key: formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: buildInputs() + buildSubmitButtons(),
+            crossAxisAlignment:
+                CrossAxisAlignment.stretch,
+            children: buildInputs() +
+                buildSubmitButtons(),
           ),
         ),
       ),
@@ -85,8 +90,9 @@ class _AccountScreenState extends State<AccountScreen> {
       TextFormField(
         key: Key('email'),
         keyboardType: TextInputType.emailAddress,
-        decoration:
-            InputDecoration(labelText: MyLocalizations.of(context).email),
+        decoration: InputDecoration(
+            labelText: MyLocalizations.of(context)
+                .email),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.email = value;
@@ -96,9 +102,11 @@ class _AccountScreenState extends State<AccountScreen> {
         key: Key('password'),
         keyboardType: TextInputType.text,
         obscureText: true,
-        decoration:
-            InputDecoration(labelText: MyLocalizations.of(context).password),
-        validator: PasswordFieldValidator.validate,
+        decoration: InputDecoration(
+            labelText: MyLocalizations.of(context)
+                .password),
+        validator:
+            PasswordFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.password = value;
         },
@@ -117,20 +125,27 @@ class _AccountScreenState extends State<AccountScreen> {
         // 登陆账号
         if (_formType == FormType.LOGIN) {
           userId = await emailAuth.signIn(
-              emailAuth.email.trim(), emailAuth.password.trim());
+              emailAuth.email.trim(),
+              emailAuth.password.trim());
           if (userId == null) {
-            throw Exception({"code": "UNKOWN_ERROR"});
+            throw Exception(
+                {"code": "UNKOWN_ERROR"});
           }
 
-          emailAuth.isEmailVerified().then((verified) {
+          emailAuth
+              .isEmailVerified()
+              .then((verified) {
             if (!verified) {
               DialogUtil.showAlertDialog(
                   context,
-                  MyLocalizations.of(context).loginError,
-                  MyLocalizations.of(context).validateEmailTitle);
+                  MyLocalizations.of(context)
+                      .loginError,
+                  MyLocalizations.of(context)
+                      .validateEmailTitle);
             } else {
               Navigator.of(context).pop();
-              emailAuth.getCurrentUser().then((user) => currentUser = user);
+              emailAuth.getCurrentUser().then(
+                  (user) => currentUser = user);
             }
           });
         } else {
@@ -139,45 +154,58 @@ class _AccountScreenState extends State<AccountScreen> {
               userId != null &&
               _formType == FormType.LOGIN) {
             userId = await emailAuth.signUp(
-                emailAuth.email.trim(), emailAuth.password.trim());
+                emailAuth.email.trim(),
+                emailAuth.password.trim());
             emailAuth.sendEmailVerification();
             emailAuth.setDefaultUserInfo();
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).validateEmailTitle,
-                MyLocalizations.of(context).validateEmailContent,
+                MyLocalizations.of(context)
+                    .validateEmailTitle,
+                MyLocalizations.of(context)
+                    .validateEmailContent,
                 moveToLogin);
           }
           setState(() {
             _isLoading = false;
           });
         }
-        emailAuth.getCurrentUser().then((user) => currentUser = user);
+        emailAuth
+            .getCurrentUser()
+            .then((user) => currentUser = user);
       } catch (e) {
         switch (e.code) {
           case EmailErrorCode.invalidEmail:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).emailIllegal);
+                MyLocalizations.of(context)
+                    .loginError,
+                MyLocalizations.of(context)
+                    .emailIllegal);
             break;
           case EmailErrorCode.userNotFound:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).emailNotFound);
+                MyLocalizations.of(context)
+                    .loginError,
+                MyLocalizations.of(context)
+                    .emailNotFound);
             break;
           case EmailErrorCode.wrongPassword:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).passwordError);
+                MyLocalizations.of(context)
+                    .loginError,
+                MyLocalizations.of(context)
+                    .passwordError);
             break;
           default:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).unknownError);
+                MyLocalizations.of(context)
+                    .loginError,
+                MyLocalizations.of(context)
+                    .unknownError);
             break;
         }
       }
@@ -200,7 +228,8 @@ class _AccountScreenState extends State<AccountScreen> {
   _listWechat() {
     fluwx.onAuthByQRCodeFinished.listen((data) {
       setState(() {
-        _status = "errorCode=>${data.errorCode}\nauthCode=>${data.authCode}";
+        _status =
+            "errorCode=>${data.errorCode}\nauthCode=>${data.authCode}";
       });
     });
     fluwx.onAuthGotQRCode.listen((image) {
@@ -228,36 +257,52 @@ class _AccountScreenState extends State<AccountScreen> {
         RaisedButton(
           color: Colors.blue,
           key: Key('signIn'),
-          child: Text(MyLocalizations.of(context).login,
-              style: TextStyle(fontSize: 20.0, color: Colors.white)),
+          child: Text(
+              MyLocalizations.of(context).login,
+              style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white)),
           onPressed: _validateAndSubmit,
         ),
         Padding(
           padding: EdgeInsets.only(top: 30),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             InkWell(
 //              onTap: twitterAuth.loginTwitter,
-              onTap: () => DialogUtil.showAlertDialog(
-                  context, 'twitter', MyLocalizations.of(context).developing),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(
+                      context,
+                      'twitter',
+                      MyLocalizations.of(context)
+                          .developing),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: () => DialogUtil.showAlertDialog(
-                  context, 'github', MyLocalizations.of(context).developing),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(
+                      context,
+                      'github',
+                      MyLocalizations.of(context)
+                          .developing),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: () => DialogUtil.showAlertDialog(
-                  context, 'wechat', MyLocalizations.of(context).developing),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(
+                      context,
+                      'wechat',
+                      MyLocalizations.of(context)
+                          .developing),
 //              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
@@ -269,8 +314,12 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () => DialogUtil.showAlertDialog(
-                  context, 'google', MyLocalizations.of(context).developing),
+              onTap: () =>
+                  DialogUtil.showAlertDialog(
+                      context,
+                      'google',
+                      MyLocalizations.of(context)
+                          .developing),
 //              onTap: () => googleAuth
 //                  .googleHandleSignIn()
 //                  .then((FirebaseUser user) => setState(() {
@@ -287,7 +336,9 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: EdgeInsets.only(top: 30),
         ),
         FlatButton(
-          child: Text(MyLocalizations.of(context).moveToRegister,
+          child: Text(
+              MyLocalizations.of(context)
+                  .moveToRegister,
               style: TextStyle(fontSize: 20.0)),
           onPressed: moveToRegister,
         ),
@@ -299,15 +350,21 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         RaisedButton(
           color: Colors.blue,
-          child: Text(MyLocalizations.of(context).developing,
-              style: TextStyle(fontSize: 20.0, color: Colors.white)),
+          child: Text(
+              MyLocalizations.of(context)
+                  .developing,
+              style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white)),
           onPressed: _validateAndSubmit,
         ),
         Padding(
           padding: EdgeInsets.only(top: 0),
         ),
         FlatButton(
-          child: Text(MyLocalizations.of(context).moveToLogin,
+          child: Text(
+              MyLocalizations.of(context)
+                  .moveToLogin,
               style: TextStyle(fontSize: 20.0)),
           onPressed: moveToLogin,
         ),

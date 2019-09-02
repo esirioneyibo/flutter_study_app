@@ -14,58 +14,80 @@ class LeftDrawer extends StatelessWidget {
       Navigator.of(context).pop();
       Scaffold.of(context).showSnackBar(SnackBar(
           duration: Duration(milliseconds: 300),
-          content: Text(MyLocalizations.of(context).exitLogin)));
+          content: Text(
+              MyLocalizations.of(context)
+                  .exitLogin)));
     }
 
     // 抽屉菜单
-    var items = ListTile.divideTiles(context: context, tiles: <Widget>[
-      ListTile(
-        leading: Icon(Icons.color_lens),
-        title: Text(MyLocalizations.of(context).changeLanguage),
-        onTap: () {
-          Navigator.pushNamed(context, RouterConfig.language);
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.settings),
-        title: Text(MyLocalizations.of(context).settings),
-        onTap: () {
-          Navigator.pushNamed(context, RouterConfig.settings);
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.near_me),
-        title: Text(MyLocalizations.of(context).aboutSoftware),
-        onTap: () {
-          Navigator.pushNamed(context, RouterConfig.about);
-        },
-      ),
-      Visibility(
-        visible: currentUser != null,
-        child: ListTile(
-          leading: Icon(Icons.exit_to_app),
-          title: Text(MyLocalizations.of(context).exitLogin),
-          onTap: () {
-            DialogUtil.showConfirmDialog(context,
-                MyLocalizations.of(context).confirmExitLogin, exitLogin);
-          },
-        ),
-      )
-    ]);
+    var items = ListTile.divideTiles(
+        context: context,
+        tiles: <Widget>[
+          ListTile(
+            leading: Icon(Icons.color_lens),
+            title: Text(
+                MyLocalizations.of(context)
+                    .changeLanguage),
+            onTap: () {
+              Navigator.pushNamed(
+                  context, RouterConfig.language);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text(
+                MyLocalizations.of(context)
+                    .settings),
+            onTap: () {
+              Navigator.pushNamed(
+                  context, RouterConfig.settings);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.near_me),
+            title: Text(
+                MyLocalizations.of(context)
+                    .aboutSoftware),
+            onTap: () {
+              Navigator.pushNamed(
+                  context, RouterConfig.about);
+            },
+          ),
+          Visibility(
+            visible: currentUser != null,
+            child: ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text(
+                  MyLocalizations.of(context)
+                      .exitLogin),
+              onTap: () {
+                DialogUtil.showConfirmDialog(
+                    context,
+                    MyLocalizations.of(context)
+                        .confirmExitLogin,
+                    exitLogin);
+              },
+            ),
+          )
+        ]);
 
     // 个人信息
     var infoWidget = UserAccountsDrawerHeader(
       accountName: Text(currentUser == null
           ? MyLocalizations.of(context).clickLogin
           : currentUser.displayName),
-      accountEmail: Text(currentUser == null ? '' : currentUser.email),
+      accountEmail: Text(currentUser == null
+          ? ''
+          : currentUser.email),
       onDetailsPressed: () {
         if (currentUser == null) {
-          Navigator.pushNamed(context, RouterConfig.account);
+          Navigator.pushNamed(
+              context, RouterConfig.account);
         } else {
           DialogUtil.showAlertDialog(
               context,
-              MyLocalizations.of(context).developing,
+              MyLocalizations.of(context)
+                  .developing,
               MyLocalizations.of(context).beHope);
         }
       },
@@ -82,9 +104,11 @@ class LeftDrawer extends StatelessWidget {
           color: Colors.blue[400],
           image: DecorationImage(
               colorFilter: ColorFilter.mode(
-                  Colors.blue[400].withAlpha(60), BlendMode.hardLight),
+                  Colors.blue[400].withAlpha(60),
+                  BlendMode.hardLight),
               fit: BoxFit.cover,
-              image: AssetImage(AppConfig.accountBg))),
+              image: AssetImage(
+                  AppConfig.accountBg))),
     );
 
     return Drawer(

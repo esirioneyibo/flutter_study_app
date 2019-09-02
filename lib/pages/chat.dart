@@ -9,7 +9,9 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: MyLocalizations.of(context).chat),
+      appBar: MyAppBar(
+          title:
+              MyLocalizations.of(context).chat),
       body: Container(
         color: Colors.grey,
         child: ListView.builder(
@@ -26,10 +28,13 @@ class ChatScreen extends StatelessWidget {
                       ),
                       Column(
                         children: <Widget>[
-                          Text(posts[index].author),
+                          Text(posts[index]
+                              .author),
                           Text(
                             posts[index].dateTime,
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                                color:
+                                    Colors.grey),
                           ),
                         ],
                       )
@@ -47,7 +52,8 @@ class ChatScreen extends StatelessWidget {
                     color: Colors.grey,
                     child: Text(
                       posts[index].tag,
-                      style: TextStyle(fontSize: 10),
+                      style:
+                          TextStyle(fontSize: 10),
                     ),
                   ),
                   Container(
@@ -61,32 +67,48 @@ class ChatScreen extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.all(5),
                     child: Text(
-                      posts[index].comments.length.toString(),
-                      style: TextStyle(fontSize: 15),
+                      posts[index]
+                          .comments
+                          .length
+                          .toString(),
+                      style:
+                          TextStyle(fontSize: 15),
                     ),
                   )
                 ],
               );
               return InkWell(
                 onTap: () {
-                  RouterUtil.push(context, ChatDetailScreen());
+                  RouterUtil.push(context,
+                      ChatDetailScreen());
                 },
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 10),
+                  margin:
+                      EdgeInsets.only(bottom: 10),
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
                   child: Column(
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Expanded(flex: 2, child: authInfo), // 左侧信息
-                          Expanded(flex: 1, child: commentsSize), // 右侧评论数
+                          Expanded(
+                              flex: 2,
+                              child: authInfo),
+                          // 左侧信息
+                          Expanded(
+                              flex: 1,
+                              child:
+                                  commentsSize),
+                          // 右侧评论数
 //                        Text("这是上面")
                         ],
                       ),
                       Container(
-                          padding: EdgeInsets.only(top: 15),
-                          alignment: Alignment.centerLeft,
+                          padding:
+                              EdgeInsets.only(
+                                  top: 15),
+                          alignment: Alignment
+                              .centerLeft,
                           child: Text(
                             posts[index].content,
                           ))

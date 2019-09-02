@@ -10,7 +10,9 @@ class ProjectsScreen extends StatelessWidget {
           child: Text(
         '这是项目',
         style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 30),
       )),
     );
   }

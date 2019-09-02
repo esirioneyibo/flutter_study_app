@@ -6,9 +6,12 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar(MyLocalizations.of(context).aboutSoftware),
+      appBar: ReturnBar(
+          MyLocalizations.of(context)
+              .aboutSoftware),
       body: Center(
-        child: Text(MyLocalizations.of(context).aboutSoftware),
+        child: Text(MyLocalizations.of(context)
+            .aboutSoftware),
       ),
     );
   }

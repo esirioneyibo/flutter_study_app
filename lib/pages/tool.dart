@@ -14,9 +14,11 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(studyTools.length, (index) {
+      children: List.generate(studyTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: studyTools[index]),
+          child: ChoiceCard(
+              choice: studyTools[index]),
         );
       }),
     );
@@ -25,9 +27,11 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(lifeTools.length, (index) {
+      children: List.generate(lifeTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: lifeTools[index]),
+          child: ChoiceCard(
+              choice: lifeTools[index]),
         );
       }),
     );
@@ -36,9 +40,11 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(mediaTools.length, (index) {
+      children: List.generate(mediaTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: mediaTools[index]),
+          child: ChoiceCard(
+              choice: mediaTools[index]),
         );
       }),
     );
@@ -47,20 +53,27 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(programTools.length, (index) {
+      children: List.generate(programTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: programTools[index]),
+          child: ChoiceCard(
+              choice: programTools[index]),
         );
       }),
     );
 
     const toolStyle = TextStyle(
-        color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold);
+        color: Colors.white,
+        fontSize: 24,
+        fontWeight: FontWeight.bold);
 
-    var titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
+    var titlePadding =
+        EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
-      appBar: MyAppBar(title: MyLocalizations.of(context).tool),
+      appBar: MyAppBar(
+          title:
+              MyLocalizations.of(context).tool),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -69,7 +82,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                MyLocalizations.of(context).studyTools,
+                MyLocalizations.of(context)
+                    .studyTools,
                 style: toolStyle,
               ),
             ),
@@ -81,7 +95,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                MyLocalizations.of(context).lifeTools,
+                MyLocalizations.of(context)
+                    .lifeTools,
                 style: toolStyle,
               ),
             ),
@@ -93,7 +108,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                MyLocalizations.of(context).mediaTools,
+                MyLocalizations.of(context)
+                    .mediaTools,
                 style: toolStyle,
               ),
             ),
@@ -105,7 +121,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                MyLocalizations.of(context).developTools,
+                MyLocalizations.of(context)
+                    .developTools,
                 style: toolStyle,
               ),
             ),

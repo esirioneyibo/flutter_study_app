@@ -52,9 +52,11 @@ class _MyAppState extends State<MyApp> {
       });
     };
     // 底部的4个tab
-    var bottomNavigationBars = BottomNavigationBar(
+    var bottomNavigationBars =
+        BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      unselectedItemColor: navigatorUnSelectedColor,
+      unselectedItemColor:
+          navigatorUnSelectedColor,
       selectedItemColor: navigatorSelectedColor,
       items: [
         BottomNavigationBarItem(
@@ -63,7 +65,8 @@ class _MyAppState extends State<MyApp> {
             ),
             title: new Text(
               MyLocalizations.of(context).index,
-              style: TextStyle(color: _itemColor(0)),
+              style:
+                  TextStyle(color: _itemColor(0)),
             )),
         BottomNavigationBarItem(
             icon: Icon(
@@ -71,7 +74,8 @@ class _MyAppState extends State<MyApp> {
             ),
             title: new Text(
               MyLocalizations.of(context).study,
-              style: TextStyle(color: _itemColor(1)),
+              style:
+                  TextStyle(color: _itemColor(1)),
             )),
         BottomNavigationBarItem(
             icon: Icon(
@@ -79,7 +83,8 @@ class _MyAppState extends State<MyApp> {
             ),
             title: new Text(
               MyLocalizations.of(context).chat,
-              style: TextStyle(color: _itemColor(2)),
+              style:
+                  TextStyle(color: _itemColor(2)),
             )),
         BottomNavigationBarItem(
             icon: Icon(
@@ -87,7 +92,8 @@ class _MyAppState extends State<MyApp> {
             ),
             title: new Text(
               MyLocalizations.of(context).tool,
-              style: TextStyle(color: _itemColor(3)),
+              style:
+                  TextStyle(color: _itemColor(3)),
             )),
       ],
       onTap: _tableHandler,

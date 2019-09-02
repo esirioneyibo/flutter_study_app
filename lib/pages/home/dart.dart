@@ -10,7 +10,9 @@ class DartScreen extends StatelessWidget {
           child: Text(
         '这是dart',
         style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 30),
       )),
     );
   }
