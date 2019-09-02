@@ -2,24 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/choice_card.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/choice.dart';
 
 class ToolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
-    List<Choice> studyTools = Choice.studyTools;
-    List<Choice> lifeTools = Choice.lifeTools;
-    List<Choice> mediaTools = Choice.mediaTools;
-    List<Choice> programTools = Choice.programTools;
 
     var studySection = GridView.count(
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(studyTools.length, (index) {
+      children: List.generate(studyTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: studyTools[index]),
+          child: ChoiceCard(
+              choice: studyTools[index]),
         );
       }),
     );
@@ -28,9 +27,11 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(lifeTools.length, (index) {
+      children: List.generate(lifeTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: lifeTools[index]),
+          child: ChoiceCard(
+              choice: lifeTools[index]),
         );
       }),
     );
@@ -39,9 +40,11 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(mediaTools.length, (index) {
+      children: List.generate(mediaTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: mediaTools[index]),
+          child: ChoiceCard(
+              choice: mediaTools[index]),
         );
       }),
     );
@@ -50,20 +53,27 @@ class ToolScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: new NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(programTools.length, (index) {
+      children: List.generate(programTools.length,
+          (index) {
         return Center(
-          child: ChoiceCard(choice: programTools[index]),
+          child: ChoiceCard(
+              choice: programTools[index]),
         );
       }),
     );
 
     const toolStyle = TextStyle(
-        color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold);
+        color: Colors.white,
+        fontSize: 24,
+        fontWeight: FontWeight.bold);
 
-    var titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
+    var titlePadding =
+        EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
-      appBar: MyAppBar(context, '工具'),
+      appBar: MyAppBar(
+          title:
+              MyLocalizations.of(context).tool),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -72,7 +82,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "学习类",
+                MyLocalizations.of(context)
+                    .studyTools,
                 style: toolStyle,
               ),
             ),
@@ -84,7 +95,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "生活类",
+                MyLocalizations.of(context)
+                    .lifeTools,
                 style: toolStyle,
               ),
             ),
@@ -96,7 +108,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "媒体类",
+                MyLocalizations.of(context)
+                    .mediaTools,
                 style: toolStyle,
               ),
             ),
@@ -108,7 +121,8 @@ class ToolScreen extends StatelessWidget {
               width: 10,
               color: Colors.blue,
               child: Text(
-                "编程类",
+                MyLocalizations.of(context)
+                    .developTools,
                 style: toolStyle,
               ),
             ),

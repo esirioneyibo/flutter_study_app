@@ -36,78 +36,243 @@ class Choice {
   final IconData icon;
   final Widget screen;
 
-  Choice(this.title, this.icon, this.screen);
-
-  static List<Choice> choices = [
-    Choice('第1天', Icons.format_list_numbered_rtl, Day1Screen()),
-    Choice('第2天', Icons.access_time, Day2Screen()),
-    Choice('第3天', Icons.wb_sunny, Day3Screen()),
-    Choice('第4天', Icons.settings_input_svideo, Day4Screen()),
-    Choice('第5天', Icons.g_translate, Day5Screen()),
-    Choice('第6天', Icons.sentiment_very_satisfied, Day6Screen()),
-    Choice('第7天', Icons.format_list_numbered_rtl, Day7Screen()),
-    Choice('第8天', Icons.access_time, Day8Screen()),
-    Choice('第9天', Icons.wb_sunny, Day9Screen()),
-    Choice('第10天', Icons.settings_input_svideo, Day10Screen()),
-    Choice('第11天', Icons.g_translate, Day11Screen()),
-    Choice('第12天', Icons.sentiment_very_satisfied, Day12Screen()),
-    Choice('第13天', Icons.format_list_numbered_rtl, Day13Screen()),
-    Choice('第14天', Icons.access_time, Day14Screen()),
-    Choice('第15天', Icons.wb_sunny, Day15Screen()),
-    Choice('第16天', Icons.settings_input_svideo, Day16Screen()),
-    Choice('第17天', Icons.g_translate, Day17Screen()),
-    Choice('第18天', Icons.sentiment_very_satisfied, Day18Screen()),
-    Choice('第19天', Icons.format_list_numbered_rtl, Day19Screen()),
-    Choice('第20天', Icons.access_time, Day20Screen()),
-    Choice('第21天', Icons.wb_sunny, Day21Screen()),
-    Choice('第22天', Icons.settings_input_svideo, Day22Screen()),
-    Choice('第23天', Icons.g_translate, Day23Screen()),
-    Choice('第24天', Icons.sentiment_very_satisfied, Day24Screen()),
-    Choice('第25天', Icons.format_list_numbered_rtl, Day25Screen()),
-    Choice('第26天', Icons.access_time, Day26Screen()),
-    Choice('第27天', Icons.wb_sunny, Day27Screen()),
-    Choice('第28天', Icons.settings_input_svideo, Day28Screen()),
-    Choice('第29天', Icons.g_translate, Day29Screen()),
-    Choice('第30天', Icons.sentiment_very_satisfied, Day30Screen()),
-  ];
-
-  // 学习类
-  static List<Choice> studyTools = <Choice>[
-    Choice('代办事项', Icons.format_list_numbered_rtl, Day1Screen()),
-    Choice('番茄时间', Icons.access_time, Day1Screen()),
-    Choice('小决定', Icons.settings_input_svideo, Day1Screen()),
-    Choice('翻译', Icons.g_translate, Day1Screen()),
-    Choice('今日目标', Icons.sentiment_very_satisfied, Day1Screen()),
-    Choice('维基百科', Icons.monetization_on, Day1Screen()),
-    Choice('日语转换', Icons.monetization_on, Day1Screen()),
-  ];
-
-  static List<Choice> lifeTools = <Choice>[
-    Choice('扫二维码', Icons.format_list_numbered_rtl, Day1Screen()),
-    Choice('短链接生成', Icons.access_time, Day1Screen()),
-    Choice('天气预报', Icons.wb_sunny, Day1Screen()),
-    Choice('收款码合并', Icons.settings_input_svideo, Day1Screen()),
-    Choice('号码归属地', Icons.g_translate, Day1Screen()),
-    Choice('帮你搜索', Icons.sentiment_very_satisfied, Day1Screen()),
-    Choice('快递查询', Icons.sentiment_very_satisfied, Day1Screen()),
-    Choice('实时汇率', Icons.monetization_on, Day1Screen()),
-  ];
-
-  // 媒体类
-  static List<Choice> mediaTools = <Choice>[
-    Choice('twitter视频', Icons.format_list_numbered_rtl, Day1Screen()),
-    Choice('TikTok视频', Icons.access_time, Day1Screen()),
-    Choice('bilibili视频', Icons.wb_sunny, Day1Screen()),
-    Choice('图片加水印', Icons.settings_input_svideo, Day1Screen()),
-    Choice('图片打码', Icons.g_translate, Day1Screen()),
-  ];
-
-  // 编程类
-  static List<Choice> programTools = <Choice>[
-    Choice('Star曲线', Icons.format_list_numbered_rtl, Day1Screen()),
-    Choice('github榜单', Icons.access_time, Day1Screen()),
-    Choice('我的github', Icons.wb_sunny, Day1Screen()),
-    Choice('好友互F', Icons.settings_input_svideo, Day1Screen()),
-    Choice('语言排行', Icons.g_translate, Day1Screen()),
-  ];
+  Choice({this.title, this.icon, this.screen});
 }
+
+List<Choice> choices = [
+  Choice(
+      title: '第1天',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day1Screen()),
+  Choice(
+      title: '第2天',
+      icon: Icons.access_time,
+      screen: Day2Screen()),
+  Choice(
+      title: '第3天',
+      icon: Icons.wb_sunny,
+      screen: Day3Screen()),
+  Choice(
+      title: '第4天',
+      icon: Icons.settings_input_svideo,
+      screen: Day4Screen()),
+  Choice(
+      title: '第5天',
+      icon: Icons.g_translate,
+      screen: Day5Screen()),
+  Choice(
+      title: '第6天',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day6Screen()),
+  Choice(
+      title: '第7天',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day7Screen()),
+  Choice(
+      title: '第8天',
+      icon: Icons.access_time,
+      screen: Day8Screen()),
+  Choice(
+      title: '第9天',
+      icon: Icons.wb_sunny,
+      screen: Day9Screen()),
+  Choice(
+      title: '第10天',
+      icon: Icons.settings_input_svideo,
+      screen: Day10Screen()),
+  Choice(
+      title: '第11天',
+      icon: Icons.g_translate,
+      screen: Day11Screen()),
+  Choice(
+      title: '第12天',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day12Screen()),
+  Choice(
+      title: '第13天',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day13Screen()),
+  Choice(
+      title: '第14天',
+      icon: Icons.access_time,
+      screen: Day14Screen()),
+  Choice(
+      title: '第15天',
+      icon: Icons.wb_sunny,
+      screen: Day15Screen()),
+  Choice(
+      title: '第16天',
+      icon: Icons.settings_input_svideo,
+      screen: Day16Screen()),
+  Choice(
+      title: '第17天',
+      icon: Icons.g_translate,
+      screen: Day17Screen()),
+  Choice(
+      title: '第18天',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day18Screen()),
+  Choice(
+      title: '第19天',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day19Screen()),
+  Choice(
+      title: '第20天',
+      icon: Icons.access_time,
+      screen: Day20Screen()),
+  Choice(
+      title: '第21天',
+      icon: Icons.wb_sunny,
+      screen: Day21Screen()),
+  Choice(
+      title: '第22天',
+      icon: Icons.settings_input_svideo,
+      screen: Day22Screen()),
+  Choice(
+      title: '第23天',
+      icon: Icons.g_translate,
+      screen: Day23Screen()),
+  Choice(
+      title: '第24天',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day24Screen()),
+  Choice(
+      title: '第25天',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day25Screen()),
+  Choice(
+      title: '第26天',
+      icon: Icons.access_time,
+      screen: Day26Screen()),
+  Choice(
+      title: '第27天',
+      icon: Icons.wb_sunny,
+      screen: Day27Screen()),
+  Choice(
+      title: '第28天',
+      icon: Icons.settings_input_svideo,
+      screen: Day28Screen()),
+  Choice(
+      title: '第29天',
+      icon: Icons.g_translate,
+      screen: Day29Screen()),
+  Choice(
+      title: '第30天',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day30Screen()),
+];
+
+// 学习类
+final List<Choice> studyTools = <Choice>[
+  Choice(
+      title: '代办事项',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day1Screen()),
+  Choice(
+      title: '番茄时间',
+      icon: Icons.access_time,
+      screen: Day1Screen()),
+  Choice(
+      title: '小决定',
+      icon: Icons.settings_input_svideo,
+      screen: Day1Screen()),
+  Choice(
+      title: '翻译',
+      icon: Icons.g_translate,
+      screen: Day1Screen()),
+  Choice(
+      title: '今日目标',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day1Screen()),
+  Choice(
+      title: '维基百科',
+      icon: Icons.monetization_on,
+      screen: Day1Screen()),
+  Choice(
+      title: '日语转换',
+      icon: Icons.monetization_on,
+      screen: Day1Screen()),
+];
+
+final List<Choice> lifeTools = <Choice>[
+  Choice(
+      title: '扫二维码',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day1Screen()),
+  Choice(
+      title: '短链接生成',
+      icon: Icons.access_time,
+      screen: Day1Screen()),
+  Choice(
+      title: '天气预报',
+      icon: Icons.wb_sunny,
+      screen: Day1Screen()),
+  Choice(
+      title: '收款码合并',
+      icon: Icons.settings_input_svideo,
+      screen: Day1Screen()),
+  Choice(
+      title: '号码归属地',
+      icon: Icons.g_translate,
+      screen: Day1Screen()),
+  Choice(
+      title: '帮你搜索',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day1Screen()),
+  Choice(
+      title: '快递查询',
+      icon: Icons.sentiment_very_satisfied,
+      screen: Day1Screen()),
+  Choice(
+      title: '实时汇率',
+      icon: Icons.monetization_on,
+      screen: Day1Screen()),
+];
+
+// 媒体类
+final List<Choice> mediaTools = <Choice>[
+  Choice(
+      title: 'twitter视频',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day1Screen()),
+  Choice(
+      title: 'TikTok视频',
+      icon: Icons.access_time,
+      screen: Day1Screen()),
+  Choice(
+      title: 'bilibili视频',
+      icon: Icons.wb_sunny,
+      screen: Day1Screen()),
+  Choice(
+      title: '图片加水印',
+      icon: Icons.settings_input_svideo,
+      screen: Day1Screen()),
+  Choice(
+      title: '图片打码',
+      icon: Icons.g_translate,
+      screen: Day1Screen()),
+];
+
+// 编程类
+final List<Choice> programTools = <Choice>[
+  Choice(
+      title: 'Star曲线',
+      icon: Icons.format_list_numbered_rtl,
+      screen: Day1Screen()),
+  Choice(
+      title: 'github榜单',
+      icon: Icons.access_time,
+      screen: Day1Screen()),
+  Choice(
+      title: '我的github',
+      icon: Icons.wb_sunny,
+      screen: Day1Screen()),
+  Choice(
+      title: '好友互F',
+      icon: Icons.settings_input_svideo,
+      screen: Day1Screen()),
+  Choice(
+      title: '语言排行',
+      icon: Icons.g_translate,
+      screen: Day1Screen()),
+];

@@ -23,6 +23,7 @@ class TwitterAuth extends BaseAuth {
         newMessage = 'Login error: ${result.errorMessage}';
         break;
     }
+    print(newMessage);
   }
 
   @override

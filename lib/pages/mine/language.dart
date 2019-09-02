@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/main.dart';
-import 'package:flutter_study_app/utils/router_util.dart';
-
-import '../../config.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 
 class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Locale myLocale = Localizations.localeOf(context);
+    Locale myLocale =
+        Localizations.localeOf(context);
     return Scaffold(
-      appBar: ReturnBar('切换语言'),
+      appBar: ReturnBar(
+          MyLocalizations.of(context)
+              .changeLanguage),
       body: Center(
         child: Column(
           children: <Widget>[
@@ -24,7 +23,8 @@ class LanguageScreen extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Center(child: Text('English')),
+              title:
+                  Center(child: Text('English')),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();

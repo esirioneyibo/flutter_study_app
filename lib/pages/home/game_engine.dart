@@ -10,7 +10,9 @@ class GameEnginesScreen extends StatelessWidget {
           child: Text(
         '这是游戏引擎',
         style: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 30),
       )),
     );
   }

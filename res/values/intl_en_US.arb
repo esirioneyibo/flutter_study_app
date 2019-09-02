@@ -1,23 +1,249 @@
 {
-  "@@last_modified": "2019-09-01T13:24:50.998794",
+  "@@last_modified": "2019-09-02T14:09:20.850593",
   "index": "index",
   "@index": {
+    "description": "底部导航首页",
     "type": "text",
     "placeholders": {}
   },
   "study": "study",
   "@study": {
+    "description": "底部导航资源",
     "type": "text",
     "placeholders": {}
   },
   "chat": "chat",
   "@chat": {
+    "description": "底部导航圈子",
     "type": "text",
     "placeholders": {}
   },
   "tool": "tool",
   "@tool": {
+    "description": "底部导航工具",
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "plugin": "plugin",
+  "@plugin": {
+    "description": "顶部导航 插件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dart": "dart",
+  "@dart": {
+    "description": "顶部导航 dart",
+    "type": "text",
+    "placeholders": {}
+  },
+  "blog": "blog",
+  "@blog": {
+    "description": "顶部导航 博客",
+    "type": "text",
+    "placeholders": {}
+  },
+  "video": "video",
+  "@video": {
+    "description": "顶部导航 视频",
+    "type": "text",
+    "placeholders": {}
+  },
+  "community": "community",
+  "@community": {
+    "description": "顶部导航 社区",
+    "type": "text",
+    "placeholders": {}
+  },
+  "openSource": "open source",
+  "@openSource": {
+    "description": "顶部导航 开源项目",
+    "type": "text",
+    "placeholders": {}
+  },
+  "game": "game",
+  "@game": {
+    "description": "顶部导航 游戏",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameEngine": "game engine",
+  "@gameEngine": {
+    "description": "顶部导航 游戏引擎",
+    "type": "text",
+    "placeholders": {}
+  },
+  "other": "other",
+  "@other": {
+    "description": "顶部导航 其他",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguage": "change language",
+  "@changeLanguage": {
+    "description": "语言切换",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "settings",
+  "@settings": {
+    "description": "设置中心",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutSoftware": "about software",
+  "@aboutSoftware": {
+    "description": "关于软件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "exitLogin": "exit login",
+  "@exitLogin": {
+    "description": "退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickLogin": "click login",
+  "@clickLogin": {
+    "description": "点击登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmExitLogin": "can you sure logout?",
+  "@confirmExitLogin": {
+    "description": "确定退出登陆吗",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "logout",
+  "@logout": {
+    "description": "you have logout",
+    "type": "text",
+    "placeholders": {}
+  },
+  "studyTools": "study tools",
+  "@studyTools": {
+    "description": "学习类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lifeTools": "life tools",
+  "@lifeTools": {
+    "description": "生活类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "developTools": "develop tools",
+  "@developTools": {
+    "description": "开发类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mediaTools": "media tools",
+  "@mediaTools": {
+    "description": "媒体类",
+    "type": "text",
+    "placeholders": {}
+  },
+  "developing": "developing",
+  "@developing": {
+    "description": "功能开发中",
+    "type": "text",
+    "placeholders": {}
+  },
+  "beHope": "be hope",
+  "@beHope": {
+    "description": "敬请期待",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnButton": "return",
+  "@returnButton": {
+    "description": "返回",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "login",
+  "@login": {
+    "description": "登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "register",
+  "@register": {
+    "description": "注册",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "email",
+  "@email": {
+    "description": "邮箱",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "description": "密码",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "login error",
+  "@loginError": {
+    "description": "登录失败",
+    "type": "text",
+    "placeholders": {}
+  },
+  "validateEmailTitle": "please verify your email",
+  "@validateEmailTitle": {
+    "description": "请验证您的邮箱",
+    "type": "text",
+    "placeholders": {}
+  },
+  "validateEmailContent": "please login your email and verify it",
+  "@validateEmailContent": {
+    "description": "请到您的邮箱查看并激活账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailIllegal": "email illegal",
+  "@emailIllegal": {
+    "description": "邮箱地址格式错误",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailNotFound": "email not found",
+  "@emailNotFound": {
+    "description": "找不到账号，请先注册",
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordError": "password error",
+  "@passwordError": {
+    "description": "密码错误，请检查后再试",
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownError": "unknown error",
+  "@unknownError": {
+    "description": "未知错误",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccount": "create an account",
+  "@createAccount": {
+    "description": "创建一个账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "moveToLogin": "move to login",
+  "@moveToLogin": {
+    "description": "己有账号?去登录",
+    "type": "text",
+    "placeholders": {}
+  },
+ "moveToRegister": "注册账号",
+ "@moveToRegister": {
+   "description": "注册账号",
+   "type": "text",
+   "placeholders": {}
+ }
 }
