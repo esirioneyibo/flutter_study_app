@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_study_app/pages/study/blog.dart';
-import 'package:flutter_study_app/pages/study/community.dart';
-import 'package:flutter_study_app/pages/study/dart.dart';
-import 'package:flutter_study_app/pages/study/game.dart';
-import 'package:flutter_study_app/pages/study/game_engine.dart';
-import 'package:flutter_study_app/pages/study/other.dart';
-import 'package:flutter_study_app/pages/study/plugins.dart';
-import 'package:flutter_study_app/pages/study/project.dart';
-import 'package:flutter_study_app/pages/study/tools.dart';
-import 'package:flutter_study_app/pages/study/video.dart';
+import 'package:flutter_study_app/pages/home/blog.dart';
+import 'package:flutter_study_app/pages/home/community.dart';
+import 'package:flutter_study_app/pages/home/dart.dart';
+import 'package:flutter_study_app/pages/home/game.dart';
+import 'package:flutter_study_app/pages/home/game_engine.dart';
+import 'package:flutter_study_app/pages/home/other.dart';
+import 'package:flutter_study_app/pages/home/plugins.dart';
+import 'package:flutter_study_app/pages/home/project.dart';
+import 'package:flutter_study_app/pages/home/tools.dart';
+import 'package:flutter_study_app/pages/home/video.dart';
 
 class TopNavigatorItem {
   // 项目名
