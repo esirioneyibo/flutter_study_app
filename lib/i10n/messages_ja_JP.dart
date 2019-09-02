@@ -21,9 +21,28 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "aboutSoftware" : MessageLookupByLibrary.simpleMessage("关于软件"),
+    "beHope" : MessageLookupByLibrary.simpleMessage("敬请期待"),
+    "blog" : MessageLookupByLibrary.simpleMessage("博客"),
+    "changeLanguage" : MessageLookupByLibrary.simpleMessage("语言切换"),
     "chat" : MessageLookupByLibrary.simpleMessage("チャット"),
+    "clickLogin" : MessageLookupByLibrary.simpleMessage("点击登录"),
+    "community" : MessageLookupByLibrary.simpleMessage("社区"),
+    "confirmExitLogin" : MessageLookupByLibrary.simpleMessage("确定退出登陆吗"),
+    "dart" : MessageLookupByLibrary.simpleMessage("dart"),
+    "developing" : MessageLookupByLibrary.simpleMessage("开发中"),
+    "exitLogin" : MessageLookupByLibrary.simpleMessage("退出登录"),
+    "game" : MessageLookupByLibrary.simpleMessage("游戏"),
+    "gameEngine" : MessageLookupByLibrary.simpleMessage("游戏引擎"),
     "index" : MessageLookupByLibrary.simpleMessage("ホーム"),
+    "logout" : MessageLookupByLibrary.simpleMessage("您己退出登录"),
+    "openSource" : MessageLookupByLibrary.simpleMessage("开源项目"),
+    "other" : MessageLookupByLibrary.simpleMessage("其他"),
+    "plugin" : MessageLookupByLibrary.simpleMessage("插件"),
+    "returnButton" : MessageLookupByLibrary.simpleMessage("返回"),
+    "settings" : MessageLookupByLibrary.simpleMessage("设置中心"),
     "study" : MessageLookupByLibrary.simpleMessage("勉強"),
-    "tool" : MessageLookupByLibrary.simpleMessage("ツール")
+    "tool" : MessageLookupByLibrary.simpleMessage("ツール"),
+    "video" : MessageLookupByLibrary.simpleMessage("视频")
   };
 }

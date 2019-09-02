@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-01T14:53:08.926613",
+  "@@last_modified": "2019-09-02T12:30:38.070699",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -21,6 +21,120 @@
   "tool": "tool",
   "@tool": {
     "description": "底部导航工具",
+    "type": "text",
+    "placeholders": {}
+  },
+  "plugin": "plugin",
+  "@plugin": {
+    "description": "顶部导航 插件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dart": "dart",
+  "@dart": {
+    "description": "顶部导航 dart",
+    "type": "text",
+    "placeholders": {}
+  },
+  "blog": "blog",
+  "@blog": {
+    "description": "顶部导航 博客",
+    "type": "text",
+    "placeholders": {}
+  },
+  "video": "video",
+  "@video": {
+    "description": "顶部导航 视频",
+    "type": "text",
+    "placeholders": {}
+  },
+  "community": "community",
+  "@community": {
+    "description": "顶部导航 社区",
+    "type": "text",
+    "placeholders": {}
+  },
+  "openSource": "openSource",
+  "@openSource": {
+    "description": "顶部导航 开源项目",
+    "type": "text",
+    "placeholders": {}
+  },
+  "game": "game",
+  "@game": {
+    "description": "顶部导航 游戏",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameEngine": "gameEngine",
+  "@gameEngine": {
+    "description": "顶部导航 游戏引擎",
+    "type": "text",
+    "placeholders": {}
+  },
+  "other": "other",
+  "@other": {
+    "description": "顶部导航 其他",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguage": "changeLanguage",
+  "@changeLanguage": {
+    "description": "语言切换",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "settings",
+  "@settings": {
+    "description": "设置中心",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutSoftware": "aboutSoftware",
+  "@aboutSoftware": {
+    "description": "关于软件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "exitLogin": "exitLogin",
+  "@exitLogin": {
+    "description": "退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickLogin": "clickLogin",
+  "@clickLogin": {
+    "description": "点击登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmExitLogin": "confirmExitLogin",
+  "@confirmExitLogin": {
+    "description": "确定退出登陆吗",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "logout",
+  "@logout": {
+    "description": "您己退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "developing": "developing",
+  "@developing": {
+    "description": "开发中",
+    "type": "text",
+    "placeholders": {}
+  },
+  "beHope": "beHope",
+  "@beHope": {
+    "description": "敬请期待",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnButton": "returnButton",
+  "@returnButton": {
+    "description": "返回",
     "type": "text",
     "placeholders": {}
   }

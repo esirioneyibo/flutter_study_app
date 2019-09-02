@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-01T14:40:29.759987",
+  "@@last_modified": "2019-09-02T12:30:38.070699",
   "index": "ホーム",
   "@index": {
     "description": "底部导航首页",
@@ -21,6 +21,120 @@
   "tool": "ツール",
   "@tool": {
     "description": "底部导航工具",
+    "type": "text",
+    "placeholders": {}
+  },
+  "plugin": "插件",
+  "@plugin": {
+    "description": "插件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dart": "dart",
+  "@dart": {
+    "description": "dart",
+    "type": "text",
+    "placeholders": {}
+  },
+  "blog": "博客",
+  "@blog": {
+    "description": "顶部导航 博客",
+    "type": "text",
+    "placeholders": {}
+  },
+  "video": "视频",
+  "@video": {
+    "description": "顶部导航 视频",
+    "type": "text",
+    "placeholders": {}
+  },
+  "community": "社区",
+  "@community": {
+    "description": "顶部导航 社区",
+    "type": "text",
+    "placeholders": {}
+  },
+  "openSource": "开源项目",
+  "@openSource": {
+    "description": "顶部导航 开源项目",
+    "type": "text",
+    "placeholders": {}
+  },
+  "game": "游戏",
+  "@game": {
+    "description": "顶部导航 游戏",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gameEngine": "游戏引擎",
+  "@gameEngine": {
+    "description": "顶部导航 游戏引擎",
+    "type": "text",
+    "placeholders": {}
+  },
+  "other": "其他",
+  "@other": {
+    "description": "顶部导航 其他",
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeLanguage": "语言切换",
+  "@changeLanguage": {
+    "description": "语言切换",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "设置中心",
+  "@settings": {
+    "description": "设置中心",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aboutSoftware": "关于软件",
+  "@aboutSoftware": {
+    "description": "关于软件",
+    "type": "text",
+    "placeholders": {}
+  },
+  "exitLogin": "退出登录",
+  "@exitLogin": {
+    "description": "退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "clickLogin": "点击登录",
+  "@clickLogin": {
+    "description": "点击登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmExitLogin": "确定退出登陆吗",
+  "@confirmExitLogin": {
+    "description": "确定退出登陆吗",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "您己退出登录",
+  "@logout": {
+    "description": "您己退出登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "developing": "开发中",
+  "@developing": {
+    "description": "开发中",
+    "type": "text",
+    "placeholders": {}
+  },
+  "beHope": "敬请期待",
+  "@beHope": {
+    "description": "敬请期待",
+    "type": "text",
+    "placeholders": {}
+  },
+  "returnButton": "返回",
+  "@returnButton": {
+    "description": "返回",
     "type": "text",
     "placeholders": {}
   }

@@ -20,6 +20,10 @@ class StudyScreenState extends State<StudyScreen>
 
   @override
   Widget build(BuildContext context) {
+    topItems(context).forEach((item) =>
+        {tabs.add(Tab(text: item.itemName)), tabContents.add(item.content)});
+    _tabController = TabController(vsync: this, length: tabs.length);
+
     // 顶部tab切换
     var topBar = TabBar(
       isScrollable: true,
@@ -41,13 +45,5 @@ class StudyScreenState extends State<StudyScreen>
           controller: _tabController,
           children: tabContents,
         ));
-  }
-
-  @override
-  void initState() {
-    topItems.forEach((item) =>
-        {tabs.add(Tab(text: item.itemName)), tabContents.add(item.content)});
-    _tabController = TabController(vsync: this, length: tabs.length);
-    super.initState();
   }
 }

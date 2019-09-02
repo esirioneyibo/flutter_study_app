@@ -21,9 +21,28 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "aboutSoftware" : MessageLookupByLibrary.simpleMessage("aboutSoftware"),
+    "beHope" : MessageLookupByLibrary.simpleMessage("beHope"),
+    "blog" : MessageLookupByLibrary.simpleMessage("blog"),
+    "changeLanguage" : MessageLookupByLibrary.simpleMessage("changeLanguage"),
     "chat" : MessageLookupByLibrary.simpleMessage("chat"),
+    "clickLogin" : MessageLookupByLibrary.simpleMessage("clickLogin"),
+    "community" : MessageLookupByLibrary.simpleMessage("community"),
+    "confirmExitLogin" : MessageLookupByLibrary.simpleMessage("confirmExitLogin"),
+    "dart" : MessageLookupByLibrary.simpleMessage("dart"),
+    "developing" : MessageLookupByLibrary.simpleMessage("developing"),
+    "exitLogin" : MessageLookupByLibrary.simpleMessage("exitLogin"),
+    "game" : MessageLookupByLibrary.simpleMessage("game"),
+    "gameEngine" : MessageLookupByLibrary.simpleMessage("gameEngine"),
     "index" : MessageLookupByLibrary.simpleMessage("index"),
+    "logout" : MessageLookupByLibrary.simpleMessage("logout"),
+    "openSource" : MessageLookupByLibrary.simpleMessage("openSource"),
+    "other" : MessageLookupByLibrary.simpleMessage("other"),
+    "plugin" : MessageLookupByLibrary.simpleMessage("plugin"),
+    "returnButton" : MessageLookupByLibrary.simpleMessage("returnButton"),
+    "settings" : MessageLookupByLibrary.simpleMessage("settings"),
     "study" : MessageLookupByLibrary.simpleMessage("study"),
-    "tool" : MessageLookupByLibrary.simpleMessage("tool")
+    "tool" : MessageLookupByLibrary.simpleMessage("tool"),
+    "video" : MessageLookupByLibrary.simpleMessage("video")
   };
 }

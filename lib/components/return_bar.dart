@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 
 class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -13,7 +14,7 @@ class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: Colors.blueAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          tooltip: '返回',
+          tooltip: MyLocalizations.of(context).returnButton,
           onPressed: () {
             Navigator.of(context).pop();
           },

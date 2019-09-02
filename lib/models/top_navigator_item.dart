@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/home/blog.dart';
 import 'package:flutter_study_app/pages/home/community.dart';
 import 'package:flutter_study_app/pages/home/dart.dart';
@@ -20,15 +21,18 @@ class TopNavigatorItem {
   TopNavigatorItem(this.itemName, this.content);
 }
 
-final List<TopNavigatorItem> topItems = [
-  TopNavigatorItem('插件', PluginsScreen()),
-  TopNavigatorItem('Dart', DartScreen()),
-  TopNavigatorItem('博客', BlogScreen()),
-  TopNavigatorItem('视频', VideosScreen()),
-  TopNavigatorItem('工具', ToolsScreen()),
-  TopNavigatorItem('社区', CommunitiesScreen()),
-  TopNavigatorItem('开源项目', ProjectsScreen()),
-  TopNavigatorItem('游戏', GamesScreen()),
-  TopNavigatorItem('游戏引擎', GameEnginesScreen()),
-  TopNavigatorItem('其他', OthersScreen()),
-];
+List<TopNavigatorItem> topItems(BuildContext context) {
+  return [
+    TopNavigatorItem(MyLocalizations.of(context).plugin, PluginsScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).dart, DartScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).blog, BlogScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).video, VideosScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).tool, ToolsScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).community, CommunitiesScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).openSource, ProjectsScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).game, GamesScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).gameEngine, GameEnginesScreen()),
+    TopNavigatorItem(MyLocalizations.of(context).other
+        , OthersScreen()),
+  ];
+}
