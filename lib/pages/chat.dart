@@ -8,9 +8,8 @@ import 'package:flutter_study_app/utils/router_util.dart';
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: MyAppBar(context, MyLocalizations.of(context).chat),
+      appBar: MyAppBar(title: MyLocalizations.of(context).chat),
       body: Container(
         color: Colors.grey,
         child: ListView.builder(
@@ -69,7 +68,7 @@ class ChatScreen extends StatelessWidget {
                 ],
               );
               return InkWell(
-                onTap: (){
+                onTap: () {
                   RouterUtil.push(context, ChatDetailScreen());
                 },
                 child: Container(
@@ -88,7 +87,9 @@ class ChatScreen extends StatelessWidget {
                       Container(
                           padding: EdgeInsets.only(top: 15),
                           alignment: Alignment.centerLeft,
-                          child: Text(posts[index].content,))
+                          child: Text(
+                            posts[index].content,
+                          ))
                     ],
                   ),
                 ),

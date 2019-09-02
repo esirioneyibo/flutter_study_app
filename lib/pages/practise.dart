@@ -20,7 +20,7 @@ class PractiseScreen extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: MyAppBar(context, MyLocalizations.of(context).study),
+        appBar: MyAppBar(title: MyLocalizations.of(context).study),
         body: Container(
           child: toolsSection,
         ));

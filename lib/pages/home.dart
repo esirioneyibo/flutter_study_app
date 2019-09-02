@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/top_navigator_item.dart';
+import 'package:flutter_study_app/theme.dart';
 
 class StudyScreen extends StatefulWidget {
   @override
@@ -19,9 +20,11 @@ class StudyScreenState extends State<StudyScreen>
 
   @override
   Widget build(BuildContext context) {
+    // 顶部tab切换
     var topBar = TabBar(
       isScrollable: true,
-      unselectedLabelColor: Colors.white,
+      unselectedLabelColor: navigatorUnSelectedColor,
+      indicatorColor: navigatorSelectedColor,
       indicatorSize: TabBarIndicatorSize.tab,
       labelColor: Colors.pinkAccent,
       indicator: ShapeDecoration(
@@ -32,7 +35,8 @@ class StudyScreenState extends State<StudyScreen>
       controller: _tabController,
     );
     return Scaffold(
-        appBar: MyAppBar(context, MyLocalizations.of(context).index, topBar),
+        appBar:
+            MyAppBar(title: MyLocalizations.of(context).index, topbar: topBar),
         body: TabBarView(
           controller: _tabController,
           children: tabContents,

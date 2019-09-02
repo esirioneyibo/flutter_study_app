@@ -60,7 +60,7 @@ class ToolScreen extends StatelessWidget {
     var titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
-      appBar: MyAppBar(context, MyLocalizations.of(context).tool),
+      appBar: MyAppBar(title: MyLocalizations.of(context).tool),
       body: ListView(
         children: <Widget>[
           Padding(

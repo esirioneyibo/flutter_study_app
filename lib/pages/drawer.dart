@@ -51,55 +51,44 @@ class LeftDrawer extends StatelessWidget {
     ]);
 
     // 个人信息
-    var infoWidget = Container(
-        child: Row(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ClipOval(
-            child: currentUser == null
-                ? Image.asset(
-                    AppConfig.default_avatar,
-                    width: 80,
-                  )
-                : Image.network(
-                    currentUser.photoUrl,
-                    width: 80,
-                  ),
-          ),
-        ),
-        Text(
-          currentUser == null ? "点击登陆" : currentUser.displayName,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ],
-    ));
+    var infoWidget = UserAccountsDrawerHeader(
+      accountName:
+          Text(currentUser == null ? '点击登录' : currentUser.displayName),
+      accountEmail: Text(currentUser == null ? '' : currentUser.email),
+      onDetailsPressed: () {
+        if (currentUser == null) {
+          Navigator.pushNamed(context, RouterConfig.account);
+        } else {
+          debugPrint('暂未实现');
+        }
+      },
+      currentAccountPicture: CircleAvatar(
+        backgroundImage: currentUser == null
+            ? AssetImage(
+                AppConfig.default_avatar,
+              )
+            : NetworkImage(
+                currentUser.photoUrl,
+              ),
+      ),
+      decoration: BoxDecoration(
+          color: Colors.blue[400],
+          image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.blue[400].withAlpha(60), BlendMode.hardLight),
+              fit: BoxFit.cover,
+              image: AssetImage(AppConfig.accountBg))),
+    );
 
     return Drawer(
-      child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              InkWell(
-                onTap: () {
-                  if (currentUser == null) {
-                    Navigator.pushNamed(context, RouterConfig.account);
-                  }
-                },
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40, 0, 20),
-                  child: infoWidget,
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  children: items.toList(),
-                ),
-              )
-            ],
-          )),
-    );
+        child: Column(
+      children: <Widget>[
+        infoWidget,
+        Expanded(
+            child: ListView(
+          children: items.toList(),
+        ))
+      ],
+    ));
   }
 }

@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat.dart';
 import 'package:flutter_study_app/pages/drawer.dart';
-import 'package:flutter_study_app/pages/tool.dart';
-import 'package:flutter_study_app/pages/practise.dart';
 import 'package:flutter_study_app/pages/home.dart';
+import 'package:flutter_study_app/pages/practise.dart';
+import 'package:flutter_study_app/pages/tool.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -28,55 +29,8 @@ class _MyAppState extends State<MyApp> {
 
   Color _itemColor(targetItem) {
     return _currentIndex == targetItem
-        ? bottomNavigatorSelectedColor
-        : bottomNavigatorUnSelectedColor;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: LeftDrawer(), // 侧边栏
-      body: tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: _itemColor(0)),
-              activeIcon: Icon(Icons.home, color: _itemColor(0)),
-              title: new Text(
-                MyLocalizations.of(context).index,
-                style: TextStyle(color: _itemColor(0)),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.whatshot, color: _itemColor(1)),
-              activeIcon: Icon(Icons.whatshot, color: _itemColor(1)),
-              title: new Text(
-                MyLocalizations.of(context).study,
-                style: TextStyle(color: _itemColor(1)),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.rocketchat, color: _itemColor(2)),
-              activeIcon: Icon(FontAwesomeIcons.rocketchat, color: _itemColor(2)),
-              title: new Text(
-                MyLocalizations.of(context).chat,
-                style: TextStyle(color: _itemColor(2)),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.tools, color: _itemColor(3)),
-              activeIcon: Icon(FontAwesomeIcons.tools, color: _itemColor(3)),
-              title: new Text(
-                MyLocalizations.of(context).tool,
-                style: TextStyle(color: _itemColor(3)),
-              )),
-        ],
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        currentIndex: _currentIndex,
-      ),
-    );
+        ? navigatorSelectedColor
+        : navigatorUnSelectedColor;
   }
 
   _initFluwx() async {
@@ -87,6 +41,65 @@ class _MyAppState extends State<MyApp> {
         enableMTA: false);
     var result = await fluwx.isWeChatInstalled();
     print("is installed $result");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 点击tab切换页面
+    var _tableHandler = (int index) {
+      setState(() {
+        _currentIndex = index;
+      });
+    };
+    // 底部的4个tab
+    var bottomNavigationBars = BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      unselectedItemColor: navigatorUnSelectedColor,
+      selectedItemColor: navigatorSelectedColor,
+      items: [
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            title: new Text(
+              MyLocalizations.of(context).index,
+              style: TextStyle(color: _itemColor(0)),
+            )),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.whatshot,
+            ),
+            title: new Text(
+              MyLocalizations.of(context).study,
+              style: TextStyle(color: _itemColor(1)),
+            )),
+        BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesomeIcons.rocketchat,
+            ),
+            title: new Text(
+              MyLocalizations.of(context).chat,
+              style: TextStyle(color: _itemColor(2)),
+            )),
+        BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesomeIcons.tools,
+            ),
+            title: new Text(
+              MyLocalizations.of(context).tool,
+              style: TextStyle(color: _itemColor(3)),
+            )),
+      ],
+      onTap: _tableHandler,
+      currentIndex: _currentIndex,
+    );
+
+    return Scaffold(
+      appBar: MyAppBar(title: ''),
+      drawer: LeftDrawer(), // 侧边栏
+      body: tabs[_currentIndex],
+      bottomNavigationBar: bottomNavigationBars,
+    );
   }
 
   @override
