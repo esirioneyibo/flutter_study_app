@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-02T12:54:43.684645",
+  "@@last_modified": "2019-09-02T14:25:55.338365",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -146,7 +146,7 @@
   },
   "developing": "developing",
   "@developing": {
-    "description": "开发中",
+    "description": "功能开发中",
     "type": "text",
     "placeholders": {}
   },
@@ -159,6 +159,90 @@
   "returnButton": "returnButton",
   "@returnButton": {
     "description": "返回",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "login",
+  "@login": {
+    "description": "登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "register",
+  "@register": {
+    "description": "注册",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "email",
+  "@email": {
+    "description": "邮箱",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "description": "密码",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginError": "loginError",
+  "@loginError": {
+    "description": "登录失败",
+    "type": "text",
+    "placeholders": {}
+  },
+  "validateEmailTitle": "validateEmailTitle",
+  "@validateEmailTitle": {
+    "description": "请验证您的邮箱",
+    "type": "text",
+    "placeholders": {}
+  },
+  "validateEmailContent": "validateEmailContent",
+  "@validateEmailContent": {
+    "description": "请到您的邮箱查看并激活账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailIllegal": "emailIllegal",
+  "@emailIllegal": {
+    "description": "邮箱地址格式错误",
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailNotFound": "emailNotFound",
+  "@emailNotFound": {
+    "description": "找不到账号，请先注册",
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordError": "passwordError",
+  "@passwordError": {
+    "description": "密码错误，请检查后再试",
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownError": "unknownError",
+  "@unknownError": {
+    "description": "未知错误",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccount": "createAccount",
+  "@createAccount": {
+    "description": "创建一个账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "moveToLogin": "moveToLogin",
+  "@moveToLogin": {
+    "description": "己有账号?去登录",
+    "type": "text",
+    "placeholders": {}
+  },
+  "moveToRegister": "register",
+  "@moveToRegister": {
+    "description": "注册账号",
     "type": "text",
     "placeholders": {}
   }

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
@@ -64,7 +65,9 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReturnBar(_formType == FormType.LOGIN ? "登陆" : "注册"),
+      appBar: ReturnBar(_formType == FormType.LOGIN
+          ? MyLocalizations.of(context).login
+          : MyLocalizations.of(context).register),
       body: Container(
         child: Form(
           key: formKey,
@@ -82,7 +85,8 @@ class _AccountScreenState extends State<AccountScreen> {
       TextFormField(
         key: Key('email'),
         keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(labelText: '邮箱'),
+        decoration:
+            InputDecoration(labelText: MyLocalizations.of(context).email),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.email = value;
@@ -92,7 +96,8 @@ class _AccountScreenState extends State<AccountScreen> {
         key: Key('password'),
         keyboardType: TextInputType.text,
         obscureText: true,
-        decoration: InputDecoration(labelText: '密码'),
+        decoration:
+            InputDecoration(labelText: MyLocalizations.of(context).password),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.password = value;
@@ -119,7 +124,10 @@ class _AccountScreenState extends State<AccountScreen> {
 
           emailAuth.isEmailVerified().then((verified) {
             if (!verified) {
-              DialogUtil.showAlertDialog(context, "登陆失败", "您的邮箱尚未验证");
+              DialogUtil.showAlertDialog(
+                  context,
+                  MyLocalizations.of(context).loginError,
+                  MyLocalizations.of(context).validateEmailTitle);
             } else {
               Navigator.of(context).pop();
               emailAuth.getCurrentUser().then((user) => currentUser = user);
@@ -135,7 +143,10 @@ class _AccountScreenState extends State<AccountScreen> {
             emailAuth.sendEmailVerification();
             emailAuth.setDefaultUserInfo();
             DialogUtil.showAlertDialog(
-                context, "验证您的邮箱", "请到您的邮箱查看并激活账号", moveToLogin);
+                context,
+                MyLocalizations.of(context).validateEmailTitle,
+                MyLocalizations.of(context).validateEmailContent,
+                moveToLogin);
           }
           setState(() {
             _isLoading = false;
@@ -145,16 +156,28 @@ class _AccountScreenState extends State<AccountScreen> {
       } catch (e) {
         switch (e.code) {
           case EmailErrorCode.invalidEmail:
-            DialogUtil.showAlertDialog(context, "登陆失败", "邮箱地址格式错误");
+            DialogUtil.showAlertDialog(
+                context,
+                MyLocalizations.of(context).loginError,
+                MyLocalizations.of(context).emailIllegal);
             break;
           case EmailErrorCode.userNotFound:
-            DialogUtil.showAlertDialog(context, "登陆失败", "找不到账号，请先注册");
+            DialogUtil.showAlertDialog(
+                context,
+                MyLocalizations.of(context).loginError,
+                MyLocalizations.of(context).emailNotFound);
             break;
           case EmailErrorCode.wrongPassword:
-            DialogUtil.showAlertDialog(context, "登陆失败", "密码错误，请检查后再试");
+            DialogUtil.showAlertDialog(
+                context,
+                MyLocalizations.of(context).loginError,
+                MyLocalizations.of(context).passwordError);
             break;
           default:
-            DialogUtil.showAlertDialog(context, "登陆失败", "未知错误");
+            DialogUtil.showAlertDialog(
+                context,
+                MyLocalizations.of(context).loginError,
+                MyLocalizations.of(context).unknownError);
             break;
         }
       }
@@ -205,8 +228,8 @@ class _AccountScreenState extends State<AccountScreen> {
         RaisedButton(
           color: Colors.blue,
           key: Key('signIn'),
-          child:
-              Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+          child: Text(MyLocalizations.of(context).login,
+              style: TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: _validateAndSubmit,
         ),
         Padding(
@@ -217,24 +240,24 @@ class _AccountScreenState extends State<AccountScreen> {
           children: <Widget>[
             InkWell(
 //              onTap: twitterAuth.loginTwitter,
-              onTap: () =>
-                  DialogUtil.showAlertDialog(context, 'twitter', '功能开发中'),
+              onTap: () => DialogUtil.showAlertDialog(
+                  context, 'twitter', MyLocalizations.of(context).developing),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: () =>
-                  DialogUtil.showAlertDialog(context, 'github', '功能开发中'),
+              onTap: () => DialogUtil.showAlertDialog(
+                  context, 'github', MyLocalizations.of(context).developing),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: 30,
               ),
             ),
             InkWell(
-              onTap: () =>
-                  DialogUtil.showAlertDialog(context, 'wechat', '功能开发中'),
+              onTap: () => DialogUtil.showAlertDialog(
+                  context, 'wechat', MyLocalizations.of(context).developing),
 //              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
@@ -246,8 +269,8 @@ class _AccountScreenState extends State<AccountScreen> {
                 FontAwesomeIcons.google,
                 size: 30,
               ),
-              onTap: () =>
-                  DialogUtil.showAlertDialog(context, 'google', '功能开发中'),
+              onTap: () => DialogUtil.showAlertDialog(
+                  context, 'google', MyLocalizations.of(context).developing),
 //              onTap: () => googleAuth
 //                  .googleHandleSignIn()
 //                  .then((FirebaseUser user) => setState(() {
@@ -264,7 +287,8 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: EdgeInsets.only(top: 30),
         ),
         FlatButton(
-          child: Text('创建一个账号', style: TextStyle(fontSize: 20.0)),
+          child: Text(MyLocalizations.of(context).moveToRegister,
+              style: TextStyle(fontSize: 20.0)),
           onPressed: moveToRegister,
         ),
       ];
@@ -275,7 +299,7 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         RaisedButton(
           color: Colors.blue,
-          child: Text('创建一个账号',
+          child: Text(MyLocalizations.of(context).developing,
               style: TextStyle(fontSize: 20.0, color: Colors.white)),
           onPressed: _validateAndSubmit,
         ),
@@ -283,7 +307,8 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: EdgeInsets.only(top: 0),
         ),
         FlatButton(
-          child: Text('己有账号?去登录', style: TextStyle(fontSize: 20.0)),
+          child: Text(MyLocalizations.of(context).moveToLogin,
+              style: TextStyle(fontSize: 20.0)),
           onPressed: moveToLogin,
         ),
       ];

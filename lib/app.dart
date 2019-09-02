@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     tabs
-      ..add(new StudyScreen())
+      ..add(new HomeScreen())
       ..add(new PractiseScreen())
       ..add(new ChatScreen())
       ..add(new ToolScreen());

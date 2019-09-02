@@ -144,7 +144,7 @@ class MyLocalizations {
 // --------------------------------------通有-------------------------------------------------
   String get developing {
     return Intl.message('developing',
-        name: 'developing', desc: '开发中', locale: Intl.defaultLocale);
+        name: 'developing', desc: '功能开发中', locale: Intl.defaultLocale);
   }
 
   String get beHope {
@@ -155,6 +155,81 @@ class MyLocalizations {
   String get returnButton {
     return Intl.message('returnButton',
         name: 'returnButton', desc: '返回', locale: Intl.defaultLocale);
+  }
+
+// --------------------------------------账号相关-------------------------------------------------
+  String get login {
+    return Intl.message('login',
+        name: 'login', desc: '登录', locale: Intl.defaultLocale);
+  }
+
+  String get register {
+    return Intl.message('register',
+        name: 'register', desc: '注册', locale: Intl.defaultLocale);
+  }
+
+  String get email {
+    return Intl.message('email',
+        name: 'email', desc: '邮箱', locale: Intl.defaultLocale);
+  }
+
+  String get password {
+    return Intl.message('password',
+        name: 'password', desc: '密码', locale: Intl.defaultLocale);
+  }
+
+  String get loginError {
+    return Intl.message('loginError',
+        name: 'loginError', desc: '登录失败', locale: Intl.defaultLocale);
+  }
+
+  String get validateEmailTitle {
+    return Intl.message('validateEmailTitle',
+        name: 'validateEmailTitle',
+        desc: '请验证您的邮箱',
+        locale: Intl.defaultLocale);
+  }
+
+  String get validateEmailContent {
+    return Intl.message('validateEmailContent',
+        name: 'validateEmailContent',
+        desc: '请到您的邮箱查看并激活账号',
+        locale: Intl.defaultLocale);
+  }
+
+  String get emailIllegal {
+    return Intl.message('emailIllegal',
+        name: 'emailIllegal', desc: '邮箱地址格式错误', locale: Intl.defaultLocale);
+  }
+
+  String get emailNotFound {
+    return Intl.message('emailNotFound',
+        name: 'emailNotFound', desc: '找不到账号，请先注册', locale: Intl.defaultLocale);
+  }
+
+  String get passwordError {
+    return Intl.message('passwordError',
+        name: 'passwordError', desc: '密码错误，请检查后再试', locale: Intl.defaultLocale);
+  }
+
+  String get unknownError {
+    return Intl.message('unknownError',
+        name: 'unknownError', desc: '未知错误', locale: Intl.defaultLocale);
+  }
+
+  String get createAccount {
+    return Intl.message('createAccount',
+        name: 'createAccount', desc: '创建一个账号', locale: Intl.defaultLocale);
+  }
+
+  String get moveToLogin {
+    return Intl.message('moveToLogin',
+        name: 'moveToLogin', desc: '己有账号?去登录', locale: Intl.defaultLocale);
+  }
+
+  String get moveToRegister {
+    return Intl.message('moveToRegister',
+        name: 'moveToRegister', desc: '注册账号', locale: Intl.defaultLocale);
   }
 // --------------------------------------语言转换方法-------------------------------------------------
 }

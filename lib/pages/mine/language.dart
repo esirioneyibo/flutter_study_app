@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 
 class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Locale myLocale = Localizations.localeOf(context);
     return Scaffold(
-      appBar: ReturnBar('切换语言'),
+      appBar: ReturnBar(MyLocalizations.of(context).changeLanguage),
       body: Center(
         child: Column(
           children: <Widget>[

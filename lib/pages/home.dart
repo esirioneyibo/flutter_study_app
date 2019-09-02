@@ -5,14 +5,14 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/navigator_item.dart';
 import 'package:flutter_study_app/theme.dart';
 
-class StudyScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return StudyScreenState();
+    return HomeScreenState();
   }
 }
 
-class StudyScreenState extends State<StudyScreen>
+class HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   var tabs = List<Tab>();
