@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   /// tab页容器,如果list内容可变，不能指定list的大小
-  List<Widget> tabs = new List();
+  List<Widget> tabs = List();
 
   int _currentIndex = 0;
 
@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
             icon: Icon(
               Icons.home,
             ),
-            title: new Text(
+            title: Text(
               MyLocalizations.of(context).index,
               style:
                   TextStyle(color: _itemColor(0)),
@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
             icon: Icon(
               Icons.whatshot,
             ),
-            title: new Text(
+            title: Text(
               MyLocalizations.of(context).study,
               style:
                   TextStyle(color: _itemColor(1)),
@@ -81,7 +81,7 @@ class _MyAppState extends State<MyApp> {
             icon: Icon(
               FontAwesomeIcons.rocketchat,
             ),
-            title: new Text(
+            title: Text(
               MyLocalizations.of(context).chat,
               style:
                   TextStyle(color: _itemColor(2)),
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
             icon: Icon(
               FontAwesomeIcons.tools,
             ),
-            title: new Text(
+            title: Text(
               MyLocalizations.of(context).tool,
               style:
                   TextStyle(color: _itemColor(3)),
@@ -111,10 +111,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     tabs
-      ..add(new HomeScreen())
-      ..add(new PractiseScreen())
-      ..add(new ChatScreen())
-      ..add(new ToolScreen());
+      ..add(HomeScreen())
+      ..add(PractiseScreen())
+      ..add(ChatScreen())
+      ..add(ToolScreen());
 //    _initFluwx();
     super.initState();
   }

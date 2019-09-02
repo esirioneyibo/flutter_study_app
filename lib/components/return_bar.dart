@@ -24,5 +24,5 @@ class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => new Size.fromHeight(AppConfig.appBarHeight);
+  Size get preferredSize => Size.fromHeight(AppConfig.appBarHeight);
 }

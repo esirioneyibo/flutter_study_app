@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
 
-var navigatorSelectedColor = Colors.pink;
-var navigatorUnSelectedColor = Colors.green[100];
+Color navigatorSelectedColor = Colors.pink;
+Color navigatorUnSelectedColor = Colors.black54;

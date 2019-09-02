@@ -240,7 +240,7 @@
     "type": "text",
     "placeholders": {}
   },
- "moveToRegister": "注册账号",
+ "moveToRegister": "register",
  "@moveToRegister": {
    "description": "注册账号",
    "type": "text",

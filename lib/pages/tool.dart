@@ -12,7 +12,7 @@ class ToolScreen extends StatelessWidget {
 
     var studySection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(studyTools.length,
           (index) {
@@ -25,7 +25,7 @@ class ToolScreen extends StatelessWidget {
 
     var lifeSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(lifeTools.length,
           (index) {
@@ -38,7 +38,7 @@ class ToolScreen extends StatelessWidget {
 
     var mediaSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(mediaTools.length,
           (index) {
@@ -51,7 +51,7 @@ class ToolScreen extends StatelessWidget {
 
     var programSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(programTools.length,
           (index) {

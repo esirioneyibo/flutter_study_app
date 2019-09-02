@@ -37,7 +37,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.light(),
       ),
-      home: new SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
