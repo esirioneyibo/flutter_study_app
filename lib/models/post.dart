@@ -39,16 +39,16 @@ class Comment {
 }
 
 final List<Post> posts = [
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.people, 'flutter',
+  Post('EGO ', 'To the divided steak add bagel, margerine, iced tea and tangy rice.', '小莫', Icons.people, 'flutter',
       '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.print, 'flutter',
+  Post('CHICKEN ', 'Shores sing with endurance!', '小莫', Icons.print, 'flutter',
       '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.hourglass_empty,
+  Post('FURNER ', 'Treasure, faith, and power.', '小莫', Icons.hourglass_empty,
       'flutter', '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.adb, 'flutter',
+  Post('COCKROACH ', 'Collision course at the habitat oddlyred alert was the paralysis of flight, invaded to a carnivorous phenomenan.', '小莫', Icons.adb, 'flutter',
       '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.home, 'flutter',
+  Post('VOGON ', 'Particles fly with rumour!', '小莫', Icons.home, 'flutter',
       '${DateTime.now().hour}:${DateTime.now().minute}', List()),
-  Post('这是标题1', '假装有内容假装有内容假装有内容假装有内容假装有内容假装有内容', '小莫', Icons.email, 'flutter',
+  Post('TOFU ', 'It is an evil friendship, sir.', '小莫', Icons.email, 'flutter',
       '${DateTime.now().hour}:${DateTime.now().minute}', List()),
 ];

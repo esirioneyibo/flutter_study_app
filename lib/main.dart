@@ -35,8 +35,7 @@ class MainApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.light(),
-        primaryColor: Colors.limeAccent
+        primaryColor: Colors.blue
       ),
       home: SplashScreen(),
     );
