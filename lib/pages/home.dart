@@ -76,8 +76,8 @@ class HomeScreenState extends State<HomeScreen> {
     var topBar = TabBar(
       isScrollable: true,
       unselectedLabelColor:
-          navigatorUnSelectedColor,
-      indicatorColor: navigatorSelectedColor,
+          topNavigatorUnSelectedColor,
+      indicatorColor: topNavigatorSelectedColor,
       indicatorSize: TabBarIndicatorSize.tab,
       labelColor: Colors.pinkAccent,
       indicator: ShapeDecoration(
