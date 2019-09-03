@@ -6,14 +6,14 @@ class PluginsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: RandomUtil.randomColor(),
+//      backgroundColor: RandomUtil.randomColor(),
       body: Center(
           child: Text(
         '这是插件',
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 30),
+            color: Colors.black,
+              fontSize: 20),
       )),
     );
   }

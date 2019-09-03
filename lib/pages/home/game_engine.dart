@@ -5,14 +5,14 @@ class GameEnginesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RandomUtil.randomColor(),
+//      backgroundColor: RandomUtil.randomColor(),
       body: Center(
           child: Text(
         '这是游戏引擎',
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 30),
+            color: Colors.black,
+              fontSize: 20),
       )),
     );
   }

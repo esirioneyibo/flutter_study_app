@@ -28,7 +28,7 @@ class EmailAuth implements BaseAuth {
 
   void setDefaultUserInfo() async {
     FirebaseUser user = await _firebaseAuth.currentUser();
-    UserUpdateInfo updateInfo = new UserUpdateInfo();
+    UserUpdateInfo updateInfo = UserUpdateInfo();
     updateInfo.displayName = user.email;
     updateInfo.photoUrl = "https://image.xiaomo.info/logo/avatar.png";
     user.updateProfile(updateInfo);

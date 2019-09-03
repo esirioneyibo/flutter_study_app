@@ -5,14 +5,14 @@ import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/models/choice.dart';
 
-class ToolScreen extends StatelessWidget {
+class ToolsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
 
-    var studySection = GridView.count(
+    final studySection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(studyTools.length,
           (index) {
@@ -23,9 +23,9 @@ class ToolScreen extends StatelessWidget {
       }),
     );
 
-    var lifeSection = GridView.count(
+    final lifeSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(lifeTools.length,
           (index) {
@@ -36,9 +36,9 @@ class ToolScreen extends StatelessWidget {
       }),
     );
 
-    var mediaSection = GridView.count(
+    final mediaSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(mediaTools.length,
           (index) {
@@ -49,9 +49,9 @@ class ToolScreen extends StatelessWidget {
       }),
     );
 
-    var programSection = GridView.count(
+    final programSection = GridView.count(
       crossAxisCount: 4,
-      physics: new NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(programTools.length,
           (index) {
@@ -62,12 +62,12 @@ class ToolScreen extends StatelessWidget {
       }),
     );
 
-    const toolStyle = TextStyle(
-        color: Colors.white,
+    const textStyle = TextStyle(
+        color: Colors.blue,
         fontSize: 24,
         fontWeight: FontWeight.bold);
 
-    var titlePadding =
+    final titlePadding =
         EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
@@ -80,11 +80,10 @@ class ToolScreen extends StatelessWidget {
             padding: titlePadding,
             child: Container(
               width: 10,
-              color: Colors.blue,
               child: Text(
                 MyLocalizations.of(context)
                     .studyTools,
-                style: toolStyle,
+                style: textStyle,
               ),
             ),
           ),
@@ -93,11 +92,10 @@ class ToolScreen extends StatelessWidget {
             padding: titlePadding,
             child: Container(
               width: 10,
-              color: Colors.blue,
               child: Text(
                 MyLocalizations.of(context)
                     .lifeTools,
-                style: toolStyle,
+                style: textStyle,
               ),
             ),
           ),
@@ -106,11 +104,10 @@ class ToolScreen extends StatelessWidget {
             padding: titlePadding,
             child: Container(
               width: 10,
-              color: Colors.blue,
               child: Text(
                 MyLocalizations.of(context)
                     .mediaTools,
-                style: toolStyle,
+                style: textStyle,
               ),
             ),
           ),
@@ -119,11 +116,10 @@ class ToolScreen extends StatelessWidget {
             padding: titlePadding,
             child: Container(
               width: 10,
-              color: Colors.blue,
               child: Text(
                 MyLocalizations.of(context)
                     .developTools,
-                style: toolStyle,
+                style: textStyle,
               ),
             ),
           ),

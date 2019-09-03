@@ -10,7 +10,7 @@ import 'package:flutter_study_app/pages/home/game_engine.dart';
 import 'package:flutter_study_app/pages/home/other.dart';
 import 'package:flutter_study_app/pages/home/plugins.dart';
 import 'package:flutter_study_app/pages/home/project.dart';
-import 'package:flutter_study_app/pages/home/tools.dart';
+import 'package:flutter_study_app/pages/home/deveop_tools.dart';
 import 'package:flutter_study_app/pages/home/video.dart';
 import 'package:flutter_study_app/theme.dart';
 
@@ -47,7 +47,7 @@ class HomeScreenState extends State<HomeScreen> {
 
     tabs.add(Tab(
         text: MyLocalizations.of(context).tool));
-    tabContents.add(ToolsScreen());
+    tabContents.add(DevelopToolsScreen());
 
     tabs.add(Tab(
         text: MyLocalizations.of(context)
@@ -76,8 +76,8 @@ class HomeScreenState extends State<HomeScreen> {
     var topBar = TabBar(
       isScrollable: true,
       unselectedLabelColor:
-          navigatorUnSelectedColor,
-      indicatorColor: navigatorSelectedColor,
+          topNavigatorUnSelectedColor,
+      indicatorColor: topNavigatorSelectedColor,
       indicatorSize: TabBarIndicatorSize.tab,
       labelColor: Colors.pinkAccent,
       indicator: ShapeDecoration(

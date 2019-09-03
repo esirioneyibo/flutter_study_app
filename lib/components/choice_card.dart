@@ -15,7 +15,7 @@ class ChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle =
-        new TextStyle(fontSize: 15, color: RandomUtil.randomColor());
+        TextStyle(fontSize: 15, color: RandomUtil.randomColor());
     return Card(
         color: Colors.white,
         child: Center(
