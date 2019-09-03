@@ -11,7 +11,7 @@ class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.grey,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           tooltip: MyLocalizations.of(context).returnButton,

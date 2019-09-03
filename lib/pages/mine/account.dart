@@ -255,7 +255,6 @@ class _AccountScreenState
           padding: EdgeInsets.only(top: 10),
         ),
         RaisedButton(
-          color: Colors.blue,
           key: Key('signIn'),
           child: Text(
               MyLocalizations.of(context).login,
@@ -349,7 +348,6 @@ class _AccountScreenState
           padding: EdgeInsets.only(top: 10),
         ),
         RaisedButton(
-          color: Colors.blue,
           child: Text(
               MyLocalizations.of(context)
                   .developing,

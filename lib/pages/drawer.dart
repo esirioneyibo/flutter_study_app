@@ -101,11 +101,10 @@ class LeftDrawer extends StatelessWidget {
               ),
       ),
       decoration: BoxDecoration(
-          color: Colors.blue[400],
           image: DecorationImage(
-              colorFilter: ColorFilter.mode(
-                  Colors.blue[400].withAlpha(60),
-                  BlendMode.hardLight),
+//              colorFilter: ColorFilter.mode(
+//                  Colors.blue[400].withAlpha(60),
+//                  BlendMode.hardLight),
               fit: BoxFit.cover,
               image: AssetImage(
                   AppConfig.accountBg))),

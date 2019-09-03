@@ -12,7 +12,6 @@ class DialogUtil {
           content: Text(content),
           actions: <Widget>[
             RaisedButton(
-              color: Colors.blue,
               child: Text(
                 "关闭",
                 style: TextStyle(color: Colors.white, fontSize: 15),
@@ -39,7 +38,6 @@ class DialogUtil {
           title: Text(title),
           actions: <Widget>[
             RaisedButton(
-              color: Colors.blue,
               child: Text(
                 "确定",
                 style: TextStyle(color: Colors.white, fontSize: 15),

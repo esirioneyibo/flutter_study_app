@@ -13,7 +13,7 @@ class ChatScreen extends StatelessWidget {
           title:
               MyLocalizations.of(context).chat),
       body: Container(
-        color: Colors.grey,
+        color: Colors.grey[50],
         child: ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
@@ -84,7 +84,7 @@ class ChatScreen extends StatelessWidget {
                 },
                 child: Container(
                   margin:
-                      EdgeInsets.only(bottom: 10),
+                      EdgeInsets.only(bottom: 3),
                   padding: EdgeInsets.all(15),
                   color: Colors.white,
                   child: Column(
