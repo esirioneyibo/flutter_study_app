@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "logout": "logout",
+  "logout": "you have logout",
   "@logout": {
     "description": "you have logout",
     "type": "text",

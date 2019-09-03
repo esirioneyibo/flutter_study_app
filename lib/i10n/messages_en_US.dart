@@ -43,7 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lifeTools" : MessageLookupByLibrary.simpleMessage("life tools"),
     "login" : MessageLookupByLibrary.simpleMessage("login"),
     "loginError" : MessageLookupByLibrary.simpleMessage("login error"),
-    "logout" : MessageLookupByLibrary.simpleMessage("logout"),
+    "logout" : MessageLookupByLibrary.simpleMessage("you have logout"),
     "mediaTools" : MessageLookupByLibrary.simpleMessage("media tools"),
     "moveToLogin" : MessageLookupByLibrary.simpleMessage("move to login"),
     "moveToRegister" : MessageLookupByLibrary.simpleMessage("register"),
