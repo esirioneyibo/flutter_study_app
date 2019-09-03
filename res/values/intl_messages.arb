@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-02T14:25:55.338365",
+  "@@last_modified": "2019-09-03T17:43:26.235677",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -240,9 +240,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "moveToRegister": "register",
+  "moveToRegister": "moveToRegister",
   "@moveToRegister": {
     "description": "注册账号",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceInfo": "deviceInfo",
+  "@deviceInfo": {
+    "description": "设备信息",
     "type": "text",
     "placeholders": {}
   }

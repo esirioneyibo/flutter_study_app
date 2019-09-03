@@ -244,5 +244,11 @@
     "description": "注册账号",
     "type": "text",
     "placeholders": {}
-  }
+  },
+     "deviceInfo": "设备信息",
+     "@deviceInfo": {
+       "description": "设备信息",
+       "type": "text",
+       "placeholders": {}
+     }
 }

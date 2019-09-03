@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount" : MessageLookupByLibrary.simpleMessage("创建一个账号"),
     "dart" : MessageLookupByLibrary.simpleMessage("Dart"),
     "developTools" : MessageLookupByLibrary.simpleMessage("开发类"),
+    "deviceInfo" : MessageLookupByLibrary.simpleMessage("设备信息"),
     "email" : MessageLookupByLibrary.simpleMessage("邮箱"),
     "emailIllegal" : MessageLookupByLibrary.simpleMessage("邮箱地址格式错误"),
     "emailNotFound" : MessageLookupByLibrary.simpleMessage("找不到账号，请先注册"),

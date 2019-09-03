@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dart" : MessageLookupByLibrary.simpleMessage("dart"),
     "developTools" : MessageLookupByLibrary.simpleMessage("develop tools"),
     "developing" : MessageLookupByLibrary.simpleMessage("developing"),
+    "deviceInfo" : MessageLookupByLibrary.simpleMessage("device info"),
     "email" : MessageLookupByLibrary.simpleMessage("email"),
     "emailIllegal" : MessageLookupByLibrary.simpleMessage("email illegal"),
     "emailNotFound" : MessageLookupByLibrary.simpleMessage("email not found"),

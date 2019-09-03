@@ -5,6 +5,7 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/mine/about.dart';
 import 'package:flutter_study_app/pages/mine/account.dart';
+import 'package:flutter_study_app/pages/mine/device_info.dart';
 import 'package:flutter_study_app/pages/mine/language.dart';
 import 'package:flutter_study_app/pages/mine/settings.dart';
 import 'package:flutter_study_app/pages/splash.dart';
@@ -20,7 +21,10 @@ class MainApp extends StatelessWidget {
         RouterConfig.account: (context) => AccountScreen(),
         RouterConfig.about: (context) => AboutScreen(),
         RouterConfig.settings: (context) => SettingScreen(),
-        RouterConfig.language: (context) => LanguageScreen(),
+        RouterConfig.language: (context) =>
+            LanguageScreen(),
+        RouterConfig.deviceInfo: (context) =>
+            DeviceInfoScreen(),
       },
 //      locale: Locale("en","US"),
       localizationsDelegates: [
@@ -34,9 +38,7 @@ class MainApp extends StatelessWidget {
         const Locale('ja', 'JP'), // 日本日语
       ],
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.blue
-      ),
+      theme: ThemeData(primaryColor: Colors.blue),
       home: SplashScreen(),
     );
   }

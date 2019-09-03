@@ -4,8 +4,8 @@ class RouterConfig {
   static const index = '/index';
   static const about = "/about";
   static const settings = "/settings";
-
-  static String language='/language';
+  static String language = '/language';
+  static String deviceInfo = 'deviceInfo';
 }
 
 class AppConfig {
@@ -13,7 +13,8 @@ class AppConfig {
   static const double choiceIconSize = 30;
 
   static const avatar = 'assets/images/avatar.png';
-  static const default_avatar = 'assets/images/default_avatar.png';
+  static const default_avatar =
+      'assets/images/default_avatar.png';
   static const splash = 'assets/images/splash.png';
   static const accountBg = 'assets/images/accountBg.jpg';
 
