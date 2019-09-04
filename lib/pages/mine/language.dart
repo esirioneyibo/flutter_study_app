@@ -11,11 +11,12 @@ class LanguageScreen extends StatelessWidget {
       appBar: ReturnBar(
           MyLocalizations.of(context)
               .changeLanguage),
-      body: Center(
+      body: Container(
         child: Column(
           children: <Widget>[
             ListTile(
-              title: Center(child: Text('中文')),
+              trailing: Icon(Icons.chevron_right),
+              title: Container(child: Text('中文')),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -23,8 +24,9 @@ class LanguageScreen extends StatelessWidget {
             ),
             Divider(),
             ListTile(
+              trailing: Icon(Icons.chevron_right),
               title:
-                  Center(child: Text('English')),
+                  Container(child: Text('English')),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
@@ -32,7 +34,8 @@ class LanguageScreen extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Center(child: Text('日本語')),
+              trailing: Icon(Icons.chevron_right),
+              title: Container(child: Text('日本語')),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
