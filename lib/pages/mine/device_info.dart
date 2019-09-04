@@ -26,8 +26,16 @@ class DeviceInfoScreen extends StatelessWidget {
             Map<String, String> info = snapshot.data;
             info.forEach((key, value) {
               rows.add(DataRow(cells: [
-                DataCell(Text(key)),
-                DataCell(Text(value)),
+                DataCell(Text(
+                  key,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )),
+                DataCell(Text(
+                  value,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )),
               ]));
             });
 
