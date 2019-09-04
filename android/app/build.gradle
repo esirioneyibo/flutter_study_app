@@ -51,6 +51,9 @@ android {
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndk {
+            abiFilters "armeabi", "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+        }
     }
 
     signingConfigs {
@@ -64,7 +67,9 @@ android {
     buildTypes {
 
         release {
-
+            ndk {
+                abiFilters "armeabi", "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+            }
             signingConfig signingConfigs.release
 
             minifyEnabled true
@@ -72,15 +77,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
-    }
 
-
-    splits {
-        abi {
-            reset()
-            include "x86", "armeabi-v7a", "arm64-v8a", "x86_64"
+        debug {
+            ndk {
+                abiFilters "armeabi", "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+            }
         }
     }
+
 }
 
 flutter {
