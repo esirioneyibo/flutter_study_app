@@ -37,7 +37,6 @@ class MainApp extends StatelessWidget {
         const Locale('en', 'US'), // 美国英语
         const Locale('ja', 'JP'), // 日本日语
       ],
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.blue),
       home: SplashScreen(),
     );
