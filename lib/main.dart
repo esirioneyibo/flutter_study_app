@@ -3,12 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:flutter_study_app/pages/mine/about.dart';
-import 'package:flutter_study_app/pages/mine/account.dart';
-import 'package:flutter_study_app/pages/mine/device_info.dart';
-import 'package:flutter_study_app/pages/mine/language.dart';
-import 'package:flutter_study_app/pages/mine/settings.dart';
-import 'package:flutter_study_app/pages/splash.dart';
+import 'package:flutter_study_app/pages/mine/about_screen.dart';
+import 'package:flutter_study_app/pages/mine/account_screen.dart';
+import 'package:flutter_study_app/pages/mine/device_info_screen.dart';
+import 'package:flutter_study_app/pages/mine/language_screen.dart';
+import 'package:flutter_study_app/pages/mine/settings_screen.dart';
+import 'package:flutter_study_app/pages/splash_screen.dart';
 
 void main() => runApp(MainApp());
 

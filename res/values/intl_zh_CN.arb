@@ -250,5 +250,11 @@
        "description": "设备信息",
        "type": "text",
        "placeholders": {}
-     }
+     },
+   "appName": "flutter学习",
+   "@deviceInfo": {
+     "description": "app name",
+     "type": "text",
+     "placeholders": {}
+   }
 }
