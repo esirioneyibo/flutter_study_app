@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       });
     };
 
-    final List<BottomItem> items = getBottomItems(context);
+    final List<TabItem> items = getBottomItems(context);
 
     // 底部的4个tab
     var bottomNavigationBars = BottomNavigationBar(
