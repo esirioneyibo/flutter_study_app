@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class DialogUtil {
   static void showAlertDialog(
       BuildContext context, String title, String content,
-      [VoidCallback callback]) {
+      {VoidCallback callback(Model model), Model model}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -14,11 +15,12 @@ class DialogUtil {
             RaisedButton(
               child: Text(
                 "关闭",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(
+                    color: Colors.white, fontSize: 15),
               ),
               onPressed: () {
                 if (callback != null) {
-                  callback();
+                  callback(model);
                 }
                 Navigator.of(context).pop();
               },
@@ -29,7 +31,8 @@ class DialogUtil {
     );
   }
 
-  static void showConfirmDialog(BuildContext context, String title,
+  static void showConfirmDialog(
+      BuildContext context, String title,
       [VoidCallback callback]) {
     showDialog(
       context: context,
@@ -40,7 +43,8 @@ class DialogUtil {
             RaisedButton(
               child: Text(
                 "确定",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(
+                    color: Colors.white, fontSize: 15),
               ),
               onPressed: () {
                 if (callback != null) {
@@ -52,7 +56,8 @@ class DialogUtil {
               color: Colors.grey,
               child: Text(
                 "取消",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(
+                    color: Colors.white, fontSize: 15),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
