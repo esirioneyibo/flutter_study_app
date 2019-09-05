@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:flutter_study_app/pages/chat.dart';
-import 'package:flutter_study_app/pages/drawer.dart';
-import 'package:flutter_study_app/pages/home.dart';
-import 'package:flutter_study_app/pages/practise.dart';
-import 'package:flutter_study_app/pages/tools.dart';
+import 'package:flutter_study_app/pages/chat_screen.dart';
+import 'package:flutter_study_app/pages/drawer_screen.dart';
+import 'package:flutter_study_app/pages/home_screen.dart';
+import 'package:flutter_study_app/pages/practise_screen.dart';
+import 'package:flutter_study_app/pages/tools_screen.dart';
+import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'theme.dart';
 
@@ -51,51 +50,21 @@ class _MyAppState extends State<MyApp> {
         _currentIndex = index;
       });
     };
+
+    final List<BottomItem> items = getBottomItems(context);
+
     // 底部的4个tab
-    var bottomNavigationBars =
-        BottomNavigationBar(
+    var bottomNavigationBars = BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      unselectedItemColor:
-          navigatorUnSelectedColor,
+      unselectedItemColor: navigatorUnSelectedColor,
       selectedItemColor: navigatorSelectedColor,
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            title: Text(
-              MyLocalizations.of(context).index,
-              style:
-                  TextStyle(color: _itemColor(0)),
-            )),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.whatshot,
-            ),
-            title: Text(
-              MyLocalizations.of(context).study,
-              style:
-                  TextStyle(color: _itemColor(1)),
-            )),
-        BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.rocketchat,
-            ),
-            title: Text(
-              MyLocalizations.of(context).chat,
-              style:
-                  TextStyle(color: _itemColor(2)),
-            )),
-        BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.tools,
-            ),
-            title: Text(
-              MyLocalizations.of(context).tool,
-              style:
-                  TextStyle(color: _itemColor(3)),
-            )),
-      ],
+      items: items.map((item) {
+        return BottomNavigationBarItem(
+            icon: Icon(item.icon),
+            title: Text(item.title,
+                style: TextStyle(
+                    color: _itemColor(item.index))));
+      }).toList(),
       onTap: _tableHandler,
       currentIndex: _currentIndex,
     );

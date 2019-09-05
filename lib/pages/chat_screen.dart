@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:flutter_study_app/models/post.dart';
-import 'package:flutter_study_app/pages/chat/chat_detail.dart';
-import 'package:flutter_study_app/utils/router_util.dart';
+import 'package:flutter_study_app/vo/post_vo.dart';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -32,7 +30,6 @@ class ChatScreen extends StatelessWidget {
                               flex: 1,
                               child:
                                   RightCommentInfo(index)),
-//                        Text("这是上面")
                         ],
                       ),
                       Container(
@@ -44,10 +41,6 @@ class ChatScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-//                onTap: () {
-//                  RouterUtil.push(
-//                      context, ChatDetailScreen());
-//                },
               );
             }),
       ),

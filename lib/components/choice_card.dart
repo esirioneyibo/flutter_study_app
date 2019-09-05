@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/models/choice.dart';
+import 'package:flutter_study_app/vo/choice_vo.dart';
 import 'package:flutter_study_app/utils/router_util.dart';
 import 'package:flutter_study_app/utils/random_util.dart';
 
