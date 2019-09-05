@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unknownError" : MessageLookupByLibrary.simpleMessage("未知错误"),
     "validateEmailContent" : MessageLookupByLibrary.simpleMessage("请到您的邮箱查看并激活账号"),
     "validateEmailTitle" : MessageLookupByLibrary.simpleMessage("请验证您的邮箱"),
-    "video" : MessageLookupByLibrary.simpleMessage("视频")
+    "video" : MessageLookupByLibrary.simpleMessage("视频"),
+    "returnButton" : MessageLookupByLibrary.simpleMessage("返回"),
   };
 }

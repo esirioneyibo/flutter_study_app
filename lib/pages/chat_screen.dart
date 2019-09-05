@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
+import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/post_vo.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -14,31 +16,40 @@ class ChatScreen extends StatelessWidget {
         child: ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
-              return Card(
-                child: Container(
-                  margin: EdgeInsets.only(bottom: 3),
-                  padding: EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                              flex: 2,
-                              child: LeftUserInfo(index)),
-                          Expanded(
-                              flex: 1,
-                              child:
-                                  RightCommentInfo(index)),
-                        ],
-                      ),
-                      Container(
-                          padding: EdgeInsets.only(top: 15),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            posts[index].content,
-                          ))
-                    ],
+              return InkWell(
+                onTap: () => NavigatorUtil.pushWithAnim(
+                    context,
+                    ChatDetailScreen(posts[index]),
+                    AnimType.Slider),
+                child: Card(
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 3),
+                    padding: EdgeInsets.all(15),
+                    color: Colors.white,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                                flex: 2,
+                                child: LeftUserInfo(index)),
+                            Expanded(
+                                flex: 1,
+                                child: RightCommentInfo(
+                                    index)),
+                          ],
+                        ),
+                        Container(
+                            padding:
+                                EdgeInsets.only(top: 15),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              posts[index].content,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -63,9 +74,10 @@ class LeftUserInfo extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(
-              posts[index].icon,
-              size: 40,
+            Image(
+              image: NetworkImage(posts[index].icon),
+              width: 40,
+              height: 40,
             ),
             Column(
               children: <Widget>[
