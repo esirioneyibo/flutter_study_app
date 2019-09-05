@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
               title: MyLocalizations
                   .of(context)
                   .index,
-              topbar: topBar),
+              tabBar: topBar),
           body: TabBarView(
             children: tabContents,
           )),

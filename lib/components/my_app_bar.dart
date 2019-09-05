@@ -3,16 +3,16 @@ import 'package:flutter_study_app/config.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final topbar;
+  final tabBar;
 
-  MyAppBar({this.title, this.topbar});
+  MyAppBar({this.title, this.tabBar});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
 //        backgroundColor: Theme.of(context).appBarTheme.color,
-        bottom: topbar,
+        bottom: tabBar,
         title: Text(title == null ? '' : title));
   }
 
