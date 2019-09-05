@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/drawer_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
@@ -70,7 +71,8 @@ class _MyAppState extends State<MyApp> {
     );
 
     return Scaffold(
-      appBar: MyAppBar(title: ''),
+      appBar: MyAppBar(
+          title: MyLocalizations.of(context).appName),
       drawer: LeftDrawer(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: bottomNavigationBars,

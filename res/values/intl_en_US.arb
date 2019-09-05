@@ -251,5 +251,11 @@
       "description": "设备信息",
       "type": "text",
       "placeholders": {}
-    }
+    },
+     "appName": "flutter study",
+     "@deviceInfo": {
+       "description": "app name",
+       "type": "text",
+       "placeholders": {}
+     }
 }

@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "aboutSoftware" : MessageLookupByLibrary.simpleMessage("关于软件"),
+    "appName" : MessageLookupByLibrary.simpleMessage("flutter学习"),
     "blog" : MessageLookupByLibrary.simpleMessage("博客"),
     "changeLanguage" : MessageLookupByLibrary.simpleMessage("语言切换"),
     "chat" : MessageLookupByLibrary.simpleMessage("圈子"),

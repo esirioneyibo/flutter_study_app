@@ -3,11 +3,8 @@ import 'package:flutter_study_app/i10n/messages_all.dart';
 import 'package:intl/intl.dart';
 
 class MyLocalizations {
-
-
   static Future<MyLocalizations> load(Locale locale) {
-    final String name =
-    locale.countryCode.isEmpty
+    final String name = locale.countryCode.isEmpty
         ? locale.languageCode
         : locale.toString();
     final String localName = Intl.canonicalizedLocale(name);
@@ -320,6 +317,11 @@ class MyLocalizations {
         desc: '设备信息',
         locale: Intl.defaultLocale);
   }
+
+  String get appName => Intl.message('appName',
+      name: 'appName',
+      desc: 'app name',
+      locale: Intl.defaultLocale);
 
 // --------------------------------------语言转换方法-------------------------------------------------
 }

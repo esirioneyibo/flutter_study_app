@@ -56,6 +56,7 @@ class HomeScreen extends StatelessWidget {
 
     // 顶部tab切换
     var topBar = TabBar(
+      indicatorWeight: 0.5,
       isScrollable: true,
       unselectedLabelColor: topNavigatorUnSelectedColor,
       indicatorColor: topNavigatorSelectedColor,
