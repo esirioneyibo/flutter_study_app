@@ -1,5 +1,5 @@
 # flutter_study_app
-![[status](https://houko.github.io/flutter-study-app/)](https://travis-ci.com/houko/flutter-study-app.svg?branch=develop)
+[![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 
 - [dartPad](https://dartpad.dartlang.org/)
 - [easy-mock](https://easy-mock.com/)
