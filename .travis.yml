@@ -5,7 +5,7 @@ jobs:
   include:
     - stage: test
       os: linux
-      language: generic
+      language: dartlang
       sudo: false
       addons:
         apt:
