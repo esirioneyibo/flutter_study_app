@@ -1,7 +1,7 @@
 
 # flutter study app  
-[![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)  
-[![GitHub license](https://img.shields.io/badge/license-BSD--2-Clause--blue.svg)](https://raw.githubusercontent.com/houko/SpringBootUnity/master/LICENSE)  
+[![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
+[![GitHub license](https://img.shields.io/badge/license-BSD--2-Clause-blue.svg)](https://raw.githubusercontent.com/houko/SpringBootUnity/master/LICENSE)  
 # directory The project directory structure is as follows:  
 ```  
 ├─components  
