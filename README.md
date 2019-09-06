@@ -1,7 +1,7 @@
 
 # flutter study app  
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
-[![GitHub license](https://img.shields.io/badge/license-BSD--2-Clause-blue.svg)](https://raw.githubusercontent.com/houko/SpringBootUnity/master/LICENSE)  
+[![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)  
 
 # quick show
 there will put a gif or video about this app while app developed
