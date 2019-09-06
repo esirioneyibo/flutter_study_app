@@ -77,10 +77,6 @@ class PasswordFieldValidator {
   }
 }
 
-enum FormType {
-  LOGIN,
-  REGISTER,
-}
 
 class EmailErrorCode {
   static const String invalidEmail = "ERROR_INVALID_EMAIL";

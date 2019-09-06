@@ -323,6 +323,16 @@ class MyLocalizations {
       desc: 'app name',
       locale: Intl.defaultLocale);
 
+  get newChat => Intl.message('newChat',
+      name: 'newChat',
+      desc: '发布帖子',
+      locale: Intl.defaultLocale);
+
+  String get chatContent => Intl.message('chatContent',
+      name: 'chatContent',
+      desc: '帖子内容',
+      locale: Intl.defaultLocale);
+
 // --------------------------------------语言转换方法-------------------------------------------------
 }
 

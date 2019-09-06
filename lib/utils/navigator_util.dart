@@ -51,7 +51,7 @@ class SliderRoute extends PageRouteBuilder {
               Animation<double> secondaryAnimation,
             ) =>
                 page,
-            transitionDuration: Duration(milliseconds: 500),
+            transitionDuration: Duration(milliseconds: 300),
             transitionsBuilder: (
               BuildContext context,
               Animation<double> animation,
@@ -60,8 +60,8 @@ class SliderRoute extends PageRouteBuilder {
             ) =>
                 SlideTransition(
                   position: new Tween<Offset>(
-                    begin: const Offset(1.0, 0.0),
-                    end: const Offset(0.0, 0.0),
+                    begin: const Offset(1, 0),
+                    end: const Offset(0, 0),
                   ).animate(animation),
                   child: child,
                 ));

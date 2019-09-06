@@ -36,7 +36,7 @@ class _SplashState extends State<SplashScreen>
     // 初始化动画
     _animationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 3000));
+        duration: Duration(milliseconds: 2000));
     _animation = Tween(begin: 0.0, end: 1.0)
         .animate(_animationController);
 
