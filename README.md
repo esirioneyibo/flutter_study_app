@@ -16,6 +16,12 @@ there will put a gif or video about this app while app developed
 # Preview
 there will put some screen shots about this app while app developed
 
+# Download
+- android
+if you want to download newest version, please use browser and input [fir.im/xiaomo](https://fir.im/xiaomo) or swap the qr code download v1.0.0
+![](assets/screen/android_download.png)
+- ios
+because of have no developer license, not offered( I am so sorry for it).
 
 # directory The project directory structure is as follows:  
 ```  
