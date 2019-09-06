@@ -5,9 +5,16 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/theme.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  State createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     var tabs = List<Tab>();
     var tabContents = List<Widget>();
 
@@ -16,7 +23,6 @@ class HomeScreen extends StatelessWidget {
       tabs.add(item.tab);
       tabContents.add(item.screen);
     });
-
 
     // 顶部tab切换
     var topBar = TabBar(
@@ -37,13 +43,14 @@ class HomeScreen extends StatelessWidget {
       length: tabs.length,
       child: Scaffold(
           appBar: MyAppBar(
-              title: MyLocalizations
-                  .of(context)
-                  .index,
+              title: MyLocalizations.of(context).index,
               tabBar: topBar),
           body: TabBarView(
             children: tabContents,
           )),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

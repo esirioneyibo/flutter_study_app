@@ -5,3 +5,4 @@
 - [jsonToDart](https://javiercbk.github.io/json_to_dart/)
 - [dio](https://github.com/flutterchina/dio)
 - [tinypng](https://tinypng.com/)
+- [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)

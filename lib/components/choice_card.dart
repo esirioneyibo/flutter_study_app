@@ -16,6 +16,9 @@ class ChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle = TextStyle(
+        fontSize: 15, color: Colors.black);
+
+        final TextStyle iconStyle = TextStyle(
         fontSize: 15, color: RandomUtil.randomColor());
     return Card(
         color: Colors.white,
@@ -31,7 +34,7 @@ class ChoiceCard extends StatelessWidget {
               children: <Widget>[
                 Icon(choice.icon,
                     size: AppConfig.choiceIconSize,
-                    color: textStyle.color),
+                    color: iconStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
         )));
