@@ -2,6 +2,16 @@
 # flutter study app  
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 [![GitHub license](https://img.shields.io/badge/license-BSD--2-Clause-blue.svg)](https://raw.githubusercontent.com/houko/SpringBootUnity/master/LICENSE)  
+
+# quick show
+there will put a gif or video about this app while app developed
+
+
+
+# screen shots
+there will put some screen shots about this app while app developed
+
+
 # directory The project directory structure is as follows:  
 ```  
 ├─components  
@@ -22,6 +32,30 @@
 ├─utils  
 └─vo  
 ```  
+
+# plugins for this project
+  | package | function |    
+  |--|--|    
+  |  video_player| play video |
+  |  fluwx| wechat sdk|
+  |  google_sign_in| google sign in |
+  |  sqflite| sqlLite database |
+  |  cached_network_image| cache the image when network cut |
+  |  http| get api data form network | 
+  |  shared_preferences| local storage |
+  |  font_awesome_flutter| a lot of icons |
+  |  intl| i10n support |
+  |  uuid| random unique id |
+  |  image_picker| easy use camera and album |
+  |  path_provider| play video | 
+  |  google_maps_flutter| google map sdk for flutter|
+  |  firebase_auth| account service without server|
+  |  flutter_twitter_login| twitter login auth |
+  |  uni_links| play video |
+  |  url_launcher| link different apps | 
+  |  webview_flutter| webview for flutter |  
+
+  
   
 # about directory  
   
