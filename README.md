@@ -1,14 +1,18 @@
 
 # flutter study app  
+this project is build with flutter 1.7.8, an useful app for study flutter. it offered a lot of 
+useful tools for us.
+
+# status
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 [![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)  
 
-# quick show
+# Quick show
 there will put a gif or video about this app while app developed
 
 
 
-# screen shots
+# Preview
 there will put some screen shots about this app while app developed
 
 
@@ -33,7 +37,7 @@ there will put some screen shots about this app while app developed
 └─vo  
 ```  
 
-# plugins for this project
+# Plugins in this project
   | package | function |    
   |--|--|    
   |  video_player| play video |
@@ -57,7 +61,7 @@ there will put some screen shots about this app while app developed
 
   
   
-# about directory  
+# About directory  
   
 | folder | content |  
 |--|--|  
@@ -71,7 +75,7 @@ there will put some screen shots about this app while app developed
 
 ![](assets/screen/folder%20tree.png)  
 
-# function introduce
+# Feature
 - index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
@@ -132,7 +136,7 @@ there will put some screen shots about this app while app developed
 
 
   
-# nice tools for projects  
+# Nice tools for projects  
 - [dartPad](https://dartpad.dartlang.org/)  
 - [easy-mock](https://easy-mock.com/)  
 - [jsonToDart](https://javiercbk.github.io/json_to_dart/)  
@@ -140,7 +144,7 @@ there will put some screen shots about this app while app developed
 - [tinypng](https://tinypng.com/)  
 - [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)
 
-# license
+# License
 ```
 BSD 2-Clause License  
   
