@@ -3,23 +3,23 @@ cache:
     - "$HOME/.pub-cache"
 jobs:
   include:
-    - stage: test
-      os: linux
-      language: dartlang
-      sudo: false
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - libstdc++6
-#            - fonts-droid
-      before_script:
-        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
-      script:
-        - "./flutter/bin/flutter channel stable"
-        - "./flutter/bin/flutter upgrade"
-        - "./flutter/bin/flutter test"
+#    - stage: test
+#      os: linux
+#      language: dartlang
+#      sudo: false
+#      addons:
+#        apt:
+#          sources:
+#            - ubuntu-toolchain-r-test
+#          packages:
+#            - libstdc++6
+##            - fonts-droid
+#      before_script:
+#        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+#      script:
+#        - "./flutter/bin/flutter channel stable"
+#        - "./flutter/bin/flutter upgrade"
+#        - "./flutter/bin/flutter test"
     - stage: deployAPK
       os: linux
       language: android
