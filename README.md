@@ -1,22 +1,22 @@
 
-# Flutter study app  
+# :rocket: Flutter study app  
 this project is build with flutter 1.7.8, an useful app(android and ios) for study flutter. it offered a lot of useful tools for us.
 
-# Status
+# :rocket: Status
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 [![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)
 [![ios app](https://img.shields.io/badge/ios-app-brightgreen)](https://houko.github.io/flutter-study-app/)
 [![android app](https://img.shields.io/badge/android-app-green)](https://houko.github.io/flutter-study-app/)  
 
-# Quick show
+# :rocket: Quick show
 there will put a gif or video about this app while app developed
 
 
 
-# Preview
+# :rocket: Preview
 there will put some screen shots about this app while app developed
 
-# Download  
+# :rocket: Download  
 - android      
 if you want to download newest version, please use browser and input [fir.im/xiaomo](https://fir.im/xiaomo) or swap the qr code download v1.0.0
 ![](assets/screen/android_download.png)
@@ -24,7 +24,7 @@ if you want to download newest version, please use browser and input [fir.im/xia
 - ios      
 because of have no developer license, not offered( I am so sorry for it).
 
-# directory The project directory structure is as follows:  
+# :rocket: directory The project directory structure is as follows:  
 ```  
 ├─components  
 ├─i10n  
@@ -45,7 +45,7 @@ because of have no developer license, not offered( I am so sorry for it).
 └─vo  
 ```  
 
-# Plugins in this project
+# :rocket: Plugins in this project
   | package | function |    
   |--|--|    
   |  video_player| play video |
@@ -69,7 +69,7 @@ because of have no developer license, not offered( I am so sorry for it).
 
   
   
-# About directory  
+# :rocket: About directory  
   
 | folder | content |  
 |--|--|  
@@ -83,7 +83,7 @@ because of have no developer license, not offered( I am so sorry for it).
 
 ![](assets/screen/folder%20tree.png)  
 
-# Feature
+# :rocket: Feature
 - index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
@@ -144,7 +144,7 @@ because of have no developer license, not offered( I am so sorry for it).
 
 
   
-# Nice tools for projects  
+# :rocket: Nice tools for projects  
 - [dartPad](https://dartpad.dartlang.org/)  
 - [easy-mock](https://easy-mock.com/)  
 - [jsonToDart](https://javiercbk.github.io/json_to_dart/)  
@@ -152,7 +152,7 @@ because of have no developer license, not offered( I am so sorry for it).
 - [tinypng](https://tinypng.com/)  
 - [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)
 
-# License
+# :rocket: License
 ```
 BSD 2-Clause License  
   
