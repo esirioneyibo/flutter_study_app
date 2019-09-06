@@ -28,8 +28,6 @@ if you want to download newest version, please use browser and input [fir.im/xia
 because of have no developer license, not offered( I am so sorry for it).
 
 # directory The project directory structure is as follows:  
-:rocket:
-
 ```  
 ├─components  
 ├─i10n  
@@ -51,7 +49,6 @@ because of have no developer license, not offered( I am so sorry for it).
 ```  
 
 # Plugins in this project
-
   | package | function |    
   |--|--|    
   |  video_player| play video |
@@ -77,7 +74,6 @@ because of have no developer license, not offered( I am so sorry for it).
   
 # About directory  
 
-
 | folder | content |  
 |--|--|  
 |  components| project components |  
@@ -91,7 +87,6 @@ because of have no developer license, not offered( I am so sorry for it).
 ![](assets/screen/folder%20tree.png)  
 
 # Feature
-
 - :rocket: index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
