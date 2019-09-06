@@ -1,30 +1,37 @@
 
-# :rocket: Flutter study app  
-this project is build with flutter 1.7.8, an useful app(android and ios) for study flutter. it offered a lot of useful tools for us.
+# Flutter study app  
+:rocket: this project is build with flutter 1.7.8, an useful app(android and ios) for study flutter. it offered a lot of useful tools for us.
 
-# :rocket: Status
+# Status
+:rocket:
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 [![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)
 [![ios app](https://img.shields.io/badge/ios-app-brightgreen)](https://houko.github.io/flutter-study-app/)
 [![android app](https://img.shields.io/badge/android-app-green)](https://houko.github.io/flutter-study-app/)  
 
-# :rocket: Quick show
+# Quick show
+:rocket:
 there will put a gif or video about this app while app developed
 
 
 
-# :rocket: Preview
+# Preview
+:rocket:
 there will put some screen shots about this app while app developed
 
-# :rocket: Download  
+# Download  
+:rocket:
 - android      
 if you want to download newest version, please use browser and input [fir.im/xiaomo](https://fir.im/xiaomo) or swap the qr code download v1.0.0
 ![](assets/screen/android_download.png)
 
 - ios      
+:rocket:
 because of have no developer license, not offered( I am so sorry for it).
 
-# :rocket: directory The project directory structure is as follows:  
+# directory The project directory structure is as follows:  
+:rocket:
+
 ```  
 ├─components  
 ├─i10n  
@@ -45,7 +52,8 @@ because of have no developer license, not offered( I am so sorry for it).
 └─vo  
 ```  
 
-# :rocket: Plugins in this project
+# Plugins in this project
+:rocket:
   | package | function |    
   |--|--|    
   |  video_player| play video |
@@ -69,8 +77,9 @@ because of have no developer license, not offered( I am so sorry for it).
 
   
   
-# :rocket: About directory  
-  
+# About directory  
+:rocket:
+
 | folder | content |  
 |--|--|  
 |  components| project components |  
@@ -83,7 +92,8 @@ because of have no developer license, not offered( I am so sorry for it).
 
 ![](assets/screen/folder%20tree.png)  
 
-# :rocket: Feature
+# Feature
+:rocket:
 - index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
@@ -144,7 +154,8 @@ because of have no developer license, not offered( I am so sorry for it).
 
 
   
-# :rocket: Nice tools for projects  
+# Nice tools for projects  
+:rocket:
 - [dartPad](https://dartpad.dartlang.org/)  
 - [easy-mock](https://easy-mock.com/)  
 - [jsonToDart](https://javiercbk.github.io/json_to_dart/)  
@@ -152,7 +163,8 @@ because of have no developer license, not offered( I am so sorry for it).
 - [tinypng](https://tinypng.com/)  
 - [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)
 
-# :rocket: License
+# License
+:rocket:
 ```
 BSD 2-Clause License  
   
