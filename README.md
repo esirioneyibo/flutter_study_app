@@ -35,6 +35,8 @@
 |  utils| util method for projects |  
 |  vo| entity |  
 
+![](assets/screen/folder%20tree.png)  
+
 # function introduce
 - index
   - plugins: popular plugins for flutter
@@ -94,7 +96,7 @@
 	- device info: info about our device
 	- about app: about app
 
-![](assets/screen/folder%20tree.png)  
+
   
 # nice tools for projects  
 - [dartPad](https://dartpad.dartlang.org/)  
