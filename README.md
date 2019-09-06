@@ -25,8 +25,7 @@ there will put some screen shots about this app while app developed
 if you want to download newest version, please use browser and input [fir.im/xiaomo](https://fir.im/xiaomo) or swap the qr code download v1.0.0
 ![](assets/screen/android_download.png)
 
-- ios      
-:rocket:
+- :rocket: ios      
 because of have no developer license, not offered( I am so sorry for it).
 
 # directory The project directory structure is as follows:  
@@ -53,7 +52,7 @@ because of have no developer license, not offered( I am so sorry for it).
 ```  
 
 # Plugins in this project
-:rocket:
+
   | package | function |    
   |--|--|    
   |  video_player| play video |
@@ -78,7 +77,7 @@ because of have no developer license, not offered( I am so sorry for it).
   
   
 # About directory  
-:rocket:
+
 
 | folder | content |  
 |--|--|  
@@ -93,8 +92,8 @@ because of have no developer license, not offered( I am so sorry for it).
 ![](assets/screen/folder%20tree.png)  
 
 # Feature
-:rocket:
-- index
+
+- :rocket: index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
   - blog: blog for futter technolgy tech
@@ -105,7 +104,7 @@ because of have no developer license, not offered( I am so sorry for it).
   - game engine: game engine with flutter 
   - community: flutter community
   - other: other
-- study
+- :rocket: study
 	- day1
 	- day2
 	- day3
@@ -136,17 +135,17 @@ because of have no developer license, not offered( I am so sorry for it).
 	- day28
 	- day29
 	- day30
-- chat
+- :rocket: chat
 	- chat list : users disucss flutter technology's list
 	- add new post: user can create a new post 
 	- post detail: post content with comment list
 	- like post: if you like it ,you can click the like button
-- tools
+- :rocket: tools
 	- study tools: tools for study
 	- life tools: tools for life
 	- media tools: tools for media
 	- programmer tool: tools for developing
-- drawer
+- :rocket: drawer
 	- account : register and login
 	- theme: we can change our app theme 
 	- device info: info about our device
@@ -155,7 +154,6 @@ because of have no developer license, not offered( I am so sorry for it).
 
   
 # Nice tools for projects  
-:rocket:
 - [dartPad](https://dartpad.dartlang.org/)  
 - [easy-mock](https://easy-mock.com/)  
 - [jsonToDart](https://javiercbk.github.io/json_to_dart/)  
@@ -164,7 +162,6 @@ because of have no developer license, not offered( I am so sorry for it).
 - [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)
 
 # License
-:rocket:
 ```
 BSD 2-Clause License  
   
