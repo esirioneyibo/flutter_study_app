@@ -89,8 +89,8 @@ because of have no developer license, not offered( I am so sorry for it).
 # Feature
 - :rocket: index
   - plugins: popular plugins for flutter
-  - dart: about dartlang syntax study resource
-  - blog: blog for futter technolgy tech
+  - dart: about dart lang syntax study resource
+  - blog: blog for flutter technology tech
   - video: flutter study videos
   - tool: useful tools for develop flutter app
   - open source project: introduce nice projects help us create apps
@@ -148,12 +148,12 @@ because of have no developer license, not offered( I am so sorry for it).
 
   
 # Nice tools for projects  
-- [dartPad](https://dartpad.dartlang.org/)  
-- [easy-mock](https://easy-mock.com/)  
-- [jsonToDart](https://javiercbk.github.io/json_to_dart/)  
+- [dart pad](https://dartpad.dartlang.org/)  
+- [easy mock](https://easy-mock.com/)  
+- [json to dart](https://javiercbk.github.io/json_to_dart/)  
 - [dio](https://github.com/flutterchina/dio)  
-- [tinypng](https://tinypng.com/)  
-- [josnplaceholder](https://jsonplaceholder.typicode.com/guide.html)
+- [tiny png](https://tinypng.com/)  
+- [json place holder](https://jsonplaceholder.typicode.com/guide.html)
 
 # License
 ```
