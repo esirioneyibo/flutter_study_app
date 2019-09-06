@@ -48,8 +48,8 @@ jobs:
             - libstdc++6
             - fonts-droid
       before_script:
-        - openssl aes-256-cbc -K $encrypted_faf484425141_key -iv $encrypted_faf484425141_iv -in key.properties.enc -out android/key.properties -d
-        - openssl aes-256-cbc -K $encrypted_a1a476bece9a_key -iv $encrypted_a1a476bece9a_iv -in xiaomo.jks.enc -out android/app/xiaomo.jks -d
+        - openssl aes-256-cbc -K $encrypted_faf484425141_key -iv $encrypted_faf484425141_iv -in key.properties -out android/key.properties -d
+        - openssl aes-256-cbc -K $encrypted_a1a476bece9a_key -iv $encrypted_a1a476bece9a_iv -in key.jks.enc -out android/app/key.jks -d
         - git clone https://github.com/flutter/flutter.git -b stable --depth 1
       script:
         - "./flutter/bin/flutter upgrade"
