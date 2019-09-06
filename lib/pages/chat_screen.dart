@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
+import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/post_vo.dart';
 
@@ -9,8 +10,19 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          MyAppBar(title: MyLocalizations.of(context).chat),
+      appBar: MyAppBar(
+          title: MyLocalizations.of(context).chat),
+      floatingActionButton: Container(
+        height: 40,
+        width: 40,
+        child: FloatingActionButton(
+            tooltip: '发布帖子',
+            child: Icon(Icons.add),
+            onPressed: () {
+              NavigatorUtil.pushWithAnim(context,
+                  NewChatScreen(), AnimType.Slider);
+            }),
+      ),
       body: Container(
         color: Colors.grey[50],
         child: ListView.builder(
@@ -46,7 +58,8 @@ class ChatScreen extends StatelessWidget {
                             child: Text(
                               posts[index].content,
                               maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
+                              overflow:
+                                  TextOverflow.ellipsis,
                             ))
                       ],
                     ),
