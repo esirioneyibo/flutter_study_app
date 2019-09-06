@@ -1,20 +1,31 @@
 
-# flutter study app  
-this project is build with flutter 1.7.8, an useful app for study flutter. it offered a lot of 
-useful tools for us.
+# Flutter study app  
+:rocket: this project is build with flutter 1.7.8, an useful app(android and ios) for study flutter. it offered a lot of useful tools for us.
 
-# status
+# Status
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
-[![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)  
+[![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)
+[![ios app](https://img.shields.io/badge/ios-app-brightgreen)](https://houko.github.io/flutter-study-app/)
+[![android app](https://img.shields.io/badge/android-app-green)](https://houko.github.io/flutter-study-app/)  
 
 # Quick show
+:rocket:
 there will put a gif or video about this app while app developed
 
 
 
 # Preview
+:rocket:
 there will put some screen shots about this app while app developed
 
+# Download  
+
+- :rocket: android      
+if you want to download newest version, please use browser and input [fir.im/xiaomo](https://fir.im/xiaomo) or swap the qr code download v1.0.0
+![](assets/screen/android_download.png)
+
+- :rocket: ios      
+because of have no developer license, not offered( I am so sorry for it).
 
 # directory The project directory structure is as follows:  
 ```  
@@ -62,7 +73,7 @@ there will put some screen shots about this app while app developed
   
   
 # About directory  
-  
+
 | folder | content |  
 |--|--|  
 |  components| project components |  
@@ -76,7 +87,7 @@ there will put some screen shots about this app while app developed
 ![](assets/screen/folder%20tree.png)  
 
 # Feature
-- index
+- :rocket: index
   - plugins: popular plugins for flutter
   - dart: about dartlang syntax study resource
   - blog: blog for futter technolgy tech
@@ -87,7 +98,7 @@ there will put some screen shots about this app while app developed
   - game engine: game engine with flutter 
   - community: flutter community
   - other: other
-- study
+- :rocket: study
 	- day1
 	- day2
 	- day3
@@ -118,17 +129,17 @@ there will put some screen shots about this app while app developed
 	- day28
 	- day29
 	- day30
-- chat
+- :rocket: chat
 	- chat list : users disucss flutter technology's list
 	- add new post: user can create a new post 
 	- post detail: post content with comment list
 	- like post: if you like it ,you can click the like button
-- tools
+- :rocket: tools
 	- study tools: tools for study
 	- life tools: tools for life
 	- media tools: tools for media
 	- programmer tool: tools for developing
-- drawer
+- :rocket: drawer
 	- account : register and login
 	- theme: we can change our app theme 
 	- device info: info about our device
