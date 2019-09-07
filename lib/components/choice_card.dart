@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/random_util.dart';

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/pages/practise/day10_screen.dart';
 import 'package:flutter_study_app/pages/practise/day11_screen.dart';

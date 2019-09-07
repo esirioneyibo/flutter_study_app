@@ -137,7 +137,7 @@ DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - Flutter (from `.symlinks/flutter/ios-release`)
+  - Flutter (from `.symlinks/flutter/ios`)
   - flutter_twitter_login (from `.symlinks/plugins/flutter_twitter_login/ios`)
   - fluwx (from `.symlinks/plugins/fluwx/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
@@ -185,7 +185,7 @@ EXTERNAL SOURCES:
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios-release"
+    :path: ".symlinks/flutter/ios"
   flutter_twitter_login:
     :path: ".symlinks/plugins/flutter_twitter_login/ios"
   fluwx:

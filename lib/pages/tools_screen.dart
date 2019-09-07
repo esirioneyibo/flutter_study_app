@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/choice_card.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "blog" : MessageLookupByLibrary.simpleMessage("博客"),
     "changeLanguage" : MessageLookupByLibrary.simpleMessage("语言切换"),
     "chat" : MessageLookupByLibrary.simpleMessage("圈子"),
+    "chatContent" : MessageLookupByLibrary.simpleMessage("帖子内容"),
     "clickLogin" : MessageLookupByLibrary.simpleMessage("点击登录"),
     "community" : MessageLookupByLibrary.simpleMessage("社区"),
     "confirmExitLogin" : MessageLookupByLibrary.simpleMessage("确定退出登陆吗"),
@@ -47,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mediaTools" : MessageLookupByLibrary.simpleMessage("媒体类"),
     "moveToLogin" : MessageLookupByLibrary.simpleMessage("己有账号?去登录"),
     "moveToRegister" : MessageLookupByLibrary.simpleMessage("注册账号"),
+    "newChat" : MessageLookupByLibrary.simpleMessage("发布帖子"),
     "openSource" : MessageLookupByLibrary.simpleMessage("开源项目"),
     "other" : MessageLookupByLibrary.simpleMessage("其他"),
     "password" : MessageLookupByLibrary.simpleMessage("密码"),
@@ -60,7 +62,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "unknownError" : MessageLookupByLibrary.simpleMessage("未知错误"),
     "validateEmailContent" : MessageLookupByLibrary.simpleMessage("请到您的邮箱查看并激活账号"),
     "validateEmailTitle" : MessageLookupByLibrary.simpleMessage("请验证您的邮箱"),
-    "video" : MessageLookupByLibrary.simpleMessage("视频"),
-    "returnButton" : MessageLookupByLibrary.simpleMessage("返回"),
+    "video" : MessageLookupByLibrary.simpleMessage("视频")
   };
 }
