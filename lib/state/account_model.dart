@@ -10,8 +10,12 @@ class AccountModel extends Model {
 
   get formType => _formType;
 
-  changeType(FormType type) {
+  set formType(type) {
     _formType = type;
+  }
+
+  changeType(FormType type) {
+    formType = type;
     notifyListeners();
   }
 }
