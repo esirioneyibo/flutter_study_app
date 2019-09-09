@@ -27,7 +27,7 @@ class HomeScreenState extends State<HomeScreen>
     // 顶部tab切换
     var topBar = TabBar(
       indicatorWeight: 0.5,
-      isScrollable: true,
+//      isScrollable: true,
       unselectedLabelColor: topNavigatorUnSelectedColor,
       indicatorColor: topNavigatorSelectedColor,
       indicatorSize: TabBarIndicatorSize.tab,

@@ -28,8 +28,9 @@ class MainApp extends StatelessWidget {
       },
 //      locale: Locale("en","US"),
       localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
         MyLocalizationsDelegate()
       ],
       supportedLocales: [

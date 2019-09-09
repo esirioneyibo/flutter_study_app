@@ -64,7 +64,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
           var value = (details.velocity.pixelsPerSecond.dx
               .toStringAsFixed(1));
           print(value);
-          if(double.parse(value) < -10){
+          if(double.parse(value) > 500 ){
             Navigator.of(context).pop();
           }
         },

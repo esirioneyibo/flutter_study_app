@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openSource": "开源项目",
+  "openSource": "项目",
   "@openSource": {
     "description": "顶部导航 开源项目",
     "type": "text",
@@ -251,10 +251,22 @@
        "type": "text",
        "placeholders": {}
      },
-   "appName": "flutter学习",
-   "@deviceInfo": {
-     "description": "app name",
-     "type": "text",
-     "placeholders": {}
-   }
+        "appName": "flutter学习",
+        "@appName": {
+          "description": "flutter学习",
+          "type": "text",
+          "placeholders": {}
+        },
+        "newChat": "发布帖子",
+        "@newChat": {
+          "description": "发布帖子",
+          "type": "text",
+          "placeholders": {}
+        },
+        "chatContent": "帖子内容",
+        "@chatContent": {
+          "description": "帖子内容",
+          "type": "text",
+          "placeholders": {}
+        }
 }
