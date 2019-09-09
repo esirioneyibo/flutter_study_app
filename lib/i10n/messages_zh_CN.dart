@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "moveToLogin" : MessageLookupByLibrary.simpleMessage("己有账号?去登录"),
     "moveToRegister" : MessageLookupByLibrary.simpleMessage("注册账号"),
     "newChat" : MessageLookupByLibrary.simpleMessage("发布帖子"),
-    "openSource" : MessageLookupByLibrary.simpleMessage("开源项目"),
+    "openSource" : MessageLookupByLibrary.simpleMessage("项目"),
     "other" : MessageLookupByLibrary.simpleMessage("其他"),
     "password" : MessageLookupByLibrary.simpleMessage("密码"),
     "passwordError" : MessageLookupByLibrary.simpleMessage("密码错误，请检查后再试"),

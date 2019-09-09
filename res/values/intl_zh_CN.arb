@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openSource": "开源项目",
+  "openSource": "项目",
   "@openSource": {
     "description": "顶部导航 开源项目",
     "type": "text",
