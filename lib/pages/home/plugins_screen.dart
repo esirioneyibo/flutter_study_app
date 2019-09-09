@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
-import 'package:flutter_study_app/vo/blog_vo.dart';
+import 'package:flutter_study_app/vo/plugins_vo.dart';
 
 class PluginsScreen extends StatelessWidget {
   @override
@@ -10,8 +10,8 @@ class PluginsScreen extends StatelessWidget {
           crossAxisCount:1,
           childAspectRatio: 5 / 2,
           mainAxisSpacing: 2,
-          children: List.generate(blogs.length, (index) {
-            BlogVo blog = blogs[index];
+          children: List.generate(plugins.length, (index) {
+            PluginVo blog = plugins[index];
             return InkWell(
               child: Card(
                 elevation: 10,

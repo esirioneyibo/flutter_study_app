@@ -19,7 +19,7 @@ class PluginVo {
   }
 }
 
-final List<PluginVo> videos = [
+final List<PluginVo> plugins = [
   PluginVo(
       title: 'battery',
       desc: 'flutter学习专题，一套代码开发多端应用,助你快速掌握flutter开发。',
