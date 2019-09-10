@@ -21,6 +21,7 @@ import 'package:flutter_study_app/pages/tools/study/japanese_convert_screen.dart
 import 'package:flutter_study_app/pages/tools/study/todolist_screen.dart';
 import 'package:flutter_study_app/pages/tools/study/tomato_click_screen.dart';
 import 'package:flutter_study_app/pages/tools/study/wiki_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Choice {
   final String title;
@@ -31,36 +32,38 @@ class Choice {
 }
 
 // 学习类
-final List<Choice> studyTools = <Choice>[
-  Choice(
-      title: '代办事项',
-      icon: Icons.format_list_numbered_rtl,
-      screen: TodoListScreen()),
-  Choice(
-      title: '番茄时间',
-      icon: Icons.access_time,
-      screen: TomatoClockScreen()),
-  Choice(
-      title: '小决定',
-      icon: Icons.settings_input_svideo,
-      screen: Day1Screen()),
-  Choice(
-      title: '翻译',
-      icon: Icons.g_translate,
-      screen: TodoListScreen()),
-  Choice(
-      title: '今日目标',
-      icon: Icons.sentiment_very_satisfied,
-      screen: Day1Screen()),
-  Choice(
-      title: '维基百科',
-      icon: Icons.monetization_on,
-      screen: WikiScreen()),
-  Choice(
-      title: '日语转换',
-      icon: Icons.monetization_on,
-      screen: JapaneseConvertScreen()),
-];
+List<Choice> getStudyTools() {
+  return [
+    Choice(
+        title: '代办事项',
+        icon: Icons.format_list_numbered_rtl,
+        screen: TodoListScreen()),
+    Choice(
+        title: '番茄时间',
+        icon: Icons.access_time,
+        screen: TomatoClockScreen()),
+    Choice(
+        title: '小决定',
+        icon: Icons.settings_input_svideo,
+        screen: Day1Screen()),
+    Choice(
+        title: '翻译',
+        icon: Icons.g_translate,
+        screen: TodoListScreen()),
+    Choice(
+        title: '今日目标',
+        icon: Icons.sentiment_very_satisfied,
+        screen: Day1Screen()),
+    Choice(
+        title: '维基百科',
+        icon: FontAwesomeIcons.wikipediaW,
+        screen: WikiScreen()),
+    Choice(
+        title: '日语转换',
+        icon: Icons.monetization_on,
+        screen: JapaneseConvertScreen()),
+  ];
+}
 
 final List<Choice> lifeTools = <Choice>[
   Choice(

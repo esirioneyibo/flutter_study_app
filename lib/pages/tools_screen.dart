@@ -8,13 +8,14 @@ class ToolsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     /// 工具列表
 
+    var tools = getStudyTools();
     final studySection = GridView.count(
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(studyTools.length, (index) {
+      children: List.generate(tools.length, (index) {
         return Center(
-          child: ChoiceCard(choice: studyTools[index]),
+          child: ChoiceCard(choice: tools[index]),
         );
       }),
     );

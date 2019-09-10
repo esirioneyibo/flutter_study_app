@@ -46,14 +46,6 @@ class LeftDrawer extends StatelessWidget {
               context, RouterConfig.deviceInfo);
         },
       ),
-      ListTile(
-        leading: Icon(Icons.near_me),
-        title:
-            Text(MyLocalizations.of(context).aboutSoftware),
-        onTap: () {
-          Navigator.pushNamed(context, RouterConfig.about);
-        },
-      ),
       Visibility(
         visible: currentUser != null,
         child: ListTile(
