@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/choice_card.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/vo/choice_vo.dart';
 
@@ -13,11 +12,9 @@ class ToolsScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(studyTools.length,
-          (index) {
+      children: List.generate(studyTools.length, (index) {
         return Center(
-          child: ChoiceCard(
-              choice: studyTools[index]),
+          child: ChoiceCard(choice: studyTools[index]),
         );
       }),
     );
@@ -26,11 +23,9 @@ class ToolsScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(lifeTools.length,
-          (index) {
+      children: List.generate(lifeTools.length, (index) {
         return Center(
-          child: ChoiceCard(
-              choice: lifeTools[index]),
+          child: ChoiceCard(choice: lifeTools[index]),
         );
       }),
     );
@@ -39,11 +34,9 @@ class ToolsScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(mediaTools.length,
-          (index) {
+      children: List.generate(mediaTools.length, (index) {
         return Center(
-          child: ChoiceCard(
-              choice: mediaTools[index]),
+          child: ChoiceCard(choice: mediaTools[index]),
         );
       }),
     );
@@ -52,11 +45,9 @@ class ToolsScreen extends StatelessWidget {
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: List.generate(programTools.length,
-          (index) {
+      children: List.generate(programTools.length, (index) {
         return Center(
-          child: ChoiceCard(
-              choice: programTools[index]),
+          child: ChoiceCard(choice: programTools[index]),
         );
       }),
     );
@@ -66,13 +57,11 @@ class ToolsScreen extends StatelessWidget {
         fontSize: 24,
         fontWeight: FontWeight.bold);
 
-    final titlePadding =
-        EdgeInsets.fromLTRB(10, 20, 5, 0);
+    final titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
 
     return Scaffold(
-      appBar: MyAppBar(
-          title:
-              MyLocalizations.of(context).tool),
+      appBar: AppBar(
+          title: Text(MyLocalizations.of(context).tool)),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -80,8 +69,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context)
-                    .studyTools,
+                MyLocalizations.of(context).studyTools,
                 style: textStyle,
               ),
             ),
@@ -92,8 +80,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context)
-                    .lifeTools,
+                MyLocalizations.of(context).lifeTools,
                 style: textStyle,
               ),
             ),
@@ -104,8 +91,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context)
-                    .mediaTools,
+                MyLocalizations.of(context).mediaTools,
                 style: textStyle,
               ),
             ),
@@ -116,8 +102,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context)
-                    .developTools,
+                MyLocalizations.of(context).developTools,
                 style: textStyle,
               ),
             ),

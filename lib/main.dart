@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
       routes: {
         RouterConfig.index: (context) => MyApp(),
         RouterConfig.account: (context) => AccountScreen(),
-        RouterConfig.about: (context) => AboutScreen(),
+        RouterConfig.about: (context) => AboutAppScreen(),
         RouterConfig.settings: (context) => SettingScreen(),
         RouterConfig.language: (context) =>
             LanguageScreen(),

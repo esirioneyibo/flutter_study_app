@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
@@ -10,8 +9,8 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(
-          title: MyLocalizations.of(context).chat),
+      appBar: AppBar(
+          title: Text(MyLocalizations.of(context).chat)),
       floatingActionButton: Container(
         height: 40,
         width: 40,
