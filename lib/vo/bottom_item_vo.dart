@@ -61,16 +61,15 @@ List<TabItem> getTopItems(BuildContext context) {
         index: 2,
         tab: Tab(text: MyLocalizations.of(context).blog),
         screen: BlogScreen()),
-
     TabItem(
         index: 3,
-        tab: Tab(text: MyLocalizations.of(context).tool),
-        screen: DevelopToolsScreen()),
-    TabItem(
-        index: 4,
         tab: Tab(
             text: MyLocalizations.of(context).openSource),
         screen: ProjectsScreen()),
+//    TabItem(
+//        index: 4,
+//        tab: Tab(text: MyLocalizations.of(context).tool),
+//        screen: DevelopToolsScreen()),
 //    TabItem(
 //        index: 5,
 //        tab: Tab(text: MyLocalizations.of(context).dart),

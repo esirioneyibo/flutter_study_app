@@ -7,7 +7,7 @@ class PluginsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: GridView.count(
-          crossAxisCount:1,
+          crossAxisCount:2,
           childAspectRatio: 5 / 2,
           mainAxisSpacing: 2,
           children: List.generate(plugins.length, (index) {
@@ -34,6 +34,11 @@ class PluginsScreen extends StatelessWidget {
                             color: Colors.black, fontSize: 12),
                       ),
                     ),
+                    Divider(),
+                    Column(children: <Widget>[
+                      Text('jsonToDart'),
+                      Text('json转dart实体类'),
+                    ],)
                   ],
                 ),
               ),
