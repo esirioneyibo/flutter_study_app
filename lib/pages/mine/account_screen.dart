@@ -8,6 +8,7 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
 import 'package:flutter_study_app/state/account_model.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// login and register
@@ -64,16 +65,21 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ReturnBar(_formType == FormType.LOGIN
-          ? MyLocalizations.of(context).login
-          : MyLocalizations.of(context).register),
-      body: Container(
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: buildInputs() + buildSubmitButtons(),
+    return GestureDetector(
+      onHorizontalDragEnd: (DragEndDetails details) {
+        NavigatorUtil.back(context, details);
+      },
+      child: Scaffold(
+        appBar: ReturnBar(_formType == FormType.LOGIN
+            ? MyLocalizations.of(context).login
+            : MyLocalizations.of(context).register),
+        body: Container(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: buildInputs() + buildSubmitButtons(),
+            ),
           ),
         ),
       ),

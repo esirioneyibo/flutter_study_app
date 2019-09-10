@@ -15,6 +15,16 @@ class NavigatorUtil {
         MaterialPageRoute(builder: (context) => route));
   }
 
+  static void back(
+      BuildContext context, DragEndDetails details) {
+    var value = (details.velocity.pixelsPerSecond.dx
+        .toStringAsFixed(1));
+    print(value);
+    if (double.parse(value) > 500) {
+      Navigator.of(context).pop();
+    }
+  }
+
   static void pushWithAnim(
       BuildContext context, route, AnimType animType,
       {secondPage}) {

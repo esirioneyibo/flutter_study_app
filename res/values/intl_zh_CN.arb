@@ -6,7 +6,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "study": "资源",
+  "study": "练习",
   "@study": {
     "description": "底部导航资源",
     "type": "text",

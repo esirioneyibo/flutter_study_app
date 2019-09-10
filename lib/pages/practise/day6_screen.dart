@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
+import 'package:flutter_study_app/utils/navigator_util.dart';
 
 class Day6Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ReturnBar('第06天'),
-      body: Center(child: Text('第06天')),
+    return GestureDetector(
+      onHorizontalDragEnd: (DragEndDetails details) {
+        NavigatorUtil.back(context, details);
+      },
+      child: Scaffold(
+        appBar: ReturnBar('第6天'),
+        body: Center(child: Text('第6天')),
+      ),
     );
   }
 }
