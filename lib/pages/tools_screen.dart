@@ -20,6 +20,7 @@ class ToolsScreen extends StatelessWidget {
       }),
     );
 
+    var lifeTools = getLifeTools();
     final lifeSection = GridView.count(
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
@@ -31,6 +32,7 @@ class ToolsScreen extends StatelessWidget {
       }),
     );
 
+    var mediaTools = getMediaTools();
     final mediaSection = GridView.count(
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
@@ -42,6 +44,7 @@ class ToolsScreen extends StatelessWidget {
       }),
     );
 
+    var programTools = getProgramTools();
     final programSection = GridView.count(
       crossAxisCount: 4,
       physics: NeverScrollableScrollPhysics(),
