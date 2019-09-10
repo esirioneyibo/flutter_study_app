@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "plugin" : MessageLookupByLibrary.simpleMessage("插件"),
     "register" : MessageLookupByLibrary.simpleMessage("注册"),
     "settings" : MessageLookupByLibrary.simpleMessage("设置中心"),
-    "study" : MessageLookupByLibrary.simpleMessage("资源"),
+    "study" : MessageLookupByLibrary.simpleMessage("练习"),
     "studyTools" : MessageLookupByLibrary.simpleMessage("学习类"),
     "tool" : MessageLookupByLibrary.simpleMessage("工具"),
     "unknownError" : MessageLookupByLibrary.simpleMessage("未知错误"),

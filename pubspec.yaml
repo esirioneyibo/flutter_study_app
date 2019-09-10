@@ -25,7 +25,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application. Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons:
   video_player:
-  fluwx:
   google_sign_in:
   device_info:
   sqflite:

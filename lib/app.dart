@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
-import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/drawer_screen.dart';
@@ -10,7 +7,6 @@ import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 
 import 'theme.dart';
 
@@ -33,15 +29,6 @@ class _MyAppState extends State<MyApp> {
         : navigatorUnSelectedColor;
   }
 
-  _initFluwx() async {
-    await fluwx.register(
-        appId: AppConfig.weChatAppId,
-        doOnAndroid: Platform.isAndroid,
-        doOnIOS: Platform.isIOS,
-        enableMTA: false);
-    var result = await fluwx.isWeChatInstalled();
-    print("is installed $result");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +73,11 @@ class _MyAppState extends State<MyApp> {
       ..add(PractiseScreen())
       ..add(ChatScreen())
       ..add(ToolsScreen());
-//    _initFluwx();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    fluwx.dispose();
   }
 }

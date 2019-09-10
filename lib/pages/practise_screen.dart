@@ -25,7 +25,8 @@ class PractiseScreen extends StatefulWidget {
   PractiseScreen({Key key}) : super(key: key);
 
   @override
-  _PractiseScreenState createState() => _PractiseScreenState();
+  _PractiseScreenState createState() =>
+      _PractiseScreenState();
 }
 
 class _PractiseScreenState extends State<PractiseScreen> {
@@ -54,18 +55,18 @@ class _PractiseScreenState extends State<PractiseScreen> {
       },
       children: _data.map<ExpansionPanel>((Item item) {
         return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
+          headerBuilder:
+              (BuildContext context, bool isExpanded) {
             return ListTile(
               title: Text(item.headerValue),
             );
           },
           body: ListTile(
               title: Text(item.expandedValue),
-              subtitle: Text(' To delete this panel, tap the trash can icon'),
-              trailing: Icon(Icons.delete),
               onTap: () {
                 setState(() {
-                  _data.removeWhere((currentItem) => item == currentItem);
+                  _data.removeWhere(
+                      (currentItem) => item == currentItem);
                 });
               }),
           isExpanded: item.isExpanded,

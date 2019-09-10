@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/post_vo.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -61,12 +62,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
       ),
       body: GestureDetector(
         onHorizontalDragEnd: (DragEndDetails details) {
-          var value = (details.velocity.pixelsPerSecond.dx
-              .toStringAsFixed(1));
-          print(value);
-          if(double.parse(value) > 500 ){
-            Navigator.of(context).pop();
-          }
+          NavigatorUtil.back(context, details);
         },
         child: ListView(
           shrinkWrap: true,
