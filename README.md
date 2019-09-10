@@ -52,7 +52,6 @@ because of have no developer license, not offered( I am so sorry for it).
   | package | function |    
   |--|--|    
   |  video_player| play video |
-  |  fluwx| wechat sdk|
   |  google_sign_in| google sign in |
   |  sqflite| sqlLite database |
   |  cached_network_image| cache the image when network cut |

@@ -8,7 +8,6 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
 import 'package:flutter_study_app/state/account_model.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// login and register
@@ -196,27 +195,6 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void dispose() {
     super.dispose();
-    fluwx.dispose();
-  }
-
-  _listWechat() {
-    fluwx.onAuthByQRCodeFinished.listen((data) {
-      setState(() {
-        _status = "errorCode=>${data.errorCode}\nauthCode=>${data.authCode}";
-      });
-    });
-    fluwx.onAuthGotQRCode.listen((image) {
-      setState(() {
-        _image = image;
-        Navigator.pop(context);
-      });
-    });
-
-    fluwx.onQRCodeScanned.listen((scanned) {
-      setState(() {
-        _status = "scanned";
-      });
-    });
   }
 
   /// 构建提交按钮
