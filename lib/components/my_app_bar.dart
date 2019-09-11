@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
@@ -7,6 +7,8 @@ class MyAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
   final tabBar;
+
+  final appConfig = ConfigFactory.appConfig();
 
   MyAppBar({this.title, this.tabBar});
 
@@ -29,5 +31,5 @@ class MyAppBar extends StatelessWidget
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(AppConfig.appBarHeight);
+      Size.fromHeight(appConfig.appBarHeight);
 }

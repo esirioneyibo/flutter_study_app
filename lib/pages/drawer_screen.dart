@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 
 class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    RouterConfig router = ConfigFactory.router();
+    AppConfig appConfig = ConfigFactory.appConfig();
     void exitLogin() {
       currentUser = null;
       // 连退2级，从dialog退到drawer再退到主页
@@ -26,24 +29,21 @@ class LeftDrawer extends StatelessWidget {
         title: Text(
             MyLocalizations.of(context).changeLanguage),
         onTap: () {
-          Navigator.pushNamed(
-              context, RouterConfig.language);
+          Navigator.pushNamed(context, router.language);
         },
       ),
       ListTile(
         leading: Icon(Icons.settings),
         title: Text(MyLocalizations.of(context).settings),
         onTap: () {
-          Navigator.pushNamed(
-              context, RouterConfig.settings);
+          Navigator.pushNamed(context, router.settings);
         },
       ),
       ListTile(
         leading: Icon(Icons.phone_iphone),
         title: Text(MyLocalizations.of(context).deviceInfo),
         onTap: () {
-          Navigator.pushNamed(
-              context, RouterConfig.deviceInfo);
+          Navigator.pushNamed(context, router.deviceInfo);
         },
       ),
       Visibility(
@@ -72,8 +72,7 @@ class LeftDrawer extends StatelessWidget {
           currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
         if (currentUser == null) {
-          Navigator.pushNamed(
-              context, RouterConfig.account);
+          Navigator.pushNamed(context, router.account);
         } else {
           DialogUtil.showAlertDialog(
               context,
@@ -84,7 +83,7 @@ class LeftDrawer extends StatelessWidget {
       currentAccountPicture: CircleAvatar(
         backgroundImage: currentUser == null
             ? AssetImage(
-                AppConfig.default_avatar,
+                appConfig.defaultAvatar,
               )
             : NetworkImage(
                 currentUser.photoUrl,
@@ -96,7 +95,7 @@ class LeftDrawer extends StatelessWidget {
 //                  Colors.blue[400].withAlpha(60),
 //                  BlendMode.hardLight),
               fit: BoxFit.cover,
-              image: AssetImage(AppConfig.accountBg))),
+              image: AssetImage(appConfig.accountBg))),
     );
 
     return Drawer(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:flutter_study_app/theme.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +14,7 @@ class HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    HomeStyle homeStyle = ConfigFactory.homeStyle();
 
     var tabs = List<Tab>();
     var tabContents = List<Widget>();
@@ -26,17 +27,20 @@ class HomeScreenState extends State<HomeScreen>
 
     // 顶部tab切换
     var topBar = TabBar(
-      indicatorWeight: 0.5,
-      isScrollable: tabs.length > 5 ? true : false,
-      unselectedLabelColor: topNavigatorUnSelectedColor,
-      indicatorColor: topNavigatorSelectedColor,
+      indicatorWeight: homeStyle.indicatorWeight,
+      isScrollable: tabs.length > homeStyle.scrollCount
+          ? true
+          : false,
+      unselectedLabelColor: homeStyle.unSelectedColor,
+      indicatorColor: homeStyle.selectedColor,
       indicatorSize: TabBarIndicatorSize.tab,
-      labelColor: Colors.pinkAccent,
+      labelColor: homeStyle.labelColor,
       indicator: ShapeDecoration(
           shadows: [],
           shape: Border(
               bottom: BorderSide(
-                  width: 3, color: Colors.pinkAccent))),
+                  width: homeStyle.borderSize,
+                  color: homeStyle.borderColor))),
       tabs: tabs,
     );
     return DefaultTabController(
@@ -53,4 +57,28 @@ class HomeScreenState extends State<HomeScreen>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+// 首页配置
+class HomeStyle {
+  // 指示器高度
+  double indicatorWeight = 0.5;
+
+  // 顶部导航大于这个数量就可以滑动
+  int scrollCount = 5;
+
+  // 顶部导航选中后的颜色
+  Color selectedColor = Colors.pink;
+
+  // 顶部导航未选中的颜色
+  Color unSelectedColor = Colors.white70;
+
+  // 标签颜色
+  Color labelColor = Colors.pinkAccent;
+
+  // 底部边框大小
+  double borderSize = 3;
+
+  // 底部边框颜色
+  Color borderColor = Colors.pink;
 }

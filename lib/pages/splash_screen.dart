@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
 
 import '../app.dart';
 import '../config.dart';
@@ -20,10 +21,11 @@ class _SplashState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    AppConfig appConfig = ConfigFactory.appConfig();
     return FadeTransition(
         opacity: _animation,
         child: Image.asset(
-          AppConfig.splash,
+          appConfig.splash,
           scale: 2.0,
           fit: BoxFit.cover,
         ));
