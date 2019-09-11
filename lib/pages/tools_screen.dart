@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
@@ -10,10 +9,10 @@ class ToolsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 工具列表
-
+    ToolsStyle style = ConfigFactory.toolsStyle();
     var tools = getStudyTools();
     final studySection = GridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: style.gridCount,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(tools.length, (index) {
@@ -25,7 +24,7 @@ class ToolsScreen extends StatelessWidget {
 
     var lifeTools = getLifeTools();
     final lifeSection = GridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: style.gridCount,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(lifeTools.length, (index) {
@@ -37,7 +36,7 @@ class ToolsScreen extends StatelessWidget {
 
     var mediaTools = getMediaTools();
     final mediaSection = GridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: style.gridCount,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(mediaTools.length, (index) {
@@ -49,7 +48,7 @@ class ToolsScreen extends StatelessWidget {
 
     var programTools = getProgramTools();
     final programSection = GridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: style.gridCount,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: List.generate(programTools.length, (index) {
@@ -59,12 +58,10 @@ class ToolsScreen extends StatelessWidget {
       }),
     );
 
-    const textStyle = TextStyle(
-        color: Colors.blue,
-        fontSize: 24,
-        fontWeight: FontWeight.bold);
-
-    final titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
+    TextStyle textStyle = TextStyle(
+        color: style.categoryTitleColor,
+        fontSize: style.categoryTitleSize,
+        fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +69,7 @@ class ToolsScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: titlePadding,
+            padding: style.titlePadding,
             child: Container(
               width: 10,
               child: Text(
@@ -83,7 +80,7 @@ class ToolsScreen extends StatelessWidget {
           ),
           studySection,
           Padding(
-            padding: titlePadding,
+            padding: style.titlePadding,
             child: Container(
               width: 10,
               child: Text(
@@ -94,7 +91,7 @@ class ToolsScreen extends StatelessWidget {
           ),
           lifeSection,
           Padding(
-            padding: titlePadding,
+            padding: style.titlePadding,
             child: Container(
               width: 10,
               child: Text(
@@ -105,9 +102,9 @@ class ToolsScreen extends StatelessWidget {
           ),
           mediaSection,
           Padding(
-            padding: titlePadding,
+            padding: style.titlePadding,
             child: Container(
-              width: 10,
+              width: style.categoryTitleContainerSize,
               child: Text(
                 MyLocalizations.of(context).developTools,
                 style: textStyle,
@@ -128,26 +125,27 @@ class ChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ToolsStyle toolStyle = ConfigFactory.toolsStyle();
-    final TextStyle textStyle =
-        TextStyle(fontSize: 15, color: Colors.black);
+    ToolsStyle style = ConfigFactory.toolsStyle();
+    final TextStyle textStyle = TextStyle(
+        fontSize: style.fontSize, color: style.fontColor);
 
     final TextStyle iconStyle = TextStyle(
-        fontSize: 15, color: RandomUtil.randomColor());
+        fontSize: style.gridIconSize,
+        color: style.iconColor);
     return Card(
-        color: Colors.white,
+        color: style.cardColor,
         child: Center(
             child: InkWell(
           onTap: () {
             NavigatorUtil.pushWithAnim(
-                context, choice.screen, AnimType.Slider);
+                context, choice.screen, style.animType);
           },
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Icon(choice.icon,
-                    size: toolStyle.choiceIconSize,
+                    size: style.choiceIconSize,
                     color: iconStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
@@ -156,5 +154,41 @@ class ChoiceCard extends StatelessWidget {
 }
 
 class ToolsStyle {
+  // 每个格子的大小
   double choiceIconSize = 30;
+
+  // 每行显示多少个格子
+  int gridCount = 4;
+
+  // 格子中的图片的大小
+  double gridIconSize = 15;
+
+  // 文字大小
+  double fontSize = 15;
+
+  // 文字颜色
+  Color fontColor = Colors.black;
+
+  // icon颜色
+  Color iconColor = RandomUtil.randomColor();
+
+  Color cardColor = Colors.white;
+
+  // 路由跳转动画
+  AnimType animType = AnimType.Slider;
+
+  // 分类大标题颜色
+  Color categoryTitleColor = Colors.blue;
+
+  // 分类大标题文字大小
+  double categoryTitleSize = 24;
+
+  // 大标题 font weight
+  FontWeight categoryTitleFontWeight = FontWeight.bold;
+
+  // 大标题距四周的内边距
+  var titlePadding = EdgeInsets.fromLTRB(10, 20, 5, 0);
+
+  // 分类大标题容器的大小
+  double categoryTitleContainerSize = 10;
 }

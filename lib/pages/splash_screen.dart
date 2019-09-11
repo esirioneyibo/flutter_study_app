@@ -18,10 +18,10 @@ class _SplashState extends State<SplashScreen>
 
   /// 动画
   Animation _animation;
+  AppConfig appConfig = ConfigFactory.appConfig();
 
   @override
   Widget build(BuildContext context) {
-    AppConfig appConfig = ConfigFactory.appConfig();
     return FadeTransition(
         opacity: _animation,
         child: Image.asset(
@@ -38,7 +38,8 @@ class _SplashState extends State<SplashScreen>
     // 初始化动画
     _animationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 2000));
+        duration:
+            Duration(milliseconds: appConfig.splashTime));
     _animation = Tween(begin: 0.0, end: 1.0)
         .animate(_animationController);
 

@@ -333,6 +333,11 @@ class MyLocalizations {
       desc: '帖子内容',
       locale: Intl.defaultLocale);
 
+  String get close => Intl.message('close',
+      name: 'close',
+      desc: '关闭',
+      locale: Intl.defaultLocale);
+
 // --------------------------------------语言转换方法-------------------------------------------------
 }
 

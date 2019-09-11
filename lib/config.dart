@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
 class RouterConfig {
 // route
   String account = '/account';
@@ -9,8 +12,17 @@ class RouterConfig {
 }
 
 class AppConfig {
+  // appBar的高度
   double appBarHeight = 48;
 
+  // 闪屏停留时间
+  int splashTime = 2000;
+
+  // 底部导航选中的颜色
+  Color navigatorSelectedColor = Colors.pink;
+
+  // 底部导航未选中的颜色
+  Color navigatorUnSelectedColor = Colors.black54;
 
   String avatar = 'assets/images/avatar.png';
   String defaultAvatar = 'assets/images/default_avatar.png';
@@ -30,3 +42,6 @@ class AppConfig {
 
   get weChatAppId => "wxd930ea5d5a258f4f";
 }
+
+FirebaseUser currentUser;
+bool theme;

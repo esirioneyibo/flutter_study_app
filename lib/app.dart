@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/drawer_screen.dart';
@@ -7,8 +9,6 @@ import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
-
-import 'theme.dart';
 
 ///
 /// 导航器是一个有状态的组件
@@ -23,12 +23,13 @@ class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0;
 
+  AppConfig style = ConfigFactory.appConfig();
+
   Color _itemColor(targetItem) {
     return _currentIndex == targetItem
-        ? navigatorSelectedColor
-        : navigatorUnSelectedColor;
+        ? style.navigatorSelectedColor
+        : style.navigatorUnSelectedColor;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +45,8 @@ class _MyAppState extends State<MyApp> {
     // 底部的4个tab
     var bottomNavigationBars = BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      unselectedItemColor: navigatorUnSelectedColor,
-      selectedItemColor: navigatorSelectedColor,
+      unselectedItemColor: style.navigatorUnSelectedColor,
+      selectedItemColor: style.navigatorSelectedColor,
       items: items.map((item) {
         return BottomNavigationBarItem(
             icon: Icon(item.icon),

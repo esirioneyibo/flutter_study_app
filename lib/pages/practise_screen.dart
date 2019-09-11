@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
+import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/practise_vo.dart';
 
@@ -17,7 +19,7 @@ class _PractiseScreenState extends State<PractiseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('每日一练'),
+        title: Text(MyLocalizations.of(context).study),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -28,13 +30,15 @@ class _PractiseScreenState extends State<PractiseScreen> {
   }
 
   Widget _buildPanel() {
+    PractiseStyle style = ConfigFactory.practiseStyle();
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
           _data[index].isExpanded = !isExpanded;
         });
       },
-      animationDuration: Duration(milliseconds: 1000),
+      animationDuration:
+          Duration(milliseconds: style.toggleSpeed),
       children: _data.map<ExpansionPanel>((PractiseVo vo) {
         return ExpansionPanel(
           headerBuilder:
@@ -44,8 +48,8 @@ class _PractiseScreenState extends State<PractiseScreen> {
                 vo.title,
                 style: TextStyle(
                   color: isExpanded
-                      ? Colors.pink
-                      : Colors.black,
+                      ? style.titleOpenedColor
+                      : style.titleClosedColor,
                 ),
               ),
             );
@@ -66,4 +70,15 @@ class _PractiseScreenState extends State<PractiseScreen> {
       }).toList(),
     );
   }
+}
+
+class PractiseStyle {
+  // 列表展开的速度 单位 毫秒
+  int toggleSpeed = 300;
+
+  // 关闭状态的标题颜色
+  Color titleClosedColor = Colors.black;
+
+  // 打开状态的标题颜色
+  Color titleOpenedColor = Colors.pink;
 }
