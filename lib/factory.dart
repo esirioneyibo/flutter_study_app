@@ -1,4 +1,6 @@
 import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
+import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
@@ -33,5 +35,15 @@ class ConfigFactory {
   // 每日一练主界面样式
   static PractiseStyle practiseStyle() {
     return PractiseStyle();
+  }
+
+  // 聊天详情样式
+  static ChatDetailStyle chatDetailStyle() {
+    return ChatDetailStyle();
+  }
+
+  // 发表帖子的样式
+  static NewChatStyle newChatStyle() {
+    return NewChatStyle();
   }
 }

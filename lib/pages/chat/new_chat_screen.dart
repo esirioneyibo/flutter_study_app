@@ -17,3 +17,8 @@ class NewChatScreen extends StatelessWidget {
     );
   }
 }
+
+
+class NewChatStyle{
+
+}

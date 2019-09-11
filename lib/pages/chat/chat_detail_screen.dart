@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/post_vo.dart';
@@ -32,12 +33,14 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ChatDetailStyle style = ConfigFactory.chatDetailStyle();
+
     return Scaffold(
       appBar: ReturnBar(
           MyLocalizations.of(context).chatContent),
       floatingActionButton: Container(
-        height: 40,
-        width: 40,
+        height: style.scrollButtonSize,
+        width: style.scrollButtonSize,
         child: FloatingActionButton(
             tooltip: isTop ? '到达底部' : '返回顶部',
             child: Icon(isTop
@@ -53,7 +56,8 @@ class ChatDetailState extends State<ChatDetailScreen> {
               _scrollController.animateTo(
                 pos,
                 curve: Curves.easeOut,
-                duration: const Duration(milliseconds: 500),
+                duration: Duration(
+                    milliseconds: style.scrollSpeed),
               );
               setState(() {
                 isTop = !isTop;
@@ -80,32 +84,42 @@ class ChatDetailState extends State<ChatDetailScreen> {
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.all(10),
-                            height: 60,
-                            width: 60,
+                            padding: EdgeInsets.all(
+                                style.avatarPaddingAll),
+                            height: style.avatarSize,
+                            width: style.avatarSize,
                             child: CircleAvatar(
                               backgroundImage:
                                   NetworkImage(post.icon),
                               backgroundColor: Colors.grey,
-                              radius: 60,
+                              radius: style.avatarRadius,
                             ), // 头像
                           ),
                           Container(
-                            height: 50,
+                            height:
+                                style.authorContainerHeight,
                             alignment: Alignment.centerLeft,
                             child: Column(
                               children: <Widget>[
                                 Text(
                                   post.author,
                                   style: TextStyle(
-                                      fontWeight:
-                                          FontWeight.w400,
-                                      fontFamily: '微软雅黑'),
+                                      fontSize: style
+                                          .authorFontSize,
+                                      color: style
+                                          .authorFontColor,
+                                      fontWeight: style
+                                          .authorFontWeight),
                                 ), // 作者
                                 Text(
                                   post.dateTime,
                                   style: TextStyle(
-                                      color: Colors.grey),
+                                      fontSize: style
+                                          .authorFontSize,
+                                      fontWeight: style
+                                          .authorFontWeight,
+                                      color: style
+                                          .authorFontColor),
                                 ), // 时间
                               ],
                             ),
@@ -115,31 +129,34 @@ class ChatDetailState extends State<ChatDetailScreen> {
                     ),
 
                     Container(
-                      height: 50,
-                      padding:
-                          EdgeInsets.fromLTRB(0, 0, 5, 20),
+                      height: style.badgeContainerHeight,
+                      padding: style.badgePadding,
                       alignment: Alignment.topRight,
                       child: Chip(
-                          backgroundColor: Colors.grey[200],
+                          backgroundColor:
+                              style.badgeBackgroundColor,
                           label: Text(
                             post.tag,
                             style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12),
+                                color: style.badgeColor,
+                                fontSize:
+                                    style.badgeFontSize),
                           )),
-                    ), // 右侧小表标签
+                    ), // 右侧小标签
                   ],
                 ),
                 //--------------------------------------------------------------
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
+                  padding:
+                      EdgeInsets.all(style.titlePaddingAll),
                   child: Text(post.title),
                 ),
                 // 标题
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(
+                      style.contentPaddingAll),
                   child: Text(post.content),
                 ),
                 // 内容
@@ -167,8 +184,9 @@ class ChatDetailState extends State<ChatDetailScreen> {
                                   FontAwesomeIcons.heart),
                               onPressed: () => {}),
                           alignment: Alignment.centerRight,
-                          padding:
-                              EdgeInsets.only(right: 10),
+                          padding: EdgeInsets.only(
+                              right: style
+                                  .likeButtonPaddingRight),
                         )
                       ],
                     ),
@@ -181,4 +199,57 @@ class ChatDetailState extends State<ChatDetailScreen> {
       ),
     );
   }
+}
+
+class ChatDetailStyle {
+  // 到底底部，到底顶部的按钮大小
+  double scrollButtonSize = 40;
+
+  // 到底底部和到达顶部的滑动速度 单位：毫秒
+  int scrollSpeed = 500;
+
+  // 头像大小
+  double avatarSize = 60;
+
+  // 头像圆角
+  double avatarRadius = 60;
+
+  // 头像的内边距
+  double avatarPaddingAll = 10;
+
+  // 作者容器的高度
+  double authorContainerHeight = 50;
+
+  // 作者的字体大小
+  double authorFontSize = 15;
+
+  // 作者的字体颜色
+  Color authorFontColor = Colors.black;
+
+  // 作者的font weight
+  FontWeight authorFontWeight = FontWeight.w300;
+
+  // 右侧小标签的高度
+  double badgeContainerHeight = 50;
+
+  // 小标签的内边距
+  var badgePadding = EdgeInsets.fromLTRB(0, 0, 5, 20);
+
+  // badge的背景颜色
+  Color badgeBackgroundColor = Colors.grey[200];
+
+  // badge的文字颜色
+  Color badgeColor = Colors.grey;
+
+  // 标签的文字大小
+  double badgeFontSize = 12;
+
+  // 标题的内边距
+  double titlePaddingAll = 10;
+
+  // 内容的内边距
+  double contentPaddingAll = 10;
+
+  // 评论点赞按钮距右的距离
+  double likeButtonPaddingRight = 10;
 }
