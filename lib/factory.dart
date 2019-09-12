@@ -7,6 +7,7 @@ import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
 import 'package:flutter_study_app/pages/home/video_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
+import 'package:flutter_study_app/pages/mine/account_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 
@@ -69,5 +70,10 @@ class ConfigFactory {
   // 首页开源项目tab样式
   static ProjectsStyle projectsStyle() {
     return ProjectsStyle();
+  }
+
+  // 账号页面样式
+  static AccountStyle accountStyle() {
+    return AccountStyle();
   }
 }
