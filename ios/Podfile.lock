@@ -221,7 +221,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_twitter_login: 1f670e60647cdf517ba20495e1b32046d9f22697
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_maps_flutter: 78a52114c898b42ea647919679a4c58b70abe876
