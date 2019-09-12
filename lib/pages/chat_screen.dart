@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
@@ -9,22 +9,23 @@ import 'package:flutter_study_app/vo/post_vo.dart';
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ChatStyle chatStyle = ConfigFactory.chatStyle();
     return Scaffold(
-      appBar: MyAppBar(
-          title: MyLocalizations.of(context).chat),
+      appBar: AppBar(
+          title: Text(MyLocalizations.of(context).chat)),
       floatingActionButton: Container(
-        height: 40,
-        width: 40,
+        height: chatStyle.newChatButtonSize,
+        width: chatStyle.newChatButtonSize,
         child: FloatingActionButton(
-            tooltip: '发布帖子',
-            child: Icon(Icons.add),
+            tooltip: MyLocalizations.of(context).newChat,
+            child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
               NavigatorUtil.pushWithAnim(context,
                   NewChatScreen(), AnimType.Slider);
             }),
       ),
       body: Container(
-        color: Colors.grey[50],
+        color: chatStyle.background,
         child: ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
@@ -35,9 +36,11 @@ class ChatScreen extends StatelessWidget {
                     AnimType.Slider),
                 child: Card(
                   child: Container(
-                    margin: EdgeInsets.only(bottom: 3),
-                    padding: EdgeInsets.all(15),
-                    color: Colors.white,
+                    margin: EdgeInsets.only(
+                        bottom: chatStyle.cardMarginBottom),
+                    padding: EdgeInsets.all(
+                        chatStyle.cardPaddingAll),
+                    color: chatStyle.cardColor,
                     child: Column(
                       children: <Widget>[
                         Row(
@@ -51,13 +54,15 @@ class ChatScreen extends StatelessWidget {
                                     index)),
                           ],
                         ),
+                        // 帖子内容
                         Container(
-                            padding:
-                                EdgeInsets.only(top: 15),
+                            padding: EdgeInsets.only(
+                                top: chatStyle
+                                    .chatContentPaddingTop),
                             alignment: Alignment.centerLeft,
                             child: Text(
                               posts[index].content,
-                              maxLines: 3,
+                              maxLines: chatStyle.maxLines,
                               overflow:
                                   TextOverflow.ellipsis,
                             ))
@@ -83,21 +88,24 @@ class LeftUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChatStyle style = ConfigFactory.chatStyle();
+
     return Row(
       children: <Widget>[
         Row(
           children: <Widget>[
             Image(
               image: NetworkImage(posts[index].icon),
-              width: 40,
-              height: 40,
+              width: style.avatarSize,
+              height: style.avatarSize,
             ),
             Column(
               children: <Widget>[
                 Text(posts[index].author),
                 Text(
                   posts[index].dateTime,
-                  style: TextStyle(color: Colors.grey),
+                  style:
+                      TextStyle(color: style.authorColor),
                 ),
               ],
             )
@@ -116,33 +124,99 @@ class RightCommentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChatStyle style = ConfigFactory.chatStyle();
     return Row(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.all(5),
-          padding: EdgeInsets.all(5),
-          color: Colors.grey,
+          margin: EdgeInsets.all(style.tagMarginAll),
+          padding: EdgeInsets.all(style.tagPaddingAll),
+          color: style.tagColor,
           child: Text(
             posts[index].tag,
-            style: TextStyle(fontSize: 10),
+            style: TextStyle(fontSize: style.tagSize),
           ),
         ),
         Container(
-          margin: EdgeInsets.all(5),
+          margin:
+              EdgeInsets.all(style.messageIconMarginAll),
           child: Icon(
             Icons.message,
-            color: Colors.grey,
-            size: 15,
+            color: style.messageIconColor,
+            size: style.messageIconSize,
           ),
         ),
         Container(
-          margin: EdgeInsets.all(5),
+          margin:
+              EdgeInsets.all(style.messageTextMarginAll),
           child: Text(
             posts[index].comments.length.toString(),
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(
+                fontSize: style.messageTextFontSize),
           ),
         )
       ],
     );
   }
+}
+
+class ChatStyle {
+  // 发布帖子的浮动按钮大小
+  double newChatButtonSize = 40;
+
+  // 聊天列表的背景颜色 卡片与卡片之间间隔漏出来的颜色
+  Color background = Colors.grey[50];
+
+  // 发布帖子的浮动按钮的图标
+  IconData newChatButtonIcon = Icons.add;
+
+  // 卡片居下的外边距
+  double cardMarginBottom = 5;
+
+  // 卡片四周的内边距
+  double cardPaddingAll = 15;
+
+  // 卡片的颜色
+  Color cardColor = Colors.white;
+
+  // 帖子内容距离顶部的内边距
+  double chatContentPaddingTop = 15;
+
+  // 内容显示的最大行数，多余的被切掉显示3个点 ...
+  int maxLines = 3;
+
+  // 发帖人的头像大小
+  double avatarSize = 40;
+
+  // 发帖人名字的颜色
+  Color authorColor = Colors.grey;
+
+  // 右侧badge的内边距
+  double tagMarginAll = 5;
+
+  // 右侧badge的外边距
+  double tagPaddingAll = 5;
+
+  // 标签的大小
+  double tagSize = 5;
+
+  // tag的颜色
+  Color tagColor = Colors.grey;
+
+  // 消息条数的颜色
+  Color messageIconColor = Colors.grey;
+
+  // 消息条数的大小
+  double messageIconSize = 15;
+
+  // 消息条数的外边距
+  double messageIconMarginAll = 5;
+
+  // 消息文本大小
+  double messageTextFontSize = 15;
+
+  // 消息文本颜色
+  Color messageTextColor = Colors.grey;
+
+  //消息文本外边距
+  double messageTextMarginAll = 5;
 }

@@ -44,7 +44,7 @@ dependencies:
     git: git://github.com/eudangeld/flutter_twitter_login.git
   uni_links:
   url_launcher:
-#  webview_flutter: ^0.3.13
+  webview_flutter:
 
 dev_dependencies:
   flutter_test:

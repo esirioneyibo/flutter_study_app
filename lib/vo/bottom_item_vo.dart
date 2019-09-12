@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/home/blog_screen.dart';
-import 'package:flutter_study_app/pages/home/deveop_tools_screen.dart';
 import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
 import 'package:flutter_study_app/pages/home/video_screen.dart';
@@ -31,7 +30,7 @@ getBottomItems(BuildContext context) {
     ),
     TabItem(
       index: 1,
-      icon: Icons.whatshot,
+      icon: Icons.ac_unit,
       title: MyLocalizations.of(context).study,
     ),
     TabItem(
@@ -61,16 +60,15 @@ List<TabItem> getTopItems(BuildContext context) {
         index: 2,
         tab: Tab(text: MyLocalizations.of(context).blog),
         screen: BlogScreen()),
-
     TabItem(
         index: 3,
-        tab: Tab(text: MyLocalizations.of(context).tool),
-        screen: DevelopToolsScreen()),
-    TabItem(
-        index: 4,
         tab: Tab(
             text: MyLocalizations.of(context).openSource),
         screen: ProjectsScreen()),
+//    TabItem(
+//        index: 4,
+//        tab: Tab(text: MyLocalizations.of(context).tool),
+//        screen: DevelopToolsScreen()),
 //    TabItem(
 //        index: 5,
 //        tab: Tab(text: MyLocalizations.of(context).dart),

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-07T17:17:48.899781",
+  "@@last_modified": "2019-09-12T18:18:05.341745",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -267,6 +267,24 @@
   "chatContent": "chatContent",
   "@chatContent": {
     "description": "帖子内容",
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "close",
+  "@close": {
+    "description": "关闭",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "cancel",
+  "@cancel": {
+    "description": "取消",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ok",
+  "@ok": {
+    "description": "确定",
     "type": "text",
     "placeholders": {}
   }

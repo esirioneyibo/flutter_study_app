@@ -252,22 +252,40 @@
       "type": "text",
       "placeholders": {}
     },
-       "appName": "flutter study",
-       "@appName": {
-         "description": "app name",
-         "type": "text",
-         "placeholders": {}
-       },
-       "newChat": "new chat",
-       "@newChat": {
-         "description": "发布帖子",
-         "type": "text",
-         "placeholders": {}
-       },
-       "chatContent": "chat content",
-       "@chatContent": {
-         "description": "帖子内容",
-         "type": "text",
-         "placeholders": {}
-       }
+   "appName": "flutter study",
+   "@appName": {
+     "description": "app name",
+     "type": "text",
+     "placeholders": {}
+   },
+   "newChat": "new chat",
+   "@newChat": {
+     "description": "发布帖子",
+     "type": "text",
+     "placeholders": {}
+   },
+   "chatContent": "chat content",
+   "@chatContent": {
+     "description": "帖子内容",
+     "type": "text",
+     "placeholders": {}
+   },
+  "close": "close",
+  "@close": {
+    "description": "关闭",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "cancel",
+  "@cancel": {
+    "description": "取消",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ok",
+  "@ok": {
+    "description": "确定",
+    "type": "text",
+    "placeholders": {}
+  }
 }
