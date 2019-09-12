@@ -10,6 +10,7 @@ import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/mine/account_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
+import 'package:flutter_study_app/utils/dialog_util.dart';
 
 class ConfigFactory {
   // 路由
@@ -75,5 +76,10 @@ class ConfigFactory {
   // 账号页面样式
   static AccountStyle accountStyle() {
     return AccountStyle();
+  }
+
+  // dialog样式
+  static DialogStyle dialogStyle() {
+    return DialogStyle();
   }
 }

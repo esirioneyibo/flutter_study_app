@@ -338,6 +338,16 @@ class MyLocalizations {
       desc: '关闭',
       locale: Intl.defaultLocale);
 
+  String get cancel => Intl.message('cancel',
+      name: 'cancel',
+      desc: '取消',
+      locale: Intl.defaultLocale);
+
+  String get ok => Intl.message('ok',
+      name: 'ok',
+      desc: '确定',
+      locale: Intl.defaultLocale);
+
 // --------------------------------------语言转换方法-------------------------------------------------
 }
 

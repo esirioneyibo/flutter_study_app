@@ -251,22 +251,40 @@
        "type": "text",
        "placeholders": {}
      },
-        "appName": "flutter学习",
-        "@appName": {
-          "description": "flutter学习",
-          "type": "text",
-          "placeholders": {}
-        },
-        "newChat": "发布帖子",
-        "@newChat": {
-          "description": "发布帖子",
-          "type": "text",
-          "placeholders": {}
-        },
-        "chatContent": "帖子内容",
-        "@chatContent": {
-          "description": "帖子内容",
-          "type": "text",
-          "placeholders": {}
-        }
+    "appName": "flutter学习",
+    "@appName": {
+      "description": "flutter学习",
+      "type": "text",
+      "placeholders": {}
+    },
+    "newChat": "发布帖子",
+    "@newChat": {
+      "description": "发布帖子",
+      "type": "text",
+      "placeholders": {}
+    },
+    "chatContent": "帖子内容",
+    "@chatContent": {
+      "description": "帖子内容",
+      "type": "text",
+      "placeholders": {}
+    },
+      "close": "关闭",
+      "@close": {
+        "description": "关闭",
+        "type": "text",
+        "placeholders": {}
+      },
+      "cancel": "取消",
+      "@cancel": {
+        "description": "取消",
+        "type": "text",
+        "placeholders": {}
+      },
+      "ok": "确定",
+      "@ok": {
+        "description": "确定",
+        "type": "text",
+        "placeholders": {}
+    }
 }
