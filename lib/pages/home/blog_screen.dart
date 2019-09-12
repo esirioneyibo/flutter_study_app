@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/vo/blog_vo.dart';
 
 class BlogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlogStyle style = ConfigFactory.blogStyle();
+
     return Scaffold(
         body: ListView(
       children: List.generate(blogs.length, (index) {
         BlogVo blog = blogs[index];
         return InkWell(
           child: Card(
-            elevation: 10,
+            elevation: style.cardShader,
             shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(5))),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(style.cardRadius))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -54,35 +57,37 @@ class BlogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlogStyle style = ConfigFactory.blogStyle();
     return Row(
       children: <Widget>[
-        Expanded(flex: 2, child: BlogImage(blog)),
         Expanded(
-            flex: 3,
+            flex: style.imageRate, child: BlogImage(blog)),
+        Expanded(
+            flex: style.contentRate,
             child: Column(
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding:
-                      EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  padding: style.titlePadding,
                   child: Text(
                     blog.title,
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        color: Colors.black, fontSize: 12),
+                        color: style.titleColor,
+                        fontSize: style.titleFontSize),
                   ),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding:
-                      EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  padding: style.descPadding,
                   child: Text(
                     blog.desc,
                     textAlign: TextAlign.left,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Colors.black, fontSize: 12),
+                        color: style.descColor,
+                        fontSize: style.descFontSize),
                   ),
                 ),
               ],
@@ -90,4 +95,36 @@ class BlogItem extends StatelessWidget {
       ],
     );
   }
+}
+
+class BlogStyle {
+  // 左侧图片占比  flex布局
+  int imageRate = 2;
+
+  // 右侧内容占比
+  int contentRate = 3;
+
+  // 卡片阴影
+  double cardShader = 10;
+
+  // 圆角大小
+  double cardRadius = 5;
+
+  // title的内边距
+  var titlePadding = EdgeInsets.fromLTRB(10, 2, 10, 2);
+
+  // 标题文字颜色
+  Color titleColor = Colors.black;
+
+  // 标题文字大小
+  double titleFontSize = 12;
+
+  // 描述的内边距
+  var descPadding = EdgeInsets.fromLTRB(10, 2, 10, 2);
+
+  // 描述文字颜色
+  Color descColor = Colors.black;
+
+  // 描述文字大小
+  double descFontSize = 12;
 }

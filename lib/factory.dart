@@ -2,6 +2,10 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
+import 'package:flutter_study_app/pages/home/blog_screen.dart';
+import 'package:flutter_study_app/pages/home/plugins_screen.dart';
+import 'package:flutter_study_app/pages/home/project_screen.dart';
+import 'package:flutter_study_app/pages/home/video_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
@@ -45,5 +49,25 @@ class ConfigFactory {
   // 发表帖子的样式
   static NewChatStyle newChatStyle() {
     return NewChatStyle();
+  }
+
+  // 首页视频tab样式
+  static VideoStyle videoStyle() {
+    return VideoStyle();
+  }
+
+  // 首页 插件tab样式
+  static PluginsStyle pluginsStyle() {
+    return PluginsStyle();
+  }
+
+  // 首面 博客tab样式
+  static BlogStyle blogStyle() {
+    return BlogStyle();
+  }
+
+  // 首页开源项目tab样式
+  static ProjectsStyle projectsStyle() {
+    return ProjectsStyle();
   }
 }

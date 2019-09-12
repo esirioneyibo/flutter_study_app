@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/vo/project_vo.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,33 +7,34 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ProjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ProjectsStyle style = ConfigFactory.projectsStyle();
     return Scaffold(
         body: ListView(
-      padding: EdgeInsets.all(5),
+      padding: style.listPaddingAll,
       children: List.generate(projects.length, (index) {
         ProjectVo project = projects[index];
         return InkWell(
           child: Card(
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black26),
-                borderRadius:
-                    BorderRadius.all(Radius.circular(4))),
+                side: BorderSide(
+                    color: style.cardBorderColor),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(style.cardRadius))),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: style.contentPadding,
               child: Column(
                 children: <Widget>[
                   ProjectTitle(project),
                   Container(
                     alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    padding: style.cardPadding,
                     child: Text(
                       project.desc,
-                      maxLines: 4,
+                      maxLines: style.contentLines,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 13),
+                          color: style.contentFontColor,
+                          fontSize: style.contentFontSize),
                     ),
                   ),
                   ProjectBottom(project)
@@ -57,21 +59,22 @@ class ProjectTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProjectsStyle style = ConfigFactory.projectsStyle();
     return Row(
       children: <Widget>[
         Icon(
           Icons.book,
-          color: Colors.black,
+          color: style.bookIconColor,
+          size: style.bookIconSize,
         ),
         Container(
             alignment: Alignment.centerLeft,
-//            padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
             child: Text(
               project.projectName,
               style: TextStyle(
-                  color: Colors.blue[900],
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500),
+                  color: style.nameColor,
+                  fontSize: style.nameFontSize,
+                  fontWeight: style.nameFontWeight),
             )),
       ],
     );
@@ -85,8 +88,10 @@ class ProjectBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProjectsStyle style = ConfigFactory.projectsStyle();
+
     return Padding(
-      padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+      padding: style.bottomPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -95,14 +100,15 @@ class ProjectBottom extends StatelessWidget {
               Icon(
                 FontAwesomeIcons.solidCircle,
                 color: Colors.teal,
-                size: 13,
+                size: style.languageIconSize,
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 30, 5),
+                padding: style.languageBadgePadding,
                 child: Text(
                   'Dart',
                   style: TextStyle(
-                      color: Colors.black87, fontSize: 13),
+                      color: style.languageFontColor,
+                      fontSize: style.languageFontSize),
                 ),
               )
             ],
@@ -111,15 +117,16 @@ class ProjectBottom extends StatelessWidget {
             children: <Widget>[
               Icon(
                 FontAwesomeIcons.solidStar,
-                color: Colors.black87,
-                size: 13,
+                color: style.startIconColor,
+                size: style.starIconSize,
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 30, 5),
+                padding: style.starBadgePadding,
                 child: Text(
                   '865',
                   style: TextStyle(
-                      color: Colors.black87, fontSize: 13),
+                      color: style.starFontColor,
+                      fontSize: style.starFontSize),
                 ),
               )
             ],
@@ -128,15 +135,16 @@ class ProjectBottom extends StatelessWidget {
             children: <Widget>[
               Icon(
                 FontAwesomeIcons.codeBranch,
-                color: Colors.black87,
-                size: 13,
+                color: style.forkIconColor,
+                size: style.forkIconSize,
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 30, 5),
+                padding: style.forkBadgePadding,
                 child: Text(
                   '41',
                   style: TextStyle(
-                      color: Colors.black87, fontSize: 13),
+                      color: style.forkFontColor,
+                      fontSize: style.forkFontSize),
                 ),
               )
             ],
@@ -145,4 +153,89 @@ class ProjectBottom extends StatelessWidget {
       ),
     );
   }
+}
+
+class ProjectsStyle {
+  // 列表的内边距
+  var listPaddingAll = EdgeInsets.all(5);
+
+  // 卡片边框颜色
+  Color cardBorderColor = Colors.black26;
+
+  // 卡片圆角
+  double cardRadius = 5;
+
+  // 卡片内边距
+  var cardPadding = EdgeInsets.fromLTRB(10, 2, 10, 2);
+
+  // 内容内边距
+  var contentPadding = EdgeInsets.all(8.0);
+
+  // 内容最大行数
+  int contentLines = 4;
+
+  double contentFontSize = 13;
+
+  Color contentFontColor = Colors.black87;
+
+  // 书 icon的颜色
+  Color bookIconColor = Colors.black;
+
+  // 书 icon的大小
+  double bookIconSize = 15;
+
+  // 名字的颜色
+  Color nameColor = Colors.blue[900];
+
+  // 名字的大小
+  double nameFontSize = 15;
+
+  // 文字的粗细
+  FontWeight nameFontWeight = FontWeight.w500;
+
+  // 卡片内边距
+  var bottomPadding = EdgeInsets.fromLTRB(10, 5, 0, 5);
+
+  // 编程语言内边距
+  var languageBadgePadding =
+      EdgeInsets.fromLTRB(5, 5, 30, 5);
+
+  // star内边距
+  var starBadgePadding = EdgeInsets.fromLTRB(5, 5, 30, 5);
+
+  // fork内边距
+  var forkBadgePadding = EdgeInsets.fromLTRB(5, 5, 30, 5);
+
+  // 编程语言icon的大小
+  double languageIconSize = 13;
+
+  // 编程语言文字大小
+  double languageFontSize = 13;
+
+  // 编程语言文字颜色
+  Color languageFontColor = Colors.black87;
+
+  // start icon的大小
+  double starIconSize = 13;
+
+  // star数 文字大小
+  double starFontSize = 13;
+
+  // fork icon的大小
+  double forkIconSize = 13;
+
+  // fork 文字的大小
+  double forkFontSize = 13;
+
+  // star icon的颜色
+  Color startIconColor = Colors.black87;
+
+  // fork icon的颜色
+  Color forkIconColor = Colors.black87;
+
+  // star 文字的颜色
+  Color starFontColor = Colors.black87;
+
+  // fork 文字的颜色
+  Color forkFontColor = Colors.black87;
 }

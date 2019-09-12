@@ -1,50 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/vo/video_vo.dart';
 
 class VideosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VideoStyle style = ConfigFactory.videoStyle();
+
     return Scaffold(
       body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 5 / 4,
+        crossAxisCount: style.gridCount,
+        childAspectRatio: style.rate,
         mainAxisSpacing: 2,
         children: List.generate(videos.length, (index) {
           VideoVo video = videos[index];
           return InkWell(
             child: Card(
-              elevation: 10,
+              elevation: style.cardShader,
               shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(5))),
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(style.cardRadius))),
               child: Column(
                 children: <Widget>[
                   CardImage(video),
                   // 标题
                   Container(
                     alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    padding: style.titlePadding,
                     child: Text(
                       video.title,
                       textAlign: TextAlign.left,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12),
+                          color: style.titleFontColor,
+                          fontSize: style.titleFontSize),
                     ),
                   ),
                   // 标签
                   Container(
-                    padding:
-                        EdgeInsets.fromLTRB(10, 2, 10, 2),
+                    padding: style.tagPadding,
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       video.tag,
                       style: TextStyle(
-                          color: Colors.grey, fontSize: 12),
+                          color: style.tagFontColor,
+                          fontSize: style.tagFontSize),
                     ),
                   )
                 ],
@@ -121,4 +123,35 @@ class CardImage extends StatelessWidget {
       ],
     );
   }
+}
+
+class VideoStyle {
+  // 每行显示多少个卡片
+  int gridCount = 2;
+
+  // 卡片宽高比
+  double rate = 5 / 4;
+
+  // 卡片阴影
+  double cardShader = 10;
+
+  // 卡片圆角
+  double cardRadius = 5;
+
+  // 标题的内边距
+  var titlePadding = EdgeInsets.fromLTRB(10, 2, 10, 2);
+
+  var tagPadding = EdgeInsets.fromLTRB(10, 2, 10, 2);
+
+  // 标题字体大小
+  double titleFontSize = 12;
+
+  // 标题字体颜色
+  Color titleFontColor = Colors.black;
+
+  // tag字体大小
+  double tagFontSize = 12;
+
+  // tag字体颜色
+  Color tagFontColor = Colors.grey;
 }
