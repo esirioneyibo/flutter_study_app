@@ -7,11 +7,18 @@ class RouterConfig {
   String index = '/index';
   String about = "/about";
   String settings = "/settings";
+  String theme = "/theme";
   String language = '/language';
   String deviceInfo = 'deviceInfo';
 }
 
 class AppConfig {
+  // 当前主题的localStorage key
+  String currentTheme = 'currentTheme';
+
+  // 当前语言
+  String currentLocale = 'currentLocale';
+
   // appBar的高度
   double appBarHeight = 48;
 

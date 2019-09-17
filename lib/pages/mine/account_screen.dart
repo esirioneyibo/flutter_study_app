@@ -7,10 +7,14 @@ import 'package:flutter_study_app/config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
-import 'package:flutter_study_app/state/account_model.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+enum FormType {
+  LOGIN,
+  REGISTER,
+}
 
 /// login and register
 class AccountScreen extends StatefulWidget {
@@ -158,13 +162,13 @@ class _AccountScreenState extends State<AccountScreen> {
             emailAuth.sendEmailVerification();
             emailAuth.setDefaultUserInfo();
             DialogUtil.showAlertDialog(
-                context,
-                MyLocalizations.of(context)
-                    .validateEmailTitle,
-                MyLocalizations.of(context)
-                    .validateEmailContent,
-                callback: moveToLogin,
-                model: new AccountModel());
+              context,
+              MyLocalizations.of(context)
+                  .validateEmailTitle,
+              MyLocalizations.of(context)
+                  .validateEmailContent,
+              callback: moveToLogin,
+            );
           }
           setState(() {
             _isLoading = false;

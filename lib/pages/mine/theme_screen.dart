@@ -6,14 +6,14 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
-class LanguageScreen extends StatefulWidget {
+class ThemeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return LanguageScreenState();
+    return ThemeScreenState();
   }
 }
 
-class LanguageScreenState extends State<LanguageScreen> {
+class ThemeScreenState extends State<ThemeScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Locale>(
@@ -31,31 +31,49 @@ class LanguageScreenState extends State<LanguageScreen> {
                 children: <Widget>[
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
-                    title: Container(child: Text('中文')),
+                    title: Container(
+                        child: Text('蓝色',
+                            style: TextStyle(
+                                color: Colors.blue))),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.cn);
+                      CommonUtil.changeTheme(store, 0);
                       Navigator.of(context).pop();
                     },
                   ),
                   Divider(),
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
-                    title:
-                        Container(child: Text('English')),
+                    title: Container(
+                        child: Text('绿色',
+                            style: TextStyle(
+                                color: Colors.green))),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.en);
+                      CommonUtil.changeTheme(store, 1);
                       Navigator.of(context).pop();
                     },
                   ),
                   Divider(),
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
-                    title: Container(child: Text('日本語')),
+                    title: Container(
+                        child: Text(
+                      '粉色',
+                      style: TextStyle(color: Colors.pink),
+                    )),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.ja);
+                      CommonUtil.changeTheme(store, 2);
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  ListTile(
+                    trailing: Icon(Icons.chevron_right),
+                    title: Container(
+                        child: Text(
+                      '黄色',
+                      style: TextStyle(color: Colors.amber),
+                    )),
+                    onTap: () {
+                      CommonUtil.changeTheme(store, 3);
                       Navigator.of(context).pop();
                     },
                   ),

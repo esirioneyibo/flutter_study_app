@@ -61,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings" : MessageLookupByLibrary.simpleMessage("设置中心"),
     "study" : MessageLookupByLibrary.simpleMessage("练习"),
     "studyTools" : MessageLookupByLibrary.simpleMessage("学习类"),
+    "theme" : MessageLookupByLibrary.simpleMessage("主题"),
     "tool" : MessageLookupByLibrary.simpleMessage("工具"),
     "unknownError" : MessageLookupByLibrary.simpleMessage("未知错误"),
     "validateEmailContent" : MessageLookupByLibrary.simpleMessage("请到您的邮箱查看并激活账号"),

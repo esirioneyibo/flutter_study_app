@@ -344,8 +344,11 @@ class MyLocalizations {
       locale: Intl.defaultLocale);
 
   String get ok => Intl.message('ok',
-      name: 'ok',
-      desc: '确定',
+      name: 'ok', desc: '确定', locale: Intl.defaultLocale);
+
+  String get theme => Intl.message('theme',
+      name: 'theme',
+      desc: '主题',
       locale: Intl.defaultLocale);
 
 // --------------------------------------语言转换方法-------------------------------------------------
@@ -369,4 +372,7 @@ class MyLocalizationsDelegate
       LocalizationsDelegate<MyLocalizations> old) {
     return false;
   }
+
+  static MyLocalizationsDelegate delegate =
+      new MyLocalizationsDelegate();
 }

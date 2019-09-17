@@ -64,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings" : MessageLookupByLibrary.simpleMessage("settings"),
     "study" : MessageLookupByLibrary.simpleMessage("study"),
     "studyTools" : MessageLookupByLibrary.simpleMessage("study tools"),
+    "theme" : MessageLookupByLibrary.simpleMessage("theme"),
     "tool" : MessageLookupByLibrary.simpleMessage("tool"),
     "unknownError" : MessageLookupByLibrary.simpleMessage("unknown error"),
     "validateEmailContent" : MessageLookupByLibrary.simpleMessage("please login your email and verify it"),
