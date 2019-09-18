@@ -13,6 +13,28 @@ class ProjectVo {
       this.star,
       this.fork,
       this.url});
+
+  factory ProjectVo.fromJson(Map<String, dynamic> json) {
+    return ProjectVo(
+      projectName: json['projectName'],
+      desc: json['desc'],
+      language: json['language'],
+      star: json['star'],
+      fork: json['fork'],
+      url: json['url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'projectName': projectName,
+      'desc': desc,
+      'language': language,
+      'star': star,
+      'fork': fork,
+      'url': url,
+    };
+  }
 }
 
 final List<ProjectVo> projects = [
