@@ -19,8 +19,8 @@ class VideosScreen extends StatelessWidget {
             child: Card(
               elevation: style.cardShader,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(style.cardRadius))),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(style.cardRadius))),
               child: Column(
                 children: <Widget>[
                   CardImage(video),
@@ -53,8 +53,7 @@ class VideosScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              DialogUtil.showAlertDialog(
-                  context, video.title, video.voteCount);
+              DialogUtil.showAlertDialog(context, video.title, video.voteCount);
             },
           );
         }),
@@ -95,8 +94,7 @@ class CardImage extends StatelessWidget {
               ),
               Text(
                 video.commentsCount,
-                style: TextStyle(
-                    color: Colors.white, fontSize: 12),
+                style: TextStyle(color: Colors.white, fontSize: 12),
               )
             ],
           ),
@@ -114,8 +112,7 @@ class CardImage extends StatelessWidget {
               ),
               Text(
                 video.voteCount,
-                style: TextStyle(
-                    color: Colors.white, fontSize: 12),
+                style: TextStyle(color: Colors.white, fontSize: 12),
               )
             ],
           ),

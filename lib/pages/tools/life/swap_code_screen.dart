@@ -11,8 +11,7 @@ class SwapCodeScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(
-            MyLocalizations.of(context).returnButton),
+        appBar: ReturnBar(MyLocalizations.of(context).returnButton),
         body: Center(child: Text('扫码识别')),
       ),
     );

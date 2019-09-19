@@ -21,8 +21,7 @@ class CommonUtil {
   // 切换语言
   static changeTheme(Store<AppState> store, int index) {
     var themeData = store.state.themeData;
-    themeData = ThemeData()
-        .copyWith(primaryColor: themeColors()[index]);
+    themeData = ThemeData().copyWith(primaryColor: themeColors()[index]);
     store.dispatch(RefreshThemeDataAction(themeData));
   }
 
@@ -39,8 +38,7 @@ class CommonUtil {
   }
 
   // 切换语言
-  static changeLocale(
-      Store<AppState> store, LocaleEnum target) {
+  static changeLocale(Store<AppState> store, LocaleEnum target) {
     var locale = store.state.platformLocale;
     switch (target.index) {
       case 0:

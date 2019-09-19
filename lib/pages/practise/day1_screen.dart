@@ -10,7 +10,7 @@ class Day1Screen extends StatefulWidget {
 }
 
 class Day1State extends State<Day1Screen> {
-  DateTime _dateTime =   DateTime.now();
+  DateTime _dateTime = DateTime.now();
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime _picked = await showDatePicker(

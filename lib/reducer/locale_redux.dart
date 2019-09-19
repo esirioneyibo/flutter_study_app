@@ -9,8 +9,8 @@ final localeReducer = combineReducers<Locale>([
 
 Locale _refresh(Locale locale, RefreshLocaleAction action) {
   locale = action.locale;
-  LocalStorage.save(ConfigFactory.appConfig().currentLocale,
-      locale.countryCode);
+  LocalStorage.save(
+      ConfigFactory.appConfig().currentLocale, locale.countryCode);
   return locale;
 }
 

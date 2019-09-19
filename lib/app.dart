@@ -51,16 +51,14 @@ class _MyAppState extends State<MyApp> {
         return BottomNavigationBarItem(
             icon: Icon(item.icon),
             title: Text(item.title,
-                style: TextStyle(
-                    color: _itemColor(item.index))));
+                style: TextStyle(color: _itemColor(item.index))));
       }).toList(),
       onTap: _tableHandler,
       currentIndex: _currentIndex,
     );
 
     return Scaffold(
-      appBar: MyAppBar(
-          title: MyLocalizations.of(context).appName),
+      appBar: MyAppBar(title: MyLocalizations.of(context).appName),
       drawer: LeftDrawer(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: bottomNavigationBars,

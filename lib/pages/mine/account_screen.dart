@@ -25,8 +25,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  final GlobalKey<FormState> formKey =
-      GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   EmailAuth emailAuth = EmailAuth();
 
@@ -82,10 +81,8 @@ class _AccountScreenState extends State<AccountScreen> {
           child: Form(
             key: formKey,
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.stretch,
-              children:
-                  buildInputs() + buildSubmitButtons(),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: buildInputs() + buildSubmitButtons(),
             ),
           ),
         ),
@@ -98,8 +95,8 @@ class _AccountScreenState extends State<AccountScreen> {
       TextFormField(
         key: Key('email'),
         keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-            labelText: MyLocalizations.of(context).email),
+        decoration:
+            InputDecoration(labelText: MyLocalizations.of(context).email),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.email = value;
@@ -109,9 +106,8 @@ class _AccountScreenState extends State<AccountScreen> {
         key: Key('password'),
         keyboardType: TextInputType.text,
         obscureText: true,
-        decoration: InputDecoration(
-            labelText:
-                MyLocalizations.of(context).password),
+        decoration:
+            InputDecoration(labelText: MyLocalizations.of(context).password),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.password = value;
@@ -131,8 +127,7 @@ class _AccountScreenState extends State<AccountScreen> {
         // 登陆账号
         if (_formType == FormType.LOGIN) {
           userId = await emailAuth.signIn(
-              emailAuth.email.trim(),
-              emailAuth.password.trim());
+              emailAuth.email.trim(), emailAuth.password.trim());
           if (userId == null) {
             throw Exception({"code": "UNKOWN_ERROR"});
           }
@@ -142,13 +137,10 @@ class _AccountScreenState extends State<AccountScreen> {
               DialogUtil.showAlertDialog(
                   context,
                   MyLocalizations.of(context).loginError,
-                  MyLocalizations.of(context)
-                      .validateEmailTitle);
+                  MyLocalizations.of(context).validateEmailTitle);
             } else {
               Navigator.of(context).pop();
-              emailAuth
-                  .getCurrentUser()
-                  .then((user) => currentUser = user);
+              emailAuth.getCurrentUser().then((user) => currentUser = user);
             }
           });
         } else {
@@ -157,16 +149,13 @@ class _AccountScreenState extends State<AccountScreen> {
               userId != null &&
               _formType == FormType.LOGIN) {
             userId = await emailAuth.signUp(
-                emailAuth.email.trim(),
-                emailAuth.password.trim());
+                emailAuth.email.trim(), emailAuth.password.trim());
             emailAuth.sendEmailVerification();
             emailAuth.setDefaultUserInfo();
             DialogUtil.showAlertDialog(
               context,
-              MyLocalizations.of(context)
-                  .validateEmailTitle,
-              MyLocalizations.of(context)
-                  .validateEmailContent,
+              MyLocalizations.of(context).validateEmailTitle,
+              MyLocalizations.of(context).validateEmailContent,
               callback: moveToLogin,
             );
           }
@@ -174,9 +163,7 @@ class _AccountScreenState extends State<AccountScreen> {
             _isLoading = false;
           });
         }
-        emailAuth
-            .getCurrentUser()
-            .then((user) => currentUser = user);
+        emailAuth.getCurrentUser().then((user) => currentUser = user);
       } catch (e) {
         switch (e.code) {
           case EmailErrorCode.invalidEmail:
@@ -227,8 +214,7 @@ class _AccountScreenState extends State<AccountScreen> {
     if (_formType == FormType.LOGIN) {
       return <Widget>[
         Padding(
-          padding: EdgeInsets.only(
-              top: style.loginButtonPaddingTop),
+          padding: EdgeInsets.only(top: style.loginButtonPaddingTop),
         ),
         RaisedButton(
           color: style.loginButtonColor,
@@ -240,8 +226,7 @@ class _AccountScreenState extends State<AccountScreen> {
           onPressed: _validateAndSubmit,
         ),
         Padding(
-          padding:
-              EdgeInsets.only(top: style.authPaddingTop),
+          padding: EdgeInsets.only(top: style.authPaddingTop),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -249,9 +234,7 @@ class _AccountScreenState extends State<AccountScreen> {
             InkWell(
 //              onTap: twitterAuth.loginTwitter,
               onTap: () => DialogUtil.showAlertDialog(
-                  context,
-                  'twitter',
-                  MyLocalizations.of(context).developing),
+                  context, 'twitter', MyLocalizations.of(context).developing),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: style.authButtonSize,
@@ -260,9 +243,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             InkWell(
               onTap: () => DialogUtil.showAlertDialog(
-                  context,
-                  'github',
-                  MyLocalizations.of(context).developing),
+                  context, 'github', MyLocalizations.of(context).developing),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: style.authButtonSize,
@@ -271,9 +252,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             InkWell(
               onTap: () => DialogUtil.showAlertDialog(
-                  context,
-                  'wechat',
-                  MyLocalizations.of(context).developing),
+                  context, 'wechat', MyLocalizations.of(context).developing),
 //              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
@@ -288,9 +267,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 color: style.authButtonColor,
               ),
               onTap: () => DialogUtil.showAlertDialog(
-                  context,
-                  'google',
-                  MyLocalizations.of(context).developing),
+                  context, 'google', MyLocalizations.of(context).developing),
 //              onTap: () => googleAuth
 //                  .googleHandleSignIn()
 //                  .then((FirebaseUser user) => setState(() {
@@ -304,12 +281,10 @@ class _AccountScreenState extends State<AccountScreen> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(
-              top: style.goToRegisterPaddingTop),
+          padding: EdgeInsets.only(top: style.goToRegisterPaddingTop),
         ),
         FlatButton(
-          child: Text(
-              MyLocalizations.of(context).moveToRegister,
+          child: Text(MyLocalizations.of(context).moveToRegister,
               style: TextStyle(
                   fontSize: style.goToRegisterSize,
                   color: style.goToRegisterColor)),
@@ -319,8 +294,7 @@ class _AccountScreenState extends State<AccountScreen> {
     } else {
       return <Widget>[
         Padding(
-          padding: EdgeInsets.only(
-              top: style.registerButtonPaddingTop),
+          padding: EdgeInsets.only(top: style.registerButtonPaddingTop),
         ),
         RaisedButton(
           color: style.registerButtonColor,
@@ -331,15 +305,12 @@ class _AccountScreenState extends State<AccountScreen> {
           onPressed: _validateAndSubmit,
         ),
         Padding(
-          padding: EdgeInsets.only(
-              top: style.goToLoginPaddingTop),
+          padding: EdgeInsets.only(top: style.goToLoginPaddingTop),
         ),
         FlatButton(
-          child: Text(
-              MyLocalizations.of(context).moveToLogin,
+          child: Text(MyLocalizations.of(context).moveToLogin,
               style: TextStyle(
-                  fontSize: style.goToLoginSize,
-                  color: style.goToLoginColor)),
+                  fontSize: style.goToLoginSize, color: style.goToLoginColor)),
           onPressed: moveToLogin,
         ),
       ];

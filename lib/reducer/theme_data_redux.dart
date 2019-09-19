@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
-final themeDataReducer = combineReducers<ThemeData>([
-  TypedReducer<ThemeData, RefreshThemeDataAction>(_refresh)
-]);
+final themeDataReducer = combineReducers<ThemeData>(
+    [TypedReducer<ThemeData, RefreshThemeDataAction>(_refresh)]);
 
 ///定义处理 Action 行为的方法，返回新的 State
-ThemeData _refresh(
-    ThemeData themeData, RefreshThemeDataAction action) {
+ThemeData _refresh(ThemeData themeData, RefreshThemeDataAction action) {
   themeData = action.themeData;
   return themeData;
 }

@@ -24,17 +24,15 @@ class ThemeScreenState extends State<ThemeScreen> {
             NavigatorUtil.back(context, details);
           },
           child: Scaffold(
-            appBar: ReturnBar(
-                MyLocalizations.of(context).changeLanguage),
+            appBar: ReturnBar(MyLocalizations.of(context).changeLanguage),
             body: Container(
               child: Column(
                 children: <Widget>[
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
                     title: Container(
-                        child: Text('蓝色',
-                            style: TextStyle(
-                                color: Colors.blue))),
+                        child:
+                            Text('蓝色', style: TextStyle(color: Colors.blue))),
                     onTap: () {
                       CommonUtil.changeTheme(store, 0);
                       Navigator.of(context).pop();
@@ -44,9 +42,8 @@ class ThemeScreenState extends State<ThemeScreen> {
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
                     title: Container(
-                        child: Text('绿色',
-                            style: TextStyle(
-                                color: Colors.green))),
+                        child:
+                            Text('绿色', style: TextStyle(color: Colors.green))),
                     onTap: () {
                       CommonUtil.changeTheme(store, 1);
                       Navigator.of(context).pop();

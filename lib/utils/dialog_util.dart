@@ -35,8 +35,7 @@ class DialogUtil {
     );
   }
 
-  static void showConfirmDialog(
-      BuildContext context, String title,
+  static void showConfirmDialog(BuildContext context, String title,
       [VoidCallback callback]) {
     DialogStyle style = ConfigFactory.dialogStyle();
     showDialog(

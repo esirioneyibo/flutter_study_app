@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
-import 'package:flutter_study_app/vo/post_vo.dart';
+import 'package:flutter_study_app/utils/time_util.dart';
+import 'package:flutter_study_app/vo/comment.dart';
+import 'package:flutter_study_app/vo/post.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatDetailScreen extends StatefulWidget {
@@ -21,7 +26,17 @@ class ChatDetailState extends State<ChatDetailScreen> {
   final Post post;
   ScrollController _scrollController = ScrollController();
 
+  List<Comment> comments;
+
   ChatDetailState(this.post);
+
+  @override
+  void initState() {
+    super.initState();
+    HttpService.get(post.commentsUrl, (data) {
+      this.comments = getCommentList(data);
+    });
+  }
 
   bool isTop = true;
 
@@ -36,28 +51,22 @@ class ChatDetailState extends State<ChatDetailScreen> {
     ChatDetailStyle style = ConfigFactory.chatDetailStyle();
 
     return Scaffold(
-      appBar: ReturnBar(
-          MyLocalizations.of(context).chatContent),
+      appBar: ReturnBar(MyLocalizations.of(context).chatContent),
       floatingActionButton: Container(
         height: style.scrollButtonSize,
         width: style.scrollButtonSize,
         child: FloatingActionButton(
             tooltip: isTop ? '到达底部' : '返回顶部',
-            child: Icon(isTop
-                ? Icons.arrow_downward
-                : Icons.arrow_upward),
+            child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
             onPressed: () {
               var pos = isTop
-                  ? _scrollController
-                      .position.maxScrollExtent
-                  : _scrollController
-                      .position.minScrollExtent;
+                  ? _scrollController.position.maxScrollExtent
+                  : _scrollController.position.minScrollExtent;
 
               _scrollController.animateTo(
                 pos,
                 curve: Curves.easeOut,
-                duration: Duration(
-                    milliseconds: style.scrollSpeed),
+                duration: Duration(milliseconds: style.scrollSpeed),
               );
               setState(() {
                 isTop = !isTop;
@@ -76,50 +85,41 @@ class ChatDetailState extends State<ChatDetailScreen> {
                 child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     // 左侧信息
                     Expanded(
                       child: Row(
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.all(
-                                style.avatarPaddingAll),
+                            padding: EdgeInsets.all(style.avatarPaddingAll),
                             height: style.avatarSize,
                             width: style.avatarSize,
                             child: CircleAvatar(
                               backgroundImage:
-                                  NetworkImage(post.icon),
+                                  NetworkImage(post.user.avatarUrl),
                               backgroundColor: Colors.grey,
                               radius: style.avatarRadius,
                             ), // 头像
                           ),
                           Container(
-                            height:
-                                style.authorContainerHeight,
+                            height: style.authorContainerHeight,
                             alignment: Alignment.centerLeft,
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  post.author,
+                                  post.user.login,
                                   style: TextStyle(
-                                      fontSize: style
-                                          .authorFontSize,
-                                      color: style
-                                          .authorFontColor,
-                                      fontWeight: style
-                                          .authorFontWeight),
+                                      fontSize: style.authorFontSize,
+                                      color: style.authorFontColor,
+                                      fontWeight: style.authorFontWeight),
                                 ), // 作者
                                 Text(
-                                  post.dateTime,
+                                  TimeUtil.format(post.createdAt),
                                   style: TextStyle(
-                                      fontSize: style
-                                          .authorFontSize,
-                                      fontWeight: style
-                                          .authorFontWeight,
-                                      color: style
-                                          .authorFontColor),
+                                      fontSize: style.authorFontSize,
+                                      fontWeight: style.authorFontWeight,
+                                      color: style.authorFontColor),
                                 ), // 时间
                               ],
                             ),
@@ -133,14 +133,12 @@ class ChatDetailState extends State<ChatDetailScreen> {
                       padding: style.badgePadding,
                       alignment: Alignment.topRight,
                       child: Chip(
-                          backgroundColor:
-                              style.badgeBackgroundColor,
+                          backgroundColor: style.badgeBackgroundColor,
                           label: Text(
-                            post.tag,
+                            post.state,
                             style: TextStyle(
                                 color: style.badgeColor,
-                                fontSize:
-                                    style.badgeFontSize),
+                                fontSize: style.badgeFontSize),
                           )),
                     ), // 右侧小标签
                   ],
@@ -148,51 +146,56 @@ class ChatDetailState extends State<ChatDetailScreen> {
                 //--------------------------------------------------------------
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding:
-                      EdgeInsets.all(style.titlePaddingAll),
-                  child: Text(post.title),
+                  padding: EdgeInsets.all(style.titlePaddingAll),
+                  child: MarkdownBody(data: post.title),
                 ),
                 // 标题
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(
-                      style.contentPaddingAll),
-                  child: Text(post.content),
+                  padding: EdgeInsets.all(style.contentPaddingAll),
+                  child: MarkdownBody(data: post.body),
                 ),
                 // 内容
               ],
             )),
             Container(
-              child: Column(
-                children: post.comments.map((comment) {
-                  return Card(
-                    child: Column(
-                      children: <Widget>[
-                        ListTile(
-                          key: Key(comment.id),
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(comment.icon),
-                          ),
-                          trailing: Text('${comment.id}楼'),
-                          subtitle: Text(comment.content),
-                          title: Text(comment.author),
-                        ),
-                        Container(
-                          child: ActionChip(
-                              label: Icon(
-                                  FontAwesomeIcons.heart),
-                              onPressed: () => {}),
-                          alignment: Alignment.centerRight,
-                          padding: EdgeInsets.only(
-                              right: style
-                                  .likeButtonPaddingRight),
-                        )
-                      ],
+              child: comments == null
+                  ? Loading()
+                  : Column(
+                      children: comments
+                          .asMap()
+                          .map((index, comment) {
+                            return MapEntry(
+                                index,
+                                Card(
+                                  child: Column(
+                                    children: <Widget>[
+                                      ListTile(
+                                        key: Key(comment.id.toString()),
+                                        leading: CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              comment.user.avatarUrl),
+                                        ),
+                                        trailing: Text('${index + 1}楼'),
+                                        subtitle: Text(comment.body),
+                                        title: Text(comment.user.login),
+                                      ),
+                                      Container(
+                                        child: ActionChip(
+                                            label: Icon(FontAwesomeIcons.heart),
+                                            onPressed: () => {}),
+                                        alignment: Alignment.centerRight,
+                                        padding: EdgeInsets.only(
+                                            right:
+                                                style.likeButtonPaddingRight),
+                                      )
+                                    ],
+                                  ),
+                                ));
+                          })
+                          .values
+                          .toList(), // 评论列表
                     ),
-                  );
-                }).toList(), // 评论列表
-              ),
             ),
           ],
         ),

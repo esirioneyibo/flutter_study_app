@@ -37,17 +37,13 @@ class _SplashState extends State<SplashScreen>
 
     // 初始化动画
     _animationController = AnimationController(
-        vsync: this,
-        duration:
-            Duration(milliseconds: appConfig.splashTime));
-    _animation = Tween(begin: 0.0, end: 1.0)
-        .animate(_animationController);
+        vsync: this, duration: Duration(milliseconds: appConfig.splashTime));
+    _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController);
 
     var listener = (status) {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (context) => MyApp()),
+            MaterialPageRoute(builder: (context) => MyApp()),
             (router) => router == null);
       }
     };

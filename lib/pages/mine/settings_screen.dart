@@ -11,8 +11,7 @@ class SettingScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar:
-            ReturnBar(MyLocalizations.of(context).settings),
+        appBar: ReturnBar(MyLocalizations.of(context).settings),
         body: Center(
           child: Text('设置中心'),
         ),

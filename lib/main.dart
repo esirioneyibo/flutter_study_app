@@ -30,8 +30,7 @@ class MainApp extends StatelessWidget {
             router.settings: (context) => SettingScreen(),
             router.language: (context) => LanguageScreen(),
             router.theme: (context) => ThemeScreen(),
-            router.deviceInfo: (context) =>
-                DeviceInfoScreen(),
+            router.deviceInfo: (context) => DeviceInfoScreen(),
           },
           locale: store.state.locale,
           localizationsDelegates: [

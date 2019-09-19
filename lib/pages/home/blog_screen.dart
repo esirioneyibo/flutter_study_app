@@ -16,8 +16,8 @@ class BlogScreen extends StatelessWidget {
           child: Card(
             elevation: style.cardShader,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(style.cardRadius))),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(style.cardRadius))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -26,8 +26,7 @@ class BlogScreen extends StatelessWidget {
             ),
           ),
           onTap: () {
-            DialogUtil.showAlertDialog(
-                context, blog.title, blog.desc);
+            DialogUtil.showAlertDialog(context, blog.title, blog.desc);
           },
         );
       }),
@@ -60,8 +59,7 @@ class BlogItem extends StatelessWidget {
     BlogStyle style = ConfigFactory.blogStyle();
     return Row(
       children: <Widget>[
-        Expanded(
-            flex: style.imageRate, child: BlogImage(blog)),
+        Expanded(flex: style.imageRate, child: BlogImage(blog)),
         Expanded(
             flex: style.contentRate,
             child: Column(
@@ -73,8 +71,7 @@ class BlogItem extends StatelessWidget {
                     blog.title,
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        color: style.titleColor,
-                        fontSize: style.titleFontSize),
+                        color: style.titleColor, fontSize: style.titleFontSize),
                   ),
                 ),
                 Container(
@@ -86,8 +83,7 @@ class BlogItem extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: style.descColor,
-                        fontSize: style.descFontSize),
+                        color: style.descColor, fontSize: style.descFontSize),
                   ),
                 ),
               ],

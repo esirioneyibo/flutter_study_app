@@ -40,11 +40,7 @@ class PractiseVo {
   bool isExpanded;
   List<PractiseVo> children;
 
-  PractiseVo(
-      {this.title,
-      this.isExpanded = false,
-      this.screen,
-      this.children});
+  PractiseVo({this.title, this.isExpanded = false, this.screen, this.children});
 }
 
 getPractiseList() {

@@ -17,8 +17,7 @@ class WikiScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(
-            MyLocalizations.of(context).returnButton),
+        appBar: ReturnBar(MyLocalizations.of(context).returnButton),
         body: WebView(
           initialUrl: 'https://www.wikipedia'
               '.org/',

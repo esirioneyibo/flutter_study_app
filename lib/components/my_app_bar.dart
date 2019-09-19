@@ -3,8 +3,7 @@ import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
-class MyAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final tabBar;
 
@@ -21,8 +20,8 @@ class MyAppBar extends StatelessWidget
           IconButton(
             icon: Icon(Icons.assignment_late),
             onPressed: () {
-              NavigatorUtil.pushWithAnim(context,
-                  AboutAppScreen(), AnimType.Slider);
+              NavigatorUtil.pushWithAnim(
+                  context, AboutAppScreen(), AnimType.Slider);
             },
           )
         ],
@@ -30,6 +29,5 @@ class MyAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(appConfig.appBarHeight);
+  Size get preferredSize => Size.fromHeight(appConfig.appBarHeight);
 }

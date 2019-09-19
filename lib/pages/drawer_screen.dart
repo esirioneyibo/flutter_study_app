@@ -16,17 +16,14 @@ class LeftDrawer extends StatelessWidget {
       Navigator.of(context).pop();
       Scaffold.of(context).showSnackBar(SnackBar(
           duration: Duration(milliseconds: 300),
-          content:
-              Text(MyLocalizations.of(context).exitLogin)));
+          content: Text(MyLocalizations.of(context).exitLogin)));
     }
 
     // 抽屉菜单
-    var items = ListTile
-        .divideTiles(context: context, tiles: <Widget>[
+    var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
         leading: Icon(Icons.color_lens),
-        title: Text(
-            MyLocalizations.of(context).changeLanguage),
+        title: Text(MyLocalizations.of(context).changeLanguage),
         onTap: () {
           Navigator.pushNamed(context, router.language);
         },
@@ -56,14 +53,10 @@ class LeftDrawer extends StatelessWidget {
         visible: currentUser != null,
         child: ListTile(
           leading: Icon(Icons.exit_to_app),
-          title:
-              Text(MyLocalizations.of(context).exitLogin),
+          title: Text(MyLocalizations.of(context).exitLogin),
           onTap: () {
-            DialogUtil.showConfirmDialog(
-                context,
-                MyLocalizations.of(context)
-                    .confirmExitLogin,
-                exitLogin);
+            DialogUtil.showConfirmDialog(context,
+                MyLocalizations.of(context).confirmExitLogin, exitLogin);
           },
         ),
       )
@@ -74,8 +67,7 @@ class LeftDrawer extends StatelessWidget {
       accountName: Text(currentUser == null
           ? MyLocalizations.of(context).clickLogin
           : currentUser.displayName),
-      accountEmail: Text(
-          currentUser == null ? '' : currentUser.email),
+      accountEmail: Text(currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
         if (currentUser == null) {
           Navigator.pushNamed(context, router.account);
