@@ -39,6 +39,13 @@ class LeftDrawer extends StatelessWidget {
         },
       ),
       ListTile(
+        leading: Icon(Icons.color_lens),
+        title: Text(MyLocalizations.of(context).theme),
+        onTap: () {
+          Navigator.pushNamed(context, router.theme);
+        },
+      ),
+      ListTile(
         leading: Icon(Icons.phone_iphone),
         title: Text(MyLocalizations.of(context).deviceInfo),
         onTap: () {

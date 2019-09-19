@@ -19,6 +19,30 @@ class VideoVo {
       this.tag}) {
     this.id = Uuid().v1();
   }
+
+  factory VideoVo.fromJson(Map<String, dynamic> json) {
+    return VideoVo(
+      id: json['id'],
+      cover: json['cover'],
+      title: json['title'],
+      voteCount: json['voteCount'],
+      commentsCount: json['commentsCount'],
+      tag: json['tag'],
+      url: json['url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'cover': cover,
+      'title': title,
+      'voteCount': voteCount,
+      'commentsCount': commentsCount,
+      'tag': tag,
+      'url': url,
+    };
+  }
 }
 
 final List<VideoVo> videos = [

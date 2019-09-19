@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/factory.dart';
 
 enum AnimType {
   Slider, // 进入从右往左滑入，退出从左往右滑出
@@ -47,6 +49,23 @@ class NavigatorUtil {
     }
 
     Navigator.push(context, builder);
+  }
+
+  ///替换
+  static pushReplacementNamed(
+      BuildContext context, String routeName) {
+    Navigator.pushReplacementNamed(context, routeName);
+  }
+
+  ///切换无参数页面
+  static pushNamed(BuildContext context, String routeName) {
+    Navigator.pushNamed(context, routeName);
+  }
+
+  ///主页
+  static goHome(BuildContext context) {
+    Navigator.pushReplacementNamed(
+        context, ConfigFactory.router().index);
   }
 }
 

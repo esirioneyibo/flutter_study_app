@@ -17,6 +17,28 @@ class PluginVo {
       this.tag}) {
     this.id = Uuid().v1();
   }
+
+  factory PluginVo.fromJson(Map<String, dynamic> json) {
+    return PluginVo(
+      id: json['title'],
+      desc: json['desc'],
+      title: json['title'],
+      url: json['url'],
+      rate: json['rate'],
+      tag: json['tag'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'desc': desc,
+      'title': title,
+      'url': url,
+      'rate': rate,
+      'tag': tag
+    };
+  }
 }
 
 final List<PluginVo> plugins = [

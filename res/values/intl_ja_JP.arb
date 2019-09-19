@@ -286,5 +286,11 @@
         "description": "确定",
         "type": "text",
         "placeholders": {}
-    }
+    },
+         "theme": "theme",
+         "@theme": {
+           "description": "主题",
+           "type": "text",
+           "placeholders": {}
+         }
 }

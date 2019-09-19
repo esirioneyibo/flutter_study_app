@@ -25,8 +25,39 @@ class Post {
   // 评论
   List<Comment> comments;
 
-  Post(this.title, this.content, this.author, this.icon,
-      this.tag, this.dateTime, this.comments);
+  Post(
+      {this.title,
+      this.content,
+      this.author,
+      this.icon,
+      this.tag,
+      this.dateTime,
+      this.comments});
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+        title: json['title'],
+        content: json['content'],
+        author: json['author'],
+        icon: json['icon'],
+        tag: json['tag'],
+        dateTime: json['dateTime'],
+        comments: json['comments'].map((comment) {
+          Comment.fromJson(comment);
+        }).toList());
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'content': content,
+      'author': author,
+      'icon': icon,
+      'tag': icon,
+      'dateTime': icon,
+      'comments': comments,
+    };
+  }
 }
 
 class Comment {
@@ -42,57 +73,95 @@ class Comment {
       this.icon,
       this.content,
       this.time});
+
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
+      id: json['id'],
+      author: json['author'],
+      icon: json['icon'],
+      content: json['content'],
+      time: json['time'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'author': author,
+      'icon': icon,
+      'content': content,
+      'time': time,
+    };
+  }
 }
 
 final List<Post> posts = [
   Post(
-      'To the divided steak add bagel, margerine, iced tea andTo the divided steak add bagel, margerine, iced tea andTo the divided steak add bagel, margerine, iced tea and ',
-      'My friends of the Syrian diaspora who were already in the U.K. had categorized the banks for me. First was the “there-is-no-fucking-way-for-you-Syrian-asshole-to-be-with-us” category, the ones who would refuse to even give you an appointment once they knew of your nationality. Next there was the “we-dont-need-your-damn-business-and-its-headache-but-we-are-too-nice-to-kick-your-sorry-ass-out-of-the-door-right-away” category, the ones who might give you an appointment after a month of waiting, then after another month, would tell you that your request had been denied by management or HQ without any justification. As a result, you end up having an account with a bank in the “we-are-too-big-to-care-or-too-small-to-refuse-any-customer-but-be-aware-that-you-can-be-kicked-out-at-any-moment-without-prior-notice” category.',
-      'LENTIA ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'To the divided steak add bagel, margerine, iced tea andTo the divided steak add bagel, margerine, iced tea andTo the divided steak add bagel, margerine, iced tea and ',
+      content: 'My friends of the Syrian diaspora who '
+          'were already in the U.K. had categorized the banks for me. First was the “there-is-no-fucking-way-for-you-Syrian-asshole-to-be-with-us” category, the ones who would refuse to even give you an appointment once they knew of your nationality. Next there was the “we-dont-need-your-damn-business-and-its-headache-but-we-are-too-nice-to-kick-your-sorry-ass-out-of-the-door-right-away” category, the ones who might give you an appointment after a month of waiting, then after another month, would tell you that your request had been denied by management or HQ without any justification. As a result, you end up having an account with a bank in the “we-are-too-big-to-care-or-too-small-to-refuse-any-customer-but-be-aware-that-you-can-be-kicked-out-at-any-moment-without-prior-notice” category.',
+      author: 'LENTIA ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
   Post(
-      'Shores sing with endurance!Remember: breaked shrimps taste best when sliceedShores sing with endurance!Remember: breaked shrimps taste best when sliceedShores sing with endurance!Remember: breaked shrimps taste best when sliceed ',
-      'What usually happens is that the previously smiling official behind their nice desk with cameras and thumb scanners suddenly realizes the country name on your passport, immediately drops the smile, and becomes grumpy and jumpy. Once I even heard someone whispering “Oh shit, not another Syrian!”',
-      'MUSA ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'Shores sing with endurance!Remember: breaked shrimps taste best when sliceedShores sing with endurance!Remember: breaked shrimps taste best when sliceedShores sing with endurance!Remember: breaked shrimps taste best when sliceed ',
+      content:
+          'What usually happens is that the previously smiling official behind their nice desk with cameras and thumb scanners suddenly realizes the country name on your passport, immediately drops the smile, and becomes grumpy and jumpy. Once I even heard someone whispering “Oh shit, not another Syrian!”',
+      author: 'MUSA ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
   Post(
-      'Collision course at the habitat oddlyred alert was the para ',
-      'Witnessing these reactions usually means one thing: the normally two-minute process of checking your visa and stamping your passport turns into an excruciatingly slow process of overly examining your passport, checking every visa, and counting all the stamps. All this is done with nervousness and carelessness, threatening to tear every page of the document, and breaking your heart along the way, since you know how much time and money it will cost to get a new one.',
-      'CIRPI ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'Collision course at the habitat oddlyred alert was the para ',
+      content:
+          'Witnessing these reactions usually means one thing: the normally two-minute process of checking your visa and stamping your passport turns into an excruciatingly slow process of overly examining your passport, checking every visa, and counting all the stamps. All this is done with nervousness and carelessness, threatening to tear every page of the document, and breaking your heart along the way, since you know how much time and money it will cost to get a new one.',
+      author: 'CIRPI ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
   Post(
-      'It is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chil ',
-      'Collision course at the habitat oddlyred alert was the paralyShores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.sis of flight, invaded to a carnivorous phenomenan.',
-      'PARTICULA ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'It is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chil ',
+      content:
+          'Collision course at the habitat oddlyred alert was the paralyShores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.Shores sing with endurance!Remember: breaked shrimps taste best when sliceed in a basin brushed with butter.sis of flight, invaded to a carnivorous phenomenan.',
+      author: 'PARTICULA ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
   Post(
-      'Particles fly with rumour!Abactor pius adgium estParticles Particles fly with rumour!Abactor pius adgium estParticles  ',
-      'So, yes, opening a bank account for a Syrian citizen anywhere outside of Syria is a rather complicated matter. With the different sanctions on Syrian officials, and the ever-increasing layers of counter-terrorism regulations, Syrian nationals around the world, more than any other nationality, have become the outcasts of the 21st century, for whom a mundane task, like opening a bank account or wiring money for personal or business purposes, can easily turn into a nearly impossible mission.',
-      'DEATH ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'Particles fly with rumour!Abactor pius adgium estParticles Particles fly with rumour!Abactor pius adgium estParticles  ',
+      content:
+          'So, yes, opening a bank account for a Syrian citizen anywhere outside of Syria is a rather complicated matter. With the different sanctions on Syrian officials, and the ever-increasing layers of counter-terrorism regulations, Syrian nationals around the world, more than any other nationality, have become the outcasts of the 21st century, for whom a mundane task, like opening a bank account or wiring money for personal or business purposes, can easily turn into a nearly impossible mission.',
+      author: 'DEATH ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
   Post(
-      'It is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chil ',
-      'Carrying this document, which is, by the way, the most expensive passport in the world with a cost of up to 400 per year, will definitely put you into some awkward situations. Who among us, who also carries this document, hasn’t encountered funny or humiliating reactions from passport-control officials in most of the world’s airports?',
-      'DOMUS ',
-      'https://image.xiaomo.info/logo/avatar.png',
-      'flutter',
-      '${DateTime.now().hour}:${DateTime.now().minute}',
-      comments),
+      title:
+          'It is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chilIt is an evil friendship, sir.All chil ',
+      content:
+          'Carrying this document, which is, by the way, the most expensive passport in the world with a cost of up to 400 per year, will definitely put you into some awkward situations. Who among us, who also carries this document, hasn’t encountered funny or humiliating reactions from passport-control officials in most of the world’s airports?',
+      author: 'DOMUS ',
+      icon: 'https://image.xiaomo.info/logo/avatar.png',
+      tag: 'flutter',
+      dateTime:
+          '${DateTime.now().hour}:${DateTime.now().minute}',
+      comments: comments),
 ];
 
 final List<Comment> comments = [

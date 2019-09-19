@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 class DialogUtil {
   static void showAlertDialog(
       BuildContext context, String title, String content,
-      {VoidCallback callback({Model model}), Model model}) {
+      {VoidCallback callback()}) {
     DialogStyle style = ConfigFactory.dialogStyle();
     showDialog(
       context: context,
@@ -24,8 +23,8 @@ class DialogUtil {
                     fontSize: style.buttonFontSize),
               ),
               onPressed: () {
-                if (callback != null && model != null) {
-                  callback(model: model);
+                if (callback != null) {
+                  callback();
                 }
                 Navigator.of(context).pop();
               },

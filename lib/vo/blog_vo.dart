@@ -5,6 +5,24 @@ class BlogVo {
   String url;
 
   BlogVo({this.title, this.cover, this.desc, this.url});
+
+  factory BlogVo.fromJson(Map<String, dynamic> json) {
+    return BlogVo(
+      title: json['title'],
+      desc: json['desc'],
+      cover: json['cover'],
+      url: json['url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'desc': desc,
+      'cover': cover,
+      'url': url,
+    };
+  }
 }
 
 final List<BlogVo> blogs = [
