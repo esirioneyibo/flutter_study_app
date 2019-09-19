@@ -20,4 +20,4 @@ there will put some screen shots about this app while app developed
 
 
 ### More
-detail description please visit [flutterstudy.xiaomo.info](https://flutterstudy.xiaomo.info)
+detail description please visit [document](https://flutterstudy.xiaomo.info)
