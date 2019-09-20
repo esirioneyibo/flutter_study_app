@@ -29,27 +29,24 @@ class GithubAuth extends BaseAuth {
     );
 
     GitHubLoginResponse loginResponse =
-        GitHubLoginResponse.fromJson(
-            json.decode(response.body));
+        GitHubLoginResponse.fromJson(json.decode(response.body));
 
     //FIREBASE STUFF
-    final AuthCredential credential =
-        GithubAuthProvider.getCredential(
+    final AuthCredential credential = GithubAuthProvider.getCredential(
       token: loginResponse.accessToken,
     );
 
-    final AuthResult user = await FirebaseAuth.instance
-        .signInWithCredential(credential);
+    final AuthResult user =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     return user.user;
   }
 
   void onClickGitHubLoginButton() async {
     AppConfig appConfig = ConfigFactory.appConfig();
-    String url =
-        "https://github.com/login/oauth/authorize" +
-            "?client_id=" +
-            appConfig.githubClientId +
-            "&scope=public_repo%20read:user%20user:email";
+    String url = "https://github.com/login/oauth/authorize" +
+        "?client_id=" +
+        appConfig.githubClientId +
+        "&scope=public_repo%20read:user%20user:email";
 
     if (await canLaunch(url)) {
       await launch(
@@ -70,8 +67,7 @@ class GithubAuth extends BaseAuth {
 
   void _checkDeepLink(String link) {
     if (link != null) {
-      String code =
-          link.substring(link.indexOf(RegExp('code=')) + 5);
+      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
       loginWithGitHub(code).then((firebaseUser) {
         print("LOGGED IN AS: " + firebaseUser.displayName);
       }).catchError((e) {
@@ -102,8 +98,7 @@ class GitHubLoginRequest {
   String clientSecret;
   String code;
 
-  GitHubLoginRequest(
-      {this.clientId, this.clientSecret, this.code});
+  GitHubLoginRequest({this.clientId, this.clientSecret, this.code});
 
   dynamic toJson() => {
         "client_id": clientId,
@@ -117,11 +112,9 @@ class GitHubLoginResponse {
   String tokenType;
   String scope;
 
-  GitHubLoginResponse(
-      {this.accessToken, this.tokenType, this.scope});
+  GitHubLoginResponse({this.accessToken, this.tokenType, this.scope});
 
-  factory GitHubLoginResponse.fromJson(
-          Map<String, dynamic> json) =>
+  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) =>
       GitHubLoginResponse(
         accessToken: json["access_token"],
         tokenType: json["token_type"],

@@ -6,14 +6,7 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
-class LanguageScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return LanguageScreenState();
-  }
-}
-
-class LanguageScreenState extends State<LanguageScreen> {
+class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Locale>(
@@ -24,8 +17,7 @@ class LanguageScreenState extends State<LanguageScreen> {
             NavigatorUtil.back(context, details);
           },
           child: Scaffold(
-            appBar: ReturnBar(
-                MyLocalizations.of(context).changeLanguage),
+            appBar: ReturnBar(MyLocalizations.of(context).changeLanguage),
             body: Container(
               child: Column(
                 children: <Widget>[
@@ -33,19 +25,16 @@ class LanguageScreenState extends State<LanguageScreen> {
                     trailing: Icon(Icons.chevron_right),
                     title: Container(child: Text('中文')),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.cn);
+                      CommonUtil.changeLocale(store, LocaleEnum.cn);
                       Navigator.of(context).pop();
                     },
                   ),
                   Divider(),
                   ListTile(
                     trailing: Icon(Icons.chevron_right),
-                    title:
-                        Container(child: Text('English')),
+                    title: Container(child: Text('English')),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.en);
+                      CommonUtil.changeLocale(store, LocaleEnum.en);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -54,8 +43,7 @@ class LanguageScreenState extends State<LanguageScreen> {
                     trailing: Icon(Icons.chevron_right),
                     title: Container(child: Text('日本語')),
                     onTap: () {
-                      CommonUtil.changeLocale(
-                          store, LocaleEnum.ja);
+                      CommonUtil.changeLocale(store, LocaleEnum.ja);
                       Navigator.of(context).pop();
                     },
                   ),

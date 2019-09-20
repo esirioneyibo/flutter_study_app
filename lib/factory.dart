@@ -18,6 +18,11 @@ class ConfigFactory {
     return RouterConfig();
   }
 
+  // api
+  static APIConfig api() {
+    return APIConfig();
+  }
+
   // App 配置
   static AppConfig appConfig() {
     return AppConfig();

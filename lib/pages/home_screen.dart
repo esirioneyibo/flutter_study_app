@@ -28,9 +28,7 @@ class HomeScreenState extends State<HomeScreen>
     // 顶部tab切换
     var topBar = TabBar(
       indicatorWeight: homeStyle.indicatorWeight,
-      isScrollable: tabs.length > homeStyle.scrollCount
-          ? true
-          : false,
+      isScrollable: tabs.length > homeStyle.scrollCount ? true : false,
       unselectedLabelColor: homeStyle.unSelectedColor,
       indicatorColor: homeStyle.selectedColor,
       indicatorSize: TabBarIndicatorSize.tab,
@@ -39,16 +37,14 @@ class HomeScreenState extends State<HomeScreen>
           shadows: [],
           shape: Border(
               bottom: BorderSide(
-                  width: homeStyle.borderSize,
-                  color: homeStyle.borderColor))),
+                  width: homeStyle.borderSize, color: homeStyle.borderColor))),
       tabs: tabs,
     );
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
           appBar: MyAppBar(
-              title: MyLocalizations.of(context).index,
-              tabBar: topBar),
+              title: MyLocalizations.of(context).index, tabBar: topBar),
           body: TabBarView(
             children: tabContents,
           )),

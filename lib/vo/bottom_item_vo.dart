@@ -13,12 +13,7 @@ class TabItem {
   final Widget screen;
   final Tab tab;
 
-  TabItem(
-      {this.index,
-      this.icon,
-      this.title,
-      this.screen,
-      this.tab});
+  TabItem({this.index, this.icon, this.title, this.screen, this.tab});
 }
 
 getBottomItems(BuildContext context) {
@@ -62,8 +57,7 @@ List<TabItem> getTopItems(BuildContext context) {
         screen: BlogScreen()),
     TabItem(
         index: 3,
-        tab: Tab(
-            text: MyLocalizations.of(context).openSource),
+        tab: Tab(text: MyLocalizations.of(context).openSource),
         screen: ProjectsScreen()),
 //    TabItem(
 //        index: 4,

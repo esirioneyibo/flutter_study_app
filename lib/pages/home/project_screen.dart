@@ -16,10 +16,9 @@ class ProjectsScreen extends StatelessWidget {
         return InkWell(
           child: Card(
             shape: RoundedRectangleBorder(
-                side: BorderSide(
-                    color: style.cardBorderColor),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(style.cardRadius))),
+                side: BorderSide(color: style.cardBorderColor),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(style.cardRadius))),
             child: Padding(
               padding: style.contentPadding,
               child: Column(
@@ -125,8 +124,7 @@ class ProjectBottom extends StatelessWidget {
                 child: Text(
                   '865',
                   style: TextStyle(
-                      color: style.starFontColor,
-                      fontSize: style.starFontSize),
+                      color: style.starFontColor, fontSize: style.starFontSize),
                 ),
               )
             ],
@@ -143,8 +141,7 @@ class ProjectBottom extends StatelessWidget {
                 child: Text(
                   '41',
                   style: TextStyle(
-                      color: style.forkFontColor,
-                      fontSize: style.forkFontSize),
+                      color: style.forkFontColor, fontSize: style.forkFontSize),
                 ),
               )
             ],
@@ -197,8 +194,7 @@ class ProjectsStyle {
   var bottomPadding = EdgeInsets.fromLTRB(10, 5, 0, 5);
 
   // 编程语言内边距
-  var languageBadgePadding =
-      EdgeInsets.fromLTRB(5, 5, 30, 5);
+  var languageBadgePadding = EdgeInsets.fromLTRB(5, 5, 30, 5);
 
   // star内边距
   var starBadgePadding = EdgeInsets.fromLTRB(5, 5, 30, 5);

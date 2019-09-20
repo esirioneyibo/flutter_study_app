@@ -18,8 +18,8 @@ class PluginsScreen extends StatelessWidget {
           child: Card(
             elevation: style.cardShader,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(style.cardRadius))),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(style.cardRadius))),
             child: Column(
               children: <Widget>[
                 // 标题
@@ -51,8 +51,7 @@ class PluginsScreen extends StatelessWidget {
             ),
           ),
           onTap: () {
-            DialogUtil.showAlertDialog(
-                context, blog.title, blog.desc);
+            DialogUtil.showAlertDialog(context, blog.title, blog.desc);
           },
         );
       }),

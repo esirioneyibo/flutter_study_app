@@ -7,8 +7,7 @@ import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 final store = Store<AppState>(reducers,
-    middleware: [thunkMiddleware],
-    initialState: AppState.initialState());
+    middleware: [thunkMiddleware], initialState: AppState.initialState());
 
 class AppState {
   // 当前用户
@@ -23,11 +22,7 @@ class AppState {
   // 当前平台默认语言
   Locale platformLocale;
 
-  AppState(
-      {this.user,
-      this.themeData,
-      this.locale,
-      this.platformLocale});
+  AppState({this.user, this.themeData, this.locale, this.platformLocale});
 
   factory AppState.initialState() {
     return AppState(

@@ -13,22 +13,18 @@ enum AnimType {
 
 class NavigatorUtil {
   static void push(BuildContext context, route) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => route));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => route));
   }
 
-  static void back(
-      BuildContext context, DragEndDetails details) {
-    var value = (details.velocity.pixelsPerSecond.dx
-        .toStringAsFixed(1));
+  static void back(BuildContext context, DragEndDetails details) {
+    var value = (details.velocity.pixelsPerSecond.dx.toStringAsFixed(1));
     print(value);
     if (double.parse(value) > 500) {
       Navigator.of(context).pop();
     }
   }
 
-  static void pushWithAnim(
-      BuildContext context, route, AnimType animType,
+  static void pushWithAnim(BuildContext context, route, AnimType animType,
       {secondPage}) {
     PageRouteBuilder builder;
     if (animType == AnimType.Size) {
@@ -40,8 +36,7 @@ class NavigatorUtil {
     } else if (animType == AnimType.ScaleRotation) {
       builder = ScaleRotateRoute(page: route);
     } else if (animType == AnimType.EnterExit) {
-      builder = EnterExitRoute(
-          exitPage: secondPage, enterPage: route);
+      builder = EnterExitRoute(exitPage: secondPage, enterPage: route);
     } else if (animType == AnimType.Slider) {
       builder = SliderRoute(page: route);
     } else {
@@ -52,8 +47,7 @@ class NavigatorUtil {
   }
 
   ///替换
-  static pushReplacementNamed(
-      BuildContext context, String routeName) {
+  static pushReplacementNamed(BuildContext context, String routeName) {
     Navigator.pushReplacementNamed(context, routeName);
   }
 
@@ -64,8 +58,7 @@ class NavigatorUtil {
 
   ///主页
   static goHome(BuildContext context) {
-    Navigator.pushReplacementNamed(
-        context, ConfigFactory.router().index);
+    Navigator.pushReplacementNamed(context, ConfigFactory.router().index);
   }
 }
 

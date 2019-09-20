@@ -8,8 +8,7 @@ class PractiseScreen extends StatefulWidget {
   PractiseScreen({Key key}) : super(key: key);
 
   @override
-  _PractiseScreenState createState() =>
-      _PractiseScreenState();
+  _PractiseScreenState createState() => _PractiseScreenState();
 }
 
 class _PractiseScreenState extends State<PractiseScreen> {
@@ -37,12 +36,10 @@ class _PractiseScreenState extends State<PractiseScreen> {
           _data[index].isExpanded = !isExpanded;
         });
       },
-      animationDuration:
-          Duration(milliseconds: style.toggleSpeed),
+      animationDuration: Duration(milliseconds: style.toggleSpeed),
       children: _data.map<ExpansionPanel>((PractiseVo vo) {
         return ExpansionPanel(
-          headerBuilder:
-              (BuildContext context, bool isExpanded) {
+          headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
               title: Text(
                 vo.title,
@@ -59,8 +56,8 @@ class _PractiseScreenState extends State<PractiseScreen> {
               return ListTile(
                 title: Text(child.title),
                 onTap: () {
-                  NavigatorUtil.pushWithAnim(context,
-                      child.screen, AnimType.Slider);
+                  NavigatorUtil.pushWithAnim(
+                      context, child.screen, AnimType.Slider);
                 },
               );
             }).toList(),

@@ -10,9 +10,7 @@ class GamesScreen extends StatelessWidget {
           child: Text(
         '这是游戏',
         style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-              fontSize: 20),
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
       )),
     );
   }

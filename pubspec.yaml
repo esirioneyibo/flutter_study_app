@@ -24,11 +24,11 @@ dependencies:
 
   cupertino_icons:
   video_player:
-  google_sign_in:
   device_info:
   sqflite:
   cached_network_image:
-  http:
+  dio:
+  json_annotation:
   shared_preferences:
   qr_flutter:
   font_awesome_flutter:
@@ -40,16 +40,19 @@ dependencies:
   path_provider:
   google_maps_flutter:
   firebase_auth:
-  flutter_twitter_login:
-    git: git://github.com/eudangeld/flutter_twitter_login.git
   uni_links:
   url_launcher:
   webview_flutter:
+  flutter_markdown:
+#  google_sign_in:
+#  flutter_twitter_login:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   intl_translation:
+  json_serializable:
+  build_runner:
 
 
 # For information on the generic Dart part of this file, see the

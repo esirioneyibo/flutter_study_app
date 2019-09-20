@@ -64,8 +64,7 @@ class ToolsScreen extends StatelessWidget {
         fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
-      appBar: AppBar(
-          title: Text(MyLocalizations.of(context).tool)),
+      appBar: AppBar(title: Text(MyLocalizations.of(context).tool)),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -119,34 +118,30 @@ class ToolsScreen extends StatelessWidget {
 }
 
 class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.choice})
-      : super(key: key);
+  const ChoiceCard({Key key, this.choice}) : super(key: key);
   final Choice choice;
 
   @override
   Widget build(BuildContext context) {
     ToolsStyle style = ConfigFactory.toolsStyle();
-    final TextStyle textStyle = TextStyle(
-        fontSize: style.fontSize, color: style.fontColor);
+    final TextStyle textStyle =
+        TextStyle(fontSize: style.fontSize, color: style.fontColor);
 
-    final TextStyle iconStyle = TextStyle(
-        fontSize: style.gridIconSize,
-        color: style.iconColor);
+    final TextStyle iconStyle =
+        TextStyle(fontSize: style.gridIconSize, color: style.iconColor);
     return Card(
         color: style.cardColor,
         child: Center(
             child: InkWell(
           onTap: () {
-            NavigatorUtil.pushWithAnim(
-                context, choice.screen, style.animType);
+            NavigatorUtil.pushWithAnim(context, choice.screen, style.animType);
           },
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Icon(choice.icon,
-                    size: style.choiceIconSize,
-                    color: iconStyle.color),
+                    size: style.choiceIconSize, color: iconStyle.color),
                 Text(choice.title, style: textStyle),
               ]),
         )));

@@ -10,9 +10,7 @@ class DevelopToolsScreen extends StatelessWidget {
           child: Text(
         '这是工具',
         style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-              fontSize: 20),
+            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
       )),
     );
   }

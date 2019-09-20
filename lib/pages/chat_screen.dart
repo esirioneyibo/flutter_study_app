@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
+import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
-import 'package:flutter_study_app/vo/post_vo.dart';
+import 'package:flutter_study_app/utils/time_util.dart';
+import 'package:flutter_study_app/vo/post.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return ChatScreenState();
+  }
+}
+
+class ChatScreenState extends State<ChatScreen> {
+  List<Post> posts;
+
+  @override
+  void initState() {
+    super.initState();
+    HttpService.get(ConfigFactory.api().chatList, (data) {
+      this.posts = getPostList(data);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ChatStyle chatStyle = ConfigFactory.chatStyle();
     return Scaffold(
-      appBar: AppBar(
-          title: Text(MyLocalizations.of(context).chat)),
+      appBar: AppBar(title: Text(MyLocalizations.of(context).chat)),
       floatingActionButton: Container(
         height: chatStyle.newChatButtonSize,
         width: chatStyle.newChatButtonSize,
@@ -20,59 +40,51 @@ class ChatScreen extends StatelessWidget {
             tooltip: MyLocalizations.of(context).newChat,
             child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
-              NavigatorUtil.pushWithAnim(context,
-                  NewChatScreen(), AnimType.Slider);
+              NavigatorUtil.pushWithAnim(
+                  context, NewChatScreen(), AnimType.Slider);
             }),
       ),
-      body: Container(
-        color: chatStyle.background,
-        child: ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () => NavigatorUtil.pushWithAnim(
-                    context,
-                    ChatDetailScreen(posts[index]),
-                    AnimType.Slider),
-                child: Card(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        bottom: chatStyle.cardMarginBottom),
-                    padding: EdgeInsets.all(
-                        chatStyle.cardPaddingAll),
-                    color: chatStyle.cardColor,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                                flex: 2,
-                                child: LeftUserInfo(index)),
-                            Expanded(
-                                flex: 1,
-                                child: RightCommentInfo(
-                                    index)),
-                          ],
+      body: posts == null
+          ? Loading()
+          : Container(
+              color: chatStyle.background,
+              child: ListView.builder(
+                  itemCount: posts.length,
+                  itemBuilder: (context, index) {
+                    final post = posts[index];
+                    return InkWell(
+                      onTap: () => NavigatorUtil.pushWithAnim(context,
+                          ChatDetailScreen(posts[index]), AnimType.Slider),
+                      child: Card(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              bottom: chatStyle.cardMarginBottom),
+                          padding: EdgeInsets.all(chatStyle.cardPaddingAll),
+                          color: chatStyle.cardColor,
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Expanded(flex: 2, child: LeftUserInfo(post)),
+                                  Expanded(
+                                      flex: 1, child: RightCommentInfo(post)),
+                                ],
+                              ),
+                              // 帖子内容
+                              Container(
+                                  padding: EdgeInsets.only(
+                                      top: chatStyle.chatContentPaddingTop),
+                                  alignment: Alignment.centerLeft,
+                                  child: MarkdownBody(
+                                    data: posts[index].body,
+                                  ))
+                            ],
+                          ),
                         ),
-                        // 帖子内容
-                        Container(
-                            padding: EdgeInsets.only(
-                                top: chatStyle
-                                    .chatContentPaddingTop),
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              posts[index].content,
-                              maxLines: chatStyle.maxLines,
-                              overflow:
-                                  TextOverflow.ellipsis,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }),
-      ),
+                      ),
+                    );
+                  }),
+            ),
     );
   }
 }
@@ -82,9 +94,9 @@ class ChatScreen extends StatelessWidget {
 /// Icon ｜ 用户名
 /// Icon ｜最后回复
 class LeftUserInfo extends StatelessWidget {
-  final int index;
+  final Post post;
 
-  LeftUserInfo(this.index);
+  LeftUserInfo(this.post);
 
   @override
   Widget build(BuildContext context) {
@@ -95,19 +107,21 @@ class LeftUserInfo extends StatelessWidget {
         Row(
           children: <Widget>[
             Image(
-              image: NetworkImage(posts[index].icon),
+              image: NetworkImage(post.user.avatarUrl),
               width: style.avatarSize,
               height: style.avatarSize,
             ),
-            Column(
-              children: <Widget>[
-                Text(posts[index].author),
-                Text(
-                  posts[index].dateTime,
-                  style:
-                      TextStyle(color: style.authorColor),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                children: <Widget>[
+                  Text(post.user.login),
+                  Text(
+                    TimeUtil.format(post.createdAt),
+                    style: TextStyle(color: style.authorColor),
+                  ),
+                ],
+              ),
             )
           ],
         )
@@ -118,9 +132,9 @@ class LeftUserInfo extends StatelessWidget {
 
 /// 右侧信息
 class RightCommentInfo extends StatelessWidget {
-  final int index;
+  final Post post;
 
-  RightCommentInfo(this.index);
+  RightCommentInfo(this.post);
 
   @override
   Widget build(BuildContext context) {
@@ -132,13 +146,12 @@ class RightCommentInfo extends StatelessWidget {
           padding: EdgeInsets.all(style.tagPaddingAll),
           color: style.tagColor,
           child: Text(
-            posts[index].tag,
+            post.state,
             style: TextStyle(fontSize: style.tagSize),
           ),
         ),
         Container(
-          margin:
-              EdgeInsets.all(style.messageIconMarginAll),
+          margin: EdgeInsets.all(style.messageIconMarginAll),
           child: Icon(
             Icons.message,
             color: style.messageIconColor,
@@ -146,12 +159,10 @@ class RightCommentInfo extends StatelessWidget {
           ),
         ),
         Container(
-          margin:
-              EdgeInsets.all(style.messageTextMarginAll),
+          margin: EdgeInsets.all(style.messageTextMarginAll),
           child: Text(
-            posts[index].comments.length.toString(),
-            style: TextStyle(
-                fontSize: style.messageTextFontSize),
+            post.comments.toString(),
+            style: TextStyle(fontSize: style.messageTextFontSize),
           ),
         )
       ],

@@ -77,7 +77,6 @@ class PasswordFieldValidator {
   }
 }
 
-
 class EmailErrorCode {
   static const String invalidEmail = "ERROR_INVALID_EMAIL";
   static const String userNotFound = "ERROR_USER_NOT_FOUND";

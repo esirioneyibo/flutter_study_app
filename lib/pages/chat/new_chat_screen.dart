@@ -11,14 +11,10 @@ class NewChatScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-          appBar: ReturnBar(
-              MyLocalizations.of(context).newChat),
+          appBar: ReturnBar(MyLocalizations.of(context).newChat),
           body: Text('添加文章')),
     );
   }
 }
 
-
-class NewChatStyle{
-
-}
+class NewChatStyle {}

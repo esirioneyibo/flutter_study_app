@@ -8,13 +8,7 @@ class PluginVo {
   String rate;
   String tag;
 
-  PluginVo(
-      {this.id,
-      this.title,
-      this.desc,
-      this.url,
-      this.rate,
-      this.tag}) {
+  PluginVo({this.id, this.title, this.desc, this.url, this.rate, this.tag}) {
     this.id = Uuid().v1();
   }
 
