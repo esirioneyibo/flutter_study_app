@@ -2,7 +2,6 @@
 ### Flutter study app  
 :rocket: this project is build with flutter 1.7.8, an useful app(android and ios) for study flutter. it offered a lot of useful tools for us.
 
-### Status
 [![Build Status](https://travis-ci.com/houko/flutter-study-app.svg?branch=master)](https://travis-ci.com/houko/flutter-study-app)
 [![GitHub license](https://img.shields.io/badge/license-BSD--2--Clause-blue)](https://github.com/houko/flutter-study-app/blob/master/LICENSE)
 [![ios app](https://img.shields.io/badge/ios-app-brightgreen)](https://houko.github.io/flutter-study-app/)
