@@ -8,7 +8,7 @@ import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
-import 'package:flutter_study_app/vo/post.dart';
+import 'package:github/server.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -17,15 +17,19 @@ class ChatScreen extends StatefulWidget {
   }
 }
 
-class ChatScreenState extends State<ChatScreen> {
-  List<Post> posts;
+class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback {
+  List<Issue> posts = [];
+
+  HttpService http;
+
+  ChatScreenState() {
+    this.http = HttpService(this);
+  }
 
   @override
   void initState() {
     super.initState();
-    HttpService.get(ConfigFactory.api().chatList, (data) {
-      this.posts = getPostList(data);
-    });
+    http.getChatList();
   }
 
   @override
@@ -40,11 +44,10 @@ class ChatScreenState extends State<ChatScreen> {
             tooltip: MyLocalizations.of(context).newChat,
             child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
-              NavigatorUtil.pushWithAnim(
-                  context, NewChatScreen(), AnimType.Slider);
+              NavigatorUtil.pushWithAnim(context, NewChatScreen(), AnimType.Slider);
             }),
       ),
-      body: posts == null
+      body: posts.isEmpty
           ? Loading()
           : Container(
               color: chatStyle.background,
@@ -53,12 +56,10 @@ class ChatScreenState extends State<ChatScreen> {
                   itemBuilder: (context, index) {
                     final post = posts[index];
                     return InkWell(
-                      onTap: () => NavigatorUtil.pushWithAnim(context,
-                          ChatDetailScreen(posts[index]), AnimType.Slider),
+                      onTap: () => NavigatorUtil.pushWithAnim(context, ChatDetailScreen(posts[index]), AnimType.Slider),
                       child: Card(
                         child: Container(
-                          margin: EdgeInsets.only(
-                              bottom: chatStyle.cardMarginBottom),
+                          margin: EdgeInsets.only(bottom: chatStyle.cardMarginBottom),
                           padding: EdgeInsets.all(chatStyle.cardPaddingAll),
                           color: chatStyle.cardColor,
                           child: Column(
@@ -66,14 +67,12 @@ class ChatScreenState extends State<ChatScreen> {
                               Row(
                                 children: <Widget>[
                                   Expanded(flex: 2, child: LeftUserInfo(post)),
-                                  Expanded(
-                                      flex: 1, child: RightCommentInfo(post)),
+                                  Expanded(flex: 1, child: RightCommentInfo(post)),
                                 ],
                               ),
                               // 帖子内容
                               Container(
-                                  padding: EdgeInsets.only(
-                                      top: chatStyle.chatContentPaddingTop),
+                                  padding: EdgeInsets.only(top: chatStyle.chatContentPaddingTop),
                                   alignment: Alignment.centerLeft,
                                   child: MarkdownBody(
                                     data: posts[index].body,
@@ -87,6 +86,18 @@ class ChatScreenState extends State<ChatScreen> {
             ),
     );
   }
+
+  @override
+  errorCallBack(DataType type, error) {
+    print(error);
+  }
+
+  @override
+  successCallBack(DataType type, response) {
+    setState(() {
+      this.posts = response;
+    });
+  }
 }
 
 /// 左侧用户信息
@@ -94,7 +105,7 @@ class ChatScreenState extends State<ChatScreen> {
 /// Icon ｜ 用户名
 /// Icon ｜最后回复
 class LeftUserInfo extends StatelessWidget {
-  final Post post;
+  final Issue post;
 
   LeftUserInfo(this.post);
 
@@ -132,7 +143,7 @@ class LeftUserInfo extends StatelessWidget {
 
 /// 右侧信息
 class RightCommentInfo extends StatelessWidget {
-  final Post post;
+  final Issue post;
 
   RightCommentInfo(this.post);
 
@@ -161,7 +172,7 @@ class RightCommentInfo extends StatelessWidget {
         Container(
           margin: EdgeInsets.all(style.messageTextMarginAll),
           child: Text(
-            post.comments.toString(),
+            post.commentsCount.toString(),
             style: TextStyle(fontSize: style.messageTextFontSize),
           ),
         )
@@ -169,6 +180,7 @@ class RightCommentInfo extends StatelessWidget {
     );
   }
 }
+
 
 class ChatStyle {
   // 发布帖子的浮动按钮大小

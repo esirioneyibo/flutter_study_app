@@ -7,14 +7,13 @@ import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
-import 'package:flutter_study_app/vo/comment.dart';
-import 'package:flutter_study_app/vo/post.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:github/server.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   ChatDetailScreen(this.post);
 
-  final Post post;
+  final Issue post;
 
   @override
   State<StatefulWidget> createState() {
@@ -22,20 +21,68 @@ class ChatDetailScreen extends StatefulWidget {
   }
 }
 
-class ChatDetailState extends State<ChatDetailScreen> {
-  final Post post;
+/// 使用http的话要实现 IHttpServiceCallback
+class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCallback {
+  HttpService http;
+
+  TextEditingController _controller;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  Issue post;
   ScrollController _scrollController = ScrollController();
 
-  List<Comment> comments;
+  bool _scrollButtonVisible = true;
 
-  ChatDetailState(this.post);
+  List<IssueComment> comments;
+
+  FocusNode _focusNode;
+
+  Color borderColor = Colors.grey;
+
+  ChatDetailState(this.post) {
+    http = HttpService(this);
+  }
 
   @override
   void initState() {
     super.initState();
-    HttpService.get(post.commentsUrl, (data) {
-      this.comments = getCommentList(data);
+    _focusNode = FocusNode();
+    _controller = TextEditingController();
+    http.getChatComments(post.number);
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        onFocus();
+      } else {
+        onBlur();
+      }
     });
+  }
+
+  onFocus() {
+    setState(() {
+      _scrollButtonVisible = false;
+    });
+  }
+
+  onBlur() {
+    setState(() {
+      _scrollButtonVisible = true;
+    });
+  }
+
+  /// 验证和保存
+  bool _validateAndComment() {
+    final FormState state = formKey.currentState;
+    if (state.validate()) {
+      state.save();
+      return true;
+    }
+    return false;
+  }
+
+  // 添加一个评论 发送http请求
+  addAnComment(String data) {
+    this.http.addAnComment(post.number, data);
+    _controller.clear();
   }
 
   bool isTop = true;
@@ -44,6 +91,8 @@ class ChatDetailState extends State<ChatDetailScreen> {
   void dispose() {
     super.dispose();
     _scrollController.dispose();
+    _focusNode.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -55,23 +104,25 @@ class ChatDetailState extends State<ChatDetailScreen> {
       floatingActionButton: Container(
         height: style.scrollButtonSize,
         width: style.scrollButtonSize,
-        child: FloatingActionButton(
-            tooltip: isTop ? '到达底部' : '返回顶部',
-            child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
-            onPressed: () {
-              var pos = isTop
-                  ? _scrollController.position.maxScrollExtent
-                  : _scrollController.position.minScrollExtent;
+        child: Visibility(
+          visible: _scrollButtonVisible,
+          child: FloatingActionButton(
+              tooltip: isTop ? '到达底部' : '返回顶部',
+              child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
+              onPressed: () {
+                var pos =
+                    isTop ? _scrollController.position.maxScrollExtent : _scrollController.position.minScrollExtent;
 
-              _scrollController.animateTo(
-                pos,
-                curve: Curves.easeOut,
-                duration: Duration(milliseconds: style.scrollSpeed),
-              );
-              setState(() {
-                isTop = !isTop;
-              });
-            }),
+                _scrollController.animateTo(
+                  pos,
+                  curve: Curves.easeOut,
+                  duration: Duration(milliseconds: style.scrollSpeed),
+                );
+                setState(() {
+                  isTop = !isTop;
+                });
+              }),
+        ),
       ),
       body: GestureDetector(
         onHorizontalDragEnd: (DragEndDetails details) {
@@ -96,8 +147,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                             height: style.avatarSize,
                             width: style.avatarSize,
                             child: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(post.user.avatarUrl),
+                              backgroundImage: NetworkImage(post.user.avatarUrl),
                               backgroundColor: Colors.grey,
                               radius: style.avatarRadius,
                             ), // 头像
@@ -136,9 +186,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                           backgroundColor: style.badgeBackgroundColor,
                           label: Text(
                             post.state,
-                            style: TextStyle(
-                                color: style.badgeColor,
-                                fontSize: style.badgeFontSize),
+                            style: TextStyle(color: style.badgeColor, fontSize: style.badgeFontSize),
                           )),
                     ), // 右侧小标签
                   ],
@@ -158,6 +206,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                 // 内容
               ],
             )),
+            // 点赞
             Container(
               child: comments == null
                   ? Loading()
@@ -173,21 +222,16 @@ class ChatDetailState extends State<ChatDetailScreen> {
                                       ListTile(
                                         key: Key(comment.id.toString()),
                                         leading: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              comment.user.avatarUrl),
+                                          backgroundImage: NetworkImage(comment.user.avatarUrl),
                                         ),
                                         trailing: Text('${index + 1}楼'),
                                         subtitle: Text(comment.body),
                                         title: Text(comment.user.login),
                                       ),
                                       Container(
-                                        child: ActionChip(
-                                            label: Icon(FontAwesomeIcons.heart),
-                                            onPressed: () => {}),
+                                        child: ActionChip(label: Icon(FontAwesomeIcons.heart), onPressed: () => {}),
                                         alignment: Alignment.centerRight,
-                                        padding: EdgeInsets.only(
-                                            right:
-                                                style.likeButtonPaddingRight),
+                                        padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
                                       )
                                     ],
                                   ),
@@ -197,10 +241,92 @@ class ChatDetailState extends State<ChatDetailScreen> {
                           .toList(), // 评论列表
                     ),
             ),
+
+            // 评论框
+            Card(
+              margin: EdgeInsets.only(bottom: 100),
+              child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: TextFormField(
+                          key: Key('new_comment'),
+                          keyboardType: TextInputType.text,
+                          minLines: 3,
+                          maxLines: 100,
+                          decoration: InputDecoration(
+                            hintText: MyLocalizations.of(context).comment,
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blue),
+                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                          ),
+                          validator: CommentFieldValidator.validate,
+                          onSaved: addAnComment,
+                          controller: _controller,
+                          focusNode: _focusNode,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.only(right: 10),
+                        alignment: Alignment.centerRight,
+                        child: RaisedButton(
+                          color: style.commentButtonColor,
+                          key: Key('comment'),
+                          child: Text(MyLocalizations.of(context).comment,
+                              style: TextStyle(fontSize: style.commentButtonSize, color: style.commentFontColor)),
+                          onPressed: _validateAndComment,
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  successCallBack(DataType type, response) {
+    if (type == DataType.addAnComment) {
+      response = response as IssueComment;
+      setState(() {
+        this.comments.add(response);
+      });
+    } else if (type == DataType.getChatComments) {
+      if (response == null) {
+        setState(() {
+          this.comments = [];
+        });
+        return;
+      }
+      setState(() {
+        this.comments = response;
+      });
+    }
+  }
+
+  @override
+  errorCallBack(DataType type, error) {
+    print(error);
+  }
+}
+
+class CommentFieldValidator {
+  static String validate(String value) {
+    if (value.isEmpty) {
+      return "请输入评论内容";
+    }
+    return null;
   }
 }
 
@@ -255,4 +381,10 @@ class ChatDetailStyle {
 
   // 评论点赞按钮距右的距离
   double likeButtonPaddingRight = 10;
+
+  Color commentButtonColor = Colors.green;
+
+  Color commentFontColor = Colors.white;
+
+  double commentButtonSize = 12;
 }

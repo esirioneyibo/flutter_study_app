@@ -1,85 +1,83 @@
-import 'package:dio/dio.dart';
+import 'package:flutter_study_app/factory.dart';
+import 'package:github/server.dart';
 
-//要查网络请求的日志可以使用过滤<net>
 class HttpService {
-  static const String GET = "get";
-  static const String POST = "post";
+  Function successCallBack;
+  Function errorCallBack;
 
-  //get请求
-  static void get(String url, Function callBack,
-      {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, callBack,
-        method: GET, params: params, errorCallBack: errorCallBack);
+  IHttpServiceCallback callbackObject;
+
+  HttpService httpService;
+
+  GitHub github;
+  IssuesService issuesService;
+  RepositorySlug slug;
+
+  HttpService(this.callbackObject) {
+    successCallBack = callbackObject.successCallBack;
+    errorCallBack = callbackObject.errorCallBack;
+    github = createGitHubClient(auth: new Authentication.withToken(ConfigFactory.appConfig().githubToken));
+    slug = RepositorySlug("houko", "flutter-study-app");
+    issuesService = IssuesService(github);
   }
 
-  //post请求
-  static void post(String url, Function callBack,
-      {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, callBack,
-        method: POST, params: params, errorCallBack: errorCallBack);
+  /// 获取聊天列表
+  getChatList() {
+    Stream<Issue> future = github.issues.listByRepo(slug);
+    List<Issue> issues = [];
+    future.listen((issue) {
+      issues.add(issue);
+    }, onDone: () {
+      successCallBack(DataType.getChatList, issues);
+    }, onError: ((error) {
+      errorCallBack(DataType.getChatList, error);
+    }));
   }
 
-  //具体的还是要看返回数据的基本结构
-  //公共代码部分
-  static void _request(String url, Function callBack,
-      {String method,
-      Map<String, String> params,
-      Function errorCallBack}) async {
-    print("<net> url :<" + method + ">" + url);
-
-    if (params != null && params.isNotEmpty) {
-      print("<net> params :" + params.toString());
-    }
-
-    String errorMsg = "";
-    int statusCode;
-
-    try {
-      Response response;
-      if (method == GET) {
-        //组合GET请求的参数
-        if (params != null && params.isNotEmpty) {
-          StringBuffer sb = new StringBuffer("?");
-          params.forEach((key, value) {
-            sb.write("$key" + "=" + "$value" + "&");
-          });
-          String paramStr = sb.toString();
-          paramStr = paramStr.substring(0, paramStr.length - 1);
-          url += paramStr;
-        }
-        response = await Dio().get(url);
-      } else {
-        if (params != null && params.isNotEmpty) {
-          response = await Dio().post(url, data: params);
-        } else {
-          response = await Dio().post(url);
-        }
+  /// 获取评论列表
+  getChatComments(issueNumber) {
+    Stream<IssueComment> future = issuesService.listCommentsByIssue(slug, issueNumber);
+    List<IssueComment> comments;
+    future.listen((comment) {
+      if (comments == null) {
+        comments = [];
       }
-
-      statusCode = response.statusCode;
-
-      //处理错误部分
-      if (statusCode < 0) {
-        errorMsg = "网络请求错误,状态码:" + statusCode.toString();
-        _handError(errorCallBack, errorMsg);
-        return;
-      }
-
-      if (callBack != null) {
-        var data = response.data;
-        callBack(data);
-        print("<net> response data:" + response.data);
-      }
-    } catch (exception) {
-      _handError(errorCallBack, exception.toString());
-    }
+      comments.add(comment);
+    }, onError: (error) {
+      errorCallBack(DataType.getChatComments, error);
+    }, onDone: () {
+      successCallBack(DataType.getChatComments, comments);
+    });
   }
 
-  //处理异常
-  static void _handError(Function errorCallback, String errorMsg) {
-    if (errorCallback != null) {
-      errorCallback(errorMsg);
-    }
-    print("<net> errorMsg :" + errorMsg);
+  /// 添加一个评论
+  addAnComment(issueId, String data) {
+    Future<IssueComment> result = github.issues.createComment(slug, issueId, data.trim());
+    result.then((comment) {
+      successCallBack(DataType.addAnComment, comment);
+    }).catchError((error) {
+      errorCallBack(DataType.addAnComment, error);
+    });
   }
+}
+
+class IHttpServiceCallback {
+  successCallBack(DataType type, response) {
+    print(response);
+  }
+
+  errorCallBack(DataType type, error) {
+    print(error);
+  }
+}
+
+enum DataType {
+  getChatList,
+  getChatComments,
+  addAnComment,
+  ff,
+  ssd,
+  dd,
+  safdsa,
+  safsafd,
 }
