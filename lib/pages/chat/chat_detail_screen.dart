@@ -22,20 +22,22 @@ class ChatDetailScreen extends StatefulWidget {
   }
 }
 
-class ChatDetailState extends State<ChatDetailScreen> {
-  final Post post;
+/// 使用http的话要实现 IHttpServiceCallback
+class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCallback {
+  HttpService httpService;
+  dynamic post;
   ScrollController _scrollController = ScrollController();
 
   List<Comment> comments;
 
-  ChatDetailState(this.post);
+  ChatDetailState(this.post) {
+    httpService = HttpService(this);
+  }
 
   @override
   void initState() {
     super.initState();
-    HttpService.get(post.commentsUrl, (data) {
-      this.comments = getCommentList(data);
-    });
+    httpService.getChatComments(post.commentsUrl);
   }
 
   bool isTop = true;
@@ -59,9 +61,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
             tooltip: isTop ? '到达底部' : '返回顶部',
             child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
             onPressed: () {
-              var pos = isTop
-                  ? _scrollController.position.maxScrollExtent
-                  : _scrollController.position.minScrollExtent;
+              var pos = isTop ? _scrollController.position.maxScrollExtent : _scrollController.position.minScrollExtent;
 
               _scrollController.animateTo(
                 pos,
@@ -96,8 +96,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                             height: style.avatarSize,
                             width: style.avatarSize,
                             child: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(post.user.avatarUrl),
+                              backgroundImage: NetworkImage(post.user.avatarUrl),
                               backgroundColor: Colors.grey,
                               radius: style.avatarRadius,
                             ), // 头像
@@ -136,9 +135,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                           backgroundColor: style.badgeBackgroundColor,
                           label: Text(
                             post.state,
-                            style: TextStyle(
-                                color: style.badgeColor,
-                                fontSize: style.badgeFontSize),
+                            style: TextStyle(color: style.badgeColor, fontSize: style.badgeFontSize),
                           )),
                     ), // 右侧小标签
                   ],
@@ -173,21 +170,16 @@ class ChatDetailState extends State<ChatDetailScreen> {
                                       ListTile(
                                         key: Key(comment.id.toString()),
                                         leading: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              comment.user.avatarUrl),
+                                          backgroundImage: NetworkImage(comment.user.avatarUrl),
                                         ),
                                         trailing: Text('${index + 1}楼'),
                                         subtitle: Text(comment.body),
                                         title: Text(comment.user.login),
                                       ),
                                       Container(
-                                        child: ActionChip(
-                                            label: Icon(FontAwesomeIcons.heart),
-                                            onPressed: () => {}),
+                                        child: ActionChip(label: Icon(FontAwesomeIcons.heart), onPressed: () => {}),
                                         alignment: Alignment.centerRight,
-                                        padding: EdgeInsets.only(
-                                            right:
-                                                style.likeButtonPaddingRight),
+                                        padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
                                       )
                                     ],
                                   ),
@@ -201,6 +193,27 @@ class ChatDetailState extends State<ChatDetailScreen> {
         ),
       ),
     );
+  }
+
+
+
+  @override
+  successCallBack(response) {
+    setState(() {
+      this.comments = [];
+      if (response == null) {
+        errorCallBack('数据为空');
+      }
+      response.forEach((item) {
+        Comment comment = Comment.fromJson(item);
+        this.comments.add(comment);
+      });
+    });
+  }
+
+  @override
+  errorCallBack(error) {
+   print(error);
   }
 }
 
