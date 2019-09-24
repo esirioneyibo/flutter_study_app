@@ -240,6 +240,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.24"
+  github:
+    dependency: "direct main"
+    description:
+      name: github
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.0"
   glob:
     dependency: transitive
     description:

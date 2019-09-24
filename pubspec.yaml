@@ -44,6 +44,7 @@ dependencies:
   url_launcher:
   webview_flutter:
   flutter_markdown:
+  github:
 #  google_sign_in:
 #  flutter_twitter_login:
 

@@ -8,14 +8,21 @@ enum LocaleEnum { cn, en, ja }
 
 class CommonUtil {
   static themeColors() {
-    return [
-      Colors.brown,
-      Colors.blue,
-      Colors.teal,
-      Colors.amber,
-      Colors.blueGrey,
-      Colors.deepOrange
-    ];
+    return [Colors.brown, Colors.blue, Colors.teal, Colors.amber, Colors.blueGrey, Colors.deepOrange];
+  }
+
+  static format(String content, {String param, List<String> params}) {
+    // 单个参数
+    if (param != null) {
+      return content.replaceAll('{0}', param);
+
+      // 多个参数
+    } else if (params != null) {
+      params.asMap().forEach((index, param) {
+        content = content.replaceAll('{$index}', param);
+      });
+      return content;
+    }
   }
 
   // 切换语言

@@ -258,6 +258,11 @@ class MyLocalizations {
   String get theme => Intl.message('theme',
       name: 'theme', desc: '主题', locale: Intl.defaultLocale);
 
+  String get comment {
+    return Intl.message('comment',
+        name: 'comment', desc: 'comment', locale: Intl.defaultLocale);
+  }
+
 // --------------------------------------语言转换方法-------------------------------------------------
 }
 

@@ -13,9 +13,6 @@ class RouterConfig {
 }
 
 class APIConfig {
-  // issue list  get access_token  page: [int], // 当前页 per_page: [int] // 获取的条数
-  String chatList =
-      'https://api.github.com/repos/houko/flutter-study-app/issues';
 }
 
 class AppConfig {
@@ -49,6 +46,7 @@ class AppConfig {
   // github
   String githubClientId = '4cd0c308ae1050806a2c';
   String githubClientSecret = '42b3c750a3585cb22e05768abc275e9e75ecfca8';
+  String githubToken = '5f53c1b0a837b0e9cc6139a26dc253b603a97a5d';
 
   get weChatAppId => "wxd930ea5d5a258f4f";
 }

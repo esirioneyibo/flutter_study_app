@@ -8,7 +8,7 @@ import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
-import 'package:flutter_study_app/vo/post.dart';
+import 'package:github/server.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback {
-  List<Post> posts = [];
+  List<Issue> posts = [];
 
   HttpService http;
 
@@ -29,7 +29,7 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
   @override
   void initState() {
     super.initState();
-    this.http.getChatList();
+    http.getChatList();
   }
 
   @override
@@ -88,17 +88,14 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
   }
 
   @override
-  errorCallBack(error) {
+  errorCallBack(DataType type, error) {
     print(error);
   }
 
   @override
-  successCallBack(response) {
+  successCallBack(DataType type, response) {
     setState(() {
-      response.forEach((item) {
-        Post post = Post.fromJson(item);
-        this.posts.add(post);
-      });
+      this.posts = response;
     });
   }
 }
@@ -108,7 +105,7 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
 /// Icon ｜ 用户名
 /// Icon ｜最后回复
 class LeftUserInfo extends StatelessWidget {
-  final Post post;
+  final Issue post;
 
   LeftUserInfo(this.post);
 
@@ -146,7 +143,7 @@ class LeftUserInfo extends StatelessWidget {
 
 /// 右侧信息
 class RightCommentInfo extends StatelessWidget {
-  final Post post;
+  final Issue post;
 
   RightCommentInfo(this.post);
 
@@ -175,7 +172,7 @@ class RightCommentInfo extends StatelessWidget {
         Container(
           margin: EdgeInsets.all(style.messageTextMarginAll),
           child: Text(
-            post.comments.toString(),
+            post.commentsCount.toString(),
             style: TextStyle(fontSize: style.messageTextFontSize),
           ),
         )
@@ -183,6 +180,7 @@ class RightCommentInfo extends StatelessWidget {
     );
   }
 }
+
 
 class ChatStyle {
   // 发布帖子的浮动按钮大小
