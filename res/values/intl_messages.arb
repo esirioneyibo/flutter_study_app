@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-09-12T18:18:05.341745",
+  "@@last_modified": "2019-09-25T16:43:22.861899",
   "index": "index",
   "@index": {
     "description": "底部导航首页",
@@ -288,10 +288,16 @@
     "type": "text",
     "placeholders": {}
   },
-    "theme": "theme",
-    "@theme": {
-      "description": "主题",
-      "type": "text",
-      "placeholders": {}
-    }
+  "theme": "theme",
+  "@theme": {
+    "description": "主题",
+    "type": "text",
+    "placeholders": {}
+  },
+  "comment": "comment",
+  "@comment": {
+    "description": "comment",
+    "type": "text",
+    "placeholders": {}
+  }
 }
