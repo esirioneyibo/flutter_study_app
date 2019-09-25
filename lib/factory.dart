@@ -1,4 +1,7 @@
-import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/config/api_config.dart';
+import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/config/auth_config.dart';
+import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
@@ -26,6 +29,10 @@ class ConfigFactory {
   // App 配置
   static AppConfig appConfig() {
     return AppConfig();
+  }
+
+  static AuthConfig authConfig() {
+    return AuthConfig();
   }
 
   // 首页样式

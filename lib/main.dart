@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/app_state.dart';
-import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i10n/localization_intl.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';

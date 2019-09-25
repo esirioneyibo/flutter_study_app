@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
 
 import '../app.dart';
-import '../config.dart';
+import 'package:flutter_study_app/config/app_config.dart';
 
 ///
 /// 导航器是一个有状态的组件

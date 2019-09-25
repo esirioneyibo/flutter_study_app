@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:redux/redux.dart';
 
+/// 用户登录redux
+
+
 final userReducer = combineReducers<FirebaseUser>(
     [TypedReducer<FirebaseUser, UpdateUserAction>(_updateLoaded)]);
 

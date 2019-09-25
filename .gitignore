@@ -15,6 +15,7 @@
 *.iws
 .idea/
 generated
+auth_config.dart
 .settings
 .classpath
 .project
