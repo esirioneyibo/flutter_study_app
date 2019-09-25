@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';

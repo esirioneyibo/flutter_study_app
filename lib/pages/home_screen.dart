@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
 class HomeScreen extends StatefulWidget {

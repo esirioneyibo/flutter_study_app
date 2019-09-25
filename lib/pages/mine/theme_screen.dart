@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 

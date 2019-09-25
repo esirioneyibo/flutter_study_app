@@ -5,7 +5,7 @@ import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
 import 'package:flutter_study_app/pages/mine/account_screen.dart';
 import 'package:flutter_study_app/pages/mine/device_info_screen.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/pages/home/blog_screen.dart';
 import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';

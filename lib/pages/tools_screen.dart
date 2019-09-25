@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/random_util.dart';
 import 'package:flutter_study_app/vo/choice_vo.dart';

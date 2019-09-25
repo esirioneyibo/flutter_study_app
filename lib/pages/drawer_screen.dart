@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/localization_intl.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 
 class LeftDrawer extends StatelessWidget {
