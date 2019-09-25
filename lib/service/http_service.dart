@@ -16,7 +16,7 @@ class HttpService {
   HttpService(this.callbackObject) {
     successCallBack = callbackObject.successCallBack;
     errorCallBack = callbackObject.errorCallBack;
-    github = createGitHubClient(auth: new Authentication.withToken(ConfigFactory.appConfig().githubToken));
+    github = createGitHubClient(auth: new Authentication.withToken(ConfigFactory.authConfig().githubToken));
     slug = RepositorySlug("houko", "flutter-study-app");
     issuesService = IssuesService(github);
   }

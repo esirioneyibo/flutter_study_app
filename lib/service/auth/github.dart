@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_study_app/config.dart';
+import 'package:flutter_study_app/config/auth_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/service/base_auth.dart';
 import 'package:http/http.dart' as http;
@@ -13,39 +13,34 @@ class GithubAuth extends BaseAuth {
   StreamSubscription subs;
 
   Future<FirebaseUser> loginWithGitHub(String code) async {
-    AppConfig appConfig = ConfigFactory.appConfig();
+    AuthConfig authConfig = ConfigFactory.authConfig();
     //ACCESS TOKEN REQUEST
     final response = await http.post(
       "https://github.com/login/oauth/access_token",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
+      headers: {"Content-Type": "application/json", "Accept": "application/json"},
       body: jsonEncode(GitHubLoginRequest(
-        clientId: appConfig.githubClientId,
-        clientSecret: appConfig.githubClientSecret,
+        clientId: authConfig.githubClientId,
+        clientSecret: authConfig.githubClientSecret,
         code: code,
       )),
     );
 
-    GitHubLoginResponse loginResponse =
-        GitHubLoginResponse.fromJson(json.decode(response.body));
+    GitHubLoginResponse loginResponse = GitHubLoginResponse.fromJson(json.decode(response.body));
 
     //FIREBASE STUFF
     final AuthCredential credential = GithubAuthProvider.getCredential(
       token: loginResponse.accessToken,
     );
 
-    final AuthResult user =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+    final AuthResult user = await FirebaseAuth.instance.signInWithCredential(credential);
     return user.user;
   }
 
   void onClickGitHubLoginButton() async {
-    AppConfig appConfig = ConfigFactory.appConfig();
+    AuthConfig authConfig = ConfigFactory.authConfig();
     String url = "https://github.com/login/oauth/authorize" +
         "?client_id=" +
-        appConfig.githubClientId +
+        authConfig.githubClientId +
         "&scope=public_repo%20read:user%20user:email";
 
     if (await canLaunch(url)) {
@@ -114,8 +109,7 @@ class GitHubLoginResponse {
 
   GitHubLoginResponse({this.accessToken, this.tokenType, this.scope});
 
-  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) =>
-      GitHubLoginResponse(
+  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) => GitHubLoginResponse(
         accessToken: json["access_token"],
         tokenType: json["token_type"],
         scope: json["scope"],
