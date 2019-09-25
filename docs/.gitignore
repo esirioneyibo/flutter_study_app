@@ -15,11 +15,8 @@
 *.iws
 .idea/
 generated
-auth_config.dart
-*.pem
-.settings
-.classpath
-.project
+node_modules
+package-lock.json
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line

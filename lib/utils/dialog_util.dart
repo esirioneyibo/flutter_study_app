@@ -31,7 +31,9 @@ class DialogUtil {
     }
   }
 
-  static void showAlertDialog(BuildContext context, String title, String content, {VoidCallback callback()}) {
+  static void showAlertDialog(
+      BuildContext context, String title, String content,
+      {VoidCallback callback()}) {
     DialogStyle style = ConfigFactory.dialogStyle();
     showDialog(
       context: context,
@@ -44,7 +46,9 @@ class DialogUtil {
               color: style.buttonColor,
               child: Text(
                 MyLocalizations.of(context).close,
-                style: TextStyle(color: style.buttonFontColor, fontSize: style.buttonFontSize),
+                style: TextStyle(
+                    color: style.buttonFontColor,
+                    fontSize: style.buttonFontSize),
               ),
               onPressed: () {
                 if (callback != null) {
@@ -59,7 +63,8 @@ class DialogUtil {
     );
   }
 
-  static void showConfirmDialog(BuildContext context, String title, [VoidCallback callback]) {
+  static void showConfirmDialog(BuildContext context, String title,
+      [VoidCallback callback]) {
     DialogStyle style = ConfigFactory.dialogStyle();
     showDialog(
       context: context,
@@ -70,7 +75,9 @@ class DialogUtil {
             RaisedButton(
               child: Text(
                 MyLocalizations.of(context).ok,
-                style: TextStyle(color: style.buttonFontColor, fontSize: style.buttonFontSize),
+                style: TextStyle(
+                    color: style.buttonFontColor,
+                    fontSize: style.buttonFontSize),
               ),
               onPressed: () {
                 if (callback != null) {
@@ -82,7 +89,9 @@ class DialogUtil {
               color: Theme.of(context).primaryColor,
               child: Text(
                 MyLocalizations.of(context).cancel,
-                style: TextStyle(color: style.buttonFontColor, fontSize: style.buttonFontSize),
+                style: TextStyle(
+                    color: style.buttonFontColor,
+                    fontSize: style.buttonFontSize),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -131,7 +140,8 @@ class _PopRoute extends PopupRoute {
   String get barrierLabel => null;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     return child;
   }
 

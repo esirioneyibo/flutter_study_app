@@ -10,14 +10,13 @@ import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
-///
-/// 导航器是一个有状态的组件
-class MyApp extends StatefulWidget {
+/// FsApp = (flutter study app)
+class FsApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _FsAppState createState() => _FsAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _FsAppState extends State<FsApp> {
   /// tab页容器,如果list内容可变，不能指定list的大小
   List<Widget> tabs = List();
 
@@ -25,8 +24,9 @@ class _MyAppState extends State<MyApp> {
 
   AppConfig style = ConfigFactory.appConfig();
 
-  Color _itemColor(targetItem) {
-    return _currentIndex == targetItem
+  /// 改变选择的tab的文字颜色
+  Color _itemColor(targetIndex) {
+    return _currentIndex == targetIndex
         ? style.navigatorSelectedColor
         : style.navigatorUnSelectedColor;
   }

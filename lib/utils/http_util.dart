@@ -9,19 +9,23 @@ class HttpUtil {
   //get请求
   static void get(String url, DataType dataType, Function callBack,
       {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, dataType, callBack, method: GET, params: params, errorCallBack: errorCallBack);
+    _request(url, dataType, callBack,
+        method: GET, params: params, errorCallBack: errorCallBack);
   }
 
   //post请求
   static void post(String url, DataType dataType, Function callBack,
       {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, dataType, callBack, method: POST, params: params, errorCallBack: errorCallBack);
+    _request(url, dataType, callBack,
+        method: POST, params: params, errorCallBack: errorCallBack);
   }
 
   //具体的还是要看返回数据的基本结构
   //公共代码部分
   static void _request(String url, DataType dataType, Function callBack,
-      {String method, Map<String, String> params, Function errorCallBack}) async {
+      {String method,
+      Map<String, String> params,
+      Function errorCallBack}) async {
     print("<net> url :<" + method + ">" + url);
 
     if (params != null && params.isNotEmpty) {
@@ -72,7 +76,8 @@ class HttpUtil {
   }
 
   //处理异常
-  static void _handError(Function errorCallback, DataType dataType, String errorMsg) {
+  static void _handError(
+      Function errorCallback, DataType dataType, String errorMsg) {
     if (errorCallback != null) {
       errorCallback(dataType, errorMsg);
     } else {

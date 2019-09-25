@@ -17,7 +17,10 @@ class GithubAuth extends BaseAuth {
     //ACCESS TOKEN REQUEST
     final response = await http.post(
       "https://github.com/login/oauth/access_token",
-      headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
       body: jsonEncode(GitHubLoginRequest(
         clientId: authConfig.githubClientId,
         clientSecret: authConfig.githubClientSecret,
@@ -25,14 +28,16 @@ class GithubAuth extends BaseAuth {
       )),
     );
 
-    GitHubLoginResponse loginResponse = GitHubLoginResponse.fromJson(json.decode(response.body));
+    GitHubLoginResponse loginResponse =
+        GitHubLoginResponse.fromJson(json.decode(response.body));
 
     //FIREBASE STUFF
     final AuthCredential credential = GithubAuthProvider.getCredential(
       token: loginResponse.accessToken,
     );
 
-    final AuthResult user = await FirebaseAuth.instance.signInWithCredential(credential);
+    final AuthResult user =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     return user.user;
   }
 
@@ -109,7 +114,8 @@ class GitHubLoginResponse {
 
   GitHubLoginResponse({this.accessToken, this.tokenType, this.scope});
 
-  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) => GitHubLoginResponse(
+  factory GitHubLoginResponse.fromJson(Map<String, dynamic> json) =>
+      GitHubLoginResponse(
         accessToken: json["access_token"],
         tokenType: json["token_type"],
         scope: json["scope"],

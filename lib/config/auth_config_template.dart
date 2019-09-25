@@ -5,9 +5,12 @@ class AuthConfig {
   String twitterApiSecret = '';
 
   // github
+  String githubAppId = '';
+  String githubAppPublicLink = '';
   String githubClientId = '';
   String githubClientSecret = '';
   String githubToken = '';
 
   get weChatAppId => "";
 }
+

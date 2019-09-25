@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
-
 /// 主题切换redux
 
 final themeDataReducer = combineReducers<ThemeData>(

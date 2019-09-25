@@ -1,0 +1,25 @@
+{
+  "name": "flutter-study-app-pages",
+  "version": "1.0.0",
+  "description": "A new Flutter study application.",
+  "main": "index.html",
+  "dependencies": {
+    "docsify-cli": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "docsify serve",
+    "open": "start http://localhost:3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houko/flutter-study-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/houko/flutter-study-app/issues"
+  },
+  "homepage": "https://github.com/houko/flutter-study-app#readme"
+}

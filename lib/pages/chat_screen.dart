@@ -17,7 +17,8 @@ class ChatScreen extends StatefulWidget {
   }
 }
 
-class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback {
+class ChatScreenState extends State<ChatScreen>
+    implements IHttpServiceCallback {
   List<Issue> posts = [];
 
   HttpService http;
@@ -44,7 +45,8 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
             tooltip: MyLocalizations.of(context).newChat,
             child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
-              NavigatorUtil.pushWithAnim(context, NewChatScreen(), AnimType.Slider);
+              NavigatorUtil.pushWithAnim(
+                  context, NewChatScreen(), AnimType.Slider);
             }),
       ),
       body: posts.isEmpty
@@ -56,10 +58,12 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
                   itemBuilder: (context, index) {
                     final post = posts[index];
                     return InkWell(
-                      onTap: () => NavigatorUtil.pushWithAnim(context, ChatDetailScreen(posts[index]), AnimType.Slider),
+                      onTap: () => NavigatorUtil.pushWithAnim(context,
+                          ChatDetailScreen(posts[index]), AnimType.Slider),
                       child: Card(
                         child: Container(
-                          margin: EdgeInsets.only(bottom: chatStyle.cardMarginBottom),
+                          margin: EdgeInsets.only(
+                              bottom: chatStyle.cardMarginBottom),
                           padding: EdgeInsets.all(chatStyle.cardPaddingAll),
                           color: chatStyle.cardColor,
                           child: Column(
@@ -67,12 +71,14 @@ class ChatScreenState extends State<ChatScreen> implements IHttpServiceCallback 
                               Row(
                                 children: <Widget>[
                                   Expanded(flex: 2, child: LeftUserInfo(post)),
-                                  Expanded(flex: 1, child: RightCommentInfo(post)),
+                                  Expanded(
+                                      flex: 1, child: RightCommentInfo(post)),
                                 ],
                               ),
                               // 帖子内容
                               Container(
-                                  padding: EdgeInsets.only(top: chatStyle.chatContentPaddingTop),
+                                  padding: EdgeInsets.only(
+                                      top: chatStyle.chatContentPaddingTop),
                                   alignment: Alignment.centerLeft,
                                   child: MarkdownBody(
                                     data: posts[index].body,
@@ -180,7 +186,6 @@ class RightCommentInfo extends StatelessWidget {
     );
   }
 }
-
 
 class ChatStyle {
   // 发布帖子的浮动按钮大小
