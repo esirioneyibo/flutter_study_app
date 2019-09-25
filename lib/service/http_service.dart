@@ -16,7 +16,9 @@ class HttpService {
   HttpService(this.callbackObject) {
     successCallBack = callbackObject.successCallBack;
     errorCallBack = callbackObject.errorCallBack;
-    github = createGitHubClient(auth: new Authentication.withToken(ConfigFactory.authConfig().githubToken));
+    github = createGitHubClient(
+        auth: new Authentication.withToken(
+            ConfigFactory.authConfig().githubToken));
     slug = RepositorySlug("houko", "flutter-study-app");
     issuesService = IssuesService(github);
   }
@@ -36,7 +38,8 @@ class HttpService {
 
   /// 获取评论列表
   getChatComments(issueNumber) {
-    Stream<IssueComment> future = issuesService.listCommentsByIssue(slug, issueNumber);
+    Stream<IssueComment> future =
+        issuesService.listCommentsByIssue(slug, issueNumber);
     List<IssueComment> comments;
     future.listen((comment) {
       if (comments == null) {
@@ -52,7 +55,8 @@ class HttpService {
 
   /// 添加一个评论
   addAnComment(issueId, String data) {
-    Future<IssueComment> result = github.issues.createComment(slug, issueId, data.trim());
+    Future<IssueComment> result =
+        github.issues.createComment(slug, issueId, data.trim());
     result.then((comment) {
       successCallBack(DataType.addAnComment, comment);
     }).catchError((error) {

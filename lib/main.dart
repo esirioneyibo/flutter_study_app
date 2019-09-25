@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         store: store,
         child: MaterialApp(
           routes: {
-            router.index: (context) => MyApp(),
+            router.index: (context) => FsApp(),
             router.account: (context) => AccountScreen(),
             router.about: (context) => AboutAppScreen(),
             router.settings: (context) => SettingScreen(),

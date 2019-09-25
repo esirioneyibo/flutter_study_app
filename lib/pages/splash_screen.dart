@@ -43,7 +43,7 @@ class _SplashState extends State<SplashScreen>
     var listener = (status) {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => MyApp()),
+            MaterialPageRoute(builder: (context) => FsApp()),
             (router) => router == null);
       }
     };

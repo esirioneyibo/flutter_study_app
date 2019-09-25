@@ -5,7 +5,6 @@ import 'package:redux/redux.dart';
 
 /// 语言切换redux
 
-
 final localeReducer = combineReducers<Locale>([
   TypedReducer<Locale, RefreshLocaleAction>(_refresh),
 ]);

@@ -22,7 +22,8 @@ class ChatDetailScreen extends StatefulWidget {
 }
 
 /// 使用http的话要实现 IHttpServiceCallback
-class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCallback {
+class ChatDetailState extends State<ChatDetailScreen>
+    implements IHttpServiceCallback {
   HttpService http;
 
   TextEditingController _controller;
@@ -110,8 +111,9 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
               tooltip: isTop ? '到达底部' : '返回顶部',
               child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
               onPressed: () {
-                var pos =
-                    isTop ? _scrollController.position.maxScrollExtent : _scrollController.position.minScrollExtent;
+                var pos = isTop
+                    ? _scrollController.position.maxScrollExtent
+                    : _scrollController.position.minScrollExtent;
 
                 _scrollController.animateTo(
                   pos,
@@ -147,7 +149,8 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
                             height: style.avatarSize,
                             width: style.avatarSize,
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(post.user.avatarUrl),
+                              backgroundImage:
+                                  NetworkImage(post.user.avatarUrl),
                               backgroundColor: Colors.grey,
                               radius: style.avatarRadius,
                             ), // 头像
@@ -186,7 +189,9 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
                           backgroundColor: style.badgeBackgroundColor,
                           label: Text(
                             post.state,
-                            style: TextStyle(color: style.badgeColor, fontSize: style.badgeFontSize),
+                            style: TextStyle(
+                                color: style.badgeColor,
+                                fontSize: style.badgeFontSize),
                           )),
                     ), // 右侧小标签
                   ],
@@ -222,16 +227,21 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
                                       ListTile(
                                         key: Key(comment.id.toString()),
                                         leading: CircleAvatar(
-                                          backgroundImage: NetworkImage(comment.user.avatarUrl),
+                                          backgroundImage: NetworkImage(
+                                              comment.user.avatarUrl),
                                         ),
                                         trailing: Text('${index + 1}楼'),
                                         subtitle: Text(comment.body),
                                         title: Text(comment.user.login),
                                       ),
                                       Container(
-                                        child: ActionChip(label: Icon(FontAwesomeIcons.heart), onPressed: () => {}),
+                                        child: ActionChip(
+                                            label: Icon(FontAwesomeIcons.heart),
+                                            onPressed: () => {}),
                                         alignment: Alignment.centerRight,
-                                        padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
+                                        padding: EdgeInsets.only(
+                                            right:
+                                                style.likeButtonPaddingRight),
                                       )
                                     ],
                                   ),
@@ -260,13 +270,16 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
                             hintText: MyLocalizations.of(context).comment,
                             errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
-                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.blue),
-                                borderRadius: BorderRadius.all(Radius.circular(5))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
                           ),
                           validator: CommentFieldValidator.validate,
                           onSaved: addAnComment,
@@ -282,7 +295,9 @@ class ChatDetailState extends State<ChatDetailScreen> implements IHttpServiceCal
                           color: style.commentButtonColor,
                           key: Key('comment'),
                           child: Text(MyLocalizations.of(context).comment,
-                              style: TextStyle(fontSize: style.commentButtonSize, color: style.commentFontColor)),
+                              style: TextStyle(
+                                  fontSize: style.commentButtonSize,
+                                  color: style.commentFontColor)),
                           onPressed: _validateAndComment,
                         ),
                       ),

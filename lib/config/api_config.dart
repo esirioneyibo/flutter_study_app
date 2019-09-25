@@ -1,3 +1,1 @@
-class APIConfig{
-
-}
+class APIConfig {}

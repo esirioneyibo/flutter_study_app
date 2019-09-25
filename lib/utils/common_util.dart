@@ -8,7 +8,14 @@ enum LocaleEnum { cn, en, ja }
 
 class CommonUtil {
   static themeColors() {
-    return [Colors.brown, Colors.blue, Colors.teal, Colors.amber, Colors.blueGrey, Colors.deepOrange];
+    return [
+      Colors.brown,
+      Colors.blue,
+      Colors.teal,
+      Colors.amber,
+      Colors.blueGrey,
+      Colors.deepOrange
+    ];
   }
 
   static format(String content, {String param, List<String> params}) {
