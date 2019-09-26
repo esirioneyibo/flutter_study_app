@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -17,7 +17,7 @@ class WikiScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(MyLocalizations.of(context).returnButton),
+        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.returnButton),
         body: WebView(
           initialUrl: 'https://www.wikipedia'
               '.org/',

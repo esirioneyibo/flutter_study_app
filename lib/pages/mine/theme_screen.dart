@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
@@ -24,7 +24,7 @@ class ThemeScreenState extends State<ThemeScreen> {
             NavigatorUtil.back(context, details);
           },
           child: Scaffold(
-            appBar: ReturnBar(MyLocalizations.of(context).changeLanguage),
+            appBar: ReturnBar(FsLocalizations.of(context).currentLocale.changeLanguage),
             body: Container(
               child: Column(
                 children: <Widget>[

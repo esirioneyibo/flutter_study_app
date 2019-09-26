@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/home/blog_screen.dart';
 import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
@@ -21,22 +21,22 @@ getBottomItems(BuildContext context) {
     TabItem(
       index: 0,
       icon: Icons.home,
-      title: MyLocalizations.of(context).index,
+      title: FsLocalizations.of(context).currentLocale.index,
     ),
     TabItem(
       index: 1,
       icon: Icons.ac_unit,
-      title: MyLocalizations.of(context).study,
+      title: FsLocalizations.of(context).currentLocale.study,
     ),
     TabItem(
       index: 2,
       icon: FontAwesomeIcons.rocketchat,
-      title: MyLocalizations.of(context).chat,
+      title: FsLocalizations.of(context).currentLocale.chat,
     ),
     TabItem(
       index: 3,
       icon: FontAwesomeIcons.tools,
-      title: MyLocalizations.of(context).tool,
+      title: FsLocalizations.of(context).currentLocale.tool,
     ),
   ];
 }
@@ -45,45 +45,45 @@ List<TabItem> getTopItems(BuildContext context) {
   return [
     TabItem(
         index: 0,
-        tab: Tab(text: MyLocalizations.of(context).video),
+        tab: Tab(text: FsLocalizations.of(context).currentLocale.video),
         screen: VideosScreen()),
     TabItem(
         index: 1,
-        tab: Tab(text: MyLocalizations.of(context).plugin),
+        tab: Tab(text: FsLocalizations.of(context).currentLocale.plugin),
         screen: PluginsScreen()),
     TabItem(
         index: 2,
-        tab: Tab(text: MyLocalizations.of(context).blog),
+        tab: Tab(text: FsLocalizations.of(context).currentLocale.blog),
         screen: BlogScreen()),
     TabItem(
         index: 3,
-        tab: Tab(text: MyLocalizations.of(context).openSource),
+        tab: Tab(text: FsLocalizations.of(context).currentLocale.openSource),
         screen: ProjectsScreen()),
 //    TabItem(
 //        index: 4,
-//        tab: Tab(text: MyLocalizations.of(context).tool),
+//        tab: Tab(text: FsLocalizations.of(context).currentLocale.tool),
 //        screen: DevelopToolsScreen()),
 //    TabItem(
 //        index: 5,
-//        tab: Tab(text: MyLocalizations.of(context).dart),
+//        tab: Tab(text: FsLocalizations.of(context).currentLocale.dart),
 //        screen: DartScreen()),
 //    TabItem(
 //        index: 6,
-//        tab: Tab(text: MyLocalizations.of(context).game),
+//        tab: Tab(text: FsLocalizations.of(context).currentLocale.game),
 //        screen: GamesScreen()),
 //    TabItem(
 //        index: 7,
 //        tab: Tab(
-//            text: MyLocalizations.of(context).gameEngine),
+//            text: FsLocalizations.of(context).currentLocale.gameEngine),
 //        screen: GameEnginesScreen()),
 //    TabItem(
 //        index: 8,
 //        tab: Tab(
-//            text: MyLocalizations.of(context).community),
+//            text: FsLocalizations.of(context).currentLocale.community),
 //        screen: CommunitiesScreen()),
 //    TabItem(
 //        index: 9,
-//        tab: Tab(text: MyLocalizations.of(context).other),
+//        tab: Tab(text: FsLocalizations.of(context).currentLocale.other),
 //        screen: OthersScreen()),
   ];
 }

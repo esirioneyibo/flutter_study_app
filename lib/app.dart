@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/drawer_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
@@ -58,7 +58,7 @@ class _FsAppState extends State<FsApp> {
     );
 
     return Scaffold(
-      appBar: MyAppBar(title: MyLocalizations.of(context).appName),
+      appBar: MyAppBar(title: FsLocalizations.of(context).currentLocale.appName),
       drawer: LeftDrawer(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: bottomNavigationBars,

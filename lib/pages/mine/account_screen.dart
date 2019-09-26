@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/service/auth/email.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
@@ -75,8 +75,8 @@ class _AccountScreenState extends State<AccountScreen> {
       },
       child: Scaffold(
         appBar: ReturnBar(_formType == FormType.LOGIN
-            ? MyLocalizations.of(context).login
-            : MyLocalizations.of(context).register),
+            ? FsLocalizations.of(context).currentLocale.login
+            : FsLocalizations.of(context).currentLocale.register),
         body: Container(
           child: Form(
             key: formKey,
@@ -96,7 +96,7 @@ class _AccountScreenState extends State<AccountScreen> {
         key: Key('email'),
         keyboardType: TextInputType.emailAddress,
         decoration:
-            InputDecoration(labelText: MyLocalizations.of(context).email),
+            InputDecoration(labelText: FsLocalizations.of(context).currentLocale.email),
         validator: EmailFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.email = value;
@@ -107,7 +107,7 @@ class _AccountScreenState extends State<AccountScreen> {
         keyboardType: TextInputType.text,
         obscureText: true,
         decoration:
-            InputDecoration(labelText: MyLocalizations.of(context).password),
+            InputDecoration(labelText: FsLocalizations.of(context).currentLocale.password),
         validator: PasswordFieldValidator.validate,
         onSaved: (String value) {
           emailAuth.password = value;
@@ -136,8 +136,8 @@ class _AccountScreenState extends State<AccountScreen> {
             if (!verified) {
               DialogUtil.showAlertDialog(
                   context,
-                  MyLocalizations.of(context).loginError,
-                  MyLocalizations.of(context).validateEmailTitle);
+                  FsLocalizations.of(context).currentLocale.loginError,
+                  FsLocalizations.of(context).currentLocale.validateEmailTitle);
             } else {
               Navigator.of(context).pop();
               emailAuth.getCurrentUser().then((user) => currentUser = user);
@@ -154,8 +154,8 @@ class _AccountScreenState extends State<AccountScreen> {
             emailAuth.setDefaultUserInfo();
             DialogUtil.showAlertDialog(
               context,
-              MyLocalizations.of(context).validateEmailTitle,
-              MyLocalizations.of(context).validateEmailContent,
+              FsLocalizations.of(context).currentLocale.validateEmailTitle,
+              FsLocalizations.of(context).currentLocale.validateEmailContent,
               callback: moveToLogin,
             );
           }
@@ -169,26 +169,26 @@ class _AccountScreenState extends State<AccountScreen> {
           case EmailErrorCode.invalidEmail:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).emailIllegal);
+                FsLocalizations.of(context).currentLocale.loginError,
+                FsLocalizations.of(context).currentLocale.emailIllegal);
             break;
           case EmailErrorCode.userNotFound:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).emailNotFound);
+                FsLocalizations.of(context).currentLocale.loginError,
+                FsLocalizations.of(context).currentLocale.emailNotFound);
             break;
           case EmailErrorCode.wrongPassword:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).passwordError);
+                FsLocalizations.of(context).currentLocale.loginError,
+                FsLocalizations.of(context).currentLocale.passwordError);
             break;
           default:
             DialogUtil.showAlertDialog(
                 context,
-                MyLocalizations.of(context).loginError,
-                MyLocalizations.of(context).unknownError);
+                FsLocalizations.of(context).currentLocale.loginError,
+                FsLocalizations.of(context).currentLocale.unknownError);
             break;
         }
       }
@@ -219,7 +219,7 @@ class _AccountScreenState extends State<AccountScreen> {
         RaisedButton(
           color: style.loginButtonColor,
           key: Key('signIn'),
-          child: Text(MyLocalizations.of(context).login,
+          child: Text(FsLocalizations.of(context).currentLocale.login,
               style: TextStyle(
                   fontSize: style.loginButtonFontSize,
                   color: style.loginButtonFontColor)),
@@ -234,7 +234,7 @@ class _AccountScreenState extends State<AccountScreen> {
             InkWell(
 //              onTap: twitterAuth.loginTwitter,
               onTap: () => DialogUtil.showAlertDialog(
-                  context, 'twitter', MyLocalizations.of(context).developing),
+                  context, 'twitter', FsLocalizations.of(context).currentLocale.developing),
               child: Icon(
                 FontAwesomeIcons.twitter,
                 size: style.authButtonSize,
@@ -243,7 +243,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             InkWell(
               onTap: () => DialogUtil.showAlertDialog(
-                  context, 'github', MyLocalizations.of(context).developing),
+                  context, 'github', FsLocalizations.of(context).currentLocale.developing),
               child: Icon(
                 FontAwesomeIcons.github,
                 size: style.authButtonSize,
@@ -252,7 +252,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             InkWell(
               onTap: () => DialogUtil.showAlertDialog(
-                  context, 'wechat', MyLocalizations.of(context).developing),
+                  context, 'wechat', FsLocalizations.of(context).currentLocale.developing),
 //              onTap: wechatAuth.login(),
               child: Icon(
                 FontAwesomeIcons.weixin,
@@ -267,7 +267,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 color: style.authButtonColor,
               ),
               onTap: () => DialogUtil.showAlertDialog(
-                  context, 'google', MyLocalizations.of(context).developing),
+                  context, 'google', FsLocalizations.of(context).currentLocale.developing),
 //              onTap: () => googleAuth
 //                  .googleHandleSignIn()
 //                  .then((FirebaseUser user) => setState(() {
@@ -284,7 +284,7 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: EdgeInsets.only(top: style.goToRegisterPaddingTop),
         ),
         FlatButton(
-          child: Text(MyLocalizations.of(context).moveToRegister,
+          child: Text(FsLocalizations.of(context).currentLocale.moveToRegister,
               style: TextStyle(
                   fontSize: style.goToRegisterSize,
                   color: style.goToRegisterColor)),
@@ -298,7 +298,7 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         RaisedButton(
           color: style.registerButtonColor,
-          child: Text(MyLocalizations.of(context).register,
+          child: Text(FsLocalizations.of(context).currentLocale.register,
               style: TextStyle(
                   fontSize: style.registerButtonFontSize,
                   color: style.registerButtonFontColor)),
@@ -308,7 +308,7 @@ class _AccountScreenState extends State<AccountScreen> {
           padding: EdgeInsets.only(top: style.goToLoginPaddingTop),
         ),
         FlatButton(
-          child: Text(MyLocalizations.of(context).moveToLogin,
+          child: Text(FsLocalizations.of(context).currentLocale.moveToLogin,
               style: TextStyle(
                   fontSize: style.goToLoginSize, color: style.goToLoginColor)),
           onPressed: moveToLogin,

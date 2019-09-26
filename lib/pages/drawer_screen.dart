@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 
 class LeftDrawer extends StatelessWidget {
@@ -17,35 +17,35 @@ class LeftDrawer extends StatelessWidget {
       Navigator.of(context).pop();
       Scaffold.of(context).showSnackBar(SnackBar(
           duration: Duration(milliseconds: 300),
-          content: Text(MyLocalizations.of(context).exitLogin)));
+          content: Text(FsLocalizations.of(context).currentLocale.exitLogin)));
     }
 
     // 抽屉菜单
     var items = ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
         leading: Icon(Icons.color_lens),
-        title: Text(MyLocalizations.of(context).changeLanguage),
+        title: Text(FsLocalizations.of(context).currentLocale.changeLanguage),
         onTap: () {
           Navigator.pushNamed(context, router.language);
         },
       ),
       ListTile(
         leading: Icon(Icons.settings),
-        title: Text(MyLocalizations.of(context).settings),
+        title: Text(FsLocalizations.of(context).currentLocale.settings),
         onTap: () {
           Navigator.pushNamed(context, router.settings);
         },
       ),
       ListTile(
         leading: Icon(Icons.color_lens),
-        title: Text(MyLocalizations.of(context).theme),
+        title: Text(FsLocalizations.of(context).currentLocale.theme),
         onTap: () {
           Navigator.pushNamed(context, router.theme);
         },
       ),
       ListTile(
         leading: Icon(Icons.phone_iphone),
-        title: Text(MyLocalizations.of(context).deviceInfo),
+        title: Text(FsLocalizations.of(context).currentLocale.deviceInfo),
         onTap: () {
           Navigator.pushNamed(context, router.deviceInfo);
         },
@@ -54,10 +54,10 @@ class LeftDrawer extends StatelessWidget {
         visible: currentUser != null,
         child: ListTile(
           leading: Icon(Icons.exit_to_app),
-          title: Text(MyLocalizations.of(context).exitLogin),
+          title: Text(FsLocalizations.of(context).currentLocale.exitLogin),
           onTap: () {
             DialogUtil.showConfirmDialog(context,
-                MyLocalizations.of(context).confirmExitLogin, exitLogin);
+                FsLocalizations.of(context).currentLocale.confirmExitLogin, exitLogin);
           },
         ),
       )
@@ -66,7 +66,7 @@ class LeftDrawer extends StatelessWidget {
     // 个人信息
     var infoWidget = UserAccountsDrawerHeader(
       accountName: Text(currentUser == null
-          ? MyLocalizations.of(context).clickLogin
+          ? FsLocalizations.of(context).currentLocale.clickLogin
           : currentUser.displayName),
       accountEmail: Text(currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
@@ -75,8 +75,8 @@ class LeftDrawer extends StatelessWidget {
         } else {
           DialogUtil.showAlertDialog(
               context,
-              MyLocalizations.of(context).developing,
-              MyLocalizations.of(context).beHope);
+              FsLocalizations.of(context).currentLocale.developing,
+              FsLocalizations.of(context).currentLocale.beHope);
         }
       },
       currentAccountPicture: CircleAvatar(

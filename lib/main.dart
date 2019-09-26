@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -5,7 +7,7 @@ import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localizations_delegate.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
 import 'package:flutter_study_app/pages/mine/account_screen.dart';
 import 'package:flutter_study_app/pages/mine/device_info_screen.dart';
@@ -14,7 +16,15 @@ import 'package:flutter_study_app/pages/mine/settings_screen.dart';
 import 'package:flutter_study_app/pages/mine/theme_screen.dart';
 import 'package:flutter_study_app/pages/splash_screen.dart';
 
-void main() => runApp(MainApp());
+void main() => {
+      runZoned(() {
+        runApp(MainApp());
+        PaintingBinding.instance.imageCache.maximumSize = 100;
+      }, onError: (Object obj, StackTrace stack) {
+        print(obj);
+        print(stack);
+      })
+    };
 
 class MainApp extends StatelessWidget {
   @override
@@ -37,7 +47,7 @@ class MainApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
-            MyLocalizationsDelegate.delegate
+            FsLocalizationsDelegate.delegate
           ],
           supportedLocales: [
             const Locale('zh', 'CN'), // 中文简体

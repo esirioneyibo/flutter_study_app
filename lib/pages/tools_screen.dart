@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/random_util.dart';
 import 'package:flutter_study_app/vo/choice_vo.dart';
@@ -64,7 +64,7 @@ class ToolsScreen extends StatelessWidget {
         fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
-      appBar: AppBar(title: Text(MyLocalizations.of(context).tool)),
+      appBar: AppBar(title: Text(FsLocalizations.of(context).currentLocale.tool)),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -72,7 +72,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context).studyTools,
+                FsLocalizations.of(context).currentLocale.studyTools,
                 style: textStyle,
               ),
             ),
@@ -83,7 +83,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context).lifeTools,
+                FsLocalizations.of(context).currentLocale.lifeTools,
                 style: textStyle,
               ),
             ),
@@ -94,7 +94,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                MyLocalizations.of(context).mediaTools,
+                FsLocalizations.of(context).currentLocale.mediaTools,
                 style: textStyle,
               ),
             ),
@@ -105,7 +105,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: style.categoryTitleContainerSize,
               child: Text(
-                MyLocalizations.of(context).developTools,
+                FsLocalizations.of(context).currentLocale.developTools,
                 style: textStyle,
               ),
             ),

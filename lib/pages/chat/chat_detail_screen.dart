@@ -3,7 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
@@ -101,7 +101,7 @@ class ChatDetailState extends State<ChatDetailScreen>
     ChatDetailStyle style = ConfigFactory.chatDetailStyle();
 
     return Scaffold(
-      appBar: ReturnBar(MyLocalizations.of(context).chatContent),
+      appBar: ReturnBar(FsLocalizations.of(context).currentLocale.chatContent),
       floatingActionButton: Container(
         height: style.scrollButtonSize,
         width: style.scrollButtonSize,
@@ -267,7 +267,7 @@ class ChatDetailState extends State<ChatDetailScreen>
                           minLines: 3,
                           maxLines: 100,
                           decoration: InputDecoration(
-                            hintText: MyLocalizations.of(context).comment,
+                            hintText: FsLocalizations.of(context).currentLocale.comment,
                             errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
                                 borderRadius:
@@ -294,7 +294,7 @@ class ChatDetailState extends State<ChatDetailScreen>
                         child: RaisedButton(
                           color: style.commentButtonColor,
                           key: Key('comment'),
-                          child: Text(MyLocalizations.of(context).comment,
+                          child: Text(FsLocalizations.of(context).currentLocale.comment,
                               style: TextStyle(
                                   fontSize: style.commentButtonSize,
                                   color: style.commentFontColor)),
