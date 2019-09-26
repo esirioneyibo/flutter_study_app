@@ -28,12 +28,12 @@ class ChatScreenState extends State<ChatScreen>{
   Widget build(BuildContext context) {
     ChatStyle chatStyle = ConfigFactory.chatStyle();
     return Scaffold(
-      appBar: AppBar(title: Text(FsLocalizations.of(context).currentLocale.chat)),
+      appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
       floatingActionButton: Container(
         height: chatStyle.newChatButtonSize,
         width: chatStyle.newChatButtonSize,
         child: FloatingActionButton(
-            tooltip: FsLocalizations.of(context).currentLocale.newChat,
+            tooltip: FsLocalizations.getLocale(context).newChat,
             child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
               NavigatorUtil.pushWithAnim(

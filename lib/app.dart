@@ -58,7 +58,7 @@ class _FsAppState extends State<FsApp> {
     );
 
     return Scaffold(
-      appBar: MyAppBar(title: FsLocalizations.of(context).currentLocale.appName),
+      appBar: MyAppBar(title: FsLocalizations.getLocale(context).appName),
       drawer: LeftDrawer(), // 侧边栏
       body: tabs[_currentIndex],
       bottomNavigationBar: bottomNavigationBars,

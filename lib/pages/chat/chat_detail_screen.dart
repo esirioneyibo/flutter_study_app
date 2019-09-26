@@ -93,7 +93,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
     ChatDetailStyle style = ConfigFactory.chatDetailStyle();
 
     return Scaffold(
-      appBar: ReturnBar(FsLocalizations.of(context).currentLocale.chatContent),
+      appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
       floatingActionButton: Container(
         height: style.scrollButtonSize,
         width: style.scrollButtonSize,
@@ -289,7 +289,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                           color: style.commentButtonColor,
                           key: Key('comment'),
                           child: Text(
-                              FsLocalizations.of(context).currentLocale.comment,
+                              FsLocalizations.getLocale(context).comment,
                               style: TextStyle(
                                   fontSize: style.commentButtonSize,
                                   color: style.commentFontColor)),

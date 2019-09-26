@@ -11,7 +11,7 @@ class NewChatScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-          appBar: ReturnBar(FsLocalizations.of(context).currentLocale.newChat),
+          appBar: ReturnBar(FsLocalizations.getLocale(context).newChat),
           body: Text('添加文章')),
     );
   }

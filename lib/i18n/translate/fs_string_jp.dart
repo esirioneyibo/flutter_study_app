@@ -150,4 +150,27 @@ class FsStringJP implements FsStringBase {
 
   @override
   String test = 'test';
+  @override
+  String networkError_401 = "[401 登录失败]";
+
+  @override
+  String networkError_403 = "403权限错误";
+
+  @override
+  String networkError_404 = "404错误";
+
+  @override
+  String networkErrorTimeout = "请求超时";
+
+  @override
+  String networkErrorUnknown = "其他异常";
+
+  @override
+  String networkError = "网络错误";
+
+  @override
+  String loadMoreNot = "没有更多数据";
+
+  @override
+  String loadMoreText = "正在加载更多";
 }

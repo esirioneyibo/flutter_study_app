@@ -11,7 +11,7 @@ class TikTokScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.returnButton),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).returnButton),
         body: Center(child: Text('抖音视频下载')),
       ),
     );

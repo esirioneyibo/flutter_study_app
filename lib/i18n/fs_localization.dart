@@ -26,4 +26,9 @@ class FsLocalizations {
   static FsLocalizations of(BuildContext context) {
     return Localizations.of(context, FsLocalizations);
   }
+
+  /// 获取当前语言
+  static getLocale(BuildContext context) {
+    return of(context).currentLocale;
+  }
 }

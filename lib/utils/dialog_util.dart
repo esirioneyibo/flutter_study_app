@@ -45,7 +45,7 @@ class DialogUtil {
             RaisedButton(
               color: style.buttonColor,
               child: Text(
-                FsLocalizations.of(context).currentLocale.close,
+                FsLocalizations.getLocale(context).close,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),
@@ -74,7 +74,7 @@ class DialogUtil {
           actions: <Widget>[
             RaisedButton(
               child: Text(
-                FsLocalizations.of(context).currentLocale.ok,
+                FsLocalizations.getLocale(context).ok,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),
@@ -88,7 +88,7 @@ class DialogUtil {
             RaisedButton(
               color: Theme.of(context).primaryColor,
               child: Text(
-                FsLocalizations.of(context).currentLocale.cancel,
+                FsLocalizations.getLocale(context).cancel,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),

@@ -8,7 +8,7 @@ import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localizations_delegate.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
-import 'package:flutter_study_app/pages/mine/account_screen.dart';
+import 'package:flutter_study_app/pages/mine/login_screen.dart';
 import 'package:flutter_study_app/pages/mine/device_info_screen.dart';
 import 'package:flutter_study_app/pages/mine/language_screen.dart';
 import 'package:flutter_study_app/pages/mine/settings_screen.dart';
@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
         child: MaterialApp(
           routes: {
             router.index: (context) => FsApp(),
-            router.account: (context) => AccountScreen(),
+            router.account: (context) => LoginScreen(),
             router.about: (context) => AboutAppScreen(),
             router.settings: (context) => SettingScreen(),
             router.language: (context) => LanguageScreen(),

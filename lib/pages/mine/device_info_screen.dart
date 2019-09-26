@@ -14,7 +14,7 @@ class DeviceInfoScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.deviceInfo),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).deviceInfo),
         body: FutureBuilder(
           future: getDeviceInfo(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {

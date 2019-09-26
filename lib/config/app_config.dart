@@ -30,8 +30,8 @@ class AppConfig {
   static String splash = 'assets/images/splash.png';
   static String accountBg = 'assets/images/accountBg.jpg';
   static const TOKEN_KEY = "token";
-  static const USER_NAME_KEY = "user-name";
-  static const PW_KEY = "user-pw";
+  static const USERNAME = "ys_username";
+  static const PASSWORD = "ys_password";
   static const USER_BASIC_CODE = "user-basic-code";
   static const USER_INFO = "user-info";
   static const LANGUAGE_SELECT = "language-select";

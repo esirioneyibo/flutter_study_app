@@ -11,9 +11,9 @@ class AboutAppScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.aboutSoftware),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).aboutSoftware),
         body: Center(
-          child: Text(FsLocalizations.of(context).currentLocale.aboutSoftware),
+          child: Text(FsLocalizations.getLocale(context).aboutSoftware),
         ),
       ),
     );

@@ -9,7 +9,7 @@ import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
 import 'package:flutter_study_app/pages/home/video_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
-import 'package:flutter_study_app/pages/mine/account_screen.dart';
+import 'package:flutter_study_app/pages/mine/login_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
