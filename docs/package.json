@@ -1,7 +1,7 @@
 {
   "name": "flutter-study-app-pages",
   "version": "1.0.0",
-  "description": "A new Flutter study application.",
+  "description": "A Flutter study application.",
   "main": "index.html",
   "dependencies": {
     "docsify-cli": "^4.3.0"

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/pages/practise/day1_screen.dart';
-import 'package:flutter_study_app/pages/practise/day2_screen.dart';
-import 'package:flutter_study_app/pages/practise/day3_screen.dart';
-import 'package:flutter_study_app/pages/practise/day4_screen.dart';
 import 'package:flutter_study_app/pages/practise/day10_screen.dart';
 import 'package:flutter_study_app/pages/practise/day11_screen.dart';
 import 'package:flutter_study_app/pages/practise/day12_screen.dart';

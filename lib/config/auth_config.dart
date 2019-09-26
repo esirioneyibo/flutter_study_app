@@ -1,4 +1,4 @@
-/// 填好本文件的相关内容,然后把文件重命名为 auth_config.dart
+/// 填好本文件的相关内容
 class AuthConfig {
   // twitter
   String twitterApiKey = '';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 
 class DialogUtil {
   static bool _isShowing = false;
@@ -45,7 +45,7 @@ class DialogUtil {
             RaisedButton(
               color: style.buttonColor,
               child: Text(
-                MyLocalizations.of(context).close,
+                FsLocalizations.of(context).currentLocale.close,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),
@@ -74,7 +74,7 @@ class DialogUtil {
           actions: <Widget>[
             RaisedButton(
               child: Text(
-                MyLocalizations.of(context).ok,
+                FsLocalizations.of(context).currentLocale.ok,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),
@@ -88,7 +88,7 @@ class DialogUtil {
             RaisedButton(
               color: Theme.of(context).primaryColor,
               child: Text(
-                MyLocalizations.of(context).cancel,
+                FsLocalizations.of(context).currentLocale.cancel,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),

@@ -1,87 +1,107 @@
-import 'package:flutter_study_app/factory.dart';
+import 'dart:convert';
+
+import 'package:flutter_study_app/config/api_config.dart';
+import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/config/auth_config.dart';
+import 'package:flutter_study_app/redux/reducer/user_reducer.dart';
+import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
+import 'package:flutter_study_app/service/local_storage.dart';
+import 'package:flutter_study_app/utils/http_util.dart';
+import 'package:flutter_study_app/vo/result_data.dart';
 import 'package:github/server.dart';
+import 'package:redux/redux.dart';
 
 class HttpService {
-  Function successCallBack;
-  Function errorCallBack;
+  static const CONTENT_TYPE_JSON = "application/json";
+  static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
-  IHttpServiceCallback callbackObject;
+  static IssuesService issuesService;
+  static RepositorySlug slug;
+  static GitHub github;
 
-  HttpService httpService;
+  final TokenInterceptors _tokenInterceptors = TokenInterceptors();
 
-  GitHub github;
-  IssuesService issuesService;
-  RepositorySlug slug;
-
-  HttpService(this.callbackObject) {
-    successCallBack = callbackObject.successCallBack;
-    errorCallBack = callbackObject.errorCallBack;
+  HttpService() {
     github = createGitHubClient(
-        auth: new Authentication.withToken(
-            ConfigFactory.authConfig().githubToken));
+        auth: new Authentication.withToken(AuthConfig.githubToken));
     slug = RepositorySlug("houko", "flutter-study-app");
     issuesService = IssuesService(github);
   }
 
+  static getClient(Authentication auth) {
+    return createGitHubClient(
+        auth: Authentication.withToken(AuthConfig.githubToken));
+  }
+
+  static getIssueService(Authentication auth) {
+    issuesService = IssuesService(getClient(auth));
+  }
+
   /// 获取聊天列表
-  getChatList() {
-    Stream<Issue> future = github.issues.listByRepo(slug);
-    List<Issue> issues = [];
-    future.listen((issue) {
-      issues.add(issue);
-    }, onDone: () {
-      successCallBack(DataType.getChatList, issues);
-    }, onError: ((error) {
-      errorCallBack(DataType.getChatList, error);
-    }));
+  static getChatList() {
+    var client = getClient(null);
+    return client.issues.listByRepo(slug);
   }
 
   /// 获取评论列表
   getChatComments(issueNumber) {
-    Stream<IssueComment> future =
-        issuesService.listCommentsByIssue(slug, issueNumber);
-    List<IssueComment> comments;
-    future.listen((comment) {
-      if (comments == null) {
-        comments = [];
-      }
-      comments.add(comment);
-    }, onError: (error) {
-      errorCallBack(DataType.getChatComments, error);
-    }, onDone: () {
-      successCallBack(DataType.getChatComments, comments);
-    });
+    return issuesService.listCommentsByIssue(slug, issueNumber);
   }
 
   /// 添加一个评论
-  addAnComment(issueId, String data) {
-    Future<IssueComment> result =
-        github.issues.createComment(slug, issueId, data.trim());
-    result.then((comment) {
-      successCallBack(DataType.addAnComment, comment);
-    }).catchError((error) {
-      errorCallBack(DataType.addAnComment, error);
-    });
-  }
-}
-
-class IHttpServiceCallback {
-  successCallBack(DataType type, response) {
-    print(response);
+  addAnComment(Authentication auth, issueId, String data) {
+    var client = getClient(auth);
+    return client.issues.createComment(slug, issueId, data.trim());
   }
 
-  errorCallBack(DataType type, error) {
-    print(error);
-  }
-}
+  /// 登录
+  login(userName, password, store) async {
+    String type = userName + ":" + password;
+    var bytes = utf8.encode(type);
+    var base64Str = base64.encode(bytes);
+    if (AppConfig.debug) {
+      print("base64Str login " + base64Str);
+    }
+    await LocalStorage.save(AppConfig.USER_NAME_KEY, userName);
+    await LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
 
-enum DataType {
-  getChatList,
-  getChatComments,
-  addAnComment,
-  ff,
-  ssd,
-  dd,
-  safdsa,
-  safsafd,
+    Map requestParams = {
+      "scopes": ['user', 'repo', 'gist', 'notifications'],
+      "note": "admin_script",
+      "client_id": AuthConfig.githubClientId,
+      "client_secret": AuthConfig.githubClientSecret
+    };
+
+    var res =
+        HttpUtil.get(ApiConfig.getAuthorization(), null, params: requestParams);
+  }
+
+  ///获取本地登录用户信息
+  static getUserInfoLocal() async {
+    var userText = await LocalStorage.get(AppConfig.USER_INFO);
+    if (userText != null) {
+      var userMap = json.decode(userText);
+      User user = User.fromJson(userMap);
+      return ResultData(user, true, Code.SUCCESS);
+    } else {
+      return ResultData(null, false, Code.SUCCESS);
+    }
+  }
+
+  static getUserInfo({Authentication auth}) {
+    return null;
+  }
+
+  ///获取用户详细信息
+
+  clearAll(Store store) async {
+    clearAuthorization();
+    LocalStorage.remove(AppConfig.USER_INFO);
+    store.dispatch(UpdateUserAction(null));
+  }
+
+  ///清除授权
+  clearAuthorization() {
+    _tokenInterceptors.clearAuthorization();
+  }
 }

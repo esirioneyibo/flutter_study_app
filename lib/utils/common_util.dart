@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/app_state.dart';
-import 'package:flutter_study_app/reducer/locale_redux.dart';
-import 'package:flutter_study_app/reducer/theme_data_redux.dart';
+import 'package:flutter_study_app/redux/reducer/locale_reducer.dart';
+import 'package:flutter_study_app/redux/reducer/theme_data_reducer.dart';
+import 'package:flutter_study_app/redux/ys_app_state.dart';
 import 'package:redux/redux.dart';
 
 enum LocaleEnum { cn, en, ja }
@@ -33,7 +33,7 @@ class CommonUtil {
   }
 
   // 切换语言
-  static changeTheme(Store<AppState> store, int index) {
+  static changeTheme(Store<YsAppState> store, int index) {
     var themeData = store.state.themeData;
     themeData = ThemeData().copyWith(primaryColor: themeColors()[index]);
     store.dispatch(RefreshThemeDataAction(themeData));
@@ -52,7 +52,7 @@ class CommonUtil {
   }
 
   // 切换语言
-  static changeLocale(Store<AppState> store, LocaleEnum target) {
+  static changeLocale(Store<YsAppState> store, LocaleEnum target) {
     var locale = store.state.platformLocale;
     switch (target.index) {
       case 0:

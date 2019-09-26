@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/vo/practise_vo.dart';
 
@@ -18,7 +18,7 @@ class _PractiseScreenState extends State<PractiseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(MyLocalizations.of(context).study),
+        title: Text(FsLocalizations.of(context).currentLocale.study),
       ),
       body: SingleChildScrollView(
         child: Container(

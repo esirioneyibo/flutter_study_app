@@ -1,4 +1,3 @@
-import 'package:flutter_study_app/config/api_config.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
@@ -19,11 +18,6 @@ class ConfigFactory {
   // 路由
   static RouterConfig router() {
     return RouterConfig();
-  }
-
-  // api
-  static APIConfig api() {
-    return APIConfig();
   }
 
   // App 配置

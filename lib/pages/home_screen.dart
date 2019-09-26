@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i10n/localization_intl.dart';
+import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,7 +44,7 @@ class HomeScreenState extends State<HomeScreen>
       length: tabs.length,
       child: Scaffold(
           appBar: MyAppBar(
-              title: MyLocalizations.of(context).index, tabBar: topBar),
+              title: FsLocalizations.of(context).currentLocale.index, tabBar: topBar),
           body: TabBarView(
             children: tabContents,
           )),
