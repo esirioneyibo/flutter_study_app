@@ -1,5 +1,5 @@
 name: flutter_study_app
-description: A new Flutter study application.
+description: A Flutter study application.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -22,31 +22,50 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  # ios风格的图标
   cupertino_icons:
+  # 视频播放器
   video_player:
+  # 设备信息
   device_info:
+  # 轻量数据库
   sqflite:
+  # 网络图片缓存
   cached_network_image:
+  # http请求库,代替http
   dio:
+  # json注解库
   json_annotation:
+  # 缓存
   shared_preferences:
+  # 二维码扫描
   qr_flutter:
+  # 大量的icon图标
   font_awesome_flutter:
+  # state管理工具
   flutter_redux:
+  # state管理中间件
   redux_thunk:
+  # 生成唯一不重复id
   uuid:
-  provider:
+  # 异步处理
+  rxdart:
+  # 手机网络状态监控 是wifi还是流量 wifi,mobile
+  connectivity:
+  # 相机和相册
   image_picker:
+  # 查找文件的位置
   path_provider:
+  # google地图
   google_maps_flutter:
-  firebase_auth:
-  uni_links:
+  # app之间跳转
   url_launcher:
+  # 内置web view
   webview_flutter:
+  # markdown支持
   flutter_markdown:
+  # github库
   github:
-#  google_sign_in:
-#  flutter_twitter_login:
 
 dev_dependencies:
   flutter_test:

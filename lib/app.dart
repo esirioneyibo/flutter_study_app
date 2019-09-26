@@ -80,3 +80,8 @@ class _FsAppState extends State<FsApp> {
     super.dispose();
   }
 }
+
+
+class AppStyle{
+
+}

@@ -4,7 +4,6 @@ import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,10 +21,7 @@ class ChatDetailScreen extends StatefulWidget {
 }
 
 /// 使用http的话要实现 IHttpServiceCallback
-class ChatDetailState extends State<ChatDetailScreen>
-    implements IHttpServiceCallback {
-  HttpService http;
-
+class ChatDetailState extends State<ChatDetailScreen> {
   TextEditingController _controller;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Issue post;
@@ -39,16 +35,13 @@ class ChatDetailState extends State<ChatDetailScreen>
 
   Color borderColor = Colors.grey;
 
-  ChatDetailState(this.post) {
-    http = HttpService(this);
-  }
+  ChatDetailState(this.post);
 
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
     _controller = TextEditingController();
-    http.getChatComments(post.number);
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         onFocus();
@@ -82,7 +75,6 @@ class ChatDetailState extends State<ChatDetailScreen>
 
   // 添加一个评论 发送http请求
   addAnComment(String data) {
-    this.http.addAnComment(post.number, data);
     _controller.clear();
   }
 
@@ -267,7 +259,9 @@ class ChatDetailState extends State<ChatDetailScreen>
                           minLines: 3,
                           maxLines: 100,
                           decoration: InputDecoration(
-                            hintText: FsLocalizations.of(context).currentLocale.comment,
+                            hintText: FsLocalizations.of(context)
+                                .currentLocale
+                                .comment,
                             errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
                                 borderRadius:
@@ -294,7 +288,8 @@ class ChatDetailState extends State<ChatDetailScreen>
                         child: RaisedButton(
                           color: style.commentButtonColor,
                           key: Key('comment'),
-                          child: Text(FsLocalizations.of(context).currentLocale.comment,
+                          child: Text(
+                              FsLocalizations.of(context).currentLocale.comment,
                               style: TextStyle(
                                   fontSize: style.commentButtonSize,
                                   color: style.commentFontColor)),
@@ -308,31 +303,6 @@ class ChatDetailState extends State<ChatDetailScreen>
         ),
       ),
     );
-  }
-
-  @override
-  successCallBack(DataType type, response) {
-    if (type == DataType.addAnComment) {
-      response = response as IssueComment;
-      setState(() {
-        this.comments.add(response);
-      });
-    } else if (type == DataType.getChatComments) {
-      if (response == null) {
-        setState(() {
-          this.comments = [];
-        });
-        return;
-      }
-      setState(() {
-        this.comments = response;
-      });
-    }
-  }
-
-  @override
-  errorCallBack(DataType type, error) {
-    print(error);
   }
 }
 

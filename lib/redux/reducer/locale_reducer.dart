@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/factory.dart';
+import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:redux/redux.dart';
 
@@ -11,8 +11,7 @@ final localeReducer = combineReducers<Locale>([
 
 Locale _refresh(Locale locale, RefreshLocaleAction action) {
   locale = action.locale;
-  LocalStorage.save(
-      ConfigFactory.appConfig().currentLocale, locale.countryCode);
+  LocalStorage.save(AppConfig.currentLocale, locale.countryCode);
   return locale;
 }
 

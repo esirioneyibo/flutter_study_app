@@ -19,5 +19,5 @@ class FsLocalizationsDelegate extends LocalizationsDelegate<FsLocalizations> {
     return false;
   }
 
-  static FsLocalizationsDelegate delegate = new FsLocalizationsDelegate();
+  static FsLocalizationsDelegate delegate = FsLocalizationsDelegate();
 }

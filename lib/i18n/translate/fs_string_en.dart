@@ -92,7 +92,7 @@ class FsStringEN implements FsStringBase{
   String moveToRegister='move to regsiter';
 
   @override
-  String newChat='new chat';
+  String newChat='chat';
 
   @override
   String ok='ok';

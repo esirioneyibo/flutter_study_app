@@ -9,7 +9,6 @@ class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RouterConfig router = ConfigFactory.router();
-    AppConfig appConfig = ConfigFactory.appConfig();
     void exitLogin() {
       currentUser = null;
       // 连退2级，从dialog退到drawer再退到主页
@@ -67,7 +66,7 @@ class LeftDrawer extends StatelessWidget {
     var infoWidget = UserAccountsDrawerHeader(
       accountName: Text(currentUser == null
           ? FsLocalizations.of(context).currentLocale.clickLogin
-          : currentUser.displayName),
+          : currentUser.login),
       accountEmail: Text(currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
         if (currentUser == null) {
@@ -82,10 +81,10 @@ class LeftDrawer extends StatelessWidget {
       currentAccountPicture: CircleAvatar(
         backgroundImage: currentUser == null
             ? AssetImage(
-                appConfig.defaultAvatar,
+                AppConfig.defaultAvatar,
               )
             : NetworkImage(
-                currentUser.photoUrl,
+                currentUser.avatarUrl,
               ),
       ),
       decoration: BoxDecoration(
@@ -94,7 +93,7 @@ class LeftDrawer extends StatelessWidget {
 //                  Colors.blue[400].withAlpha(60),
 //                  BlendMode.hardLight),
               fit: BoxFit.cover,
-              image: AssetImage(appConfig.accountBg))),
+              image: AssetImage(AppConfig.accountBg))),
     );
 
     return Drawer(

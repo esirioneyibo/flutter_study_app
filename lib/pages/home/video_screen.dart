@@ -70,31 +70,35 @@ class CardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    VideoStyle style = ConfigFactory.videoStyle();
     return Stack(
       children: <Widget>[
         // 图片
         Opacity(
-          opacity: 0.9,
+          opacity: style.imageOpacity,
           child: Image.network(
             video.cover,
-            height: 100,
+            height: style.imageHeight,
             fit: BoxFit.fitWidth,
           ),
         ),
         // 评论数
         Positioned(
-          left: 4,
+          left: style.commentCountLeft,
           bottom: 0,
           child: Row(
             children: <Widget>[
               Icon(
                 Icons.menu,
-                color: Colors.white,
-                size: 12,
+                color: style.commentIconColor,
+                size: style.commentIconSize,
               ),
               Text(
                 video.commentsCount,
-                style: TextStyle(color: Colors.white, fontSize: 12),
+                style: TextStyle(
+                  color: style.commentColor,
+                  fontSize: style.commentFontSize,
+                ),
               )
             ],
           ),
@@ -123,6 +127,28 @@ class CardImage extends StatelessWidget {
 }
 
 class VideoStyle {
+  // 图片透明度
+  double imageOpacity = 0.9;
+
+  // 图片高度
+  double imageHeight = 90;
+
+  // 评论数
+  double commentCountLeft = 4;
+
+
+  // 评论icon的颜色
+  Color commentIconColor = Colors.white;
+
+  // 评论icon的大小
+  double commentIconSize = 12;
+
+  // 评论icon的颜色
+  Color commentColor = Colors.white;
+
+  // 评论icon的大小
+  double commentFontSize = 12;
+
   // 每行显示多少个卡片
   int gridCount = 2;
 

@@ -7,22 +7,22 @@ class HttpUtil {
   static const String POST = "post";
 
   //get请求
-  static void get(String url, DataType dataType, Function callBack,
+  static void get(String url, Function callBack,
       {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, dataType, callBack,
+    _request(url, callBack,
         method: GET, params: params, errorCallBack: errorCallBack);
   }
 
   //post请求
-  static void post(String url, DataType dataType, Function callBack,
+  static void post(String url, Function callBack,
       {Map<String, String> params, Function errorCallBack}) async {
-    _request(url, dataType, callBack,
+    _request(url, callBack,
         method: POST, params: params, errorCallBack: errorCallBack);
   }
 
   //具体的还是要看返回数据的基本结构
   //公共代码部分
-  static void _request(String url, DataType dataType, Function callBack,
+  static void _request(String url, Function callBack,
       {String method,
       Map<String, String> params,
       Function errorCallBack}) async {
@@ -40,7 +40,7 @@ class HttpUtil {
       if (method == GET) {
         //组合GET请求的参数
         if (params != null && params.isNotEmpty) {
-          StringBuffer sb = new StringBuffer("?");
+          StringBuffer sb = StringBuffer("?");
           params.forEach((key, value) {
             sb.write("$key" + "=" + "$value" + "&");
           });
@@ -62,24 +62,23 @@ class HttpUtil {
       //处理错误部分
       if (statusCode < 0) {
         errorMsg = "网络请求错误,状态码:" + statusCode.toString();
-        _handError(errorCallBack, dataType, errorMsg);
+        _handError(errorCallBack, errorMsg);
         return;
       }
 
       if (callBack != null) {
         var data = response.data;
-        callBack(dataType, data);
+        callBack(data);
       }
     } catch (exception) {
-      _handError(errorCallBack, dataType, exception.toString());
+      _handError(errorCallBack, exception.toString());
     }
   }
 
   //处理异常
-  static void _handError(
-      Function errorCallback, DataType dataType, String errorMsg) {
+  static void _handError(Function errorCallback, String errorMsg) {
     if (errorCallback != null) {
-      errorCallback(dataType, errorMsg);
+      errorCallback(errorMsg);
     } else {
       print("<net> errorMsg :" + errorMsg);
     }

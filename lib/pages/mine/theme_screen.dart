@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_study_app/app_state.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/redux/ys_app_state.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 
@@ -16,7 +16,7 @@ class ThemeScreen extends StatefulWidget {
 class ThemeScreenState extends State<ThemeScreen> {
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, Locale>(
+    return StoreConnector<YsAppState, Locale>(
       converter: (store) => store.state.locale,
       builder: (context, locale) {
         return GestureDetector(
@@ -34,7 +34,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                         child:
                             Text('蓝色', style: TextStyle(color: Colors.blue))),
                     onTap: () {
-                      CommonUtil.changeTheme(store, 0);
+                      CommonUtil.changeTheme(initializeStore, 0);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -45,7 +45,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                         child:
                             Text('绿色', style: TextStyle(color: Colors.green))),
                     onTap: () {
-                      CommonUtil.changeTheme(store, 1);
+                      CommonUtil.changeTheme(initializeStore, 1);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -58,7 +58,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                       style: TextStyle(color: Colors.pink),
                     )),
                     onTap: () {
-                      CommonUtil.changeTheme(store, 2);
+                      CommonUtil.changeTheme(initializeStore, 2);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -70,7 +70,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                       style: TextStyle(color: Colors.amber),
                     )),
                     onTap: () {
-                      CommonUtil.changeTheme(store, 3);
+                      CommonUtil.changeTheme(initializeStore, 3);
                       Navigator.of(context).pop();
                     },
                   ),

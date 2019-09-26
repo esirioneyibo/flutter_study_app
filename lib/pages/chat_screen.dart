@@ -5,7 +5,6 @@ import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:github/server.dart';
@@ -17,20 +16,12 @@ class ChatScreen extends StatefulWidget {
   }
 }
 
-class ChatScreenState extends State<ChatScreen>
-    implements IHttpServiceCallback {
+class ChatScreenState extends State<ChatScreen>{
   List<Issue> posts = [];
-
-  HttpService http;
-
-  ChatScreenState() {
-    this.http = HttpService(this);
-  }
 
   @override
   void initState() {
     super.initState();
-    http.getChatList();
   }
 
   @override
@@ -93,17 +84,6 @@ class ChatScreenState extends State<ChatScreen>
     );
   }
 
-  @override
-  errorCallBack(DataType type, error) {
-    print(error);
-  }
-
-  @override
-  successCallBack(DataType type, response) {
-    setState(() {
-      this.posts = response;
-    });
-  }
 }
 
 /// 左侧用户信息
