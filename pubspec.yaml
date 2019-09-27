@@ -65,7 +65,7 @@ dependencies:
   # markdown支持
   flutter_markdown:
   # github库
-  github:
+  flutter_github_api:
 
 dev_dependencies:
   flutter_test:

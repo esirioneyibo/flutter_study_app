@@ -6,12 +6,14 @@ import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/redux/reducer/user_reducer.dart';
 import 'package:flutter_study_app/redux/ys_app_state.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/utils/dialog_util.dart';
 import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/tip_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -120,36 +122,38 @@ class _LoginScreenState extends State<LoginScreen> {
 //   验证和提交
   Future<void> _validateAndSubmit(store) async {
     if (_validateAndSave()) {
-      try {
-        HttpService.login(username, password, store);
-      } catch (e) {
-        switch (e.code) {
-          case EmailErrorCode.invalidEmail:
-            DialogUtil.showAlertDialog(
-                context,
-                FsLocalizations.getLocale(context).loginError,
-                FsLocalizations.getLocale(context).emailIllegal);
-            break;
-          case EmailErrorCode.userNotFound:
-            DialogUtil.showAlertDialog(
-                context,
-                FsLocalizations.getLocale(context).loginError,
-                FsLocalizations.getLocale(context).emailNotFound);
-            break;
-          case EmailErrorCode.wrongPassword:
-            DialogUtil.showAlertDialog(
-                context,
-                FsLocalizations.getLocale(context).loginError,
-                FsLocalizations.getLocale(context).passwordError);
-            break;
-          default:
-            DialogUtil.showAlertDialog(
-                context,
-                FsLocalizations.getLocale(context).loginError,
-                FsLocalizations.getLocale(context).unknownError);
-            break;
+      HttpService.login(username, password, store).then((data) {
+        if (data.code == 200) {
+          LocalStorage.save(AppConfig.PASSWORD, password);
+          var resultData = HttpService.getUserInfo(username);
+          if (AppConfig.debug) {
+            print("user result " + resultData.result.toString());
+            print(data.toString());
+          }
+          store.dispatch(new UpdateUserAction(resultData.data));
+        } else {
+          switch (data.code) {
+            case 401:
+              TipUtil.showTip(
+                  context, FsLocalizations.getLocale(context).networkError_401);
+              break;
+            case 403:
+              TipUtil.showTip(
+                  context, FsLocalizations.getLocale(context).networkError_403);
+              break;
+            case 404:
+              TipUtil.showTip(
+                  context, FsLocalizations.getLocale(context).networkError_404);
+              break;
+            default:
+              TipUtil.showTip(
+                  context, FsLocalizations.getLocale(context).unknownError);
+              break;
+          }
         }
-      }
+      }, onError: (error) {
+        print(error);
+      });
     }
   }
 
@@ -214,13 +218,6 @@ class PasswordFieldValidator {
   }
 }
 
-class EmailErrorCode {
-  static const String invalidEmail = "ERROR_INVALID_EMAIL";
-  static const String userNotFound = "ERROR_USER_NOT_FOUND";
-  static const String wrongPassword = "ERROR_WRONG_PASSWORD";
-}
-
-
 class AccountStyle {
   // 登录按钮距离顶部的内距离
   double loginButtonPaddingTop = 10;
@@ -243,4 +240,3 @@ class AccountStyle {
   // 三方登录的按钮大小
   double authButtonSize = 40;
 }
-

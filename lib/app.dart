@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
-import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
@@ -22,7 +21,7 @@ class _FsAppState extends State<FsApp> {
 
   int _currentIndex = 0;
 
-  AppConfig style = ConfigFactory.appConfig();
+  AppStyle style = ConfigFactory.appStyle();
 
   /// 改变选择的tab的文字颜色
   Color _itemColor(targetIndex) {
@@ -81,7 +80,10 @@ class _FsAppState extends State<FsApp> {
   }
 }
 
+class AppStyle {
+  // 底部导航选中的颜色
+  Color navigatorSelectedColor = Colors.pink;
 
-class AppStyle{
-
+  // 底部导航未选中的颜色
+  Color navigatorUnSelectedColor = Colors.black54;
 }

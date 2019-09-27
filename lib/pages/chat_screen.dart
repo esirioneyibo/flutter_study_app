@@ -16,7 +16,7 @@ class ChatScreen extends StatefulWidget {
   }
 }
 
-class ChatScreenState extends State<ChatScreen>{
+class ChatScreenState extends State<ChatScreen> {
   List<Issue> posts = [];
 
   @override
@@ -83,7 +83,6 @@ class ChatScreenState extends State<ChatScreen>{
             ),
     );
   }
-
 }
 
 /// 左侧用户信息

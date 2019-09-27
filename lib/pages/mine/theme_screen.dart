@@ -24,7 +24,8 @@ class ThemeScreenState extends State<ThemeScreen> {
             NavigatorUtil.back(context, details);
           },
           child: Scaffold(
-            appBar: ReturnBar(FsLocalizations.getLocale(context).changeLanguage),
+            appBar:
+                ReturnBar(FsLocalizations.getLocale(context).changeLanguage),
             body: Container(
               child: Column(
                 children: <Widget>[

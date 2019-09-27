@@ -13,11 +13,6 @@ class EpicStore<State> {
   Stream<State> get onChange => _store.onChange;
 }
 
-
-
-
-
-
 typedef Stream<dynamic> Epic<State>(
     Stream<dynamic> actions, EpicStore<State> store);
 

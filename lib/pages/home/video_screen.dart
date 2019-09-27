@@ -136,7 +136,6 @@ class VideoStyle {
   // 评论数
   double commentCountLeft = 4;
 
-
   // 评论icon的颜色
   Color commentIconColor = Colors.white;
 

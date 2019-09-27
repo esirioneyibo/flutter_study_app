@@ -1,4 +1,4 @@
-import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
@@ -21,8 +21,8 @@ class ConfigFactory {
   }
 
   // App 配置
-  static AppConfig appConfig() {
-    return AppConfig();
+  static AppStyle appStyle() {
+    return AppStyle();
   }
 
   static AuthConfig authConfig() {

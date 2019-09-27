@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/factory.dart';
-
-import '../app.dart';
+import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 
 ///
@@ -18,7 +16,6 @@ class _SplashState extends State<SplashScreen>
 
   /// 动画
   Animation _animation;
-  AppConfig appConfig = ConfigFactory.appConfig();
 
   @override
   Widget build(BuildContext context) {

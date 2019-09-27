@@ -21,9 +21,8 @@ class EpicMiddleware<State> extends MiddlewareClass<State> {
   call(Store<State> store, dynamic action, NextDispatcher next) {
     if (!_isSubscribed) {
       _epics.stream
-          .transform<dynamic>(
-              SwitchMapStreamTransformer<Epic<State>, dynamic>(
-                  (epic) => epic(_actions.stream, EpicStore(store))))
+          .transform<dynamic>(SwitchMapStreamTransformer<Epic<State>, dynamic>(
+              (epic) => epic(_actions.stream, EpicStore(store))))
           .listen(store.dispatch);
 
       _epics.add(_epic);

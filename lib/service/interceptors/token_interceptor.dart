@@ -3,7 +3,6 @@ import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 
 class TokenInterceptors extends InterceptorsWrapper {
-
   String _token;
 
   @override
@@ -19,9 +18,8 @@ class TokenInterceptors extends InterceptorsWrapper {
     return options;
   }
 
-
   @override
-  onResponse(Response response) async{
+  onResponse(Response response) async {
     try {
       var responseJson = response.data;
       if (response.statusCode == 201 && responseJson["token"] != null) {

@@ -32,7 +32,6 @@ class Code {
     if (noTip) {
       return message;
     }
-//    eventBus.fire(new HttpErrorEvent(code, message));
     return message;
   }
 }

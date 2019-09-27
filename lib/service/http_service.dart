@@ -9,7 +9,7 @@ import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/http_manager.dart';
 import 'package:flutter_study_app/vo/result_data.dart';
-import 'package:github/server.dart';
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:redux/redux.dart';
 
 class HttpService {
@@ -44,7 +44,7 @@ class HttpService {
   }
 
   /// 登录
-  static login(
+  static Future login(
       String username, String password, Store<YsAppState> store) async {
     username = username.trim();
     password = password.trim();
@@ -54,30 +54,38 @@ class HttpService {
     if (AppConfig.debug) {
       print("base64Str login " + base64Str);
     }
-    LocalStorage.save(AppConfig.USERNAME, username);
-    LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
+    var resultData;
+    var auth = await isAuth();
+    if (auth) {
+      LocalStorage.save(AppConfig.USERNAME, username);
+      LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
+      store.dispatch(new UpdateUserAction(resultData.data));
+    }
+    return Result(resultData, auth);
+  }
 
+  /// 判断本app是否接入了github
+  static isAuth() async {
+    var auth = await getAuth();
+    if (auth != null && auth.result) {
+      return true;
+    }
+    return false;
+  }
+
+  static getAuth() async {
     Map requestParams = {
       "scopes": ['user', 'repo', 'gist', 'notifications'],
       "note": "admin_script",
       "client_id": AuthConfig.githubClientId,
       "client_secret": AuthConfig.githubClientSecret
     };
+
+    // 清除己有的权限
+    httpManager.clearAuthorization();
     // 发送http请求
-    var res = await httpManager.post(
+    return await httpManager.post(
         ApiConfig.getAuthorization(), json.encode(requestParams));
-    var resultData;
-    if (res != null && res.result) {
-      await LocalStorage.save(AppConfig.PASSWORD, password);
-      var resultData = await getUserInfo();
-      if (AppConfig.debug) {
-        print("user result " + resultData.result.toString());
-        print(resultData.data);
-        print(res.data.toString());
-      }
-      store.dispatch(new UpdateUserAction(resultData.data));
-    }
-    return new Result(resultData, res.result);
   }
 
   ///获取本地登录用户信息
@@ -92,8 +100,27 @@ class HttpService {
     }
   }
 
-  static getUserInfo({Authentication auth}) {
-    return null;
+  ///获取用户详细信息
+  static getUserInfo([username]) async {
+    next() async {
+      var res;
+      if (username == null) {
+        res = await httpManager.get(ApiConfig.getMyUserInfo());
+      } else {
+        res = await httpManager.get(ApiConfig.getUserInfo(username));
+      }
+      if (res != null && res.result) {
+        User user = User.fromJson(res.data);
+        if (username == null) {
+          LocalStorage.save(AppConfig.USER_INFO, json.encode(user.toJson()));
+        }
+        return new Result(user, true);
+      } else {
+        return new Result(res.data, false);
+      }
+    }
+
+    return await next();
   }
 
   ///获取用户详细信息

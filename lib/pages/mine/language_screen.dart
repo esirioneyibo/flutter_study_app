@@ -17,7 +17,8 @@ class LanguageScreen extends StatelessWidget {
             NavigatorUtil.back(context, details);
           },
           child: Scaffold(
-            appBar: ReturnBar(FsLocalizations.getLocale(context).changeLanguage),
+            appBar:
+                ReturnBar(FsLocalizations.getLocale(context).changeLanguage),
             body: Container(
               child: Column(
                 children: <Widget>[
