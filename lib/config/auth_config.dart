@@ -1,16 +1,16 @@
 /// 填好本文件的相关内容
 class AuthConfig {
   // twitter
-  String twitterApiKey = '';
-  String twitterApiSecret = '';
+  static String twitterApiKey = '';
+  static String twitterApiSecret = '';
 
   // github
-  String githubAppId = '';
-  String githubAppPublicLink = '';
-  String githubClientId = '';
-  String githubClientSecret = '';
-  String githubToken = '';
+  static String githubAppId = '';
+  static String githubAppPublicLink = '';
+  static String githubClientId = '';
+  static String githubClientSecret = '';
+  static String githubToken = '';
 
-  get weChatAppId => "";
+  static get weChatAppId => "";
 }
 
