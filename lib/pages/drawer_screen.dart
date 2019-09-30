@@ -3,7 +3,7 @@ import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class LeftDrawer extends StatelessWidget {
   @override

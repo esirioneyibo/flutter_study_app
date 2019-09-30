@@ -1,18 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/redux/reducer/user_reducer.dart';
-import 'package:flutter_study_app/redux/ys_app_state.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
-import 'package:flutter_study_app/utils/common_util.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
+import 'package:flutter_study_app/utils/index.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/tip_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -52,29 +49,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<YsAppState>(
-      builder: (context, store) {
-        return GestureDetector(
-          onHorizontalDragEnd: (DragEndDetails details) {
-            NavigatorUtil.back(context, details);
-          },
-          child: Scaffold(
-            appBar: ReturnBar(FsLocalizations.getLocale(context).login),
-            body: Container(
-              // 弹出键盘不遮挡内容
-              child: Form(
-                key: formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: buildInputs() + buildSubmitButtons(store),
-                  ),
-                ),
+    return GestureDetector(
+      onHorizontalDragEnd: (DragEndDetails details) {
+        NavigatorUtil.back(context, details);
+      },
+      child: Scaffold(
+        appBar: ReturnBar(FsLocalizations.getLocale(context).login),
+        body: Container(
+          // 弹出键盘不遮挡内容
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: buildInputs() + buildSubmitButtons(),
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -120,9 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
 //   验证和提交
-  Future<void> _validateAndSubmit(store) async {
+  Future<void> _validateAndSubmit() async {
     if (_validateAndSave()) {
-      HttpService.login(username, password, store).then((data) {
+      HttpService.login(username, password).then((data) {
         if (data.code == 200) {
           LocalStorage.save(AppConfig.PASSWORD, password);
           var resultData = HttpService.getUserInfo(username);
@@ -130,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
             print("user result " + resultData.result.toString());
             print(data.toString());
           }
-          store.dispatch(new UpdateUserAction(resultData.data));
+//          store.dispatch(new UpdateUserAction(resultData.data));
         } else {
           switch (data.code) {
             case 401:
@@ -158,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   /// 构建提交按钮
-  List<Widget> buildSubmitButtons(store) {
+  List<Widget> buildSubmitButtons() {
     AccountStyle style = ConfigFactory.accountStyle();
     return <Widget>[
       Padding(
@@ -171,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(
                   fontSize: style.loginButtonFontSize,
                   color: style.loginButtonFontColor)),
-          onPressed: () => _validateAndSubmit(store)),
+          onPressed: () => _validateAndSubmit()),
       Padding(
         padding: EdgeInsets.only(top: style.authPaddingTop),
       ),

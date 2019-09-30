@@ -43,15 +43,17 @@ dependencies:
   # 大量的icon图标
   font_awesome_flutter:
   # state管理工具
-  flutter_redux:
-  # state管理中间件
-  redux_thunk:
+  scoped_model:
+  # 时间格式化
+  intl:
   # 生成唯一不重复id
   uuid:
   # 异步处理
   rxdart:
   # 手机网络状态监控 是wifi还是流量 wifi,mobile
   connectivity:
+  #加密库
+  encrypt:
   # 相机和相册
   image_picker:
   # 查找文件的位置

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/vo/blog_vo.dart';
 
 class BlogScreen extends StatelessWidget {

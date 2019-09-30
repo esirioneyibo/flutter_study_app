@@ -5,8 +5,8 @@ import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
-import 'package:flutter_study_app/utils/time_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:github/server.dart';
 
 class ChatScreen extends StatefulWidget {

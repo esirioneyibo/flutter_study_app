@@ -1,16 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_study_app/config/api_config.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
-import 'package:flutter_study_app/redux/reducer/user_reducer.dart';
-import 'package:flutter_study_app/redux/ys_app_state.dart';
 import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
-import 'package:flutter_study_app/utils/http_manager.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/vo/result_data.dart';
-import 'package:flutter_github_api/flutter_github_api.dart';
-import 'package:redux/redux.dart';
 
 class HttpService {
   static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
@@ -44,8 +41,7 @@ class HttpService {
   }
 
   /// 登录
-  static Future login(
-      String username, String password, Store<YsAppState> store) async {
+  static Future login(String username, String password) async {
     username = username.trim();
     password = password.trim();
     String type = username + ":" + password;
@@ -59,7 +55,6 @@ class HttpService {
     if (auth) {
       LocalStorage.save(AppConfig.USERNAME, username);
       LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
-      store.dispatch(new UpdateUserAction(resultData.data));
     }
     return Result(resultData, auth);
   }
@@ -123,16 +118,8 @@ class HttpService {
     return await next();
   }
 
-  ///获取用户详细信息
-
-  static clearAll(Store store) async {
-    _clearAuthorization();
-    LocalStorage.remove(AppConfig.USER_INFO);
-    store.dispatch(UpdateUserAction(null));
-  }
-
   ///清除授权
-  static _clearAuthorization() {
+  static clearAuthorization() {
     _tokenInterceptors.clearAuthorization();
   }
 }

@@ -12,7 +12,7 @@ import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/mine/login_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class ConfigFactory {
   // 路由

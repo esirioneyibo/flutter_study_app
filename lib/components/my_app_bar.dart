@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/pages/mine/about_screen.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

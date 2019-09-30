@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/redux/reducer/locale_reducer.dart';
-import 'package:flutter_study_app/redux/reducer/theme_data_reducer.dart';
-import 'package:flutter_study_app/redux/ys_app_state.dart';
-import 'package:redux/redux.dart';
 
 enum LocaleEnum { cn, en, ja }
 
@@ -32,12 +28,19 @@ class CommonUtil {
     }
   }
 
-  // 切换语言
-  static changeTheme(Store<YsAppState> store, int index) {
-    var themeData = store.state.themeData;
-    themeData = ThemeData().copyWith(primaryColor: themeColors()[index]);
-    store.dispatch(RefreshThemeDataAction(themeData));
+  ///format number to local number.
+  ///example 10001 -> 1万
+  ///        100 -> 100
+  ///        11000-> 1.1万
+  String getFormattedNumber(int number) {
+    if (number < 10000) {
+      return number.toString();
+    }
+    number = number ~/ 10000;
+    return "$number万";
   }
+
+
 
   static transLocale(LocaleEnum localeEnum) {
     switch (localeEnum.index) {
@@ -49,23 +52,6 @@ class CommonUtil {
         return Locale('ja', 'JP');
     }
     return Locale('zh', 'CN');
-  }
-
-  // 切换语言
-  static changeLocale(Store<YsAppState> store, LocaleEnum target) {
-    var locale = store.state.platformLocale;
-    switch (target.index) {
-      case 0:
-        locale = Locale('zh', 'CN');
-        break;
-      case 1:
-        locale = Locale('en', 'US');
-        break;
-      case 2:
-        locale = Locale('ja', 'JP');
-        break;
-    }
-    store.dispatch(RefreshLocaleAction(locale));
   }
 
   ///大陆手机号码11位数，匹配格式：前三位固定格式+后8位任意数
