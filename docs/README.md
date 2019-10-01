@@ -1,6 +1,6 @@
 
 # Flutter study app  
-:rocket: this project is build with flutter 1.9.2, an useful app(android and ios) for study flutter. it also offered a lot of useful tools for us.
+:rocket: this project is build with flutter 1.9.2, an useful app(android and ios) for study flutter.it also offered a lot of useful tools for us.
 
 # Status
 developing, please wait. it coming soon.
