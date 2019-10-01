@@ -149,7 +149,7 @@ class FsStringEN implements FsStringBase {
   String blog = 'blog';
 
   @override
-  String video = 'blog';
+  String video = 'video';
   @override
   String networkError_401 = "[401 登录失败]";
 

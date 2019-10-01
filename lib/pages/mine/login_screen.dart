@@ -8,8 +8,6 @@ import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
-import 'package:flutter_study_app/utils/index.dart';
-import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/tip_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

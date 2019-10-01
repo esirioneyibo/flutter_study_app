@@ -146,7 +146,7 @@ class FsStringJP implements FsStringBase {
   String blog = 'blog';
 
   @override
-  String video = 'blog';
+  String video = 'video';
 
   @override
   String test = 'test';
