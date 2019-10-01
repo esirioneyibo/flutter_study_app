@@ -1,25 +1,22 @@
 import 'dart:convert';
 
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_study_app/config/api_config.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
-import 'package:flutter_study_app/redux/reducer/user_reducer.dart';
 import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
-import 'package:flutter_study_app/utils/http_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/vo/result_data.dart';
-import 'package:github/server.dart';
-import 'package:redux/redux.dart';
 
 class HttpService {
+  static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
   static IssuesService issuesService;
   static RepositorySlug slug;
   static GitHub github;
-
-  final TokenInterceptors _tokenInterceptors = TokenInterceptors();
 
   HttpService() {
     github = createGitHubClient(
@@ -28,43 +25,50 @@ class HttpService {
     issuesService = IssuesService(github);
   }
 
-  static getClient(Authentication auth) {
-    return createGitHubClient(
-        auth: Authentication.withToken(AuthConfig.githubToken));
-  }
-
-  static getIssueService(Authentication auth) {
-    issuesService = IssuesService(getClient(auth));
-  }
-
   /// 获取聊天列表
   static getChatList() {
-    var client = getClient(null);
-    return client.issues.listByRepo(slug);
+    return github.issues.listByRepo(slug);
   }
 
   /// 获取评论列表
-  getChatComments(issueNumber) {
+  static getChatComments(issueNumber) {
     return issuesService.listCommentsByIssue(slug, issueNumber);
   }
 
   /// 添加一个评论
-  addAnComment(Authentication auth, issueId, String data) {
-    var client = getClient(auth);
-    return client.issues.createComment(slug, issueId, data.trim());
+  static addAnComment(Authentication auth, issueId, String data) {
+    return github.issues.createComment(slug, issueId, data.trim());
   }
 
   /// 登录
-  login(userName, password, store) async {
-    String type = userName + ":" + password;
+  static Future login(String username, String password) async {
+    username = username.trim();
+    password = password.trim();
+    String type = username + ":" + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
     if (AppConfig.debug) {
       print("base64Str login " + base64Str);
     }
-    await LocalStorage.save(AppConfig.USER_NAME_KEY, userName);
-    await LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
+    var resultData;
+    var auth = await isAuth();
+    if (auth) {
+      LocalStorage.save(AppConfig.USERNAME, username);
+      LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
+    }
+    return Result(resultData, auth);
+  }
 
+  /// 判断本app是否接入了github
+  static isAuth() async {
+    var auth = await getAuth();
+    if (auth != null && auth.result) {
+      return true;
+    }
+    return false;
+  }
+
+  static getAuth() async {
     Map requestParams = {
       "scopes": ['user', 'repo', 'gist', 'notifications'],
       "note": "admin_script",
@@ -72,8 +76,11 @@ class HttpService {
       "client_secret": AuthConfig.githubClientSecret
     };
 
-    var res =
-        HttpUtil.get(ApiConfig.getAuthorization(), null, params: requestParams);
+    // 清除己有的权限
+    httpManager.clearAuthorization();
+    // 发送http请求
+    return await httpManager.post(
+        ApiConfig.getAuthorization(), json.encode(requestParams));
   }
 
   ///获取本地登录用户信息
@@ -88,20 +95,31 @@ class HttpService {
     }
   }
 
-  static getUserInfo({Authentication auth}) {
-    return null;
-  }
-
   ///获取用户详细信息
+  static getUserInfo([username]) async {
+    next() async {
+      var res;
+      if (username == null) {
+        res = await httpManager.get(ApiConfig.getMyUserInfo());
+      } else {
+        res = await httpManager.get(ApiConfig.getUserInfo(username));
+      }
+      if (res != null && res.result) {
+        User user = User.fromJson(res.data);
+        if (username == null) {
+          LocalStorage.save(AppConfig.USER_INFO, json.encode(user.toJson()));
+        }
+        return new Result(user, true);
+      } else {
+        return new Result(res.data, false);
+      }
+    }
 
-  clearAll(Store store) async {
-    clearAuthorization();
-    LocalStorage.remove(AppConfig.USER_INFO);
-    store.dispatch(UpdateUserAction(null));
+    return await next();
   }
 
   ///清除授权
-  clearAuthorization() {
+  static clearAuthorization() {
     _tokenInterceptors.clearAuthorization();
   }
 }

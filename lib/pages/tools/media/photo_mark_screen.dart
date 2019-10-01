@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class PhotoMarkScreen extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class PhotoMarkScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.returnButton),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).returnButton),
         body: Center(child: Text('图片加水印')),
       ),
     );

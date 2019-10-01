@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/vo/video_vo.dart';
 
 class VideosScreen extends StatelessWidget {
@@ -135,7 +135,6 @@ class VideoStyle {
 
   // 评论数
   double commentCountLeft = 4;
-
 
   // 评论icon的颜色
   Color commentIconColor = Colors.white;

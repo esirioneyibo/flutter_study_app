@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_study_app/service/http_service.dart';
 
-//要查网络请求的日志可以使用过滤<net>
+// 带回调的http写法
 class HttpUtil {
   static const String GET = "get";
   static const String POST = "post";

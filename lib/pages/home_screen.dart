@@ -44,7 +44,7 @@ class HomeScreenState extends State<HomeScreen>
       length: tabs.length,
       child: Scaffold(
           appBar: MyAppBar(
-              title: FsLocalizations.of(context).currentLocale.index, tabBar: topBar),
+              title: FsLocalizations.getLocale(context).index, tabBar: topBar),
           body: TabBarView(
             children: tabContents,
           )),

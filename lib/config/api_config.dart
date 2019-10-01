@@ -1,5 +1,3 @@
-import 'package:flutter_study_app/config/app_config.dart';
-
 ///地址数据
 class ApiConfig {
   static const String host = "https://api.github.com/";

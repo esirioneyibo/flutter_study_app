@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
-import 'package:flutter_study_app/utils/random_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/vo/choice_vo.dart';
 
 class ToolsScreen extends StatelessWidget {
@@ -64,7 +63,7 @@ class ToolsScreen extends StatelessWidget {
         fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
-      appBar: AppBar(title: Text(FsLocalizations.of(context).currentLocale.tool)),
+      appBar: AppBar(title: Text(FsLocalizations.getLocale(context).tool)),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -72,7 +71,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                FsLocalizations.of(context).currentLocale.studyTools,
+                FsLocalizations.getLocale(context).studyTools,
                 style: textStyle,
               ),
             ),
@@ -83,7 +82,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                FsLocalizations.of(context).currentLocale.lifeTools,
+                FsLocalizations.getLocale(context).lifeTools,
                 style: textStyle,
               ),
             ),
@@ -94,7 +93,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: 10,
               child: Text(
-                FsLocalizations.of(context).currentLocale.mediaTools,
+                FsLocalizations.getLocale(context).mediaTools,
                 style: textStyle,
               ),
             ),
@@ -105,7 +104,7 @@ class ToolsScreen extends StatelessWidget {
             child: Container(
               width: style.categoryTitleContainerSize,
               child: Text(
-                FsLocalizations.of(context).currentLocale.developTools,
+                FsLocalizations.getLocale(context).developTools,
                 style: textStyle,
               ),
             ),

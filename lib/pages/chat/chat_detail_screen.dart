@@ -4,7 +4,7 @@ import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:github/server.dart';
@@ -93,7 +93,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
     ChatDetailStyle style = ConfigFactory.chatDetailStyle();
 
     return Scaffold(
-      appBar: ReturnBar(FsLocalizations.of(context).currentLocale.chatContent),
+      appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
       floatingActionButton: Container(
         height: style.scrollButtonSize,
         width: style.scrollButtonSize,
@@ -289,7 +289,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                           color: style.commentButtonColor,
                           key: Key('comment'),
                           child: Text(
-                              FsLocalizations.of(context).currentLocale.comment,
+                              FsLocalizations.getLocale(context).comment,
                               style: TextStyle(
                                   fontSize: style.commentButtonSize,
                                   color: style.commentFontColor)),

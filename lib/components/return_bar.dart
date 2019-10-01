@@ -14,7 +14,7 @@ class ReturnBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          tooltip: FsLocalizations.of(context).currentLocale.returnButton,
+          tooltip: FsLocalizations.getLocale(context).returnButton,
           onPressed: () {
             Navigator.of(context).pop();
           },

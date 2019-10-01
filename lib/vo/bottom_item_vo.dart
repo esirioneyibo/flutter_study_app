@@ -21,22 +21,22 @@ getBottomItems(BuildContext context) {
     TabItem(
       index: 0,
       icon: Icons.home,
-      title: FsLocalizations.of(context).currentLocale.index,
+      title: FsLocalizations.getLocale(context).index,
     ),
     TabItem(
       index: 1,
       icon: Icons.ac_unit,
-      title: FsLocalizations.of(context).currentLocale.study,
+      title: FsLocalizations.getLocale(context).study,
     ),
     TabItem(
       index: 2,
       icon: FontAwesomeIcons.rocketchat,
-      title: FsLocalizations.of(context).currentLocale.chat,
+      title: FsLocalizations.getLocale(context).chat,
     ),
     TabItem(
       index: 3,
       icon: FontAwesomeIcons.tools,
-      title: FsLocalizations.of(context).currentLocale.tool,
+      title: FsLocalizations.getLocale(context).tool,
     ),
   ];
 }
@@ -45,45 +45,45 @@ List<TabItem> getTopItems(BuildContext context) {
   return [
     TabItem(
         index: 0,
-        tab: Tab(text: FsLocalizations.of(context).currentLocale.video),
+        tab: Tab(text: FsLocalizations.getLocale(context).video),
         screen: VideosScreen()),
     TabItem(
         index: 1,
-        tab: Tab(text: FsLocalizations.of(context).currentLocale.plugin),
+        tab: Tab(text: FsLocalizations.getLocale(context).plugin),
         screen: PluginsScreen()),
     TabItem(
         index: 2,
-        tab: Tab(text: FsLocalizations.of(context).currentLocale.blog),
+        tab: Tab(text: FsLocalizations.getLocale(context).blog),
         screen: BlogScreen()),
     TabItem(
         index: 3,
-        tab: Tab(text: FsLocalizations.of(context).currentLocale.openSource),
+        tab: Tab(text: FsLocalizations.getLocale(context).openSource),
         screen: ProjectsScreen()),
 //    TabItem(
 //        index: 4,
-//        tab: Tab(text: FsLocalizations.of(context).currentLocale.tool),
+//        tab: Tab(text: FsLocalizations.getLocale(context).tool),
 //        screen: DevelopToolsScreen()),
 //    TabItem(
 //        index: 5,
-//        tab: Tab(text: FsLocalizations.of(context).currentLocale.dart),
+//        tab: Tab(text: FsLocalizations.getLocale(context).dart),
 //        screen: DartScreen()),
 //    TabItem(
 //        index: 6,
-//        tab: Tab(text: FsLocalizations.of(context).currentLocale.game),
+//        tab: Tab(text: FsLocalizations.getLocale(context).game),
 //        screen: GamesScreen()),
 //    TabItem(
 //        index: 7,
 //        tab: Tab(
-//            text: FsLocalizations.of(context).currentLocale.gameEngine),
+//            text: FsLocalizations.getLocale(context).gameEngine),
 //        screen: GameEnginesScreen()),
 //    TabItem(
 //        index: 8,
 //        tab: Tab(
-//            text: FsLocalizations.of(context).currentLocale.community),
+//            text: FsLocalizations.getLocale(context).community),
 //        screen: CommunitiesScreen()),
 //    TabItem(
 //        index: 9,
-//        tab: Tab(text: FsLocalizations.of(context).currentLocale.other),
+//        tab: Tab(text: FsLocalizations.getLocale(context).other),
 //        screen: OthersScreen()),
   ];
 }

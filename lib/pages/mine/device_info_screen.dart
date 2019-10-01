@@ -4,7 +4,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class DeviceInfoScreen extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class DeviceInfoScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.deviceInfo),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).deviceInfo),
         body: FutureBuilder(
           future: getDeviceInfo(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {

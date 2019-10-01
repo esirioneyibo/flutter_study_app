@@ -98,4 +98,20 @@ class FsStringBase {
   String blog;
 
   String test;
+
+  String networkError_401;
+
+  String networkError_403;
+
+  String networkError_404;
+
+  String networkErrorTimeout;
+
+  String networkErrorUnknown;
+
+  String networkError;
+
+  String loadMoreNot;
+
+  String loadMoreText;
 }

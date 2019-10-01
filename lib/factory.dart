@@ -1,4 +1,4 @@
-import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
@@ -9,10 +9,10 @@ import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
 import 'package:flutter_study_app/pages/home/video_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
-import 'package:flutter_study_app/pages/mine/account_screen.dart';
+import 'package:flutter_study_app/pages/mine/login_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
-import 'package:flutter_study_app/utils/dialog_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class ConfigFactory {
   // 路由
@@ -21,8 +21,8 @@ class ConfigFactory {
   }
 
   // App 配置
-  static AppConfig appConfig() {
-    return AppConfig();
+  static AppStyle appStyle() {
+    return AppStyle();
   }
 
   static AuthConfig authConfig() {

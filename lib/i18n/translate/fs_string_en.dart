@@ -1,154 +1,176 @@
 import 'package:flutter_study_app/i18n/fs_string_base.dart';
 
-class FsStringEN implements FsStringBase{
+class FsStringEN implements FsStringBase {
   @override
-  String aboutSoftware='about software';
+  String aboutSoftware = 'about software';
 
   @override
-  String appName='flutter study';
+  String appName = 'flutter study';
 
   @override
-  String beHope='be hope';
+  String beHope = 'be hope';
 
   @override
-  String cancel='cancel';
+  String cancel = 'cancel';
 
   @override
-  String changeLanguage='change language';
+  String changeLanguage = 'change language';
 
   @override
-  String chat='chat';
+  String chat = 'chat';
 
   @override
-  String chatContent='chat content';
+  String chatContent = 'chat content';
 
   @override
-  String clickLogin='click to login';
+  String clickLogin = 'click to login';
 
   @override
-  String close='close';
+  String close = 'close';
 
   @override
-  String comment='comment';
+  String comment = 'comment';
 
   @override
-  String community='community';
+  String community = 'community';
 
   @override
-  String confirmExitLogin='confirm exit login?';
+  String confirmExitLogin = 'confirm exit login?';
 
   @override
-  String createAccount='create account';
+  String createAccount = 'create account';
 
   @override
-  String developTools='develop tools';
+  String developTools = 'develop tools';
 
   @override
-  String developing='developing';
+  String developing = 'developing';
 
   @override
-  String deviceInfo='device info';
+  String deviceInfo = 'device info';
 
   @override
-  String email='email';
+  String email = 'email';
 
   @override
-  String emailIllegal='emial illegal';
+  String emailIllegal = 'emial illegal';
 
   @override
-  String emailNotFound='email not found';
+  String emailNotFound = 'email not found';
 
   @override
-  String exitLogin='exit login';
+  String exitLogin = 'exit login';
 
   @override
-  String game='game';
+  String game = 'game';
 
   @override
-  String gameEngine='game engine';
+  String gameEngine = 'game engine';
 
   @override
-  String index='index';
+  String index = 'index';
 
   @override
-  String lifeTools='life tools';
+  String lifeTools = 'life tools';
 
   @override
-  String login='logiin';
+  String login = 'logiin';
 
   @override
-  String loginError='login error';
+  String loginError = 'login error';
 
   @override
-  String logout='logout';
+  String logout = 'logout';
 
   @override
-  String mediaTools='media tools';
+  String mediaTools = 'media tools';
 
   @override
-  String moveToLogin='move to login';
+  String moveToLogin = 'move to login';
 
   @override
-  String moveToRegister='move to regsiter';
+  String moveToRegister = 'move to regsiter';
 
   @override
-  String newChat='chat';
+  String newChat = 'chat';
 
   @override
-  String ok='ok';
+  String ok = 'ok';
 
   @override
-  String openSource='opensource';
+  String openSource = 'opensource';
 
   @override
-  String other='other';
+  String other = 'other';
 
   @override
-  String password='password';
+  String password = 'password';
 
   @override
-  String passwordError='password error';
+  String passwordError = 'password error';
 
   @override
-  String plugin='plugin';
+  String plugin = 'plugin';
 
   @override
-  String register='register';
+  String register = 'register';
 
   @override
-  String returnButton='return button';
+  String returnButton = 'return button';
 
   @override
-  String settings='settings';
+  String settings = 'settings';
 
   @override
-  String study='study';
+  String study = 'study';
 
   @override
-  String studyTools='study tools';
+  String studyTools = 'study tools';
 
   @override
-  String theme='theme';
+  String theme = 'theme';
 
   @override
-  String tool='tool';
+  String tool = 'tool';
 
   @override
-  String unknownError='unknown error';
+  String unknownError = 'unknown error';
 
   @override
-  String validateEmailContent='please login your email and verify it';
+  String validateEmailContent = 'please login your email and verify it';
 
   @override
-  String validateEmailTitle='please verify your emial';
+  String validateEmailTitle = 'please verify your emial';
 
   @override
-  String test='test';
+  String test = 'test';
 
   @override
-  String blog='blog';
+  String blog = 'blog';
 
   @override
-  String video='blog';
+  String video = 'video';
+  @override
+  String networkError_401 = "[401 登录失败]";
 
+  @override
+  String networkError_403 = "403权限错误";
+
+  @override
+  String networkError_404 = "404错误";
+
+  @override
+  String networkErrorTimeout = "请求超时";
+
+  @override
+  String networkErrorUnknown = "其他异常";
+
+  @override
+  String networkError = "网络错误";
+
+  @override
+  String loadMoreNot = "没有更多数据";
+
+  @override
+  String loadMoreText = "正在加载更多";
 }

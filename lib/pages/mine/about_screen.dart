@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class AboutAppScreen extends StatelessWidget {
   @override
@@ -11,9 +11,9 @@ class AboutAppScreen extends StatelessWidget {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.of(context).currentLocale.aboutSoftware),
+        appBar: ReturnBar(FsLocalizations.getLocale(context).aboutSoftware),
         body: Center(
-          child: Text(FsLocalizations.of(context).currentLocale.aboutSoftware),
+          child: Text(FsLocalizations.getLocale(context).aboutSoftware),
         ),
       ),
     );

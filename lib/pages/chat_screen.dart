@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/utils/navigator_util.dart';
-import 'package:flutter_study_app/utils/time_util.dart';
-import 'package:github/server.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class ChatScreen extends StatefulWidget {
   }
 }
 
-class ChatScreenState extends State<ChatScreen>{
+class ChatScreenState extends State<ChatScreen> {
   List<Issue> posts = [];
 
   @override
@@ -28,12 +27,12 @@ class ChatScreenState extends State<ChatScreen>{
   Widget build(BuildContext context) {
     ChatStyle chatStyle = ConfigFactory.chatStyle();
     return Scaffold(
-      appBar: AppBar(title: Text(FsLocalizations.of(context).currentLocale.chat)),
+      appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
       floatingActionButton: Container(
         height: chatStyle.newChatButtonSize,
         width: chatStyle.newChatButtonSize,
         child: FloatingActionButton(
-            tooltip: FsLocalizations.of(context).currentLocale.newChat,
+            tooltip: FsLocalizations.getLocale(context).newChat,
             child: Icon(chatStyle.newChatButtonIcon),
             onPressed: () {
               NavigatorUtil.pushWithAnim(
@@ -83,7 +82,6 @@ class ChatScreenState extends State<ChatScreen>{
             ),
     );
   }
-
 }
 
 /// 左侧用户信息

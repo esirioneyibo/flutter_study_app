@@ -83,7 +83,7 @@ because of have no developer license, not offered( I am so sorry for it).
 |  utils| util method for projects |  
 |  vo| entity |  
 
-![](assets/screen/folder%20tree.png)  
+![](screen/folder%20tree.png)  
 
 # Feature
 - :rocket: index

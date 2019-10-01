@@ -7,6 +7,14 @@ class ResultData {
   ResultData(this.data, this.result, this.code, {this.headers});
 }
 
+class Result {
+  var data;
+  bool result;
+  Function next;
+
+  Result(this.data, this.result, {this.next});
+}
+
 ///错误编码
 class Code {
   ///网络错误
@@ -21,11 +29,9 @@ class Code {
   static const SUCCESS = 200;
 
   static errorHandleFunction(code, message, noTip) {
-    if(noTip) {
+    if (noTip) {
       return message;
     }
-//    eventBus.fire(new HttpErrorEvent(code, message));
     return message;
   }
 }
-
