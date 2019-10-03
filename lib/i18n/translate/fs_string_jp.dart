@@ -68,7 +68,7 @@ class FsStringJP implements FsStringBase {
   String gameEngine = 'ゲームエンジン';
 
   @override
-  String index = 'インデックス ';
+  String index = 'インデックス';
 
   @override
   String lifeTools = '便利性ツール';
