@@ -5,12 +5,17 @@ enum LocaleEnum { cn, en, ja }
 class CommonUtil {
   static themeColors() {
     return [
-      Colors.brown,
+      Colors.purple,
+      Colors.orange,
+      Colors.deepPurpleAccent,
+      Colors.redAccent,
       Colors.blue,
-      Colors.teal,
       Colors.amber,
-      Colors.blueGrey,
-      Colors.deepOrange
+      Colors.green,
+      Colors.lime,
+      Colors.indigo,
+      Colors.cyan,
+      Colors.teal
     ];
   }
 
@@ -40,8 +45,6 @@ class CommonUtil {
     return "$number万";
   }
 
-
-
   static transLocale(LocaleEnum localeEnum) {
     switch (localeEnum.index) {
       case 0:
@@ -68,16 +71,5 @@ class CommonUtil {
     return RegExp(
             '^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+\$')
         .hasMatch(str);
-  }
-
-  static List<Color> getThemeListColor() {
-    return [
-      Colors.brown,
-      Colors.blue,
-      Colors.teal,
-      Colors.amber,
-      Colors.blueGrey,
-      Colors.deepOrange,
-    ];
   }
 }

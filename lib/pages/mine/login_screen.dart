@@ -39,8 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   checkUser() async {
-    username = await LocalStorage.get(AppConfig.USERNAME);
-    password = await LocalStorage.get(AppConfig.PASSWORD);
+    username = await LocalStorage.get(Constant.USERNAME);
+    password = await LocalStorage.get(Constant.PASSWORD);
     userController.value = TextEditingValue(text: username ?? '');
     pwController.value = TextEditingValue(text: password ?? '');
   }
@@ -115,9 +115,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_validateAndSave()) {
       HttpService.login(username, password).then((data) {
         if (data.code == 200) {
-          LocalStorage.save(AppConfig.PASSWORD, password);
+          LocalStorage.save(Constant.PASSWORD, password);
           var resultData = HttpService.getUserInfo(username);
-          if (AppConfig.debug) {
+          if (Constant.debug) {
             print("user result " + resultData.result.toString());
             print(data.toString());
           }

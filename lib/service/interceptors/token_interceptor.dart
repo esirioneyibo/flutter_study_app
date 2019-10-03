@@ -24,7 +24,7 @@ class TokenInterceptors extends InterceptorsWrapper {
       var responseJson = response.data;
       if (response.statusCode == 201 && responseJson["token"] != null) {
         _token = 'token ' + responseJson["token"];
-        await LocalStorage.save(AppConfig.TOKEN_KEY, _token);
+        await LocalStorage.save(Constant.TOKEN_KEY, _token);
       }
     } catch (e) {
       print(e);
@@ -35,14 +35,14 @@ class TokenInterceptors extends InterceptorsWrapper {
   ///清除授权
   clearAuthorization() {
     this._token = null;
-    LocalStorage.remove(AppConfig.TOKEN_KEY);
+    LocalStorage.remove(Constant.TOKEN_KEY);
   }
 
   ///获取授权token
   getAuthorization() async {
-    String token = await LocalStorage.get(AppConfig.TOKEN_KEY);
+    String token = await LocalStorage.get(Constant.TOKEN_KEY);
     if (token == null) {
-      String basic = await LocalStorage.get(AppConfig.USER_BASIC_CODE);
+      String basic = await LocalStorage.get(Constant.USER_BASIC_CODE);
       if (basic == null) {
         //提示输入账号密码
       } else {

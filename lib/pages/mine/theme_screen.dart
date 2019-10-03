@@ -1,71 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
-import 'package:flutter_study_app/i18n/fs_localization.dart';
-import 'package:flutter_study_app/utils/index.dart';
+import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/model/app_model.dart';
+import 'package:flutter_study_app/service/local_storage.dart';
+import 'package:flutter_study_app/utils/common_util.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class ThemeScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return ThemeScreenState();
-  }
+  State<StatefulWidget> createState() => ThemeScreenState();
 }
 
 class ThemeScreenState extends State<ThemeScreen> {
+  List<Color> colors = CommonUtil.themeColors();
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragEnd: (DragEndDetails details) {
-        NavigatorUtil.back(context, details);
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text('切换主题', style: TextStyle(color: Colors.white)),
+              iconTheme: IconThemeData(color: Colors.white),
+            ),
+            body: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: GridView.count(
+                  crossAxisCount: 4,
+                  children: List.generate(colors.length, (index) {
+                    return InkWell(
+                      onTap: () {
+                        // 修改当前主题
+                        model.changeTheme(index);
+                        // 保存当前主题到本地
+                        LocalStorage.save(
+                            Constant.currentTheme, index.toString());
+                      },
+                      child: Container(
+                        color: colors[index],
+                        margin: const EdgeInsets.all(3.0),
+                      ),
+                    );
+                  }),
+                )));
       },
-      child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.getLocale(context).changeLanguage),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              ListTile(
-                trailing: Icon(Icons.chevron_right),
-                title: Container(
-                    child: Text('蓝色', style: TextStyle(color: Colors.blue))),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(),
-              ListTile(
-                trailing: Icon(Icons.chevron_right),
-                title: Container(
-                    child: Text('绿色', style: TextStyle(color: Colors.green))),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Divider(),
-              ListTile(
-                trailing: Icon(Icons.chevron_right),
-                title: Container(
-                    child: Text(
-                  '粉色',
-                  style: TextStyle(color: Colors.pink),
-                )),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                trailing: Icon(Icons.chevron_right),
-                title: Container(
-                    child: Text(
-                  '黄色',
-                  style: TextStyle(color: Colors.amber),
-                )),
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

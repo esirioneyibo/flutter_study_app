@@ -40,14 +40,14 @@ class HttpService {
     String type = username + ":" + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
-    if (AppConfig.debug) {
+    if (Constant.debug) {
       print("base64Str login " + base64Str);
     }
     var resultData;
     var auth = await isAuth();
     if (auth) {
-      LocalStorage.save(AppConfig.USERNAME, username);
-      LocalStorage.save(AppConfig.USER_BASIC_CODE, base64Str);
+      LocalStorage.save(Constant.USERNAME, username);
+      LocalStorage.save(Constant.USER_BASIC_CODE, base64Str);
     }
     return Result(resultData, auth);
   }
@@ -78,7 +78,7 @@ class HttpService {
 
   ///获取本地登录用户信息
   static getUserInfoLocal() async {
-    var userText = await LocalStorage.get(AppConfig.USER_INFO);
+    var userText = await LocalStorage.get(Constant.USER_INFO);
     if (userText != null) {
       var userMap = json.decode(userText);
       User user = User.fromJson(userMap);
@@ -100,7 +100,7 @@ class HttpService {
       if (res != null && res.result) {
         User user = User.fromJson(res.data);
         if (username == null) {
-          LocalStorage.save(AppConfig.USER_INFO, json.encode(user.toJson()));
+          LocalStorage.save(Constant.USER_INFO, json.encode(user.toJson()));
         }
         return new Result(user, true);
       } else {
