@@ -59,7 +59,7 @@ class FsStringJP implements FsStringBase {
   String emailNotFound = 'メールアドレス見つかりません';
 
   @override
-  String exitLogin = 'ログアウト;
+  String exitLogin = 'ログアウト';
 
   @override
   String game = 'ゲーム';
@@ -172,12 +172,8 @@ class FsStringJP implements FsStringBase {
   String loadMoreNot = "それ以上データなし";
 
   @override
-<<<<<<< HEAD
   String loadMoreText = "データを読み込み中";
-=======
-  String loadMoreText = "正在加载更多";
 
   @override
-  String noData = '没有数据';
->>>>>>> b7ad99c55d6b1ca6c3816b550b158929f30ff00f
+  String noData = 'データなし';
 }

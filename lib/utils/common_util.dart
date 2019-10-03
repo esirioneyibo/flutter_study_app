@@ -15,7 +15,8 @@ class CommonUtil {
       Colors.lime,
       Colors.indigo,
       Colors.cyan,
-      Colors.teal
+      Colors.teal,
+      Colors.black,
     ];
   }
 
