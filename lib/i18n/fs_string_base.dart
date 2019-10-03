@@ -114,4 +114,6 @@ class FsStringBase {
   String loadMoreNot;
 
   String loadMoreText;
+
+  String noData;
 }

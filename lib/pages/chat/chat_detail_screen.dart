@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
+import 'package:flutter_study_app/components/no_data.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
@@ -30,7 +31,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
   Issue post;
   bool _scrollButtonVisible = true;
   bool isTop = true;
-  List<IssueComment> comments = [];
+  List<IssueComment> comments;
 
   ChatDetailState(this.post);
 
@@ -85,6 +86,9 @@ class ChatDetailState extends State<ChatDetailScreen> {
   getCommentListData() {
     HttpService.getChatComments(post.number).then((data) {
       setState(() {
+        if (data == null) {
+          comments = [];
+        }
         comments = data;
       });
     });
@@ -215,8 +219,10 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   /// 点赞按钮
   Widget _buildVoteButton() {
-    if (comments.isEmpty) {
+    if (comments == null) {
       return Loading();
+    } else if (comments.isEmpty) {
+      return NoData();
     } else {
       return Container(
         child: Column(

@@ -151,26 +151,29 @@ class FsStringEN implements FsStringBase {
   @override
   String video = 'video';
   @override
-  String networkError_401 = "[401 登录失败]";
+  String networkError_401 = "[401 login error]";
 
   @override
-  String networkError_403 = "403权限错误";
+  String networkError_403 = "auth error";
 
   @override
-  String networkError_404 = "404错误";
+  String networkError_404 = "not found";
 
   @override
-  String networkErrorTimeout = "请求超时";
+  String networkErrorTimeout = "netwrok timeout";
 
   @override
-  String networkErrorUnknown = "其他异常";
+  String networkErrorUnknown = "network unknow error";
 
   @override
-  String networkError = "网络错误";
+  String networkError = "netwrok error";
 
   @override
-  String loadMoreNot = "没有更多数据";
+  String loadMoreNot = "no more data";
 
   @override
-  String loadMoreText = "正在加载更多";
+  String loadMoreText = "loading more";
+
+  @override
+  String noData = 'no data';
 }

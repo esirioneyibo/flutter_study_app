@@ -174,4 +174,7 @@ class FsStringZH implements FsStringBase {
 
   @override
   String loadMoreText = "正在加载更多";
+
+  @override
+  String noData = '没有数据';
 }

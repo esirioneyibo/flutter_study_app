@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
+import 'package:flutter_study_app/components/no_data.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
@@ -17,7 +18,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
-  List<Issue> posts = [];
+  List<Issue> posts;
   ChatStyle style = ConfigFactory.chatStyle();
 
   @override
@@ -37,6 +38,9 @@ class ChatScreenState extends State<ChatScreen> {
   getPosts() {
     HttpService.getChatList().then((data) {
       setState(() {
+        if (data == null) {
+          posts = [];
+        }
         posts = data;
       });
     });
@@ -59,8 +63,10 @@ class ChatScreenState extends State<ChatScreen> {
 
   /// body
   Widget _buildBody() {
-    if (posts.isEmpty) {
+    if (posts == null) {
       return Loading();
+    } else if (posts.isEmpty) {
+      return NoData();
     } else {
       return Container(
         color: style.background,
