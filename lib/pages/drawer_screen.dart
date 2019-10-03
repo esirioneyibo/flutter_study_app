@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
-import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/index.dart';
 
 class LeftDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    RouterConfig router = ConfigFactory.router();
     void exitLogin() {
       currentUser = null;
       // 连退2级，从dialog退到drawer再退到主页
@@ -25,28 +23,28 @@ class LeftDrawer extends StatelessWidget {
         leading: Icon(Icons.color_lens),
         title: Text(FsLocalizations.getLocale(context).changeLanguage),
         onTap: () {
-          Navigator.pushNamed(context, router.language);
+          Navigator.pushNamed(context, RouterConfig.language);
         },
       ),
       ListTile(
         leading: Icon(Icons.settings),
         title: Text(FsLocalizations.getLocale(context).settings),
         onTap: () {
-          Navigator.pushNamed(context, router.settings);
+          Navigator.pushNamed(context, RouterConfig.settings);
         },
       ),
       ListTile(
         leading: Icon(Icons.color_lens),
         title: Text(FsLocalizations.getLocale(context).theme),
         onTap: () {
-          Navigator.pushNamed(context, router.theme);
+          Navigator.pushNamed(context, RouterConfig.theme);
         },
       ),
       ListTile(
         leading: Icon(Icons.phone_iphone),
         title: Text(FsLocalizations.getLocale(context).deviceInfo),
         onTap: () {
-          Navigator.pushNamed(context, router.deviceInfo);
+          Navigator.pushNamed(context, RouterConfig.deviceInfo);
         },
       ),
       Visibility(
@@ -70,7 +68,7 @@ class LeftDrawer extends StatelessWidget {
       accountEmail: Text(currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
         if (currentUser == null) {
-          Navigator.pushNamed(context, router.account);
+          Navigator.pushNamed(context, RouterConfig.account);
         } else {
           DialogUtil.showAlertDialog(
               context,

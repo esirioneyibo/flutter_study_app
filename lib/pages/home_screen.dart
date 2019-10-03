@@ -76,5 +76,5 @@ class HomeStyle {
   double borderSize = 3;
 
   // 底部边框颜色
-  Color borderColor = Colors.pink;
+  Color borderColor = Colors.blue;
 }

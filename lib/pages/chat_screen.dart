@@ -6,6 +6,7 @@ import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
+import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -17,86 +18,96 @@ class ChatScreen extends StatefulWidget {
 
 class ChatScreenState extends State<ChatScreen> {
   List<Issue> posts = [];
+  ChatStyle style = ConfigFactory.chatStyle();
 
   @override
   void initState() {
     super.initState();
+    getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    ChatStyle chatStyle = ConfigFactory.chatStyle();
     return Scaffold(
-      appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
-      floatingActionButton: Container(
-        height: chatStyle.newChatButtonSize,
-        width: chatStyle.newChatButtonSize,
-        child: FloatingActionButton(
-            tooltip: FsLocalizations.getLocale(context).newChat,
-            child: Icon(chatStyle.newChatButtonIcon),
-            onPressed: () {
-              NavigatorUtil.pushWithAnim(
-                  context, NewChatScreen(), AnimType.Slider);
-            }),
-      ),
-      body: posts.isEmpty
-          ? Loading()
-          : Container(
-              color: chatStyle.background,
-              child: ListView.builder(
-                  itemCount: posts.length,
-                  itemBuilder: (context, index) {
-                    final post = posts[index];
-                    return InkWell(
-                      onTap: () => NavigatorUtil.pushWithAnim(context,
-                          ChatDetailScreen(posts[index]), AnimType.Slider),
-                      child: Card(
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              bottom: chatStyle.cardMarginBottom),
-                          padding: EdgeInsets.all(chatStyle.cardPaddingAll),
-                          color: chatStyle.cardColor,
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Expanded(flex: 2, child: LeftUserInfo(post)),
-                                  Expanded(
-                                      flex: 1, child: RightCommentInfo(post)),
-                                ],
-                              ),
-                              // 帖子内容
-                              Container(
-                                  padding: EdgeInsets.only(
-                                      top: chatStyle.chatContentPaddingTop),
-                                  alignment: Alignment.centerLeft,
-                                  child: MarkdownBody(
-                                    data: posts[index].body,
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-            ),
+        appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
+        floatingActionButton: _buildNewChatButton(),
+        body: _buildBody());
+  }
+
+  getPosts() {
+    HttpService.getChatList().then((data) {
+      setState(() {
+        posts = data;
+      });
+    });
+  }
+
+  /// new chat button
+  Widget _buildNewChatButton() {
+    return Container(
+      height: style.newChatButtonSize,
+      width: style.newChatButtonSize,
+      child: FloatingActionButton(
+          tooltip: FsLocalizations.getLocale(context).newChat,
+          child: Icon(style.newChatButtonIcon),
+          onPressed: () {
+            NavigatorUtil.pushWithAnim(
+                context, NewChatScreen(), AnimType.Slider);
+          }),
     );
   }
-}
 
-/// 左侧用户信息
-/// 左右布局，左侧头像， 右侧上下布局 上为用户名，下为最后回复
-/// Icon ｜ 用户名
-/// Icon ｜最后回复
-class LeftUserInfo extends StatelessWidget {
-  final Issue post;
+  /// body
+  Widget _buildBody() {
+    if (posts.isEmpty) {
+      return Loading();
+    } else {
+      return Container(
+        color: style.background,
+        child: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              final post = posts[index];
+              return InkWell(
+                onTap: () => NavigatorUtil.pushWithAnim(
+                    context, ChatDetailScreen(posts[index]), AnimType.Slider),
+                child: Card(
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: style.cardMarginBottom),
+                    padding: EdgeInsets.all(style.cardPaddingAll),
+                    color: style.cardColor,
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(flex: 2, child: _buildLeftUserInfo(post)),
+                            Expanded(
+                                flex: 1, child: _buildRightCommentInfo(post)),
+                          ],
+                        ),
+                        // 帖子内容
+                        Container(
+                            padding: EdgeInsets.only(
+                                top: style.chatContentPaddingTop),
+                            alignment: Alignment.centerLeft,
+                            child: MarkdownBody(
+                              data: posts[index].body,
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+      );
+    }
+  }
 
-  LeftUserInfo(this.post);
-
-  @override
-  Widget build(BuildContext context) {
-    ChatStyle style = ConfigFactory.chatStyle();
-
+  /// 左侧用户信息
+  /// 左右布局，左侧头像， 右侧上下布局 上为用户名，下为最后回复
+  /// Icon ｜ 用户名
+  /// Icon ｜最后回复
+  Widget _buildLeftUserInfo(post) {
     return Row(
       children: <Widget>[
         Row(
@@ -123,17 +134,9 @@ class LeftUserInfo extends StatelessWidget {
       ],
     );
   }
-}
 
-/// 右侧信息
-class RightCommentInfo extends StatelessWidget {
-  final Issue post;
-
-  RightCommentInfo(this.post);
-
-  @override
-  Widget build(BuildContext context) {
-    ChatStyle style = ConfigFactory.chatStyle();
+  /// 右侧信息
+  Widget _buildRightCommentInfo(Issue post) {
     return Row(
       children: <Widget>[
         Container(

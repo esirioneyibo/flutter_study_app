@@ -13,26 +13,19 @@ class HttpService {
   static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
-
-  static IssuesService issuesService;
-  static RepositorySlug slug;
-  static GitHub github;
-
-  HttpService() {
-    github = createGitHubClient(
-        auth: new Authentication.withToken(AuthConfig.githubToken));
-    slug = RepositorySlug("houko", "flutter-study-app");
-    issuesService = IssuesService(github);
-  }
+  static IssuesService issuesService = IssuesService(github);
+  static RepositorySlug slug = RepositorySlug("houko", "flutter-study-app");
+  static GitHub github = createGitHubClient(
+      auth: new Authentication.withToken(AuthConfig.githubToken));
 
   /// 获取聊天列表
-  static getChatList() {
-    return github.issues.listByRepo(slug);
+  static Future<List<Issue>> getChatList() {
+    return github.issues.listByRepo(slug).toList();
   }
 
   /// 获取评论列表
-  static getChatComments(issueNumber) {
-    return issuesService.listCommentsByIssue(slug, issueNumber);
+  static Future<List<IssueComment>> getChatComments(issueNumber) {
+    return issuesService.listCommentsByIssue(slug, issueNumber).toList();
   }
 
   /// 添加一个评论
