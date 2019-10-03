@@ -1,9 +1,4 @@
-import 'package:github/server.dart';
-
-User currentUser;
-bool theme;
-
-class AppConfig {
+class Constant {
   static bool debug = true;
 
   // 当前主题的localStorage key

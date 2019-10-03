@@ -1,10 +1,9 @@
 class RouterConfig {
-// route
-  String account = '/account';
-  String index = '/index';
-  String about = "/about";
-  String settings = "/settings";
-  String theme = "/theme";
-  String language = '/language';
-  String deviceInfo = 'deviceInfo';
+  static String account = '/account';
+  static String index = '/index';
+  static String about = "/about";
+  static String settings = "/settings";
+  static String theme = "/theme";
+  static String language = '/language';
+  static String deviceInfo = 'deviceInfo';
 }

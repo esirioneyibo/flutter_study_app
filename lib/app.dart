@@ -66,12 +66,12 @@ class _FsAppState extends State<FsApp> {
 
   @override
   void initState() {
+    super.initState();
     tabs
       ..add(HomeScreen())
       ..add(PractiseScreen())
       ..add(ChatScreen())
       ..add(ToolsScreen());
-    super.initState();
   }
 
   @override
@@ -82,7 +82,7 @@ class _FsAppState extends State<FsApp> {
 
 class AppStyle {
   // 底部导航选中的颜色
-  Color navigatorSelectedColor = Colors.pink;
+  Color navigatorSelectedColor = Colors.blue;
 
   // 底部导航未选中的颜色
   Color navigatorUnSelectedColor = Colors.black54;

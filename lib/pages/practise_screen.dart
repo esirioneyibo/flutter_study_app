@@ -77,5 +77,5 @@ class PractiseStyle {
   Color titleClosedColor = Colors.black;
 
   // 打开状态的标题颜色
-  Color titleOpenedColor = Colors.pink;
+  Color titleOpenedColor = Colors.blue;
 }

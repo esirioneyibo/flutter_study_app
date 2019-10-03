@@ -22,7 +22,7 @@ class _SplashState extends State<SplashScreen>
     return FadeTransition(
         opacity: _animation,
         child: Image.asset(
-          AppConfig.splash,
+          Constant.splash,
           scale: 2.0,
           fit: BoxFit.cover,
         ));
@@ -34,7 +34,7 @@ class _SplashState extends State<SplashScreen>
 
     // 初始化动画
     _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: AppConfig.splashTime));
+        vsync: this, duration: Duration(milliseconds: Constant.splashTime));
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController);
 
     var listener = (status) {

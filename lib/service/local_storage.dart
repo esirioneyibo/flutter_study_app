@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 ///SharedPreferences 本地存储
 class LocalStorage {
   /// 保存一个缓存
-  static save(String key, value) async {
+  static save(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
   }

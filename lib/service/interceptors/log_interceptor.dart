@@ -4,7 +4,7 @@ import 'package:flutter_study_app/config/app_config.dart';
 class LogsInterceptors extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) async {
-    if (AppConfig.debug) {
+    if (Constant.debug) {
       print("请求url：${options.path}");
       print('请求头: ' + options.headers.toString());
       if (options.data != null) {
@@ -16,7 +16,7 @@ class LogsInterceptors extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) async {
-    if (AppConfig.debug) {
+    if (Constant.debug) {
       if (response != null) {
         print('返回参数: ' + response.toString());
       }
@@ -26,7 +26,7 @@ class LogsInterceptors extends InterceptorsWrapper {
 
   @override
   onError(DioError err) async {
-    if (AppConfig.debug) {
+    if (Constant.debug) {
       print('请求异常: ' + err.toString());
       print('请求异常信息: ' + err.response?.toString() ?? "");
     }

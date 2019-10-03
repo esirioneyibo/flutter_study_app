@@ -4,6 +4,7 @@ import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,44 +21,84 @@ class ChatDetailScreen extends StatefulWidget {
   }
 }
 
-/// 使用http的话要实现 IHttpServiceCallback
 class ChatDetailState extends State<ChatDetailScreen> {
-  TextEditingController _controller;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Issue post;
+  TextEditingController _controller;
   ScrollController _scrollController = ScrollController();
-
-  bool _scrollButtonVisible = true;
-
-  List<IssueComment> comments;
-
   FocusNode _focusNode;
-
-  Color borderColor = Colors.grey;
+  ChatDetailStyle style = ConfigFactory.chatDetailStyle();
+  Issue post;
+  bool _scrollButtonVisible = true;
+  bool isTop = true;
+  List<IssueComment> comments = [];
 
   ChatDetailState(this.post);
 
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
+    getCommentListData();
     _controller = TextEditingController();
+    _focusNode = FocusNode();
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        onFocus();
+        focusCallback();
       } else {
-        onBlur();
+        blurCallback();
       }
     });
   }
 
-  onFocus() {
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+    _focusNode.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
+      floatingActionButton: Container(
+        height: style.scrollButtonSize,
+        width: style.scrollButtonSize,
+        child: Visibility(
+          visible: _scrollButtonVisible,
+          child: _buildFloatButton(),
+        ),
+      ),
+      body: GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          NavigatorUtil.back(context, details);
+        },
+        child: ListView(
+            shrinkWrap: true,
+            controller: _scrollController,
+            children: _buildCommentList()),
+      ),
+    );
+  }
+
+  /// 获取评论列表
+  getCommentListData() {
+    HttpService.getChatComments(post.number).then((data) {
+      setState(() {
+        comments = data;
+      });
+    });
+  }
+
+  /// focus时隐藏浮动按钮
+  focusCallback() {
     setState(() {
       _scrollButtonVisible = false;
     });
   }
 
-  onBlur() {
+  /// 失去焦点时显示浮动按钮
+  blurCallback() {
     setState(() {
       _scrollButtonVisible = true;
     });
@@ -78,231 +119,228 @@ class ChatDetailState extends State<ChatDetailScreen> {
     _controller.clear();
   }
 
-  bool isTop = true;
-
-  @override
-  void dispose() {
-    super.dispose();
-    _scrollController.dispose();
-    _focusNode.dispose();
-    _controller.dispose();
+  /// 评论列表
+  List<Widget> _buildCommentList() {
+    return <Widget>[
+      Card(
+          child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              // 左侧信息
+              _buildAuthorInfo(),
+              _buildTag(), // 右侧小标签
+            ],
+          ),
+          //--------------------------------------------------------------
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.all(style.titlePaddingAll),
+            child: MarkdownBody(data: post.title),
+          ),
+          // 标题
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.all(style.contentPaddingAll),
+            child: MarkdownBody(data: post.body),
+          ),
+          // 内容
+        ],
+      )),
+      // 点赞
+      _buildVoteButton(),
+      // 评论框
+      _buildCommentInput()
+    ];
   }
 
-  @override
-  Widget build(BuildContext context) {
-    ChatDetailStyle style = ConfigFactory.chatDetailStyle();
-
-    return Scaffold(
-      appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
-      floatingActionButton: Container(
-        height: style.scrollButtonSize,
-        width: style.scrollButtonSize,
-        child: Visibility(
-          visible: _scrollButtonVisible,
-          child: FloatingActionButton(
-              tooltip: isTop ? '到达底部' : '返回顶部',
-              child: Icon(isTop ? Icons.arrow_downward : Icons.arrow_upward),
-              onPressed: () {
-                var pos = isTop
-                    ? _scrollController.position.maxScrollExtent
-                    : _scrollController.position.minScrollExtent;
-
-                _scrollController.animateTo(
-                  pos,
-                  curve: Curves.easeOut,
-                  duration: Duration(milliseconds: style.scrollSpeed),
-                );
-                setState(() {
-                  isTop = !isTop;
-                });
-              }),
-        ),
-      ),
-      body: GestureDetector(
-        onHorizontalDragEnd: (DragEndDetails details) {
-          NavigatorUtil.back(context, details);
-        },
-        child: ListView(
-          shrinkWrap: true,
-          controller: _scrollController,
-          children: <Widget>[
-            Card(
-                child: Column(
+  /// 作者信息
+  Widget _buildAuthorInfo() {
+    return Expanded(
+      child: Row(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(style.avatarPaddingAll),
+            height: style.avatarSize,
+            width: style.avatarSize,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(post.user.avatarUrl),
+              backgroundColor: Colors.grey,
+              radius: style.avatarRadius,
+            ), // 头像
+          ),
+          Container(
+            height: style.authorContainerHeight,
+            alignment: Alignment.centerLeft,
+            child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    // 左侧信息
-                    Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(style.avatarPaddingAll),
-                            height: style.avatarSize,
-                            width: style.avatarSize,
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(post.user.avatarUrl),
-                              backgroundColor: Colors.grey,
-                              radius: style.avatarRadius,
-                            ), // 头像
-                          ),
-                          Container(
-                            height: style.authorContainerHeight,
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  post.user.login,
-                                  style: TextStyle(
-                                      fontSize: style.authorFontSize,
-                                      color: style.authorFontColor,
-                                      fontWeight: style.authorFontWeight),
-                                ), // 作者
-                                Text(
-                                  TimeUtil.format(post.createdAt),
-                                  style: TextStyle(
-                                      fontSize: style.authorFontSize,
-                                      fontWeight: style.authorFontWeight,
-                                      color: style.authorFontColor),
-                                ), // 时间
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    Container(
-                      height: style.badgeContainerHeight,
-                      padding: style.badgePadding,
-                      alignment: Alignment.topRight,
-                      child: Chip(
-                          backgroundColor: style.badgeBackgroundColor,
-                          label: Text(
-                            post.state,
-                            style: TextStyle(
-                                color: style.badgeColor,
-                                fontSize: style.badgeFontSize),
-                          )),
-                    ), // 右侧小标签
-                  ],
-                ),
-                //--------------------------------------------------------------
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(style.titlePaddingAll),
-                  child: MarkdownBody(data: post.title),
-                ),
-                // 标题
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(style.contentPaddingAll),
-                  child: MarkdownBody(data: post.body),
-                ),
-                // 内容
+                Text(
+                  post.user.login,
+                  style: TextStyle(
+                      fontSize: style.authorFontSize,
+                      color: style.authorFontColor,
+                      fontWeight: style.authorFontWeight),
+                ), // 作者
+                Text(
+                  TimeUtil.format(post.createdAt),
+                  style: TextStyle(
+                      fontSize: style.authorFontSize,
+                      fontWeight: style.authorFontWeight,
+                      color: style.authorFontColor),
+                ), // 时间
               ],
-            )),
-            // 点赞
-            Container(
-              child: comments == null
-                  ? Loading()
-                  : Column(
-                      children: comments
-                          .asMap()
-                          .map((index, comment) {
-                            return MapEntry(
-                                index,
-                                Card(
-                                  child: Column(
-                                    children: <Widget>[
-                                      ListTile(
-                                        key: Key(comment.id.toString()),
-                                        leading: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              comment.user.avatarUrl),
-                                        ),
-                                        trailing: Text('${index + 1}楼'),
-                                        subtitle: Text(comment.body),
-                                        title: Text(comment.user.login),
-                                      ),
-                                      Container(
-                                        child: ActionChip(
-                                            label: Icon(FontAwesomeIcons.heart),
-                                            onPressed: () => {}),
-                                        alignment: Alignment.centerRight,
-                                        padding: EdgeInsets.only(
-                                            right:
-                                                style.likeButtonPaddingRight),
-                                      )
-                                    ],
-                                  ),
-                                ));
-                          })
-                          .values
-                          .toList(), // 评论列表
-                    ),
             ),
-
-            // 评论框
-            Card(
-              margin: EdgeInsets.only(bottom: 100),
-              child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: TextFormField(
-                          key: Key('new_comment'),
-                          keyboardType: TextInputType.text,
-                          minLines: 3,
-                          maxLines: 100,
-                          decoration: InputDecoration(
-                            hintText: FsLocalizations.of(context)
-                                .currentLocale
-                                .comment,
-                            errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
-                          ),
-                          validator: CommentFieldValidator.validate,
-                          onSaved: addAnComment,
-                          controller: _controller,
-                          focusNode: _focusNode,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        margin: EdgeInsets.only(right: 10),
-                        alignment: Alignment.centerRight,
-                        child: RaisedButton(
-                          color: style.commentButtonColor,
-                          key: Key('comment'),
-                          child: Text(
-                              FsLocalizations.getLocale(context).comment,
-                              style: TextStyle(
-                                  fontSize: style.commentButtonSize,
-                                  color: style.commentFontColor)),
-                          onPressed: _validateAndComment,
-                        ),
-                      ),
-                    ],
-                  )),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+  }
+
+  ///标签
+  Widget _buildTag() {
+    return Container(
+      height: style.badgeContainerHeight,
+      padding: style.badgePadding,
+      alignment: Alignment.topRight,
+      child: Chip(
+          backgroundColor: style.badgeBackgroundColor,
+          label: Text(
+            post.state,
+            style: TextStyle(
+                color: style.badgeColor, fontSize: style.badgeFontSize),
+          )),
+    );
+  }
+
+  /// 点赞按钮
+  Widget _buildVoteButton() {
+    if (comments.isEmpty) {
+      return Loading();
+    } else {
+      return Container(
+        child: Column(
+          children: comments
+              .asMap()
+              .map((index, comment) {
+                return MapEntry(
+                    index,
+                    Card(
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            key: Key(comment.id.toString()),
+                            leading: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(comment.user.avatarUrl),
+                            ),
+                            trailing: Text('${index + 1}楼'),
+                            subtitle: Text(comment.body),
+                            title: Text(comment.user.login),
+                          ),
+                          Container(
+                            child: ActionChip(
+                                label: Icon(FontAwesomeIcons.heart),
+                                onPressed: () => {}),
+                            alignment: Alignment.centerRight,
+                            padding: EdgeInsets.only(
+                                right: style.likeButtonPaddingRight),
+                          )
+                        ],
+                      ),
+                    ));
+              })
+              .values
+              .toList(), // 评论列表
+        ),
+      );
+    }
+  }
+
+  /// 构建评论框
+  Widget _buildCommentInput() {
+    return Card(
+      margin: EdgeInsets.only(bottom: 100),
+      child: Form(
+          key: formKey,
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextFormField(
+                  key: Key('new_comment'),
+                  keyboardType: TextInputType.text,
+                  minLines: 3,
+                  maxLines: 100,
+                  decoration: InputDecoration(
+                    hintText: FsLocalizations.of(context).currentLocale.comment,
+                    errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                  ),
+                  validator: CommentFieldValidator.validate,
+                  onSaved: addAnComment,
+                  controller: _controller,
+                  focusNode: _focusNode,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.only(right: 10),
+                alignment: Alignment.centerRight,
+                child: RaisedButton(
+                  color: style.commentButtonColor,
+                  key: Key('comment'),
+                  child: Text(FsLocalizations.getLocale(context).comment,
+                      style: TextStyle(
+                          fontSize: style.commentButtonSize,
+                          color: style.commentFontColor)),
+                  onPressed: _validateAndComment,
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+
+  /// scroll  up or scroll down
+  /// 这个地方有bug,必须点一次往下,按钮才会变成往上,解决办法是加一个监听器判断当前滑动的位置
+  Widget _buildFloatButton() {
+    if (isTop) {
+      return FloatingActionButton(
+          tooltip: '到达底部',
+          child: Icon(Icons.arrow_downward),
+          onPressed: () {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              curve: Curves.easeOut,
+              duration: Duration(milliseconds: style.scrollSpeed),
+            );
+            setState(() {
+              isTop = !isTop;
+            });
+          });
+    } else {
+      return FloatingActionButton(
+          tooltip: '返回顶部',
+          child: Icon(Icons.arrow_upward),
+          onPressed: () {
+            _scrollController.animateTo(
+              _scrollController.position.minScrollExtent,
+              curve: Curves.easeOut,
+              duration: Duration(milliseconds: style.scrollSpeed),
+            );
+            setState(() {
+              isTop = !isTop;
+            });
+          });
+    }
   }
 }
 

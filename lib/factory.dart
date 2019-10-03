@@ -1,6 +1,4 @@
 import 'package:flutter_study_app/app.dart';
-import 'package:flutter_study_app/config/auth_config.dart';
-import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
@@ -14,19 +12,12 @@ import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/utils/index.dart';
 
+/// 之所以要在这里用工厂方法创建各个Style是因为Dart代码被声明成static之后不会动态加载
+/// 为了能够实时的显示样式的变化而采用这种结构,还有一个原因是整合在一个文件入口中维护更加方便
 class ConfigFactory {
-  // 路由
-  static RouterConfig router() {
-    return RouterConfig();
-  }
-
-  // App 配置
+  // App 样式
   static AppStyle appStyle() {
     return AppStyle();
-  }
-
-  static AuthConfig authConfig() {
-    return AuthConfig();
   }
 
   // 首页样式
