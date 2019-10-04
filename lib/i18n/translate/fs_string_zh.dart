@@ -177,4 +177,7 @@ class FsStringZH implements FsStringBase {
 
   @override
   String noData = '没有数据';
+
+  @override
+  String noComment = '暂无评论';
 }

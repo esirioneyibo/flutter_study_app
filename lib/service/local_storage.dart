@@ -9,7 +9,7 @@ class LocalStorage {
   }
 
   /// 获取key缓存内容
-  static get(String key) async {
+  static Future<String> get(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.get(key);
   }

@@ -46,8 +46,15 @@ class CommonUtil {
     return "$number万";
   }
 
-  static transLocale(LocaleEnum localeEnum) {
-    switch (localeEnum.index) {
+  static transLocale({LocaleEnum localeEnum, String localeStr}) {
+    int index = 0;
+    if (localeEnum != null) {
+      index = localeEnum.index;
+    } else {
+      index = int.parse(localeStr);
+    }
+
+    switch (index) {
       case 0:
         return Locale('zh', 'CN');
       case 1:

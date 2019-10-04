@@ -222,7 +222,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
     if (comments == null) {
       return Loading();
     } else if (comments.isEmpty) {
-      return NoData();
+      return NoData(tips: FsLocalizations.getLocale(context).noComment);
     } else {
       return Container(
         child: Column(

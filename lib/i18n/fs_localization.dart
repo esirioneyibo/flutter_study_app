@@ -28,7 +28,7 @@ class FsLocalizations {
   }
 
   /// 获取当前语言
-  static getLocale(BuildContext context) {
+  static FsStringBase getLocale(BuildContext context) {
     return of(context).currentLocale;
   }
 }

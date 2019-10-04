@@ -24,7 +24,7 @@ class LanguageScreen extends StatelessWidget {
                     trailing: Icon(Icons.chevron_right),
                     title: Container(child: Text('中文')),
                     onTap: () {
-                      model.changeLocale(LocaleEnum.cn);
+                      model.changeLocale(localeEnum: LocaleEnum.cn);
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     },
@@ -34,7 +34,7 @@ class LanguageScreen extends StatelessWidget {
                     trailing: Icon(Icons.chevron_right),
                     title: Container(child: Text('English')),
                     onTap: () {
-                      model.changeLocale(LocaleEnum.en);
+                      model.changeLocale(localeEnum: LocaleEnum.en);
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     },
@@ -44,7 +44,7 @@ class LanguageScreen extends StatelessWidget {
                     trailing: Icon(Icons.chevron_right),
                     title: Container(child: Text('日本語')),
                     onTap: () {
-                      model.changeLocale(LocaleEnum.ja);
+                      model.changeLocale(localeEnum: LocaleEnum.ja);
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     },

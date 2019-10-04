@@ -176,4 +176,7 @@ class FsStringJP implements FsStringBase {
 
   @override
   String noData = 'データなし';
+
+  @override
+  String noComment = 'コメントなし';
 }

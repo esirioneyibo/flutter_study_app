@@ -176,4 +176,7 @@ class FsStringEN implements FsStringBase {
 
   @override
   String noData = 'no data';
+
+  @override
+  String noComment = 'no comment';
 }

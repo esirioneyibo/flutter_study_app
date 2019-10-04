@@ -23,9 +23,4 @@ class Constant {
   static const PASSWORD = "ys_password";
   static const USER_BASIC_CODE = "user-basic-code";
   static const USER_INFO = "ys_user_info";
-  static const LANGUAGE_SELECT = "language_select";
-  static const LANGUAGE_SELECT_NAME = "language_select_name";
-  static const REFRESH_LANGUAGE = "refreshLanguageApp";
-  static const THEME_COLOR = "theme_color";
-  static const LOCALE = "locale";
 }
