@@ -72,6 +72,11 @@ class NavigatorUtil {
   static goHome(BuildContext context) {
     Navigator.pushReplacementNamed(context, RouterConfig.index);
   }
+
+  /// account
+  static goLogin(BuildContext context) {
+    Navigator.pushReplacementNamed(context, RouterConfig.account);
+  }
 }
 
 class SliderRoute extends PageRouteBuilder {

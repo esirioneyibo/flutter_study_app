@@ -5,11 +5,13 @@ import 'package:flutter_study_app/components/no_data.dart';
 import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:github/server.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   ChatDetailScreen(this.post);
@@ -60,25 +62,29 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
-      floatingActionButton: Container(
-        height: style.scrollButtonSize,
-        width: style.scrollButtonSize,
-        child: Visibility(
-          visible: _scrollButtonVisible,
-          child: _buildFloatButton(),
-        ),
-      ),
-      body: GestureDetector(
-        onHorizontalDragEnd: (DragEndDetails details) {
-          NavigatorUtil.back(context, details);
-        },
-        child: ListView(
-            shrinkWrap: true,
-            controller: _scrollController,
-            children: _buildCommentList()),
-      ),
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+          appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
+          floatingActionButton: Container(
+            height: style.scrollButtonSize,
+            width: style.scrollButtonSize,
+            child: Visibility(
+              visible: _scrollButtonVisible,
+              child: _buildFloatButton(),
+            ),
+          ),
+          body: GestureDetector(
+            onHorizontalDragEnd: (DragEndDetails details) {
+              NavigatorUtil.back(context, details);
+            },
+            child: ListView(
+                shrinkWrap: true,
+                controller: _scrollController,
+                children: _buildCommentList(model)),
+          ),
+        );
+      },
     );
   }
 
@@ -119,12 +125,17 @@ class ChatDetailState extends State<ChatDetailScreen> {
   }
 
   // 添加一个评论 发送http请求
-  addAnComment(String data) {
+  addAnComment(BuildContext context, AppModel model, String data) {
+    if (!model.isLogin()) {
+      NavigatorUtil.goLogin(context);
+      return;
+    }
     _controller.clear();
+    HttpService.addAnComment(post.number, data);
   }
 
   /// 评论列表
-  List<Widget> _buildCommentList() {
+  List<Widget> _buildCommentList(AppModel model) {
     return <Widget>[
       Card(
           child: Column(
@@ -155,7 +166,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
       // 点赞
       _buildVoteButton(),
       // 评论框
-      _buildCommentInput()
+      _buildCommentInput(model)
     ];
   }
 
@@ -264,7 +275,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
   }
 
   /// 构建评论框
-  Widget _buildCommentInput() {
+  Widget _buildCommentInput(AppModel model) {
     return Card(
       margin: EdgeInsets.only(bottom: 100),
       child: Form(
@@ -279,7 +290,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                   minLines: 3,
                   maxLines: 100,
                   decoration: InputDecoration(
-                    hintText: FsLocalizations.of(context).currentLocale.comment,
+                    hintText: FsLocalizations.getLocale(context).comment,
                     errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -291,7 +302,9 @@ class ChatDetailState extends State<ChatDetailScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                   validator: CommentFieldValidator.validate,
-                  onSaved: addAnComment,
+                  onSaved: (String data) {
+                    addAnComment(context, model, data);
+                  },
                   controller: _controller,
                   focusNode: _focusNode,
                 ),

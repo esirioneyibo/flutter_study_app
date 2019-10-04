@@ -13,23 +13,39 @@ class HttpService {
   static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
-  static IssuesService issuesService = IssuesService(github);
+
+  //本项目的仓库
   static RepositorySlug slug = RepositorySlug("houko", "flutter-study-app");
-  static GitHub github = createGitHubClient(
-      auth: new Authentication.withToken(AuthConfig.githubToken));
+
+  static Future<GitHub> getGithub() async {
+    String username = await LocalStorage.get(Constant.USERNAME);
+    String password = await LocalStorage.get(Constant.PASSWORD);
+    if (username == null || password == null) {
+      return createGitHubClient();
+    }
+    return createGitHubClient(auth: Authentication.basic(username, password));
+  }
+
+  static Future<IssuesService> getIssueService() async {
+    GitHub github = await getGithub();
+    return IssuesService(github);
+  }
 
   /// 获取聊天列表
-  static Future<List<Issue>> getChatList() {
+  static Future<List<Issue>> getChatList() async {
+    GitHub github = await getGithub();
     return github.issues.listByRepo(slug).toList();
   }
 
   /// 获取评论列表
-  static Future<List<IssueComment>> getChatComments(issueNumber) {
+  static Future<List<IssueComment>> getChatComments(issueNumber) async {
+    IssuesService issuesService = await getIssueService();
     return issuesService.listCommentsByIssue(slug, issueNumber).toList();
   }
 
   /// 添加一个评论
-  static addAnComment(Authentication auth, issueId, String data) {
+  static addAnComment(issueId, String data) async {
+    GitHub github = await getGithub();
     return github.issues.createComment(slug, issueId, data.trim());
   }
 
@@ -37,19 +53,9 @@ class HttpService {
   static Future login(String username, String password) async {
     username = username.trim();
     password = password.trim();
-    String type = username + ":" + password;
-    var bytes = utf8.encode(type);
-    var base64Str = base64.encode(bytes);
-    if (Constant.debug) {
-      print("base64Str login " + base64Str);
-    }
-    var resultData;
-    var auth = await isAuth();
-    if (auth) {
-      LocalStorage.save(Constant.USERNAME, username);
-      LocalStorage.save(Constant.USER_BASIC_CODE, base64Str);
-    }
-    return Result(resultData, auth);
+
+    LocalStorage.save(Constant.USERNAME, username);
+    LocalStorage.save(Constant.PASSWORD, password);
   }
 
   /// 判断本app是否接入了github

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_en.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_jp.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
@@ -23,12 +23,12 @@ class FsLocalizations {
     return _localizationMap['cn'];
   }
 
-  static FsLocalizations of(BuildContext context) {
+  static FsLocalizations _of(BuildContext context) {
     return Localizations.of(context, FsLocalizations);
   }
 
   /// 获取当前语言
   static FsStringBase getLocale(BuildContext context) {
-    return of(context).currentLocale;
+    return _of(context).currentLocale;
   }
 }

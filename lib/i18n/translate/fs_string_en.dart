@@ -1,4 +1,4 @@
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
 
 class FsStringEN implements FsStringBase {
   @override
@@ -74,7 +74,7 @@ class FsStringEN implements FsStringBase {
   String lifeTools = 'life tools';
 
   @override
-  String login = 'logiin';
+  String login = 'Login';
 
   @override
   String loginError = 'login error';
@@ -89,7 +89,7 @@ class FsStringEN implements FsStringBase {
   String moveToLogin = 'move to login';
 
   @override
-  String moveToRegister = 'move to regsiter';
+  String moveToRegister = 'move to register';
 
   @override
   String newChat = 'chat';

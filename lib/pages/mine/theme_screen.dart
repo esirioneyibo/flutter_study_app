@@ -30,7 +30,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                       onTap: () {
                         // 修改当前主题
                         model.changeTheme(index);
-                        NavigatorUtil.back(context, null, true);
+                        NavigatorUtil.goHome(context);
                       },
                       child: Container(
                         color: colors[index],

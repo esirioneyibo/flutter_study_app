@@ -1,4 +1,4 @@
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
 
 class FsStringJP implements FsStringBase {
   @override

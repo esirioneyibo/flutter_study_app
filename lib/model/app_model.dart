@@ -33,18 +33,31 @@ class AppModel extends Model {
     }
   }
 
+  /// 修改locale
   changeLocale({LocaleEnum localeEnum, String localeStr}) {
-    this.locale = CommonUtil.transLocale(localeEnum: localeEnum);
-    LocalStorage.save(Constant.currentLocale, localeEnum.index.toString());
+    this.locale =
+        CommonUtil.transLocale(localeEnum: localeEnum, localeStr: localeStr);
+    if (localeEnum != null) {
+      LocalStorage.save(Constant.currentLocale, localeEnum.index.toString());
+    } else {
+      LocalStorage.save(Constant.currentLocale, localeStr);
+    }
+
     notifyListeners();
   }
 
+  // 修改theme
   changeTheme(int color) {
     List<Color> listColor = CommonUtil.themeColors();
     this.theme = listColor[color];
     // 保存当前主题到本地
     LocalStorage.save(Constant.currentTheme, color.toString());
     notifyListeners();
+  }
+
+  /// 是否登录
+  isLogin() {
+    return user != null;
   }
 
   afterLogin(User user) {

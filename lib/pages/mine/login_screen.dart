@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/return_bar.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/tip_util.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,14 +18,22 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController userController = new TextEditingController();
-  final TextEditingController pwController = new TextEditingController();
+  AccountStyle style = ConfigFactory.accountStyle();
+
+  TextEditingController userController;
+  TextEditingController pwController;
+
   String username = '';
   String password = '';
+
+  FocusNode usernameFocusNode;
+  FocusNode passwordFocusNode;
 
   @override
   void initState() {
     super.initState();
+    userController = TextEditingController();
+    pwController = TextEditingController();
     checkUser();
   }
 
@@ -36,13 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     userController.dispose();
     pwController.dispose();
-  }
-
-  checkUser() async {
-    username = await LocalStorage.get(Constant.USERNAME);
-    password = await LocalStorage.get(Constant.PASSWORD);
-    userController.value = TextEditingValue(text: username ?? '');
-    pwController.value = TextEditingValue(text: password ?? '');
+    usernameFocusNode = FocusNode();
+    passwordFocusNode = FocusNode();
+    usernameFocusNode.dispose();
+    passwordFocusNode.dispose();
   }
 
   @override
@@ -52,21 +55,38 @@ class _LoginScreenState extends State<LoginScreen> {
         NavigatorUtil.back(context, details);
       },
       child: Scaffold(
-        appBar: ReturnBar(FsLocalizations.getLocale(context).login),
         body: Container(
-          // 弹出键盘不遮挡内容
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Theme.of(context).primaryColor, BlendMode.screen),
+                  image: AssetImage(Constant.loginBg),
+                  fit: BoxFit.cover)),
+          padding: EdgeInsets.all(50),
           child: Form(
             key: formKey,
+            // 弹出键盘不遮挡内容
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: buildInputs() + buildSubmitButtons(),
+                children: buildTitle() +
+                    buildInputs() +
+                    buildSubmitButtons() +
+                    buildBottom(),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  checkUser() async {
+    username = await LocalStorage.get(Constant.USERNAME);
+    password = await LocalStorage.get(Constant.PASSWORD);
+    userController.value = TextEditingValue(text: username ?? '');
+    pwController.value = TextEditingValue(text: password ?? '');
   }
 
   /// 验证和保存
@@ -79,38 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return false;
   }
 
-  // 构建输入框
-  List<Widget> buildInputs() {
-    return <Widget>[
-      TextFormField(
-        key: Key('email'),
-        keyboardType: TextInputType.emailAddress,
-        controller: userController,
-        decoration: InputDecoration(
-            labelText: FsLocalizations.getLocale(context).email),
-        validator: EmailFieldValidator.validate,
-        onSaved: (String value) {
-          username = value;
-          print(username);
-        },
-      ),
-      TextFormField(
-        key: Key('password'),
-        controller: pwController,
-        keyboardType: TextInputType.text,
-        obscureText: true,
-        decoration: InputDecoration(
-            labelText: FsLocalizations.getLocale(context).password),
-        validator: PasswordFieldValidator.validate,
-        onSaved: (String value) {
-          password = value;
-          print(password);
-        },
-      )
-    ];
-  }
-
-//   验证和提交
+  //   验证和提交
   Future<void> _validateAndSubmit() async {
     if (_validateAndSave()) {
       HttpService.login(username, password).then((data) {
@@ -148,37 +137,119 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  /// 标题
+  List<Widget> buildTitle() {
+    return <Widget>[
+      Padding(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: Text(
+            FsLocalizations.getLocale(context).login,
+            style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      )
+    ];
+  }
+
+  // 构建输入框
+  List<Widget> buildInputs() {
+    return <Widget>[
+      TextFormField(
+        key: Key('email'),
+        keyboardType: TextInputType.emailAddress,
+        controller: userController,
+        focusNode: usernameFocusNode,
+        decoration: InputDecoration(
+            prefixIcon: Icon(Icons.person),
+            suffixIcon: Visibility(
+              visible: usernameFocusNode.hasFocus,
+              child: InkWell(
+                  onTap: () {
+                    userController.clear();
+                  },
+                  child: Icon(Icons.backspace)),
+            ),
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+            labelText: FsLocalizations.getLocale(context).email),
+        validator: EmailFieldValidator.validate,
+        onSaved: (String value) {
+          username = value;
+        },
+      ),
+      SizedBox(
+        height: 30,
+      ),
+      TextFormField(
+        key: Key('password'),
+        controller: pwController,
+        focusNode: passwordFocusNode,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+            prefixIcon: Icon(Icons.lock),
+            suffixIcon: Visibility(
+              visible: passwordFocusNode.hasFocus,
+              child: InkWell(
+                  onTap: () {
+                    pwController.clear();
+                  },
+                  child: Icon(Icons.backspace)),
+            ),
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+            labelText: FsLocalizations.getLocale(context).password),
+        validator: PasswordFieldValidator.validate,
+        onSaved: (String value) {
+          password = value;
+        },
+      ),
+      SizedBox(
+        height: 20,
+      ),
+    ];
+  }
+
   /// 构建提交按钮
   List<Widget> buildSubmitButtons() {
-    AccountStyle style = ConfigFactory.accountStyle();
     return <Widget>[
       Padding(
         padding: EdgeInsets.only(top: style.loginButtonPaddingTop),
       ),
       RaisedButton(
-          color: style.loginButtonColor,
+          padding: EdgeInsets.all(5),
+          color: Theme.of(context).primaryColor,
           key: Key('signIn'),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Text(FsLocalizations.getLocale(context).login,
               style: TextStyle(
                   fontSize: style.loginButtonFontSize,
                   color: style.loginButtonFontColor)),
           onPressed: () => _validateAndSubmit()),
-      Padding(
-        padding: EdgeInsets.only(top: style.authPaddingTop),
+    ];
+  }
+
+  List<Widget> buildBottom() {
+    return <Widget>[
+      Container(
+        margin: EdgeInsets.all(10),
+        alignment: Alignment.center,
+        child: Text(
+          '请输入您的github账号登录',
+          style: TextStyle(color: Colors.white60, fontSize: 15),
+        ),
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          InkWell(
-            onTap: () => DialogUtil.showAlertDialog(
-                context, '一键登录', FsLocalizations.getLocale(context).developing),
-            child: Icon(
-              FontAwesomeIcons.github,
-              size: style.authButtonSize,
-              color: style.authButtonColor,
-            ),
-          ),
-        ],
+      Container(
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          '右滑退出登录界面',
+          style: TextStyle(color: Colors.white60, fontSize: 12),
+        ),
       )
     ];
   }

@@ -1,4 +1,4 @@
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
 
 class FsStringZH implements FsStringBase {
   @override
@@ -74,7 +74,7 @@ class FsStringZH implements FsStringBase {
   String lifeTools = '生活工具';
 
   @override
-  String login = '登录';
+  String login = '登 录';
 
   @override
   String loginError = '登录出错';

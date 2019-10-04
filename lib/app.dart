@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_study_app/pages/drawer_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
 import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
+import 'package:flutter_study_app/service/http_service.dart';
+import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 
 /// FsApp = (flutter study app)
@@ -72,11 +75,26 @@ class _FsAppState extends State<FsApp> {
       ..add(PractiseScreen())
       ..add(ChatScreen())
       ..add(ToolsScreen());
+
+    // auto login
+    checkAndLogin();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  /// check login
+  checkAndLogin() async {
+    String username = await LocalStorage.get(Constant.USERNAME);
+    String password = await LocalStorage.get(Constant.PASSWORD);
+
+    if (username == null || password == null) {
+      return;
+    }
+
+    HttpService.login(username, password);
   }
 }
 
