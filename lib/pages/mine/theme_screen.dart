@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
+import 'package:flutter_study_app/utils/index.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class ThemeScreen extends StatefulWidget {
@@ -29,6 +30,7 @@ class ThemeScreenState extends State<ThemeScreen> {
                       onTap: () {
                         // 修改当前主题
                         model.changeTheme(index);
+                        NavigatorUtil.back(context, null, true);
                       },
                       child: Container(
                         color: colors[index],

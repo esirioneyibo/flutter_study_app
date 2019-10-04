@@ -51,7 +51,7 @@ class CommonUtil {
     if (localeEnum != null) {
       index = localeEnum.index;
     } else {
-      index = localeStr as int;
+      index = int.parse(localeStr);
     }
 
     switch (index) {

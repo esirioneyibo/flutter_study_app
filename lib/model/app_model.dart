@@ -17,21 +17,25 @@ class AppModel extends Model {
 
   AppModel() {
     // theme
-    String theme = LocalStorage.get(Constant.currentTheme);
+    Future<String> theme = LocalStorage.get(Constant.currentTheme);
     if (theme != null) {
-      this.theme = CommonUtil.themeColors()[theme];
+      theme.then((data) {
+        changeTheme(int.parse(data));
+      });
     }
 
     // locale
-    String locale = LocalStorage.get(Constant.LOCALE);
+    Future<String> locale = LocalStorage.get(Constant.currentLocale);
     if (locale != null) {
-      this.locale = CommonUtil.transLocale(localeStr: locale);
+      locale.then((data) {
+        changeLocale(localeStr: data);
+      });
     }
   }
 
-  changeLocale(LocaleEnum localeEnum) {
+  changeLocale({LocaleEnum localeEnum, String localeStr}) {
     this.locale = CommonUtil.transLocale(localeEnum: localeEnum);
-    LocalStorage.save(Constant.currentTheme, localeEnum.index.toString());
+    LocalStorage.save(Constant.currentLocale, localeEnum.index.toString());
     notifyListeners();
   }
 

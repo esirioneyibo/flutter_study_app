@@ -16,10 +16,22 @@ class NavigatorUtil {
     Navigator.push(context, MaterialPageRoute(builder: (context) => route));
   }
 
-  static void back(BuildContext context, DragEndDetails details) {
+  static void back(BuildContext context,
+      [DragEndDetails details, bool toIndex]) {
+    if (details == null) {
+      Navigator.of(context).pop();
+      if (toIndex) {
+        Navigator.of(context).pop();
+      }
+      return;
+    }
+
     var value = (details.velocity.pixelsPerSecond.dx.toStringAsFixed(1));
-    print(value);
-    if (double.parse(value) > 500) {
+    if (double.parse(value) < 500) {
+      return;
+    }
+    Navigator.of(context).pop();
+    if (toIndex) {
       Navigator.of(context).pop();
     }
   }
