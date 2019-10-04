@@ -2,178 +2,178 @@ import 'package:flutter_study_app/i18n/fs_string_base.dart';
 
 class FsStringJP implements FsStringBase {
   @override
-  String aboutSoftware = 'about software';
+  String aboutSoftware = 'ソフトウェアについて';
 
   @override
-  String appName = 'flutter study';
+  String appName = 'フラッター学習';
 
   @override
-  String beHope = 'be hope';
+  String beHope = 'お楽しみ';
 
   @override
-  String cancel = 'cancel';
+  String cancel = 'キャンセル';
 
   @override
-  String changeLanguage = 'change language';
+  String changeLanguage = '言語変更';
 
   @override
-  String chat = 'chat';
+  String chat = 'チャート';
 
   @override
-  String chatContent = 'chat content';
+  String chatContent = 'グループ';
 
   @override
-  String clickLogin = 'click to login';
+  String clickLogin = 'クリックしてログイン';
 
   @override
-  String close = 'close';
+  String close = '閉じる';
 
   @override
-  String comment = 'comment';
+  String comment = 'コメント';
 
   @override
-  String community = 'community';
+  String community = 'コミュニティー';
 
   @override
-  String confirmExitLogin = 'confirm exit login?';
+  String confirmExitLogin = 'ログアウトでしょうか?';
 
   @override
-  String createAccount = 'create account';
+  String createAccount = 'サインオン';
 
   @override
-  String developTools = 'develop tools';
+  String developTools = '開発ツール';
 
   @override
-  String developing = 'developing';
+  String developing = '開発中';
 
   @override
-  String deviceInfo = 'device info';
+  String deviceInfo = '設備情報';
 
   @override
-  String email = 'email';
+  String email = 'メール';
 
   @override
-  String emailIllegal = 'emial illegal';
+  String emailIllegal = 'メールアドレス情報誤り';
 
   @override
-  String emailNotFound = 'email not found';
+  String emailNotFound = 'メールアドレス見つかりません';
 
   @override
-  String exitLogin = 'exit login';
+  String exitLogin = 'ログアウト';
 
   @override
-  String game = 'game';
+  String game = 'ゲーム';
 
   @override
-  String gameEngine = 'game engine';
+  String gameEngine = 'ゲームエンジン';
 
   @override
-  String index = 'index';
+  String index = 'インデックス';
 
   @override
-  String lifeTools = 'life tools';
+  String lifeTools = '便利性ツール';
 
   @override
-  String login = 'logiin';
+  String login = 'ログイン';
 
   @override
-  String loginError = 'login error';
+  String loginError = 'ログインエラー';
 
   @override
-  String logout = 'logout';
+  String logout = 'ログアウト';
 
   @override
-  String mediaTools = 'media tools';
+  String mediaTools = 'メディアツール';
 
   @override
-  String moveToLogin = 'move to login';
+  String moveToLogin = 'ログインに進む';
 
   @override
-  String moveToRegister = 'move to regsiter';
+  String moveToRegister = 'サインオンに進め';
 
   @override
-  String newChat = 'new chat';
+  String newChat = '新チャート';
 
   @override
-  String ok = 'ok';
+  String ok = '確認';
 
   @override
-  String openSource = 'opensource';
+  String openSource = 'オープンソース';
 
   @override
-  String other = 'other';
+  String other = 'その他';
 
   @override
-  String password = 'password';
+  String password = 'パスワード';
 
   @override
-  String passwordError = 'password error';
+  String passwordError = 'パスワード誤り';
 
   @override
-  String plugin = 'plugin';
+  String plugin = '拡張機能';
 
   @override
-  String register = 'register';
+  String register = 'サインオン';
 
   @override
-  String returnButton = 'return button';
+  String returnButton = '戻る';
 
   @override
-  String settings = 'settings';
+  String settings = '設定';
 
   @override
-  String study = 'study';
+  String study = '学習';
 
   @override
-  String studyTools = 'study tools';
+  String studyTools = '学習ツール';
 
   @override
-  String theme = 'theme';
+  String theme = 'テーマ';
 
   @override
-  String tool = 'tool';
+  String tool = 'ツール';
 
   @override
-  String unknownError = 'unknown error';
+  String unknownError = '未知エラー';
 
   @override
-  String validateEmailContent = 'please login your email and verify it';
+  String validateEmailContent = 'メールアドレスで確認してアカウントを有効にしてください';
 
   @override
-  String validateEmailTitle = 'please verify your emial';
+  String validateEmailTitle = 'メールアドレスの確認してください';
 
   @override
-  String blog = 'blog';
+  String blog = 'ブログ';
 
   @override
-  String video = 'video';
+  String video = '動画';
 
   @override
-  String test = 'test';
+  String test = 'テスト';
   @override
-  String networkError_401 = "[401 登录失败]";
+  String networkError_401 = "[401 ログイン失敗]";
 
   @override
-  String networkError_403 = "403权限错误";
+  String networkError_403 = "403権限誤り";
 
   @override
-  String networkError_404 = "404错误";
+  String networkError_404 = "404エラー";
 
   @override
-  String networkErrorTimeout = "请求超时";
+  String networkErrorTimeout = "タイムアウト";
 
   @override
-  String networkErrorUnknown = "其他异常";
+  String networkErrorUnknown = "未知エラー";
 
   @override
-  String networkError = "网络错误";
+  String networkError = "ネットワークエラー";
 
   @override
-  String loadMoreNot = "没有更多数据";
+  String loadMoreNot = "それ以上データなし";
 
   @override
-  String loadMoreText = "正在加载更多";
+  String loadMoreText = "データを読み込み中";
 
   @override
-  String noData = '没有数据';
+  String noData = 'データなし';
 }
