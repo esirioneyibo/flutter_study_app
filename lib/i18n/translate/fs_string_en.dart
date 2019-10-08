@@ -128,7 +128,7 @@ class FsStringEN implements FsStringBase {
   String studyTools = 'study tools';
 
   @override
-  String theme = 'theme';
+  String theme = 'change theme';
 
   @override
   String tool = 'tool';
@@ -179,4 +179,7 @@ class FsStringEN implements FsStringBase {
 
   @override
   String noComment = 'no comment';
+
+  @override
+  String get clearCache => 'clear cache';
 }

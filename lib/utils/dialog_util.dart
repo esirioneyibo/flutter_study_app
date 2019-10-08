@@ -102,7 +102,40 @@ class DialogUtil {
       },
     );
   }
+
+
+  static void showOKDialog(BuildContext context, String title) {
+    DialogStyle style = ConfigFactory.dialogStyle();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          actions: <Widget>[
+            RaisedButton(
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                FsLocalizations.getLocale(context).ok,
+                style: TextStyle(
+                    color: style.buttonFontColor,
+                    fontSize: style.buttonFontSize),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+
+
+
+
+
+
 
 ///Widget
 class _Progress extends StatelessWidget {

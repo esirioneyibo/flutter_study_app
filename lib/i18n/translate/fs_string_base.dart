@@ -118,4 +118,6 @@ class FsStringBase {
   String noData;
 
   String noComment;
+
+  String get clearCache => null;
 }

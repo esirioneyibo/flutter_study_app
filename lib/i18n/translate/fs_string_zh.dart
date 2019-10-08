@@ -128,7 +128,7 @@ class FsStringZH implements FsStringBase {
   String studyTools = '学习工具';
 
   @override
-  String theme = '主题';
+  String theme = '切换主题';
 
   @override
   String tool = '工具';
@@ -180,4 +180,7 @@ class FsStringZH implements FsStringBase {
 
   @override
   String noComment = '暂无评论';
+
+  @override
+  String get clearCache => '清除缓存';
 }

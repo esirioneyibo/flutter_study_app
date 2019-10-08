@@ -34,8 +34,7 @@ class DeviceInfoScreen extends StatelessWidget {
                   )),
                   DataCell(Text(
                     value,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
                   )),
                 ]));
               });

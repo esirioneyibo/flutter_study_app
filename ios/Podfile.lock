@@ -50,7 +50,6 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FMDB
     - GoogleMaps
-  trunk:
     - Reachability
 
 EXTERNAL SOURCES:

@@ -17,20 +17,14 @@ class AppModel extends Model {
 
   AppModel() {
     // theme
-    Future<String> theme = LocalStorage.get(Constant.currentTheme);
-    if (theme != null) {
-      theme.then((data) {
-        changeTheme(int.parse(data));
-      });
-    }
+    LocalStorage.get(Constant.currentTheme).then((data) {
+      changeTheme(int.parse(data));
+    });
 
     // locale
-    Future<String> locale = LocalStorage.get(Constant.currentLocale);
-    if (locale != null) {
-      locale.then((data) {
-        changeLocale(localeStr: data);
-      });
-    }
+    LocalStorage.get(Constant.currentLocale).then((data) {
+      changeLocale(localeStr: data);
+    });
   }
 
   /// 修改locale

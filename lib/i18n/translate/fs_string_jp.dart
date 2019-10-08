@@ -128,7 +128,7 @@ class FsStringJP implements FsStringBase {
   String studyTools = '学習ツール';
 
   @override
-  String theme = 'テーマ';
+  String theme = 'テーマ変更';
 
   @override
   String tool = 'ツール';
@@ -179,4 +179,7 @@ class FsStringJP implements FsStringBase {
 
   @override
   String noComment = 'コメントなし';
+
+  @override
+  String get clearCache => 'キャッシュ消去';
 }

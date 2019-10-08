@@ -17,12 +17,9 @@ class NavigatorUtil {
   }
 
   static void back(BuildContext context,
-      [DragEndDetails details, bool toIndex]) {
+      [DragEndDetails details]) {
     if (details == null) {
       Navigator.of(context).pop();
-      if (toIndex) {
-        Navigator.of(context).pop();
-      }
       return;
     }
 
@@ -31,9 +28,6 @@ class NavigatorUtil {
       return;
     }
     Navigator.of(context).pop();
-    if (toIndex) {
-      Navigator.of(context).pop();
-    }
   }
 
   static void pushWithAnim(BuildContext context, route, AnimType animType,
@@ -56,11 +50,6 @@ class NavigatorUtil {
     }
 
     Navigator.push(context, builder);
-  }
-
-  ///替换
-  static pushReplacementNamed(BuildContext context, String routeName) {
-    Navigator.pushReplacementNamed(context, routeName);
   }
 
   ///切换无参数页面

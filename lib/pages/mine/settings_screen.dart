@@ -4,6 +4,7 @@ import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/router_config.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/model/app_model.dart';
+import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -51,9 +52,10 @@ class SettingScreen extends StatelessWidget {
       ),
       ListTile(
         leading: Icon(Icons.settings),
-        title: Text(FsLocalizations.getLocale(context).settings),
+        title: Text(FsLocalizations.getLocale(context).clearCache),
         onTap: () {
-          Navigator.pushNamed(context, RouterConfig.settings);
+          LocalStorage.removeAll();
+          DialogUtil.showOKDialog(context, '缓存清理成功');
         },
       ),
       ListTile(
@@ -92,7 +94,7 @@ class SettingScreen extends StatelessWidget {
     User currentUser = model.user;
     return UserAccountsDrawerHeader(
       accountName: Text(currentUser == null
-          ? FsLocalizations.getLocale(context).clickLogin
+          ? FsLocalizations.getLocale(context).login
           : currentUser.login),
       accountEmail: Text(currentUser == null ? '' : currentUser.email),
       onDetailsPressed: () {
