@@ -11,7 +11,7 @@ class FsStringZH implements FsStringBase {
   String beHope = '敬请期待';
 
   @override
-  String cancel = '退出';
+  String cancel = '取消';
 
   @override
   String changeLanguage = '切换语言';
