@@ -1,13 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/tip_util.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -19,7 +19,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AccountStyle style = ConfigFactory.accountStyle();
-
   TextEditingController userController;
   TextEditingController pwController;
 
@@ -34,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     userController = TextEditingController();
     pwController = TextEditingController();
+    usernameFocusNode = FocusNode();
+    passwordFocusNode = FocusNode();
     checkUser();
   }
 
@@ -42,43 +43,45 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     userController.dispose();
     pwController.dispose();
-    usernameFocusNode = FocusNode();
-    passwordFocusNode = FocusNode();
     usernameFocusNode.dispose();
     passwordFocusNode.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragEnd: (DragEndDetails details) {
-        NavigatorUtil.back(context, details);
-      },
-      child: Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  colorFilter: ColorFilter.mode(
-                      Theme.of(context).primaryColor, BlendMode.screen),
-                  image: AssetImage(Constant.loginBg),
-                  fit: BoxFit.cover)),
-          padding: EdgeInsets.all(50),
-          child: Form(
-            key: formKey,
-            // 弹出键盘不遮挡内容
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: buildTitle() +
-                    buildInputs() +
-                    buildSubmitButtons() +
-                    buildBottom(),
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return GestureDetector(
+          onHorizontalDragEnd: (DragEndDetails details) {
+            NavigatorUtil.back(context, details);
+          },
+          child: Scaffold(
+            body: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).primaryColor, BlendMode.screen),
+                      image: AssetImage(Constant.loginBg),
+                      fit: BoxFit.cover)),
+              padding: EdgeInsets.all(50),
+              child: Form(
+                key: formKey,
+                // 弹出键盘不遮挡内容
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: buildTitle() +
+                        buildInputs() +
+                        buildSubmitButtons(model) +
+                        buildBottom(),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -100,19 +103,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   //   验证和提交
-  Future<void> _validateAndSubmit() async {
+  Future<void> _validateAndSubmit(AppModel model) async {
     if (_validateAndSave()) {
-      HttpService.login(username, password).then((data) {
-        if (data.code == 200) {
+      HttpService.login(username, password).then((result) {
+        if (result.data != null) {
+          LocalStorage.save(Constant.USERNAME, username);
           LocalStorage.save(Constant.PASSWORD, password);
-          var resultData = HttpService.getUserInfo(username);
-          if (Constant.debug) {
-            print("user result " + resultData.result.toString());
-            print(data.toString());
-          }
-//          store.dispatch(new UpdateUserAction(resultData.data));
+          model.afterLogin(result.data);
         } else {
-          switch (data.code) {
+          switch (result.code) {
             case 401:
               TipUtil.showTip(
                   context, FsLocalizations.getLocale(context).networkError_401);
@@ -215,22 +214,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   /// 构建提交按钮
-  List<Widget> buildSubmitButtons() {
+  List<Widget> buildSubmitButtons(model) {
     return <Widget>[
       Padding(
         padding: EdgeInsets.only(top: style.loginButtonPaddingTop),
       ),
       RaisedButton(
-          padding: EdgeInsets.all(5),
-          color: Theme.of(context).primaryColor,
-          key: Key('signIn'),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          child: Text(FsLocalizations.getLocale(context).login,
-              style: TextStyle(
-                  fontSize: style.loginButtonFontSize,
-                  color: style.loginButtonFontColor)),
-          onPressed: () => _validateAndSubmit()),
+        padding: EdgeInsets.all(5),
+        color: Theme.of(context).primaryColor,
+        key: Key('signIn'),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        child: Text(FsLocalizations.getLocale(context).login,
+            style: TextStyle(
+                fontSize: style.loginButtonFontSize,
+                color: style.loginButtonFontColor)),
+        onPressed: () => _validateAndSubmit(model),
+      )
     ];
   }
 

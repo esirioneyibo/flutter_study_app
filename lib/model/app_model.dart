@@ -7,13 +7,13 @@ import 'package:scoped_model/scoped_model.dart';
 
 class AppModel extends Model {
   /// 当前用户
-  User user;
+  User _user;
 
   // 当前主题
-  Color theme = CommonUtil.themeColors()[0];
+  Color _theme = CommonUtil.themeColors()[0];
 
   // 当前语言
-  Locale locale = CommonUtil.transLocale(localeEnum: LocaleEnum.cn);
+  Locale _locale = CommonUtil.transLocale(localeEnum: LocaleEnum.cn);
 
   AppModel() {
     // theme
@@ -35,7 +35,7 @@ class AppModel extends Model {
 
   /// 修改locale
   changeLocale({LocaleEnum localeEnum, String localeStr}) {
-    this.locale =
+    this._locale =
         CommonUtil.transLocale(localeEnum: localeEnum, localeStr: localeStr);
     if (localeEnum != null) {
       LocalStorage.save(Constant.currentLocale, localeEnum.index.toString());
@@ -49,7 +49,7 @@ class AppModel extends Model {
   // 修改theme
   changeTheme(int color) {
     List<Color> listColor = CommonUtil.themeColors();
-    this.theme = listColor[color];
+    this._theme = listColor[color];
     // 保存当前主题到本地
     LocalStorage.save(Constant.currentTheme, color.toString());
     notifyListeners();
@@ -61,10 +61,22 @@ class AppModel extends Model {
   }
 
   afterLogin(User user) {
-    this.user = user;
+    this._user = user;
   }
 
   afterLogout() {
-    this.user = null;
+    this._user = null;
+  }
+
+  User get user {
+    return this._user;
+  }
+
+  Locale get locale {
+    return this._locale;
+  }
+
+  Color get theme {
+    return this._theme;
   }
 }

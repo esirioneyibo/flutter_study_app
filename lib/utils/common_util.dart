@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/model/app_model.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 enum LocaleEnum { cn, en, ja }
 
@@ -18,6 +20,10 @@ class CommonUtil {
       Colors.teal,
       Colors.black,
     ];
+  }
+
+  static AppModel getModel(BuildContext context) {
+    return ScopedModel.of<AppModel>(context);
   }
 
   static format(String content, {String param, List<String> params}) {

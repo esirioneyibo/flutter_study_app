@@ -63,7 +63,6 @@ class ToolsScreen extends StatelessWidget {
         fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
-      appBar: AppBar(title: Text(FsLocalizations.getLocale(context).tool)),
       body: ListView(
         children: <Widget>[
           Padding(

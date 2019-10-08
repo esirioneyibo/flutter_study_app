@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/components/my_app_bar.dart';
+import 'package:flutter_github_api/entity/index.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/factory.dart';
-import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/pages/chat_screen.dart';
 import 'package:flutter_study_app/pages/drawer_screen.dart';
 import 'package:flutter_study_app/pages/home_screen.dart';
@@ -10,7 +10,9 @@ import 'package:flutter_study_app/pages/practise_screen.dart';
 import 'package:flutter_study_app/pages/tools_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
+import 'package:flutter_study_app/utils/common_util.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 /// FsApp = (flutter study app)
 class FsApp extends StatefulWidget {
@@ -35,35 +37,14 @@ class _FsAppState extends State<FsApp> {
 
   @override
   Widget build(BuildContext context) {
-    // 点击tab切换页面
-    var _tableHandler = (int index) {
-      setState(() {
-        _currentIndex = index;
-      });
-    };
-
-    final List<TabItem> items = getBottomItems(context);
-
-    // 底部的4个tab
-    var bottomNavigationBars = BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      unselectedItemColor: style.navigatorUnSelectedColor,
-      selectedItemColor: style.navigatorSelectedColor,
-      items: items.map((item) {
-        return BottomNavigationBarItem(
-            icon: Icon(item.icon),
-            title: Text(item.title,
-                style: TextStyle(color: _itemColor(item.index))));
-      }).toList(),
-      onTap: _tableHandler,
-      currentIndex: _currentIndex,
-    );
-
-    return Scaffold(
-      appBar: MyAppBar(title: FsLocalizations.getLocale(context).appName),
-      drawer: LeftDrawer(), // 侧边栏
-      body: tabs[_currentIndex],
-      bottomNavigationBar: bottomNavigationBars,
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+          drawer: LeftDrawer(), // 侧边栏
+          body: tabs[_currentIndex],
+          bottomNavigationBar: _buildBottomBar(),
+        );
+      },
     );
   }
 
@@ -85,6 +66,30 @@ class _FsAppState extends State<FsApp> {
     super.dispose();
   }
 
+  Widget _buildBottomBar() {
+    final List<TabItem> items = getBottomItems(context);
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      unselectedItemColor: style.navigatorUnSelectedColor,
+      selectedItemColor: style.navigatorSelectedColor,
+      items: items.map((item) {
+        return BottomNavigationBarItem(
+            icon: Icon(item.icon),
+            title: Text(item.title,
+                style: TextStyle(color: _itemColor(item.index))));
+      }).toList(),
+      onTap: _tableHandler,
+      currentIndex: _currentIndex,
+    );
+  }
+
+  // 点击tab切换页面
+  _tableHandler(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   /// check login
   checkAndLogin() async {
     String username = await LocalStorage.get(Constant.USERNAME);
@@ -93,8 +98,11 @@ class _FsAppState extends State<FsApp> {
     if (username == null || password == null) {
       return;
     }
-
-    HttpService.login(username, password);
+    OauthResult result = await HttpService.login(username, password);
+    if (result.data != null) {
+      AppModel model = CommonUtil.getModel(context);
+      model.afterLogin(result.data);
+    }
   }
 }
 
