@@ -17,6 +17,9 @@ class _PractiseScreenState extends State<PractiseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(FsLocalizations.getLocale(context).study),
+      ),
       body: SingleChildScrollView(
         child: Container(
           child: _buildPanel(),

@@ -11,43 +11,44 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen>
     with AutomaticKeepAliveClientMixin {
+  final HomeStyle style = ConfigFactory.homeStyle();
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    HomeStyle homeStyle = ConfigFactory.homeStyle();
-
     var tabs = List<Tab>();
     var tabContents = List<Widget>();
-
     List<TabItem> topItems = getTopItems(context);
     topItems.forEach((item) {
       tabs.add(item.tab);
       tabContents.add(item.screen);
     });
-
-    // 顶部tab切换
-    var topBar = TabBar(
-      indicatorWeight: homeStyle.indicatorWeight,
-      isScrollable: tabs.length > homeStyle.scrollCount ? true : false,
-      unselectedLabelColor: homeStyle.unSelectedColor,
-      indicatorColor: homeStyle.selectedColor,
-      indicatorSize: TabBarIndicatorSize.tab,
-      labelColor: homeStyle.labelColor,
-      indicator: ShapeDecoration(
-          shadows: [],
-          shape: Border(
-              bottom: BorderSide(
-                  width: homeStyle.borderSize, color: homeStyle.borderColor))),
-      tabs: tabs,
-    );
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
           appBar: MyAppBar(
-              title: FsLocalizations.getLocale(context).index, tabBar: topBar),
+              title: FsLocalizations.getLocale(context).index,
+              tabBar: _buildTopBars(tabs)),
           body: TabBarView(
             children: tabContents,
           )),
+    );
+  }
+
+  Widget _buildTopBars(tabs) {
+    return TabBar(
+      indicatorWeight: style.indicatorWeight,
+      isScrollable: tabs.length > style.scrollCount ? true : false,
+      unselectedLabelColor: style.unSelectedColor,
+      indicatorColor: style.selectedColor,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelColor: style.labelColor,
+      indicator: ShapeDecoration(
+          shadows: [],
+          shape: Border(
+              bottom: BorderSide(
+                  width: style.borderSize, color: style.borderColor))),
+      tabs: tabs,
     );
   }
 

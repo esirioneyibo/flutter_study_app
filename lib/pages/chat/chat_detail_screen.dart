@@ -148,7 +148,6 @@ class ChatDetailState extends State<ChatDetailScreen> {
               _buildTag(), // 右侧小标签
             ],
           ),
-          //--------------------------------------------------------------
           Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.all(style.titlePaddingAll),
@@ -163,8 +162,8 @@ class ChatDetailState extends State<ChatDetailScreen> {
           // 内容
         ],
       )),
-      // 点赞
-      _buildVoteButton(),
+      // 评论列表
+      _buildComments(),
       // 评论框
       _buildCommentInput(model)
     ];
@@ -228,8 +227,8 @@ class ChatDetailState extends State<ChatDetailScreen> {
     );
   }
 
-  /// 点赞按钮
-  Widget _buildVoteButton() {
+  /// 评论列表
+  Widget _buildComments() {
     if (comments == null) {
       return Loading();
     } else if (comments.isEmpty) {
@@ -329,7 +328,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
   }
 
   /// scroll  up or scroll down
-  /// 这个地方有bug,必须点一次往下,按钮才会变成往上,解决办法是加一个监听器判断当前滑动的位置
+  /// 这个地方目前有bug,必须点一次往下,按钮才会变成往上,解决办法是加一个监听器判断当前滑动的位置
   Widget _buildFloatButton() {
     if (isTop) {
       return FloatingActionButton(

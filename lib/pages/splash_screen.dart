@@ -3,7 +3,7 @@ import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 
 ///
-/// 导航器是一个有状态的组件
+/// 闪屏动画
 class SplashScreen extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();

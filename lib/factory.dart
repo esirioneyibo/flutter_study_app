@@ -1,15 +1,15 @@
 import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/pages/chat_screen.dart';
+import 'package:flutter_study_app/pages/chat/chat_screen.dart';
 import 'package:flutter_study_app/pages/home/blog_screen.dart';
 import 'package:flutter_study_app/pages/home/plugins_screen.dart';
 import 'package:flutter_study_app/pages/home/project_screen.dart';
 import 'package:flutter_study_app/pages/home/video_screen.dart';
-import 'package:flutter_study_app/pages/home_screen.dart';
+import 'package:flutter_study_app/pages/home/home_screen.dart';
 import 'package:flutter_study_app/pages/mine/login_screen.dart';
-import 'package:flutter_study_app/pages/practise_screen.dart';
-import 'package:flutter_study_app/pages/tools_screen.dart';
+import 'package:flutter_study_app/pages/practise/practise_screen.dart';
+import 'package:flutter_study_app/pages/tools/tools_screen.dart';
 import 'package:flutter_study_app/utils/index.dart';
 
 /// 之所以要在这里用工厂方法创建各个Style是因为Dart代码被声明成static之后不会动态加载
