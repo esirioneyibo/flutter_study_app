@@ -183,4 +183,7 @@ class FsStringZH implements FsStringBase {
 
   @override
   String get clearCache => '清除缓存';
+
+  @override
+  String get confirmClearCache => '确定删除缓存文件吗?';
 }

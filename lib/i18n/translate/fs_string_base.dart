@@ -120,4 +120,6 @@ class FsStringBase {
   String noComment;
 
   String get clearCache => null;
+
+  String get confirmClearCache => null;
 }

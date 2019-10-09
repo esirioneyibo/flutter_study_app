@@ -182,4 +182,7 @@ class FsStringJP implements FsStringBase {
 
   @override
   String get clearCache => 'キャッシュ消去';
+
+  @override
+  String get confirmClearCache => 'キャッシュを削除してもよろしいですか？';
 }

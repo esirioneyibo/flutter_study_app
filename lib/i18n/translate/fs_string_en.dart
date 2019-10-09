@@ -182,4 +182,7 @@ class FsStringEN implements FsStringBase {
 
   @override
   String get clearCache => 'clear cache';
+
+  @override
+  String get confirmClearCache => 'Are you sure to delete the cache?';
 }

@@ -21,8 +21,8 @@ class SettingScreen extends StatelessWidget {
                 _buildInfo(context, model),
                 Expanded(
                     child: ListView(
-                      children: _buildDrawItems(context, model),
-                    ))
+                  children: _buildDrawItems(context, model),
+                ))
               ],
             ));
       },
@@ -30,14 +30,16 @@ class SettingScreen extends StatelessWidget {
   }
 
   /// 退出登录
-  void exitLogin(BuildContext context, AppModel model) {
-    // 连退2级，从dialog退到drawer再退到主页
-    Navigator.of(context).pop();
+  void _exitLogin(BuildContext context, AppModel model) {
     Navigator.of(context).pop();
     Scaffold.of(context).showSnackBar(SnackBar(
         duration: Duration(milliseconds: 300),
         content: Text(FsLocalizations.getLocale(context).exitLogin)));
     model.afterLogout();
+  }
+
+  void _clearCacheCallback() {
+    LocalStorage.removeAll();
   }
 
   /// 菜单项目列表
@@ -54,8 +56,10 @@ class SettingScreen extends StatelessWidget {
         leading: Icon(Icons.settings),
         title: Text(FsLocalizations.getLocale(context).clearCache),
         onTap: () {
-          LocalStorage.removeAll();
-          DialogUtil.showOKDialog(context, '缓存清理成功');
+          DialogUtil.showConfirmDialog(
+              context,
+              FsLocalizations.getLocale(context).confirmClearCache,
+              _clearCacheCallback);
         },
       ),
       ListTile(
@@ -80,9 +84,9 @@ class SettingScreen extends StatelessWidget {
           onTap: () {
             DialogUtil.showConfirmDialog(
                 context, FsLocalizations.getLocale(context).confirmExitLogin,
-                    () {
-                  exitLogin(context, model);
-                });
+                () {
+              _exitLogin(context, model);
+            });
           },
         ),
       )
@@ -110,17 +114,14 @@ class SettingScreen extends StatelessWidget {
       currentAccountPicture: CircleAvatar(
         backgroundImage: currentUser == null
             ? AssetImage(
-          Constant.defaultAvatar,
-        )
+                Constant.defaultAvatar,
+              )
             : NetworkImage(
-          currentUser.avatarUrl,
-        ),
+                currentUser.avatarUrl,
+              ),
       ),
       decoration: BoxDecoration(
           image: DecorationImage(
-//              colorFilter: ColorFilter.mode(
-//                  Colors.blue[400].withAlpha(60),
-//                  BlendMode.hardLight),
               fit: BoxFit.cover,
               image: AssetImage(Constant.accountBg))),
     );

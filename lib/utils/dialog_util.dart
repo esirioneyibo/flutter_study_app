@@ -43,7 +43,7 @@ class DialogUtil {
           content: Text(content),
           actions: <Widget>[
             RaisedButton(
-              color: style.buttonColor,
+              color: Theme.of(context).primaryColor,
               child: Text(
                 FsLocalizations.getLocale(context).close,
                 style: TextStyle(
