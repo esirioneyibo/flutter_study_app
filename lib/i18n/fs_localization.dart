@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_en.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_jp.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
@@ -10,13 +9,13 @@ class FsLocalizations {
 
   FsLocalizations(this.locale);
 
-  static Map<String, FsStringBase> _localizationMap = {
+  static Map<String, FsStringZH> _localizationMap = {
     'en': FsStringEN(),
     'zh': FsStringZH(),
     'ja': FsStringJP()
   };
 
-  FsStringBase get currentLocale {
+  FsStringZH get currentLocale {
     if (_localizationMap.containsKey(locale.languageCode)) {
       return _localizationMap[locale.languageCode];
     }
@@ -28,7 +27,7 @@ class FsLocalizations {
   }
 
   /// 获取当前语言
-  static FsStringBase getLocale(BuildContext context) {
+  static FsStringZH getLocale(BuildContext context) {
     return _of(context).currentLocale;
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter_study_app/i18n/translate/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
 
-class FsStringJP implements FsStringBase {
+class FsStringJP implements FsStringZH {
   @override
   String aboutSoftware = 'ソフトウェアについて';
 
@@ -185,4 +185,7 @@ class FsStringJP implements FsStringBase {
 
   @override
   String get confirmClearCache => 'キャッシュを削除してもよろしいですか？';
+
+  @override
+  String get clearCacheSuccess => 'キャッシュのクリーンアップが成功しました';
 }

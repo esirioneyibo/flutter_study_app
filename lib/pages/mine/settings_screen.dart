@@ -38,8 +38,11 @@ class SettingScreen extends StatelessWidget {
     model.afterLogout();
   }
 
-  void _clearCacheCallback() {
+  void _clearCacheCallback(BuildContext context) {
     LocalStorage.removeAll();
+    Navigator.of(context).pop();
+    DialogUtil.showOKDialog(context,FsLocalizations.getLocale(context)
+        .clearCacheSuccess);
   }
 
   /// 菜单项目列表
@@ -54,12 +57,16 @@ class SettingScreen extends StatelessWidget {
       ),
       ListTile(
         leading: Icon(Icons.settings),
-        title: Text(FsLocalizations.getLocale(context).clearCache),
+        title: Text(FsLocalizations
+            .getLocale(context)
+            .clearCache),
         onTap: () {
           DialogUtil.showConfirmDialog(
               context,
-              FsLocalizations.getLocale(context).confirmClearCache,
-              _clearCacheCallback);
+              FsLocalizations
+                  .getLocale(context)
+                  .confirmClearCache,
+                  () => _clearCacheCallback(context));
         },
       ),
       ListTile(
