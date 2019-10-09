@@ -77,36 +77,39 @@ class ChatScreenState extends State<ChatScreen> {
               return InkWell(
                 onTap: () => NavigatorUtil.pushWithAnim(
                     context, ChatDetailScreen(posts[index]), AnimType.Slider),
-                child: Card(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: style.cardMarginBottom),
-                    padding: EdgeInsets.all(style.cardPaddingAll),
-                    color: style.cardColor,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(flex: 2, child: _buildLeftUserInfo(post)),
-                            Expanded(
-                                flex: 1, child: _buildRightCommentInfo(post)),
-                          ],
-                        ),
-                        // 帖子内容
-                        Container(
-                            padding: EdgeInsets.only(
-                                top: style.chatContentPaddingTop),
-                            alignment: Alignment.centerLeft,
-                            child: MarkdownBody(
-                              data: posts[index].body,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
+                child: _buildCard(post),
               );
             }),
       );
     }
+  }
+
+  /// card
+  Widget _buildCard(Issue post) {
+    return Card(
+      child: Container(
+        margin: EdgeInsets.only(bottom: style.cardMarginBottom),
+        padding: EdgeInsets.all(style.cardPaddingAll),
+        color: style.cardColor,
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(flex: 2, child: _buildLeftUserInfo(post)),
+                Expanded(flex: 1, child: _buildRightCommentInfo(post)),
+              ],
+            ),
+            // 帖子内容
+            Container(
+                padding: EdgeInsets.only(top: style.chatContentPaddingTop),
+                alignment: Alignment.centerLeft,
+                child: MarkdownBody(
+                  data: post.body,
+                ))
+          ],
+        ),
+      ),
+    );
   }
 
   /// 左侧用户信息

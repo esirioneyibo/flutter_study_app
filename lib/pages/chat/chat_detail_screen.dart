@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/no_data.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
+import 'package:flutter_study_app/vo/bottom_item_vo.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:github/server.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -28,10 +30,8 @@ class ChatDetailState extends State<ChatDetailScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController _controller;
   ScrollController _scrollController = ScrollController();
-  FocusNode _focusNode;
   ChatDetailStyle style = ConfigFactory.chatDetailStyle();
   Issue post;
-  bool _scrollButtonVisible = true;
   bool isTop = true;
   List<IssueComment> comments;
 
@@ -42,21 +42,12 @@ class ChatDetailState extends State<ChatDetailScreen> {
     super.initState();
     getCommentListData();
     _controller = TextEditingController();
-    _focusNode = FocusNode();
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        focusCallback();
-      } else {
-        blurCallback();
-      }
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
     _scrollController.dispose();
-    _focusNode.dispose();
     _controller.dispose();
   }
 
@@ -65,25 +56,23 @@ class ChatDetailState extends State<ChatDetailScreen> {
     return ScopedModelDescendant<AppModel>(
       builder: (context, child, model) {
         return Scaffold(
-          appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
-          floatingActionButton: Container(
-            height: style.scrollButtonSize,
-            width: style.scrollButtonSize,
-            child: Visibility(
-              visible: _scrollButtonVisible,
-              child: _buildFloatButton(),
-            ),
-          ),
-          body: GestureDetector(
-            onHorizontalDragEnd: (DragEndDetails details) {
-              NavigatorUtil.back(context, details);
-            },
-            child: ListView(
-                shrinkWrap: true,
-                controller: _scrollController,
-                children: _buildCommentList(model)),
-          ),
-        );
+            appBar: ReturnBar(FsLocalizations.getLocale(context).chatContent),
+            bottomNavigationBar: _buildBottomBar(),
+            body: GestureDetector(
+                onHorizontalDragEnd: (DragEndDetails details) {
+                  NavigatorUtil.back(context, details);
+                },
+                child: ListView(
+                  shrinkWrap: true,
+                  controller: _scrollController,
+                  children: [
+                    _buildPostContent(),
+                    // 评论列表
+                    _buildComments(),
+                    // 评论框
+                    _buildCommentInput(model)
+                  ],
+                )));
       },
     );
   }
@@ -100,18 +89,25 @@ class ChatDetailState extends State<ChatDetailScreen> {
     });
   }
 
-  /// focus时隐藏浮动按钮
-  focusCallback() {
-    setState(() {
-      _scrollButtonVisible = false;
-    });
-  }
+  Widget _buildBottomBar() {
+    var items = [
+      TabItem(index: 1, icon: Icons.favorite, title: ''),
+      TabItem(index: 2, icon: Icons.share, title: ''),
+      TabItem(index: 3, icon: Icons.save, title: ''),
+    ];
 
-  /// 失去焦点时显示浮动按钮
-  blurCallback() {
-    setState(() {
-      _scrollButtonVisible = true;
-    });
+    return BottomNavigationBar(
+      backgroundColor: Colors.white,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.grey,
+      unselectedItemColor: Colors.grey,
+      elevation: 0,
+      items: items.map((item) {
+        return BottomNavigationBarItem(
+            icon: Icon(item.icon), title: Text(item.title));
+      }).toList(),
+      onTap: null,
+    );
   }
 
   /// 验证和保存
@@ -134,39 +130,33 @@ class ChatDetailState extends State<ChatDetailScreen> {
     HttpService.addAnComment(post.number, data);
   }
 
-  /// 评论列表
-  List<Widget> _buildCommentList(AppModel model) {
-    return <Widget>[
-      Card(
-          child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              // 左侧信息
-              _buildAuthorInfo(),
-              _buildTag(), // 右侧小标签
-            ],
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(style.titlePaddingAll),
-            child: MarkdownBody(data: post.title),
-          ),
-          // 标题
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(style.contentPaddingAll),
-            child: MarkdownBody(data: post.body),
-          ),
-          // 内容
-        ],
-      )),
-      // 评论列表
-      _buildComments(),
-      // 评论框
-      _buildCommentInput(model)
-    ];
+  /// build post content
+  Widget _buildPostContent() {
+    return Card(
+        child: Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // 左侧信息
+            _buildAuthorInfo(),
+            _buildTag(), // 右侧小标签
+          ],
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.all(style.titlePaddingAll),
+          child: MarkdownBody(data: post.title),
+        ),
+        // 标题
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.all(style.contentPaddingAll),
+          child: MarkdownBody(data: post.body),
+        ),
+        // 内容
+      ],
+    ));
   }
 
   /// 作者信息
@@ -239,32 +229,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
           children: comments
               .asMap()
               .map((index, comment) {
-                return MapEntry(
-                    index,
-                    Card(
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            key: Key(comment.id.toString()),
-                            leading: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(comment.user.avatarUrl),
-                            ),
-                            trailing: Text('${index + 1}楼'),
-                            subtitle: Text(comment.body),
-                            title: Text(comment.user.login),
-                          ),
-                          Container(
-                            child: ActionChip(
-                                label: Icon(FontAwesomeIcons.heart),
-                                onPressed: () => {}),
-                            alignment: Alignment.centerRight,
-                            padding: EdgeInsets.only(
-                                right: style.likeButtonPaddingRight),
-                          )
-                        ],
-                      ),
-                    ));
+                return MapEntry(index, _buildCommentCard(index, comment));
               })
               .values
               .toList(), // 评论列表
@@ -273,10 +238,35 @@ class ChatDetailState extends State<ChatDetailScreen> {
     }
   }
 
+  // comment card
+  Widget _buildCommentCard(index, IssueComment comment) {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            key: Key(comment.id.toString()),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(comment.user.avatarUrl),
+            ),
+            trailing: Text('${index + 1}楼'),
+            subtitle: Text(comment.body),
+            title: Text(comment.user.login),
+          ),
+          Container(
+            child: ActionChip(
+                label: Icon(FontAwesomeIcons.heart), onPressed: () => {}),
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
+          )
+        ],
+      ),
+    );
+  }
+
   /// 构建评论框
   Widget _buildCommentInput(AppModel model) {
     return Card(
-      margin: EdgeInsets.only(bottom: 100),
+      elevation: 0,
       child: Form(
           key: formKey,
           child: Column(
@@ -300,16 +290,15 @@ class ChatDetailState extends State<ChatDetailScreen> {
                         borderSide: BorderSide(color: Colors.blue),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
-                  validator: CommentFieldValidator.validate,
+                  validator: (value) =>
+                      CommentFieldValidator.validate(context, value),
                   onSaved: (String data) {
                     addAnComment(context, model, data);
                   },
                   controller: _controller,
-                  focusNode: _focusNode,
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(5),
                 margin: EdgeInsets.only(right: 10),
                 alignment: Alignment.centerRight,
                 child: RaisedButton(
@@ -326,46 +315,12 @@ class ChatDetailState extends State<ChatDetailScreen> {
           )),
     );
   }
-
-  /// scroll  up or scroll down
-  /// 这个地方目前有bug,必须点一次往下,按钮才会变成往上,解决办法是加一个监听器判断当前滑动的位置
-  Widget _buildFloatButton() {
-    if (isTop) {
-      return FloatingActionButton(
-          tooltip: '到达底部',
-          child: Icon(Icons.arrow_downward),
-          onPressed: () {
-            _scrollController.animateTo(
-              _scrollController.position.maxScrollExtent,
-              curve: Curves.easeOut,
-              duration: Duration(milliseconds: style.scrollSpeed),
-            );
-            setState(() {
-              isTop = !isTop;
-            });
-          });
-    } else {
-      return FloatingActionButton(
-          tooltip: '返回顶部',
-          child: Icon(Icons.arrow_upward),
-          onPressed: () {
-            _scrollController.animateTo(
-              _scrollController.position.minScrollExtent,
-              curve: Curves.easeOut,
-              duration: Duration(milliseconds: style.scrollSpeed),
-            );
-            setState(() {
-              isTop = !isTop;
-            });
-          });
-    }
-  }
 }
 
 class CommentFieldValidator {
-  static String validate(String value) {
+  static String validate(BuildContext context, String value) {
     if (value.isEmpty) {
-      return "请输入评论内容";
+      return FsLocalizations.getLocale(context).commentTips;
     }
     return null;
   }

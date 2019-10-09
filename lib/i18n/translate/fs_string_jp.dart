@@ -188,4 +188,10 @@ class FsStringJP implements FsStringZH {
 
   @override
   String get clearCacheSuccess => 'キャッシュのクリーンアップが成功しました';
+
+  @override
+  String get pinned => 'トッピング';
+
+  @override
+  String get commentTips => '欲しいものを入力してください';
 }

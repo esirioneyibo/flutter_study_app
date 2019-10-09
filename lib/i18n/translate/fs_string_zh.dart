@@ -124,4 +124,8 @@ class FsStringZH {
   String get confirmClearCache => '确定删除缓存文件吗?';
 
   String get clearCacheSuccess => '缓存清理成功';
+
+  String get pinned => '置顶';
+
+  String get commentTips => '请输入评论内容';
 }

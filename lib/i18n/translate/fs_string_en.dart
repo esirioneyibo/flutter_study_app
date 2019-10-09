@@ -188,4 +188,10 @@ class FsStringEN implements FsStringZH {
 
   @override
   String get clearCacheSuccess => 'Cache cleanup succeeded';
+
+  @override
+  String get pinned => 'pinned';
+
+  @override
+  String get commentTips => 'input something you want';
 }

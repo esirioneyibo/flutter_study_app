@@ -31,7 +31,7 @@ class SettingScreen extends StatelessWidget {
 
   /// 退出登录
   void _exitLogin(BuildContext context, AppModel model) {
-    Navigator.of(context).pop();
+    NavigatorUtil.back(context);
     Scaffold.of(context).showSnackBar(SnackBar(
         duration: Duration(milliseconds: 300),
         content: Text(FsLocalizations.getLocale(context).exitLogin)));
@@ -41,8 +41,8 @@ class SettingScreen extends StatelessWidget {
   void _clearCacheCallback(BuildContext context) {
     LocalStorage.removeAll();
     Navigator.of(context).pop();
-    DialogUtil.showOKDialog(context,FsLocalizations.getLocale(context)
-        .clearCacheSuccess);
+    DialogUtil.showOKDialog(
+        context, FsLocalizations.getLocale(context).clearCacheSuccess);
   }
 
   /// 菜单项目列表
@@ -57,16 +57,12 @@ class SettingScreen extends StatelessWidget {
       ),
       ListTile(
         leading: Icon(Icons.settings),
-        title: Text(FsLocalizations
-            .getLocale(context)
-            .clearCache),
+        title: Text(FsLocalizations.getLocale(context).clearCache),
         onTap: () {
           DialogUtil.showConfirmDialog(
               context,
-              FsLocalizations
-                  .getLocale(context)
-                  .confirmClearCache,
-                  () => _clearCacheCallback(context));
+              FsLocalizations.getLocale(context).confirmClearCache,
+              () => _clearCacheCallback(context));
         },
       ),
       ListTile(
@@ -129,8 +125,7 @@ class SettingScreen extends StatelessWidget {
       ),
       decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(Constant.accountBg))),
+              fit: BoxFit.cover, image: AssetImage(Constant.accountBg))),
     );
   }
 }
