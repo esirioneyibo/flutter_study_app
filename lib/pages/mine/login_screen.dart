@@ -259,11 +259,9 @@ class _LoginScreenState extends State<LoginScreen> {
 class EmailFieldValidator {
   static String validate(String value) {
     if (value.isEmpty) {
-      return "'邮箱不能为空'";
-    } else if (!CommonUtil.isEmail(value)) {
-      return "您的邮箱格式不正确";
+      return "'用户名不能为空'";
     } else if (value.contains(" ") || value.contains("　")) {
-      return "邮箱中请不要包含半角或半角空格";
+      return "用户名中请不要包含半角或半角空格";
     }
     return null;
   }

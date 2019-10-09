@@ -102,8 +102,8 @@ class SettingScreen extends StatelessWidget {
     return UserAccountsDrawerHeader(
       accountName: Text(currentUser == null
           ? FsLocalizations.getLocale(context).login
-          : currentUser.login),
-      accountEmail: Text(currentUser == null ? '' : currentUser.email),
+          : currentUser.login ?? ''),
+      accountEmail: Text(currentUser == null ? '' : currentUser.email ?? ''),
       onDetailsPressed: () {
         if (currentUser == null) {
           Navigator.pushNamed(context, RouterConfig.account);

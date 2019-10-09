@@ -30,7 +30,7 @@ class _FsAppState extends State<FsApp> {
   /// 改变选择的tab的文字颜色
   Color _itemColor(targetIndex) {
     return _currentIndex == targetIndex
-        ? style.navigatorSelectedColor
+        ? Theme.of(context).primaryColor
         : style.navigatorUnSelectedColor;
   }
 
@@ -70,7 +70,7 @@ class _FsAppState extends State<FsApp> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: style.navigatorUnSelectedColor,
-      selectedItemColor: style.navigatorSelectedColor,
+      selectedItemColor: Theme.of(context).primaryColor,
       items: items.map((item) {
         return BottomNavigationBarItem(
             icon: Icon(item.icon),
@@ -106,8 +106,6 @@ class _FsAppState extends State<FsApp> {
 }
 
 class AppStyle {
-  // 底部导航选中的颜色
-  Color navigatorSelectedColor = Colors.blue;
 
   // 底部导航未选中的颜色
   Color navigatorUnSelectedColor = Colors.black54;

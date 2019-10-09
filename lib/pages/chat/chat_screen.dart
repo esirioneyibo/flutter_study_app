@@ -36,7 +36,7 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   getPosts() {
-    HttpService.getChatList().then((data) {
+    HttpService.getChatList(context).then((data) {
       setState(() {
         if (data == null) {
           posts = [];
@@ -53,7 +53,10 @@ class ChatScreenState extends State<ChatScreen> {
       width: style.newChatButtonSize,
       child: FloatingActionButton(
           tooltip: FsLocalizations.getLocale(context).newChat,
-          child: Icon(style.newChatButtonIcon),
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Icon(
+            style.newChatButtonIcon,
+          ),
           onPressed: () {
             NavigatorUtil.pushWithAnim(
                 context, NewChatScreen(), AnimType.Slider);

@@ -56,10 +56,12 @@ class AppModel extends Model {
 
   afterLogin(User user) {
     this._user = user;
+    notifyListeners();
   }
 
   afterLogout() {
     this._user = null;
+    notifyListeners();
   }
 
   User get user {

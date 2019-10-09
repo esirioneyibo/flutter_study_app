@@ -79,7 +79,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   /// 获取评论列表
   getCommentListData() {
-    HttpService.getChatComments(post.number).then((data) {
+    HttpService.getChatComments(context, post.number).then((data) {
       setState(() {
         if (data == null) {
           comments = [];
@@ -126,8 +126,14 @@ class ChatDetailState extends State<ChatDetailScreen> {
       NavigatorUtil.goLogin(context);
       return;
     }
-    _controller.clear();
-    HttpService.addAnComment(post.number, data);
+
+    HttpService.addAnComment(context, post.number, data)
+        .then((IssueComment comment) {
+      if (comment != null) {
+        _controller.clear();
+        getCommentListData();
+      }
+    });
   }
 
   /// build post content
