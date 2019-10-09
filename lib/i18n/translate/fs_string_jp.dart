@@ -194,4 +194,10 @@ class FsStringJP implements FsStringZH {
 
   @override
   String get commentTips => '欲しいものを入力してください';
+
+  @override
+  String get issueContent => 'タイトル';
+
+  @override
+  String get issueTitle => '内容';
 }

@@ -8,10 +8,10 @@ import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/http_service.dart';
+import 'package:flutter_study_app/service/validators.dart';
 import 'package:flutter_study_app/utils/index.dart';
 import 'package:flutter_study_app/utils/time_util.dart';
 import 'package:flutter_study_app/vo/bottom_item_vo.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:github/server.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -255,15 +255,41 @@ class ChatDetailState extends State<ChatDetailScreen> {
               backgroundImage: NetworkImage(comment.user.avatarUrl),
             ),
             trailing: Text('${index + 1}楼'),
-            subtitle: Text(comment.body),
             title: Text(comment.user.login),
+            subtitle: Text(comment.body),
           ),
-          Container(
-            child: ActionChip(
-                label: Icon(FontAwesomeIcons.heart), onPressed: () => {}),
-            alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
-          )
+//          Row(
+//            mainAxisAlignment: MainAxisAlignment.end,
+//            children: <Widget>[
+//              Container(
+//                margin: EdgeInsets.fromLTRB(0, 0, 5, 5),
+//                child: InkWell(
+//                    child: Icon(
+//                      Icons.thumb_up,
+//                      color: Theme.of(context).primaryColor,
+//                      size: 20,
+//                    ),
+//                    onTap: () => {
+//                          // todo 点赞 后期再实现
+//                        }),
+//                alignment: Alignment.centerRight,
+//                padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
+//              ),
+//              Visibility(
+//                visible: true,
+//                child: Container(
+//                  alignment: Alignment.topCenter,
+//                  padding: EdgeInsets.fromLTRB(0, 0, 5, 5),
+//                  child: Text(
+//                    '1',
+//                    style: TextStyle(
+//                      fontSize: 20,
+//                    ),
+//                  ),
+//                ),
+//              )
+//            ],
+//          )
         ],
       ),
     );
@@ -297,7 +323,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                   validator: (value) =>
-                      CommentFieldValidator.validate(context, value),
+                      InputFieldValidator.validate(context, value),
                   onSaved: (String data) {
                     addAnComment(context, model, data);
                   },
@@ -320,15 +346,6 @@ class ChatDetailState extends State<ChatDetailScreen> {
             ],
           )),
     );
-  }
-}
-
-class CommentFieldValidator {
-  static String validate(BuildContext context, String value) {
-    if (value.isEmpty) {
-      return FsLocalizations.getLocale(context).commentTips;
-    }
-    return null;
   }
 }
 
@@ -382,7 +399,7 @@ class ChatDetailStyle {
   double contentPaddingAll = 10;
 
   // 评论点赞按钮距右的距离
-  double likeButtonPaddingRight = 10;
+  double likeButtonPaddingRight = 5;
 
   Color commentButtonColor = Colors.green;
 

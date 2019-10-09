@@ -23,51 +23,53 @@ dependencies:
     sdk: flutter
 
   # ios风格的图标
-  cupertino_icons:
+  cupertino_icons: any
   # 视频播放器
-  video_player:
+  video_player: any
   # 设备信息
-  device_info:
+  device_info: any
   # 轻量数据库
-  sqflite:
+  sqflite: any
   # 网络图片缓存
-  cached_network_image:
+  cached_network_image: any
   # http请求库,代替http
-  dio:
+  dio: any
   # json注解库
-  json_annotation:
+  json_annotation: any
   # 缓存
-  shared_preferences:
+  shared_preferences: any
   # 二维码扫描
-  qr_flutter:
+  qr_flutter: any
   # 大量的icon图标
-  font_awesome_flutter:
+  font_awesome_flutter: any
   # state管理工具
-  scoped_model:
+  scoped_model: any
   # 时间格式化
-  intl:
+  intl: any
   # 生成唯一不重复id
-  uuid:
+  uuid: any
   # 异步处理
-  rxdart:
+  rxdart: any
   # 手机网络状态监控 是wifi还是流量 wifi,mobile
-  connectivity:
+  connectivity: any
   #加密库
-  encrypt:
+  encrypt: any
   # 相机和相册
-  image_picker:
+  image_picker: any
   # 查找文件的位置
-  path_provider:
+  path_provider: any
   # google地图
-  google_maps_flutter:
+  google_maps_flutter: any
   # app之间跳转
-  url_launcher:
+  url_launcher: any
   # 内置web view
-  webview_flutter:
+  webview_flutter: any
   # markdown支持
-  flutter_markdown:
+  flutter_markdown: any
   # github库
-  flutter_github_api:
+  flutter_github_api: any
+  # markdown editor
+  zefyr:
 
 dev_dependencies:
   flutter_test:

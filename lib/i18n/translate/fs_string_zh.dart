@@ -128,4 +128,8 @@ class FsStringZH {
   String get pinned => '置顶';
 
   String get commentTips => '请输入评论内容';
+
+  String get issueContent => '内容';
+
+  String get issueTitle => '标题';
 }

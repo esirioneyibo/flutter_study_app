@@ -35,6 +35,7 @@ class ChatScreenState extends State<ChatScreen> {
         body: _buildBody());
   }
 
+  /// get posts
   getPosts() {
     HttpService.getChatList(context).then((data) {
       setState(() {

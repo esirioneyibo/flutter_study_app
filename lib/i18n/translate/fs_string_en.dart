@@ -194,4 +194,10 @@ class FsStringEN implements FsStringZH {
 
   @override
   String get commentTips => 'input something you want';
+
+  @override
+  String get issueContent => 'title';
+
+  @override
+  String get issueTitle => 'content';
 }
