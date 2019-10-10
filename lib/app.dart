@@ -6,7 +6,7 @@ import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/pages/chat/chat_screen.dart';
 import 'package:flutter_study_app/pages/home/home_screen.dart';
 import 'package:flutter_study_app/pages/mine/settings_screen.dart';
-import 'package:flutter_study_app/pages/practise/practise_screen.dart';
+import 'package:flutter_study_app/pages/tools/tools_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
@@ -52,7 +52,7 @@ class _FsAppState extends State<FsApp> {
     super.initState();
     tabs
       ..add(HomeScreen())
-      ..add(PractiseScreen())
+      ..add(ToolsScreen())
       ..add(ChatScreen())
       ..add(SettingScreen());
 
@@ -106,7 +106,6 @@ class _FsAppState extends State<FsApp> {
 }
 
 class AppStyle {
-
   // 底部导航未选中的颜色
   Color navigatorUnSelectedColor = Colors.black54;
 }

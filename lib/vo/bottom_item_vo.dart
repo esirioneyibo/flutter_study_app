@@ -25,8 +25,8 @@ getBottomItems(BuildContext context) {
     ),
     TabItem(
       index: 1,
-      icon: Icons.ac_unit,
-      title: FsLocalizations.getLocale(context).study,
+      icon: FontAwesomeIcons.tools,
+      title: FsLocalizations.getLocale(context).tool,
     ),
     TabItem(
       index: 2,

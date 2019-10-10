@@ -104,7 +104,6 @@ class DialogUtil {
     );
   }
 
-
   static void showOKDialog(BuildContext context, String title) {
     DialogStyle style = ConfigFactory.dialogStyle();
     showDialog(
@@ -131,12 +130,6 @@ class DialogUtil {
     );
   }
 }
-
-
-
-
-
-
 
 ///Widget
 class _Progress extends StatelessWidget {

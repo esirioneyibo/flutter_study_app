@@ -90,6 +90,7 @@ class DeviceInfoScreen extends StatelessWidget {
       info['固件版本'] = androidInfo.version.toString();
     } else {
       print('神特么设备无法识别');
+      info['unkown'] = '神特么设备无法识别';
     }
     return info;
   }
