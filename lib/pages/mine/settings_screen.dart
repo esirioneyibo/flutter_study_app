@@ -49,7 +49,7 @@ class SettingScreen extends StatelessWidget {
   List<Widget> _buildDrawItems(BuildContext context, AppModel model) {
     return ListTile.divideTiles(context: context, tiles: <Widget>[
       ListTile(
-        leading: Icon(Icons.color_lens),
+        leading: Icon(Icons.language),
         title: Text(FsLocalizations.getLocale(context).changeLanguage),
         onTap: () {
           Navigator.pushNamed(context, RouterConfig.language);

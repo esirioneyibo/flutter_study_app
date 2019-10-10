@@ -69,10 +69,7 @@ List<Choice> getLifeTools() {
         screen: CombinePayScreen()),
     Choice(
         title: '号码归属地', icon: Icons.g_translate, screen: PhoneBelongScreen()),
-    Choice(
-        title: '帮你搜索',
-        icon: Icons.sentiment_very_satisfied,
-        screen: Day1Screen()),
+    Choice(title: '喝水提醒', icon: FontAwesomeIcons.glassCheers, screen: Day1Screen()),
     Choice(
         title: '快递查询',
         icon: Icons.sentiment_very_satisfied,
