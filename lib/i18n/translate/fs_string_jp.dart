@@ -200,4 +200,7 @@ class FsStringJP implements FsStringZH {
 
   @override
   String get issueTitle => '内容';
+
+  @override
+  String get contentTips => '内容を入力してください';
 }

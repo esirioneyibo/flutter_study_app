@@ -132,4 +132,6 @@ class FsStringZH {
   String get issueContent => '内容';
 
   String get issueTitle => '标题';
+
+  String get contentTips => '请输入內容';
 }

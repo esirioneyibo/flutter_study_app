@@ -24,7 +24,7 @@ class NavigatorUtil {
 
     // 防止误触
     var value = (details.velocity.pixelsPerSecond.dx.toStringAsFixed(1));
-    if (double.parse(value) < 500) {
+    if (double.parse(value) < 1000) {
       return;
     }
     Navigator.of(context).pop();

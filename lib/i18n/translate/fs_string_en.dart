@@ -200,4 +200,7 @@ class FsStringEN implements FsStringZH {
 
   @override
   String get issueTitle => 'content';
+
+  @override
+  String get contentTips => 'please input content';
 }

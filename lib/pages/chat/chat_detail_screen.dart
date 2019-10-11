@@ -255,8 +255,15 @@ class ChatDetailState extends State<ChatDetailScreen> {
               backgroundImage: NetworkImage(comment.user.avatarUrl),
             ),
             trailing: Text('${index + 1}楼'),
-            title: Text(comment.user.login),
-            subtitle: Text(comment.body),
+            title: Container(
+              margin: EdgeInsets.all(5),
+              child: Text(comment.user.login),
+            ),
+            subtitle: Container(
+                margin: EdgeInsets.all(10),
+                child: MarkdownBody(
+                  data: comment.body,
+                )),
           ),
 //          Row(
 //            mainAxisAlignment: MainAxisAlignment.end,

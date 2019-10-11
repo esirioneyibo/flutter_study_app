@@ -47,7 +47,9 @@ class HttpService {
   static Future<Issue> addAnIssue(BuildContext context, String title,
       {String body}) async {
     GitHub github = await getGithub(context);
-    GithubIssueRequest issueRequest = GithubIssueRequest(title, body: body);
+    IssueRequest issueRequest = IssueRequest();
+    issueRequest.title = title;
+    issueRequest.body = body;
     return github.issues.create(_slug, issueRequest);
   }
 

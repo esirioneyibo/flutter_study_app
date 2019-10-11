@@ -5,6 +5,7 @@ import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/no_data.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
 import 'package:flutter_study_app/service/http_service.dart';
@@ -18,13 +19,13 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
-  List<Issue> posts;
   ChatStyle style = ConfigFactory.chatStyle();
 
   @override
   void initState() {
     super.initState();
-    getPosts();
+    AppModel model = CommonUtil.getModel(context);
+    model.updatePosts(context);
   }
 
   @override
@@ -32,17 +33,17 @@ class ChatScreenState extends State<ChatScreen> {
     return Scaffold(
         appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
         floatingActionButton: _buildNewChatButton(),
-        body: _buildBody());
+        body: _buildBody(context));
   }
 
   /// get posts
-  getPosts() {
+  getPosts(AppModel model) {
     HttpService.getChatList(context).then((data) {
       setState(() {
         if (data == null) {
-          posts = [];
+          model.updatePosts(context);
         }
-        posts = data;
+        model.updatePosts(context);
       });
     });
   }
@@ -66,24 +67,28 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   /// body
-  Widget _buildBody() {
-    if (posts == null) {
+  Widget _buildBody(BuildContext context) {
+    AppModel model = CommonUtil.getModel(context);
+    if (model.posts == null) {
       return Loading();
-    } else if (posts.isEmpty) {
+    } else if (model.posts.isEmpty) {
       return NoData();
     } else {
       return Container(
         color: style.background,
-        child: ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              final post = posts[index];
-              return InkWell(
-                onTap: () => NavigatorUtil.pushWithAnim(
-                    context, ChatDetailScreen(posts[index]), AnimType.Slider),
-                child: _buildCard(post),
-              );
-            }),
+        child: RefreshIndicator(
+          onRefresh: () => model.updatePosts(context),
+          child: ListView.builder(
+              itemCount: model.posts.length,
+              itemBuilder: (context, index) {
+                final post = model.posts[index];
+                return InkWell(
+                  onTap: () => NavigatorUtil.pushWithAnim(context,
+                      ChatDetailScreen(model.posts[index]), AnimType.Slider),
+                  child: _buildCard(post),
+                );
+              }),
+        ),
       );
     }
   }
