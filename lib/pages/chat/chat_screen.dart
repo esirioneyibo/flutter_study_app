@@ -8,48 +8,29 @@ import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class ChatScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return ChatScreenState();
-  }
-}
-
-class ChatScreenState extends State<ChatScreen> {
-  ChatStyle style = ConfigFactory.chatStyle();
-
-  @override
-  void initState() {
-    super.initState();
-    AppModel model = CommonUtil.getModel(context);
-    model.updatePosts(context);
-  }
+class ChatScreen extends StatelessWidget {
+  final ChatStyle style = ConfigFactory.chatStyle();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
-        floatingActionButton: _buildNewChatButton(),
-        body: _buildBody(context));
-  }
-
-  /// get posts
-  getPosts(AppModel model) {
-    HttpService.getChatList(context).then((data) {
-      setState(() {
-        if (data == null) {
-          model.updatePosts(context);
-        }
-        model.updatePosts(context);
-      });
-    });
+    AppModel model = CommonUtil.getModel(context);
+    model.updatePosts(context);
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+            appBar:
+                AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
+            floatingActionButton: _buildNewChatButton(context),
+            body: _buildBody(context, model));
+      },
+    );
   }
 
   /// new chat button
-  Widget _buildNewChatButton() {
+  Widget _buildNewChatButton(BuildContext context) {
     return Container(
       height: style.newChatButtonSize,
       width: style.newChatButtonSize,
@@ -67,17 +48,17 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   /// body
-  Widget _buildBody(BuildContext context) {
-    AppModel model = CommonUtil.getModel(context);
+  Widget _buildBody(BuildContext context, AppModel model) {
+    model.updatePosts(context);
     if (model.posts == null) {
       return Loading();
     } else if (model.posts.isEmpty) {
       return NoData();
     } else {
-      return Container(
-        color: style.background,
-        child: RefreshIndicator(
-          onRefresh: () => model.updatePosts(context),
+      return RefreshIndicator(
+        onRefresh: () => model.updatePosts(context),
+        child: Container(
+          color: style.background,
           child: ListView.builder(
               itemCount: model.posts.length,
               itemBuilder: (context, index) {

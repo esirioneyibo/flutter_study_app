@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/app.dart';
 import 'package:flutter_study_app/config/app_config.dart';
+import 'package:flutter_study_app/model/app_model.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 ///
 /// 闪屏动画
@@ -31,7 +33,6 @@ class _SplashState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-
     // 初始化动画
     _animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: Constant.splashTime));
@@ -47,11 +48,21 @@ class _SplashState extends State<SplashScreen>
     _animation.addStatusListener(listener);
     // 播放动画
     _animationController.forward();
+
+    // on application start load data
+    _onApplicationStart();
   }
 
   @override
   void dispose() {
     super.dispose();
     _animationController.dispose();
+  }
+
+  /// on application start
+  _onApplicationStart() {
+    AppModel model = CommonUtil.getModel(context);
+    model.updatePosts(context);
+    model.updateVideos(context);
   }
 }

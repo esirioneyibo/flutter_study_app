@@ -45,7 +45,7 @@ class VideoVo {
   }
 }
 
-final List<VideoVo> videos = [
+final List<VideoVo> mockVideos = [
   VideoVo(
       cover: 'https://image.xiaomo.info/cover/bg-1'
           '.jpg',

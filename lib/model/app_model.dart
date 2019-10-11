@@ -4,6 +4,7 @@ import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/common_util.dart';
+import 'package:flutter_study_app/vo/video_vo.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class AppModel extends Model {
@@ -18,6 +19,9 @@ class AppModel extends Model {
 
   // 帖子列表
   List<Issue> posts;
+
+  // videos
+  List<VideoVo> videos;
 
   AppModel() {
     // theme
@@ -52,6 +56,15 @@ class AppModel extends Model {
       this.posts = issues;
     }
     notifyListeners();
+    return true;
+  }
+
+  /// update videos
+  updateVideos(BuildContext context) async {
+    await Future.delayed(Duration(seconds: 1), () {
+      this.videos = mockVideos;
+      notifyListeners();
+    });
     return true;
   }
 
