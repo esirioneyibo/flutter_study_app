@@ -103,12 +103,12 @@ class ChatScreenState extends State<ChatScreen> {
                 Expanded(flex: 1, child: _buildRightCommentInfo(post)),
               ],
             ),
-            // 帖子内容
+            // 帖子標題
             Container(
                 padding: EdgeInsets.only(top: style.chatContentPaddingTop),
                 alignment: Alignment.centerLeft,
                 child: MarkdownBody(
-                  data: post.body,
+                  data: post.title,
                 ))
           ],
         ),

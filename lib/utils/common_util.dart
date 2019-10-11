@@ -7,11 +7,11 @@ enum LocaleEnum { cn, en, ja }
 class CommonUtil {
   static themeColors() {
     return [
+      Colors.blue,
       Colors.purple,
       Colors.orange,
       Colors.deepPurpleAccent,
       Colors.redAccent,
-      Colors.blue,
       Colors.amber,
       Colors.green,
       Colors.lime,

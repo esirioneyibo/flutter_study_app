@@ -19,11 +19,13 @@ class AppModel extends Model {
     // theme
     LocalStorage.get(Constant.currentTheme).then((data) {
       changeTheme(int.parse(data));
+    }).catchError((error){
     });
 
     // locale
     LocalStorage.get(Constant.currentLocale).then((data) {
       changeLocale(localeStr: data);
+    }).catchError((error){
     });
   }
 

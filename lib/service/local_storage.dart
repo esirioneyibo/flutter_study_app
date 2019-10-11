@@ -23,9 +23,9 @@ class LocalStorage {
   /// 清除缓存
   static removeAll() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var keys = prefs.getKeys();
-    keys.map((key) {
+    Set<String> keys = prefs.getKeys();
+    for (var key in keys) {
       remove(key);
-    });
+    }
   }
 }

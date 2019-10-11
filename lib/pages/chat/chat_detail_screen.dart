@@ -311,7 +311,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                   minLines: 3,
                   maxLines: 100,
                   decoration: InputDecoration(
-                    hintText: FsLocalizations.getLocale(context).comment,
+                    hintText: FsLocalizations.getLocale(context).commentTips,
                     errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
