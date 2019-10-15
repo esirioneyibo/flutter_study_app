@@ -23,6 +23,9 @@ class AppModel extends Model {
   // videos
   List<VideoVo> videos;
 
+  // 是否是仓库管理员
+  bool isAdmin = false;
+
   AppModel() {
     // theme
     LocalStorage.get(Constant.currentTheme).then((data) {
@@ -76,13 +79,22 @@ class AppModel extends Model {
     notifyListeners();
   }
 
+  /// check Admin
+  checkAdmin(BuildContext context) async {
+    if (user == null) {
+      return;
+    }
+    isAdmin = await HttpService.isRespAdmin(context);
+  }
+
   /// 是否登录
   isLogin() {
     return user != null;
   }
 
-  afterLogin(User user) {
+  afterLogin(BuildContext context, User user) {
     this.user = user;
+    checkAdmin(context);
     notifyListeners();
   }
 

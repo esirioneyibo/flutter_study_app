@@ -70,7 +70,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
                     // 评论列表
                     _buildComments(),
                     // 评论框
-                    _buildCommentInput(model)
+                    _buildCommentInput(model, post)
                   ],
                 )));
       },
@@ -118,6 +118,15 @@ class ChatDetailState extends State<ChatDetailScreen> {
       return true;
     }
     return false;
+  }
+
+  _showCloseDialog(Issue issue) {
+    DialogUtil.showConfirmDialog(context, '确定要删除本帖吗', () => _closeIssue(issue));
+  }
+
+  /// 删帖
+  _closeIssue(Issue issue) {
+    HttpService.closeIssue(context, issue);
   }
 
   // 添加一个评论 发送http请求
@@ -246,6 +255,13 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   // comment card
   Widget _buildCommentCard(index, IssueComment comment) {
+    bool respAdmin = false;
+
+    HttpService.isRespAdmin(context).then((isAdmin) {
+      setState(() {
+        respAdmin = isAdmin;
+      });
+    });
     return Card(
       child: Column(
         children: <Widget>[
@@ -254,7 +270,24 @@ class ChatDetailState extends State<ChatDetailScreen> {
             leading: CircleAvatar(
               backgroundImage: NetworkImage(comment.user.avatarUrl),
             ),
-            trailing: Text('${index + 1}楼'),
+            trailing: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Visibility(
+                    visible: CommonUtil.isCommentAuthor(context, comment) ||
+                        respAdmin,
+                    child: RaisedButton(
+                      color: style.closeButtonColor,
+                      key: Key('deleteComment'),
+                      child: Text(FsLocalizations.getLocale(context).closeIssue,
+                          style: TextStyle(
+                              fontSize: style.deleteCommentButtonSize,
+                              color: style.closeFontColor)),
+                      onPressed: () => null,
+                    ),
+                  ),
+                  Text('${index + 1}楼')
+                ]),
             title: Container(
               margin: EdgeInsets.all(5),
               child: Text(comment.user.login),
@@ -303,7 +336,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
   }
 
   /// 构建评论框
-  Widget _buildCommentInput(AppModel model) {
+  Widget _buildCommentInput(AppModel model, Issue issue) {
     return Card(
       elevation: 0,
       child: Form(
@@ -337,19 +370,42 @@ class ChatDetailState extends State<ChatDetailScreen> {
                   controller: _controller,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(right: 10),
-                alignment: Alignment.centerRight,
-                child: RaisedButton(
-                  color: style.commentButtonColor,
-                  key: Key('comment'),
-                  child: Text(FsLocalizations.getLocale(context).comment,
-                      style: TextStyle(
-                          fontSize: style.commentButtonSize,
-                          color: style.commentFontColor)),
-                  onPressed: _validateAndComment,
-                ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Visibility(
+                    visible: model.isAdmin ||
+                        CommonUtil.isIssueAuthor(context, issue),
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      alignment: Alignment.centerRight,
+                      child: RaisedButton(
+                        color: style.closeButtonColor,
+                        key: Key('closeIssue'),
+                        child: Text(
+                            FsLocalizations.getLocale(context).closeIssue,
+                            style: TextStyle(
+                                fontSize: style.commentButtonSize,
+                                color: style.closeFontColor)),
+                        onPressed: () => _showCloseDialog(issue),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 10),
+                    alignment: Alignment.centerRight,
+                    child: RaisedButton(
+                      color: style.commentButtonColor,
+                      key: Key('comment'),
+                      child: Text(FsLocalizations.getLocale(context).comment,
+                          style: TextStyle(
+                              fontSize: style.commentButtonSize,
+                              color: style.commentFontColor)),
+                      onPressed: _validateAndComment,
+                    ),
+                  ),
+                ],
+              )
             ],
           )),
     );
@@ -408,9 +464,21 @@ class ChatDetailStyle {
   // 评论点赞按钮距右的距离
   double likeButtonPaddingRight = 5;
 
+  /// 删帖按钮颜色
+  Color closeButtonColor = Colors.white70;
+
+  /// 删帖按钮文字颜色
+  Color closeFontColor = Colors.grey;
+
+  /// 评论按钮颜色
   Color commentButtonColor = Colors.green;
 
+  /// 评论按钮文字颜色
   Color commentFontColor = Colors.white;
 
+  /// 评论按钮大小
   double commentButtonSize = 12;
+
+  /// 删楼按钮大小
+  double deleteCommentButtonSize = 8;
 }

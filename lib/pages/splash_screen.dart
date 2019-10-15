@@ -64,5 +64,6 @@ class _SplashState extends State<SplashScreen>
     AppModel model = CommonUtil.getModel(context);
     model.updatePosts(context);
     model.updateVideos(context);
+    model.checkAdmin(context);
   }
 }

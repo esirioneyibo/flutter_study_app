@@ -4,8 +4,10 @@ import 'package:flutter_github_api/entity/index.dart';
 import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
+import 'package:flutter_study_app/utils/index.dart';
 
 class HttpService {
   static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
@@ -60,10 +62,29 @@ class HttpService {
     return github.issues.createComment(_slug, issueId, data.trim());
   }
 
+  /// close issue
+  static closeIssue(BuildContext context, Issue issue) async {
+    GitHub github = await getGithub(context);
+    IssueRequest request = IssueRequest();
+    request.state = 'closed';
+    NavigatorUtil.back(context);
+    github.issues.edit(_slug, issue.number, request);
+  }
+
   /// 登录
   static Future<OauthResult> login(String username, String password) async {
     username = username.trim();
     password = password.trim();
     return _github0auth.login(username, password);
+  }
+
+  /// 是否有权删issue
+  static Future<bool> isRespAdmin(BuildContext context) async {
+    AppModel model = CommonUtil.getModel(context);
+    GitHub github = await getGithub(context);
+    if (model.user == null) {
+      return false;
+    }
+    return github.repositories.isCollaborator(_slug, model.user.login);
   }
 }

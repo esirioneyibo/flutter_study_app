@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (result.data != null) {
           LocalStorage.save(Constant.USERNAME, username);
           LocalStorage.save(Constant.PASSWORD, password);
-          model.afterLogin(result.data);
+          model.afterLogin(context, result.data);
           NavigatorUtil.back(context);
         } else {
           switch (result.code) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_study_app/model/app_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -87,10 +88,51 @@ class CommonUtil {
         .hasMatch(str);
   }
 
-  static String toGithubString(String body){
+  static String toGithubString(String body) {
     body = body.replaceAll(' ', '+');
     body = body.replaceAll('\n', ' ');
     return body;
   }
 
+  /// 是否是评论作者
+  static bool isCommentAuthor(BuildContext context, IssueComment comment) {
+    AppModel model = CommonUtil.getModel(context);
+    if (model.user == null) {
+      return false;
+    }
+    if (comment.user.login == model.user.login) {
+      return true;
+    }
+    return false;
+  }
+
+  /// 是否有权删issue
+  static Future<bool> isRespAdmin(
+      BuildContext context, GitHub github, RepositorySlug slug) {
+    var model = CommonUtil.getModel(context);
+    return github.repositories.isCollaborator(slug, model.user.login);
+  }
+
+  /// 判断当前用户是不是issue发起者
+  static bool isIssueAuthor(BuildContext context, Issue issue) {
+    AppModel model = CommonUtil.getModel(context);
+
+    if (model.user == null) {
+      return false;
+    }
+
+    var currentUser = model.user.login;
+    var targetUser = issue.user.login;
+    var currentEmail = model.user.email;
+    var targetEmail = issue.user.email;
+    if (currentUser == null || targetUser == null) {
+      return false;
+    }
+    if (currentEmail != null || targetEmail != null) {
+      if (currentUser == targetUser || currentEmail == targetEmail) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

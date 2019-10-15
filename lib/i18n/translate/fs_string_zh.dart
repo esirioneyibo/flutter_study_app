@@ -134,4 +134,6 @@ class FsStringZH {
   String get issueTitle => '标题';
 
   String get contentTips => '请输入內容';
+
+  String get closeIssue => '删除帖子';
 }

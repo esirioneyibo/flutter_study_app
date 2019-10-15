@@ -100,7 +100,7 @@ class _FsAppState extends State<FsApp> {
     OauthResult result = await HttpService.login(username, password);
     if (result.data != null) {
       AppModel model = CommonUtil.getModel(context);
-      model.afterLogin(result.data);
+      model.afterLogin(context,result.data);
     }
   }
 }
