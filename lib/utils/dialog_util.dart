@@ -43,7 +43,7 @@ class DialogUtil {
           content: Text(content),
           actions: <Widget>[
             RaisedButton(
-              color: style.buttonColor,
+              color: Theme.of(context).primaryColor,
               child: Text(
                 FsLocalizations.getLocale(context).close,
                 style: TextStyle(
@@ -73,6 +73,7 @@ class DialogUtil {
           title: Text(title),
           actions: <Widget>[
             RaisedButton(
+              color: Theme.of(context).primaryColor,
               child: Text(
                 FsLocalizations.getLocale(context).ok,
                 style: TextStyle(
@@ -89,6 +90,32 @@ class DialogUtil {
               color: Theme.of(context).primaryColor,
               child: Text(
                 FsLocalizations.getLocale(context).cancel,
+                style: TextStyle(
+                    color: style.buttonFontColor,
+                    fontSize: style.buttonFontSize),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void showOKDialog(BuildContext context, String title) {
+    DialogStyle style = ConfigFactory.dialogStyle();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          actions: <Widget>[
+            RaisedButton(
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                FsLocalizations.getLocale(context).ok,
                 style: TextStyle(
                     color: style.buttonFontColor,
                     fontSize: style.buttonFontSize),

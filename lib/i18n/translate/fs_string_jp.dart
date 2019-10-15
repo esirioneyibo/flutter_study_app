@@ -1,6 +1,6 @@
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
 
-class FsStringJP implements FsStringBase {
+class FsStringJP implements FsStringZH {
   @override
   String aboutSoftware = 'ソフトウェアについて';
 
@@ -128,7 +128,7 @@ class FsStringJP implements FsStringBase {
   String studyTools = '学習ツール';
 
   @override
-  String theme = 'テーマ';
+  String theme = 'テーマ変更';
 
   @override
   String tool = 'ツール';
@@ -179,4 +179,31 @@ class FsStringJP implements FsStringBase {
 
   @override
   String noComment = 'コメントなし';
+
+  @override
+  String get clearCache => 'キャッシュ消去';
+
+  @override
+  String get confirmClearCache => 'キャッシュを削除してもよろしいですか？';
+
+  @override
+  String get clearCacheSuccess => 'キャッシュのクリーンアップが成功しました';
+
+  @override
+  String get pinned => 'トッピング';
+
+  @override
+  String get commentTips => '欲しいものを入力してください';
+
+  @override
+  String get issueContent => 'タイトル';
+
+  @override
+  String get issueTitle => '内容';
+
+  @override
+  String get contentTips => '内容を入力してください';
+
+  @override
+  String get closeIssue => '削除する';
 }

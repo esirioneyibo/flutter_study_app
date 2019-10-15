@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_en.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_jp.dart';
 import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
@@ -10,25 +9,28 @@ class FsLocalizations {
 
   FsLocalizations(this.locale);
 
-  static Map<String, FsStringBase> _localizationMap = {
+  static Map<String, FsStringZH> _localizationMap = {
     'en': FsStringEN(),
     'zh': FsStringZH(),
     'ja': FsStringJP()
   };
 
-  FsStringBase get currentLocale {
+
+  /// 获得支持语言的keys
+    static get supportedLocales{
+    return _localizationMap.keys;
+  }
+
+  /// 获取当前语言
+  static FsStringZH getLocale(BuildContext context) {
+    return Localizations.of(context, FsLocalizations)._currentLocale;
+  }
+
+  FsStringZH get _currentLocale {
     if (_localizationMap.containsKey(locale.languageCode)) {
       return _localizationMap[locale.languageCode];
     }
     return _localizationMap['cn'];
   }
 
-  static FsLocalizations of(BuildContext context) {
-    return Localizations.of(context, FsLocalizations);
-  }
-
-  /// 获取当前语言
-  static FsStringBase getLocale(BuildContext context) {
-    return of(context).currentLocale;
-  }
 }

@@ -36,7 +36,7 @@ PODS:
 DEPENDENCIES:
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -50,7 +50,6 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FMDB
     - GoogleMaps
-  trunk:
     - Reachability
 
 EXTERNAL SOURCES:
@@ -59,7 +58,7 @@ EXTERNAL SOURCES:
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   google_maps_flutter:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
   image_picker:

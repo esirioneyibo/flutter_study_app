@@ -1,6 +1,6 @@
-import 'package:flutter_study_app/i18n/fs_string_base.dart';
+import 'package:flutter_study_app/i18n/translate/fs_string_zh.dart';
 
-class FsStringEN implements FsStringBase {
+class FsStringEN implements FsStringZH {
   @override
   String aboutSoftware = 'about software';
 
@@ -74,7 +74,7 @@ class FsStringEN implements FsStringBase {
   String lifeTools = 'life tools';
 
   @override
-  String login = 'logiin';
+  String login = 'Login';
 
   @override
   String loginError = 'login error';
@@ -89,7 +89,7 @@ class FsStringEN implements FsStringBase {
   String moveToLogin = 'move to login';
 
   @override
-  String moveToRegister = 'move to regsiter';
+  String moveToRegister = 'move to register';
 
   @override
   String newChat = 'chat';
@@ -128,7 +128,7 @@ class FsStringEN implements FsStringBase {
   String studyTools = 'study tools';
 
   @override
-  String theme = 'theme';
+  String theme = 'change theme';
 
   @override
   String tool = 'tool';
@@ -179,4 +179,31 @@ class FsStringEN implements FsStringBase {
 
   @override
   String noComment = 'no comment';
+
+  @override
+  String get clearCache => 'clear cache';
+
+  @override
+  String get confirmClearCache => 'Are you sure to delete the cache?';
+
+  @override
+  String get clearCacheSuccess => 'Cache cleanup succeeded';
+
+  @override
+  String get pinned => 'pinned';
+
+  @override
+  String get commentTips => 'input something you want';
+
+  @override
+  String get issueContent => 'title';
+
+  @override
+  String get issueTitle => 'content';
+
+  @override
+  String get contentTips => 'please input content';
+
+  @override
+  String get closeIssue => 'close issue';
 }

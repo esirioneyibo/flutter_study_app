@@ -5,55 +5,41 @@ import 'package:flutter_study_app/components/loading.dart';
 import 'package:flutter_study_app/components/no_data.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/pages/chat/chat_detail_screen.dart';
 import 'package:flutter_study_app/pages/chat/new_chat_screen.dart';
-import 'package:flutter_study_app/service/http_service.dart';
 import 'package:flutter_study_app/utils/index.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class ChatScreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return ChatScreenState();
-  }
-}
-
-class ChatScreenState extends State<ChatScreen> {
-  List<Issue> posts;
-  ChatStyle style = ConfigFactory.chatStyle();
-
-  @override
-  void initState() {
-    super.initState();
-    getPosts();
-  }
+class ChatScreen extends StatelessWidget {
+  final ChatStyle style = ConfigFactory.chatStyle();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
-        floatingActionButton: _buildNewChatButton(),
-        body: _buildBody());
-  }
-
-  getPosts() {
-    HttpService.getChatList().then((data) {
-      setState(() {
-        if (data == null) {
-          posts = [];
-        }
-        posts = data;
-      });
-    });
+    AppModel model = CommonUtil.getModel(context);
+    model.updatePosts(context);
+    return ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) {
+        return Scaffold(
+            appBar:
+                AppBar(title: Text(FsLocalizations.getLocale(context).chat)),
+            floatingActionButton: _buildNewChatButton(context),
+            body: _buildBody(context, model));
+      },
+    );
   }
 
   /// new chat button
-  Widget _buildNewChatButton() {
+  Widget _buildNewChatButton(BuildContext context) {
     return Container(
       height: style.newChatButtonSize,
       width: style.newChatButtonSize,
       child: FloatingActionButton(
           tooltip: FsLocalizations.getLocale(context).newChat,
-          child: Icon(style.newChatButtonIcon),
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Icon(
+            style.newChatButtonIcon,
+          ),
           onPressed: () {
             NavigatorUtil.pushWithAnim(
                 context, NewChatScreen(), AnimType.Slider);
@@ -62,51 +48,58 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   /// body
-  Widget _buildBody() {
-    if (posts == null) {
+  Widget _buildBody(BuildContext context, AppModel model) {
+    model.updatePosts(context);
+    if (model.posts == null) {
       return Loading();
-    } else if (posts.isEmpty) {
+    } else if (model.posts.isEmpty) {
       return NoData();
     } else {
-      return Container(
-        color: style.background,
-        child: ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              final post = posts[index];
-              return InkWell(
-                onTap: () => NavigatorUtil.pushWithAnim(
-                    context, ChatDetailScreen(posts[index]), AnimType.Slider),
-                child: Card(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: style.cardMarginBottom),
-                    padding: EdgeInsets.all(style.cardPaddingAll),
-                    color: style.cardColor,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(flex: 2, child: _buildLeftUserInfo(post)),
-                            Expanded(
-                                flex: 1, child: _buildRightCommentInfo(post)),
-                          ],
-                        ),
-                        // 帖子内容
-                        Container(
-                            padding: EdgeInsets.only(
-                                top: style.chatContentPaddingTop),
-                            alignment: Alignment.centerLeft,
-                            child: MarkdownBody(
-                              data: posts[index].body,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }),
+      return RefreshIndicator(
+        onRefresh: () => model.updatePosts(context),
+        child: Container(
+          color: style.background,
+          child: ListView.builder(
+              itemCount: model.posts.length,
+              itemBuilder: (context, index) {
+                final post = model.posts[index];
+                return InkWell(
+                  onTap: () => NavigatorUtil.pushWithAnim(context,
+                      ChatDetailScreen(model.posts[index]), AnimType.Slider),
+                  child: _buildCard(post),
+                );
+              }),
+        ),
       );
     }
+  }
+
+  /// card
+  Widget _buildCard(Issue post) {
+    return Card(
+      child: Container(
+        margin: EdgeInsets.only(bottom: style.cardMarginBottom),
+        padding: EdgeInsets.all(style.cardPaddingAll),
+        color: style.cardColor,
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(flex: 2, child: _buildLeftUserInfo(post)),
+                Expanded(flex: 1, child: _buildRightCommentInfo(post)),
+              ],
+            ),
+            // 帖子標題
+            Container(
+                padding: EdgeInsets.only(top: style.chatContentPaddingTop),
+                alignment: Alignment.centerLeft,
+                child: MarkdownBody(
+                  data: post.title,
+                ))
+          ],
+        ),
+      ),
+    );
   }
 
   /// 左侧用户信息

@@ -21,24 +21,29 @@ class ThemeScreenState extends State<ThemeScreen> {
               title: Text('切换主题', style: TextStyle(color: Colors.white)),
               iconTheme: IconThemeData(color: Colors.white),
             ),
-            body: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  children: List.generate(colors.length, (index) {
-                    return InkWell(
-                      onTap: () {
-                        // 修改当前主题
-                        model.changeTheme(index);
-                        NavigatorUtil.back(context, null, true);
-                      },
-                      child: Container(
-                        color: colors[index],
-                        margin: const EdgeInsets.all(3.0),
-                      ),
-                    );
-                  }),
-                )));
+            body: GestureDetector(
+              onHorizontalDragEnd: (DragEndDetails details) {
+                NavigatorUtil.back(context, details);
+              },
+              child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: GridView.count(
+                    crossAxisCount: 4,
+                    children: List.generate(colors.length, (index) {
+                      return InkWell(
+                        onTap: () {
+                          // 修改当前主题
+                          model.changeTheme(index);
+                          NavigatorUtil.back(context);
+                        },
+                        child: Container(
+                          color: colors[index],
+                          margin: const EdgeInsets.all(3.0),
+                        ),
+                      );
+                    }),
+                  )),
+            ));
       },
     );
   }

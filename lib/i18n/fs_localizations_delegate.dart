@@ -6,7 +6,7 @@ import 'package:flutter_study_app/i18n/fs_localization.dart';
 class FsLocalizationsDelegate extends LocalizationsDelegate<FsLocalizations> {
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'zh', 'ja'].contains(locale.languageCode);
+    return FsLocalizations.supportedLocales.contains(locale.languageCode);
   }
 
   @override

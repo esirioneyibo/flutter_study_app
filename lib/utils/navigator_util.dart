@@ -16,24 +16,18 @@ class NavigatorUtil {
     Navigator.push(context, MaterialPageRoute(builder: (context) => route));
   }
 
-  static void back(BuildContext context,
-      [DragEndDetails details, bool toIndex]) {
+  static void back(BuildContext context, [DragEndDetails details]) {
     if (details == null) {
       Navigator.of(context).pop();
-      if (toIndex) {
-        Navigator.of(context).pop();
-      }
       return;
     }
 
+    // 防止误触
     var value = (details.velocity.pixelsPerSecond.dx.toStringAsFixed(1));
-    if (double.parse(value) < 500) {
+    if (double.parse(value) < 1000) {
       return;
     }
     Navigator.of(context).pop();
-    if (toIndex) {
-      Navigator.of(context).pop();
-    }
   }
 
   static void pushWithAnim(BuildContext context, route, AnimType animType,
@@ -58,11 +52,6 @@ class NavigatorUtil {
     Navigator.push(context, builder);
   }
 
-  ///替换
-  static pushReplacementNamed(BuildContext context, String routeName) {
-    Navigator.pushReplacementNamed(context, routeName);
-  }
-
   ///切换无参数页面
   static pushNamed(BuildContext context, String routeName) {
     Navigator.pushNamed(context, routeName);
@@ -71,6 +60,11 @@ class NavigatorUtil {
   ///主页
   static goHome(BuildContext context) {
     Navigator.pushReplacementNamed(context, RouterConfig.index);
+  }
+
+  /// account
+  static goLogin(BuildContext context) {
+    Navigator.pushReplacementNamed(context, RouterConfig.account);
   }
 }
 

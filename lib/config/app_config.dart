@@ -16,6 +16,7 @@ class Constant {
   static const defaultAvatar = 'assets/images/default_avatar.png';
   static const splash = 'assets/images/splash.png';
   static const accountBg = 'assets/images/accountBg.jpg';
+  static const loginBg = 'assets/images/login_bg.jpg';
 
   // config
   static const TOKEN_KEY = "ys_token";

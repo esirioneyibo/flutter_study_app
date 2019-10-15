@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_api/flutter_github_api.dart';
+import 'package:flutter_study_app/model/app_model.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 enum LocaleEnum { cn, en, ja }
 
 class CommonUtil {
   static themeColors() {
     return [
+      Colors.blue,
       Colors.purple,
       Colors.orange,
       Colors.deepPurpleAccent,
       Colors.redAccent,
-      Colors.blue,
       Colors.amber,
       Colors.green,
       Colors.lime,
@@ -18,6 +21,10 @@ class CommonUtil {
       Colors.teal,
       Colors.black,
     ];
+  }
+
+  static AppModel getModel(BuildContext context) {
+    return ScopedModel.of<AppModel>(context);
   }
 
   static format(String content, {String param, List<String> params}) {
@@ -50,7 +57,7 @@ class CommonUtil {
     int index = 0;
     if (localeEnum != null) {
       index = localeEnum.index;
-    } else {
+    } else if (localeStr != null) {
       index = int.parse(localeStr);
     }
 
@@ -79,5 +86,53 @@ class CommonUtil {
     return RegExp(
             '^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+\$')
         .hasMatch(str);
+  }
+
+  static String toGithubString(String body) {
+    body = body.replaceAll(' ', '+');
+    body = body.replaceAll('\n', ' ');
+    return body;
+  }
+
+  /// 是否是评论作者
+  static bool isCommentAuthor(BuildContext context, IssueComment comment) {
+    AppModel model = CommonUtil.getModel(context);
+    if (model.user == null) {
+      return false;
+    }
+    if (comment.user.login == model.user.login) {
+      return true;
+    }
+    return false;
+  }
+
+  /// 是否有权删issue
+  static Future<bool> isRespAdmin(
+      BuildContext context, GitHub github, RepositorySlug slug) {
+    var model = CommonUtil.getModel(context);
+    return github.repositories.isCollaborator(slug, model.user.login);
+  }
+
+  /// 判断当前用户是不是issue发起者
+  static bool isIssueAuthor(BuildContext context, Issue issue) {
+    AppModel model = CommonUtil.getModel(context);
+
+    if (model.user == null) {
+      return false;
+    }
+
+    var currentUser = model.user.login;
+    var targetUser = issue.user.login;
+    var currentEmail = model.user.email;
+    var targetEmail = issue.user.email;
+    if (currentUser == null || targetUser == null) {
+      return false;
+    }
+    if (currentEmail != null || targetEmail != null) {
+      if (currentUser == targetUser || currentEmail == targetEmail) {
+        return true;
+      }
+    }
+    return false;
   }
 }

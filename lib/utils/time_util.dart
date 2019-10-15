@@ -26,7 +26,7 @@ class TimeUtil {
 
     var diff = Duration(
         milliseconds:
-        now.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch);
+            now.millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch);
     if (diff.inMinutes < 1) {
       return "刚刚";
     }
@@ -53,6 +53,4 @@ class TimeUtil {
 
     return "$minutesStr:$secondsStr";
   }
-
-
 }

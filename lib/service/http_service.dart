@@ -1,118 +1,90 @@
-import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_github_api/entity/basic_auth_param.dart';
+import 'package:flutter_github_api/entity/index.dart';
 import 'package:flutter_github_api/flutter_github_api.dart';
-import 'package:flutter_study_app/config/api_config.dart';
 import 'package:flutter_study_app/config/app_config.dart';
 import 'package:flutter_study_app/config/auth_config.dart';
+import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/interceptors/token_interceptor.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
-import 'package:flutter_study_app/vo/result_data.dart';
 
 class HttpService {
   static final TokenInterceptors _tokenInterceptors = TokenInterceptors();
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
-  static IssuesService issuesService = IssuesService(github);
-  static RepositorySlug slug = RepositorySlug("houko", "flutter-study-app");
-  static GitHub github = createGitHubClient(
-      auth: new Authentication.withToken(AuthConfig.githubToken));
+
+  //本项目的仓库
+  static RepositorySlug _slug =
+      RepositorySlug("flutter-jp", "flutter_study_app");
+  static Auth _auth =
+      Auth(AuthConfig.githubClientId, AuthConfig.githubClientSecret);
+  static GithubOauth _github0auth = GithubOauth(_auth);
+
+  /// get github
+  static Future<GitHub> getGithub(BuildContext context) async {
+    String username = await LocalStorage.get(Constant.USERNAME);
+    String password = await LocalStorage.get(Constant.PASSWORD);
+    if (username == null || password == null) {
+      return createGitHubClient();
+    }
+    return createGitHubClient(auth: Authentication.basic(username, password));
+  }
 
   /// 获取聊天列表
-  static Future<List<Issue>> getChatList() {
-    return github.issues.listByRepo(slug).toList();
+  static Future<List<Issue>> getChatList(BuildContext context) async {
+    GitHub github = await getGithub(context);
+    return github.issues.listByRepo(_slug).toList();
   }
 
   /// 获取评论列表
-  static Future<List<IssueComment>> getChatComments(issueNumber) {
-    return issuesService.listCommentsByIssue(slug, issueNumber).toList();
+  static Future<List<IssueComment>> getChatComments(
+      BuildContext context, issueNumber) async {
+    GitHub github = await getGithub(context);
+    IssuesService issuesService = IssuesService(github);
+    return issuesService.listCommentsByIssue(_slug, issueNumber).toList();
+  }
+
+  /// 创建一个帖子
+  static Future<Issue> addAnIssue(BuildContext context, String title,
+      {String body}) async {
+    GitHub github = await getGithub(context);
+    IssueRequest issueRequest = IssueRequest();
+    issueRequest.title = title;
+    issueRequest.body = body;
+    return github.issues.create(_slug, issueRequest);
   }
 
   /// 添加一个评论
-  static addAnComment(Authentication auth, issueId, String data) {
-    return github.issues.createComment(slug, issueId, data.trim());
+  static Future<IssueComment> addAnComment(
+      BuildContext context, issueId, String data) async {
+    GitHub github = await getGithub(context);
+    return github.issues.createComment(_slug, issueId, data.trim());
+  }
+
+  /// close issue
+  static closeIssue(BuildContext context, Issue issue) async {
+    GitHub github = await getGithub(context);
+    IssueRequest request = IssueRequest();
+    request.state = 'closed';
+    NavigatorUtil.back(context);
+    github.issues.edit(_slug, issue.number, request);
   }
 
   /// 登录
-  static Future login(String username, String password) async {
+  static Future<OauthResult> login(String username, String password) async {
     username = username.trim();
     password = password.trim();
-    String type = username + ":" + password;
-    var bytes = utf8.encode(type);
-    var base64Str = base64.encode(bytes);
-    if (Constant.debug) {
-      print("base64Str login " + base64Str);
-    }
-    var resultData;
-    var auth = await isAuth();
-    if (auth) {
-      LocalStorage.save(Constant.USERNAME, username);
-      LocalStorage.save(Constant.USER_BASIC_CODE, base64Str);
-    }
-    return Result(resultData, auth);
+    return _github0auth.login(username, password);
   }
 
-  /// 判断本app是否接入了github
-  static isAuth() async {
-    var auth = await getAuth();
-    if (auth != null && auth.result) {
-      return true;
+  /// 是否有权删issue
+  static Future<bool> isRespAdmin(BuildContext context) async {
+    AppModel model = CommonUtil.getModel(context);
+    GitHub github = await getGithub(context);
+    if (model.user == null) {
+      return false;
     }
-    return false;
-  }
-
-  static getAuth() async {
-    Map requestParams = {
-      "scopes": ['user', 'repo', 'gist', 'notifications'],
-      "note": "admin_script",
-      "client_id": AuthConfig.githubClientId,
-      "client_secret": AuthConfig.githubClientSecret
-    };
-
-    // 清除己有的权限
-    httpManager.clearAuthorization();
-    // 发送http请求
-    return await httpManager.post(
-        ApiConfig.getAuthorization(), json.encode(requestParams));
-  }
-
-  ///获取本地登录用户信息
-  static getUserInfoLocal() async {
-    var userText = await LocalStorage.get(Constant.USER_INFO);
-    if (userText != null) {
-      var userMap = json.decode(userText);
-      User user = User.fromJson(userMap);
-      return ResultData(user, true, Code.SUCCESS);
-    } else {
-      return ResultData(null, false, Code.SUCCESS);
-    }
-  }
-
-  ///获取用户详细信息
-  static getUserInfo([username]) async {
-    next() async {
-      var res;
-      if (username == null) {
-        res = await httpManager.get(ApiConfig.getMyUserInfo());
-      } else {
-        res = await httpManager.get(ApiConfig.getUserInfo(username));
-      }
-      if (res != null && res.result) {
-        User user = User.fromJson(res.data);
-        if (username == null) {
-          LocalStorage.save(Constant.USER_INFO, json.encode(user.toJson()));
-        }
-        return new Result(user, true);
-      } else {
-        return new Result(res.data, false);
-      }
-    }
-
-    return await next();
-  }
-
-  ///清除授权
-  static clearAuthorization() {
-    _tokenInterceptors.clearAuthorization();
+    return github.repositories.isCollaborator(_slug, model.user.login);
   }
 }

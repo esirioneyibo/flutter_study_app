@@ -33,7 +33,7 @@ class HttpManager {
     return netFetch(url, params, header, Options(method: 'GET'));
   }
 
-  post(url, params, {Map<String, dynamic> header}) {
+  Future post(url, params, {Map<String, dynamic> header}) {
     return netFetch(url, params, header, Options(method: 'GET'));
   }
 
