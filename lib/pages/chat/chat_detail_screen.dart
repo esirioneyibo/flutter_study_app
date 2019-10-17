@@ -272,12 +272,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   // comment card
   Widget _buildCommentCard(index, IssueComment comment) {
-    bool respAdmin = false;
-    HttpService.isRespAdmin(context).then((isAdmin) {
-      setState(() {
-        respAdmin = isAdmin;
-      });
-    });
+    AppModel model = CommonUtil.getModel(context);
     return Card(
       child: ListTile(
         key: Key(comment.id.toString()),
@@ -295,7 +290,7 @@ class ChatDetailState extends State<ChatDetailScreen> {
               data: comment.body,
             )),
         onTap: () {
-          if (respAdmin) {
+          if (model.isAdmin) {
             _showDeleteCommentDialog(index, comment);
           }
         },
