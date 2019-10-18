@@ -6,6 +6,7 @@ import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/model/app_model.dart';
 import 'package:flutter_study_app/service/local_storage.dart';
 import 'package:flutter_study_app/utils/index.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -77,6 +78,13 @@ class SettingScreen extends StatelessWidget {
         title: Text(FsLocalizations.getLocale(context).deviceInfo),
         onTap: () {
           Navigator.pushNamed(context, RouterConfig.deviceInfo);
+        },
+      ),
+      ListTile(
+        leading: Icon(FontAwesomeIcons.exclamationCircle),
+        title: Text(FsLocalizations.getLocale(context).aboutSoftware),
+        onTap: () {
+          Navigator.pushNamed(context, RouterConfig.about);
         },
       ),
       Visibility(
