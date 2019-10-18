@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/components/my_app_bar.dart';
 import 'package:flutter_study_app/factory.dart';
 import 'package:flutter_study_app/i18n/fs_localization.dart';
 import 'package:flutter_study_app/utils/index.dart';
@@ -63,6 +64,9 @@ class ToolsScreen extends StatelessWidget {
         fontWeight: style.categoryTitleFontWeight);
 
     return Scaffold(
+      appBar: MyAppBar(
+        title: FsLocalizations.getLocale(context).tool,
+      ),
       body: ListView(
         children: <Widget>[
           Padding(
