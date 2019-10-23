@@ -71,6 +71,13 @@ class HttpService {
     github.issues.edit(_slug, issue.number, request);
   }
 
+  /// 删除评论
+  static Future<bool> deleteIssueComment(
+      BuildContext context, IssueComment comment) async {
+    GitHub github = await getGithub(context);
+    return github.issues.deleteComment(_slug, comment.id);
+  }
+
   /// 登录
   static Future<OauthResult> login(String username, String password) async {
     username = username.trim();

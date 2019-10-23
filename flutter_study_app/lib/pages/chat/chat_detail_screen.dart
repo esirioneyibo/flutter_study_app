@@ -129,6 +129,23 @@ class ChatDetailState extends State<ChatDetailScreen> {
     HttpService.closeIssue(context, issue);
   }
 
+  /// 删除评论
+  _showDeleteCommentDialog(index, comment) {
+    DialogUtil.showConfirmDialog(context, '确定删除评论吗?', () {
+      _deleteIssueComment(index, comment);
+    });
+  }
+
+  _deleteIssueComment(index, comment) {
+    HttpService.deleteIssueComment(context, comment).then((deleted) {
+      if (deleted) {
+        setState(() {
+          comments.removeAt(index);
+        });
+      }
+    });
+  }
+
   // 添加一个评论 发送http请求
   addAnComment(BuildContext context, AppModel model, String data) {
     if (!model.isLogin()) {
@@ -255,82 +272,28 @@ class ChatDetailState extends State<ChatDetailScreen> {
 
   // comment card
   Widget _buildCommentCard(index, IssueComment comment) {
-    bool respAdmin = false;
-
-    HttpService.isRespAdmin(context).then((isAdmin) {
-      setState(() {
-        respAdmin = isAdmin;
-      });
-    });
+    AppModel model = CommonUtil.getModel(context);
     return Card(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            key: Key(comment.id.toString()),
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(comment.user.avatarUrl),
-            ),
-            trailing: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Visibility(
-                    visible: CommonUtil.isCommentAuthor(context, comment) ||
-                        respAdmin,
-                    child: RaisedButton(
-                      color: style.closeButtonColor,
-                      key: Key('deleteComment'),
-                      child: Text(FsLocalizations.getLocale(context).closeIssue,
-                          style: TextStyle(
-                              fontSize: style.deleteCommentButtonSize,
-                              color: style.closeFontColor)),
-                      onPressed: () => null,
-                    ),
-                  ),
-                  Text('${index + 1}楼')
-                ]),
-            title: Container(
-              margin: EdgeInsets.all(5),
-              child: Text(comment.user.login),
-            ),
-            subtitle: Container(
-                margin: EdgeInsets.all(10),
-                child: MarkdownBody(
-                  data: comment.body,
-                )),
-          ),
-//          Row(
-//            mainAxisAlignment: MainAxisAlignment.end,
-//            children: <Widget>[
-//              Container(
-//                margin: EdgeInsets.fromLTRB(0, 0, 5, 5),
-//                child: InkWell(
-//                    child: Icon(
-//                      Icons.thumb_up,
-//                      color: Theme.of(context).primaryColor,
-//                      size: 20,
-//                    ),
-//                    onTap: () => {
-//                          // todo 点赞 后期再实现
-//                        }),
-//                alignment: Alignment.centerRight,
-//                padding: EdgeInsets.only(right: style.likeButtonPaddingRight),
-//              ),
-//              Visibility(
-//                visible: true,
-//                child: Container(
-//                  alignment: Alignment.topCenter,
-//                  padding: EdgeInsets.fromLTRB(0, 0, 5, 5),
-//                  child: Text(
-//                    '1',
-//                    style: TextStyle(
-//                      fontSize: 20,
-//                    ),
-//                  ),
-//                ),
-//              )
-//            ],
-//          )
-        ],
+      child: ListTile(
+        key: Key(comment.id.toString()),
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(comment.user.avatarUrl),
+        ),
+        trailing: Text('${index + 1}楼'),
+        title: Container(
+          margin: EdgeInsets.all(5),
+          child: Text(comment.user.login),
+        ),
+        subtitle: Container(
+            margin: EdgeInsets.all(10),
+            child: MarkdownBody(
+              data: comment.body,
+            )),
+        onTap: () {
+          if (model.isAdmin) {
+            _showDeleteCommentDialog(index, comment);
+          }
+        },
       ),
     );
   }

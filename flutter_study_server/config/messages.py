@@ -1,0 +1,1 @@
+SUCCESS_MESSAGE_ADD_REVIEW = '创建评论成功'
