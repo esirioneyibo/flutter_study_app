@@ -1,0 +1,114 @@
+E:\workspace\flutter-study-server
+├─.gitignore
+├─app.py
+├─generate_tree.sh
+├─readme.md
+├─tree.txt
+├─service
+|    ├─base_service.py
+|    ├─db_session.py
+|    ├─video_service.py
+|    ├─__init__.py
+|    ├─__pycache__
+|    |      ├─base_service.cpython-37.pyc
+|    |      ├─db_session.cpython-37.pyc
+|    |      ├─video_service.cpython-37.pyc
+|    |      └__init__.cpython-37.pyc
+├─model
+|   ├─mock_data.py
+|   ├─models.py
+|   ├─__init__.py
+|   ├─__pycache__
+|   |      ├─models.cpython-37.pyc
+|   |      └__init__.cpython-37.pyc
+├─controller
+|     ├─video_controller.py
+|     ├─__init__.py
+|     ├─__pycache__
+|     |      ├─video_controller.cpython-37.pyc
+|     |      └__init__.cpython-37.pyc
+├─config
+|   ├─db_config.py
+|   ├─messages.py
+|   ├─response.py
+|   ├─status.py
+|   ├─url_config.py
+|   ├─__init__.py
+|   ├─__pycache__
+|   |      ├─db_config.cpython-37.pyc
+|   |      ├─response.cpython-37.pyc
+|   |      ├─status.cpython-37.pyc
+|   |      └__init__.cpython-37.pyc
+├─common
+|   ├─flutter_study_error.py
+|   ├─import_status.py
+|   ├─__init__.py
+|   ├─__pycache__
+|   |      ├─flutter_study_error.cpython-37.pyc
+|   |      └__init__.cpython-37.pyc
+├─api
+|  ├─video_api.py
+|  ├─__init__.py
+|  ├─__pycache__
+|  |      ├─video_api.cpython-37.pyc
+|  |      └__init__.cpython-37.pyc
+├─.idea
+|   ├─flutter-study-server.iml
+|   ├─misc.xml
+|   ├─modules.xml
+|   ├─vcs.xml
+|   ├─workspace.xml
+|   ├─inspectionProfiles
+|   |         └profiles_settings.xml
+|   ├─dictionaries
+|   |      └g10016851.xml
+├─.git
+|  ├─COMMIT_EDITMSG
+|  ├─config
+|  ├─description
+|  ├─HEAD
+|  ├─index
+|  ├─packed-refs
+|  ├─tgitchangelist
+|  ├─refs
+|  |  ├─tags
+|  |  ├─remotes
+|  |  |    ├─origin
+|  |  |    |   ├─HEAD
+|  |  |    |   └master
+|  |  ├─heads
+|  |  |   └master
+|  ├─objects
+|  |    ├─pack
+|  |    |  ├─pack-fd69f11882e200c7ce28bff285f8753e14bf4690.idx
+|  |    |  └pack-fd69f11882e200c7ce28bff285f8753e14bf4690.pack
+|  |    ├─info
+|  |    ├─e1
+|  |    | └097ddc92a56be043e69ef4e03c63b74dc89f43
+|  |    ├─51
+|  |    | └dd991b88c4f1c1e6cfdf1db2930f56d7b0d7cd
+|  |    ├─40
+|  |    | └f3001897bddf6123428b25b80c391e56d17c11
+|  ├─logs
+|  |  ├─HEAD
+|  |  ├─refs
+|  |  |  ├─remotes
+|  |  |  |    ├─origin
+|  |  |  |    |   ├─HEAD
+|  |  |  |    |   └master
+|  |  |  ├─heads
+|  |  |  |   └master
+|  ├─info
+|  |  └exclude
+|  ├─hooks
+|  |   ├─applypatch-msg.sample
+|  |   ├─commit-msg.sample
+|  |   ├─fsmonitor-watchman.sample
+|  |   ├─post-update.sample
+|  |   ├─pre-applypatch.sample
+|  |   ├─pre-commit.sample
+|  |   ├─pre-push.sample
+|  |   ├─pre-rebase.sample
+|  |   ├─pre-receive.sample
+|  |   ├─prepare-commit-msg.sample
+|  |   └update.sample
