@@ -107,7 +107,7 @@
     "webpack": "^4.41.2"
   },
   "bugs": {
-    "url": "https://github.com/armour/vue-typescript-admin-template/issues"
+    "url": "https://github.com/flutter-jp/flutter_study_app/issues"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -127,6 +127,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/armour/vue-typescript-admin-template.git"
+    "url": "git+https://github.com/houko"
   }
 }

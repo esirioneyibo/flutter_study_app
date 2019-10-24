@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  description: Mock API for vue-typescript-admin-template.
+  description: Mock API for admin.
   version: 1.0.0
   title: Mock API
   contact:
-    email: armourcy@email.com
+    email: xiaomo@xiaomo.info
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT

@@ -600,7 +600,7 @@ export const asyncRoutes = [
     component: 'Layout',
     children: [
       {
-        path: 'https://github.com/Armour/vue-typescript-admin-template',
+        path: 'https://github.com/houko',
         meta: {
           title: 'externalLink',
           icon: 'link'
