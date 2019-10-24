@@ -14,7 +14,11 @@ developing, coming soon. please be hope
 :rocket:
 there will put a gif or video about this app while app developed
 
-
+### Comment
+- admin(build with vue typescript)
+- client(build with flutter 1.9)
+- server(build with python django)
+- docs (build with docsify)
 
 ### Preview
 :rocket:
