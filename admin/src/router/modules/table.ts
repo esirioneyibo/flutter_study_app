@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
-const tableRoutes: RouteConfig = {
+export const tableRouter: RouteConfig = {
   path: '/table',
   component: Layout,
   redirect: '/table/complex-table',
@@ -37,5 +37,3 @@ const tableRoutes: RouteConfig = {
     }
   ]
 }
-
-export default tableRoutes

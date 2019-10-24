@@ -2,8 +2,8 @@ import faker from 'faker'
 import { Response, Request } from 'express'
 import { ITransactionData } from '../src/api/types'
 
-const transactionList: ITransactionData[] = [];
-const transactionCount = 20;
+const transactionList: ITransactionData[] = []
+const transactionCount = 20
 
 for (let i = 0; i < transactionCount; i++) {
   transactionList.push({
@@ -23,4 +23,4 @@ export const getTransactions = (req: Request, res: Response) => {
       items: transactionList
     }
   })
-};
+}
