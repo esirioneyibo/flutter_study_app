@@ -1,6 +1,6 @@
 <template>
   <a
-    href="https://github.com/armour/vue-typescript-admin-template"
+    href="https://github.com/flutter-jp/flutter_study_app"
     target="_blank"
     class="github-corner"
     aria-label="View source on Github"
