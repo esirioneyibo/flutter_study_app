@@ -62,7 +62,6 @@ export const constantRoutes: RouteConfig[] = [
   redirectRouter,
   loginRouter,
   authRedirectRouter,
-  errorRouter,
   homeRouter,
   guideRouter,
   profileRouter
@@ -95,7 +94,7 @@ export const asyncRoutes: RouteConfig[] = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
+  mode: 'history', // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
       return savedPosition

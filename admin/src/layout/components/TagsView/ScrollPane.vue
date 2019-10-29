@@ -18,7 +18,7 @@ const tagSpacing = 4
   name: 'ScrollPane'
 })
 export default class extends Vue {
-  private handleScroll(e: MouseWheelEvent) {
+  private handleScroll(e: WheelEvent) {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40
     const scrollContainer = this.$refs.scrollContainer as Vue
     const scrollWrapper = scrollContainer.$refs.wrap as HTMLElement

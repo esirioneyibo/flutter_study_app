@@ -1,0 +1,32 @@
+格式:
+      path: '/路径',
+      component: 组件,
+      redirect: 'noRedirect 或者一个path',
+      name: '名字',
+      meta: {
+        title: '标题',
+        icon: 'icon'
+        affix: true 或者 false
+      },
+      children: [
+            和上面的格式一样
+        ]
+
+
+举例:
+       path: 'json-editor',
+       component: () => import(/* webpackChunkName: "json-editor" */ '@/views/components-demo/json-editor.vue'),
+       name: 'JsonEditorDemo',
+       meta: {
+         title: 'json-editor',
+         icon: 'json-editor'
+       },
+      children: [
+            path: 'tinymce',
+                  component: () => import(/* webpackChunkName: "tinymce" */ '@/views/components-demo/tinymce.vue'),
+                  name: 'TinymceDemo',
+                       meta: {
+                         title: 'tinyce',
+                         icon: 'tinyce'
+                       },
+        ]

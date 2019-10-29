@@ -2,7 +2,7 @@ import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
 export const externalLinkRouter: RouteConfig = {
-  path: 'external-link',
+  path: '/external-link',
   component: Layout,
   children: [
     {
