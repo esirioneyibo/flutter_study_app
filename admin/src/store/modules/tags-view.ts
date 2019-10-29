@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
+import { Action, getModule, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 import { Route } from 'vue-router'
 import store from '@/store'
 
@@ -71,8 +71,7 @@ class TagsView extends VuexModule implements ITagsViewState {
   @Mutation
   private DEL_ALL_VISITED_VIEWS() {
     // keep affix tags
-    const affixTags = this.visitedViews.filter(tag => tag.meta.affix)
-    this.visitedViews = affixTags
+    this.visitedViews = this.visitedViews.filter(tag => tag.meta.affix)
   }
 
   @Mutation
