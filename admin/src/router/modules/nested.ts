@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
-const nestedRoutes: RouteConfig = {
+export const nestedRouter: RouteConfig = {
   path: '/nested',
   component: Layout,
   redirect: '/nested/menu1',
@@ -61,5 +61,3 @@ const nestedRoutes: RouteConfig = {
     }
   ]
 }
-
-export default nestedRoutes

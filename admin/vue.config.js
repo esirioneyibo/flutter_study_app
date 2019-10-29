@@ -3,9 +3,9 @@ const path = require('path')
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, on Mac: sudo npm run / sudo yarn
-const devServerPort = 9527; // TODO: get this variable from setting.ts
-const mockServerPort = 9528; // TODO: get this variable from setting.ts
-const name = 'Vue Typescript Admin'; // TODO: get this variable from setting.ts
+const devServerPort = 9527 // TODO: get this variable from setting.ts
+const mockServerPort = 9528 // TODO: get this variable from setting.ts
+const name = 'Vue Typescript Admin' // TODO: get this variable from setting.ts
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/admin/' : '/',
@@ -50,13 +50,13 @@ module.exports = {
   chainWebpack(config) {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
-    config.set('name', name);
+    config.set('name', name)
 
     // https://webpack.js.org/configuration/devtool/#development
     config
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('cheap-source-map')
-      );
+      )
 
     config
       .when(process.env.NODE_ENV !== 'development',
@@ -84,9 +84,9 @@ module.exports = {
                   reuseExistingChunk: true
                 }
               }
-            });
+            })
           config.optimization.runtimeChunk('single')
         }
       )
   }
-};
+}

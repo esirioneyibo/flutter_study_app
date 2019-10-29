@@ -66,7 +66,7 @@ export const updateRole = (req: Request, res: Response) => {
 
 export const deleteRole = (req: Request, res: Response) => {
   return res.json({
-    code: 20000,
+    code: 20000
   })
 }
 

@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
-const componentsRouter: RouteConfig = {
+export const componentsRouter: RouteConfig = {
   path: '/components',
   component: Layout,
   redirect: 'noRedirect',
@@ -97,5 +97,3 @@ const componentsRouter: RouteConfig = {
     }
   ]
 }
-
-export default componentsRouter

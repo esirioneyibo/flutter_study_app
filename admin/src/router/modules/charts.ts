@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
-const chartsRouter: RouteConfig = {
+export const chartsRouter: RouteConfig = {
   path: '/charts',
   component: Layout,
   redirect: 'noredirect',
@@ -40,5 +40,3 @@ const chartsRouter: RouteConfig = {
     }
   ]
 }
-
-export default chartsRouter
