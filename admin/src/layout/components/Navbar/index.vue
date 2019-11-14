@@ -115,7 +115,7 @@ export default class extends Vue {
 
   private async logout() {
     await UserModule.LogOut()
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    await this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
 }
 </script>
