@@ -36,15 +36,26 @@ def close_session(fn):
 class BaseService(object):
     def __init__(self):
         try:
-            self.session = db_session()
+            self.session = get_session()[0]
             self.query = self.session.query
         except Exception as e:
             print(e.message)
 
     @close_session
     def add_model(self, model_bean, **kwargs):
+        model_bean = model_bean()
         for key in model_bean.__table__.columns.keys():
             if key in kwargs:
                 setattr(model_bean, key, kwargs.get(key))
-
         self.session.add(model_bean)
+
+    # @contextmanager
+    # def auto_commit(self):
+    #     try:
+    #         yield self.session
+    #         self.session.commit()
+    #     except Exception as e:
+    #         self.session.rollback()
+    #         raise e
+    #     finally:
+    #         self.session.close()
